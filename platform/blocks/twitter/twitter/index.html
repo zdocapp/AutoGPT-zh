@@ -1,0 +1,6399 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://autogpt-zh.zdoc.app/platform/blocks/twitter/twitter/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Twitter API 集成模块 - AutoGPT 中文文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-2W5WHHJTV5"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-2W5WHHJTV5",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-2W5WHHJTV5",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+<style>
+  svg.ms-w-12 {
+    width: 2rem !important;
+  }
+  svg.ms-h-12 {
+    height: 2rem !important;
+  }
+  /* Temporary solution for the font sizes  */
+  #headlessui-dialog-panel-2 p{
+    font-size: 16px;
+  }
+  #headlessui-dialog-panel-2 textarea{
+    font-size: 16px;
+  }
+  #headlessui-dialog-panel-2 span{
+    font-size: 14px;
+
+  }
+  #headlessui-dialog-panel-2 div{
+    font-size: 16px;
+  }
+  #headlessui-dialog-panel-2 a{
+    font-size: 14px;
+    line-height: 1rem;
+  }
+  #headlessui-dialog-panel-2 button{
+    border: 1px solid #0000001d;
+    line-height: 1rem;
+
+}
+  /* Temporary solution for the font size  */
+  #headlessui-dialog-panel-2 > div > div > div > div.ms-w-full.ms-rounded-xl.ms-flex.ms-flex-col.ms-relative > div > div > div > div > div.ms-flex.ms-flex-row.ms-items-center.ms-justify-between.ms-gap-1 > p{
+    font-size: 14px;
+    line-height: 1rem;
+  }
+
+</style>
+
+<div id="my-component-root" class="mendable-search"></div>
+
+<script src="https://unpkg.com/@mendable/search@0.0.155/dist/umd/mendable-bundle.min.js"></script>
+
+<script>
+    Mendable.initialize({
+      anon_key: 'a0bd44db-eb3b-412f-8924-b31c58244a64',
+      type: 'floatingButton',
+      style : { accentColor: '#3F51B5', darkMode: false },
+      floatingButtonStyle:{
+        backgroundColor: '#3F51B5',
+        color: '#fff',
+      },
+      icon: "https://mendable-storage.s3.amazonaws.com/autoGPT.gif",
+      botIcon: "https://mendable-storage.s3.amazonaws.com/autoGPTbot.gif",
+    })
+  </script>
+
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#twitter-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="AutoGPT 中文文档" class="md-header__button md-logo" aria-label="AutoGPT 中文文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutoGPT 中文文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Twitter API 集成模块
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zdocapp/AutoGPT-zh" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AutoGPT-zh
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting-started/" class="md-tabs__link">
+          
+  
+  
+  AutoGPT 平台 🆕
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../classic/" class="md-tabs__link">
+          
+  
+  
+  AutoGPT 经典版
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../contribute/" class="md-tabs__link">
+          
+  
+  
+  参与贡献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/LICENSE" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="AutoGPT 中文文档" class="md-nav__button md-logo" aria-label="AutoGPT 中文文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
+
+    </a>
+    AutoGPT 中文文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zdocapp/AutoGPT-zh" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AutoGPT-zh
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AutoGPT 平台 🆕
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            AutoGPT 平台 🆕
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    入门指南
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            入门指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    本地部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../edit-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    编辑代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../delete-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    删除代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../download-agent-from-marketplace-local/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    下载与导入代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../create-basic-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    创建基础代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../submit-agent-to-marketplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    提交代理到市场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    高级配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agent-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    代理模块
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../new_blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自定义模块
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    使用 Ollama
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aimlapi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    使用 AI/ML API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../d_id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    使用 D-ID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模块库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    贡献指南
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            贡献指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    测试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/oauth-integration-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OAuth 流程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AutoGPT 经典版
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AutoGPT 经典版
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    安装与配置
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            安装与配置
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    安装 AutoGPT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/setup/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    使用 Docker 部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/setup/for-developers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    开发者指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    配置说明
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            配置说明
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/configuration/options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    配置选项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/configuration/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    搜索功能
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/configuration/voice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    语音功能
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    使用说明
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    帮助改进 AutoGPT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            帮助改进 AutoGPT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/share-your-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分享调试日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    贡献指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../classic/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    运行测试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    行为准则
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    基准测试
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            基准测试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/benchmark/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    说明文档
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Forge 模块
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Forge 模块
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/get-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_2" id="__nav_3_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    组件体系
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            组件体系
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/built-in-components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内置组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../forge/components/creating-components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    创建组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    前端
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            前端
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/frontend/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    说明文档
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    参与贡献
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            参与贡献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../autogpt_platform/backend/TESTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    测试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/LICENSE" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/zdocapp/AutoGPT-zh/edit/master/docs/content/platform/blocks/twitter/twitter.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/zdocapp/AutoGPT-zh/raw/master/docs/content/platform/blocks/twitter/twitter.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+    </a>
+  
+
+
+<h1 id="twitter-api">Twitter API 集成模块<a class="headerlink" href="#twitter-api" title="Permanent link">&para;</a></h1>
+<h2 id="twitter">Twitter 发布推文模块<a class="headerlink" href="#twitter" title="Permanent link">&para;</a></h2>
+<h3 id="_1">功能概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>一个可在 Twitter 上创建推文的模块，支持多种可选附件和设置。</p>
+<h3 id="_2">功能说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>该模块允许发布包含文本内容的推文，并支持媒体、投票、引用或深度链接等可选附件。</p>
+<h3 id="_3">工作原理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 创建具有指定内容和设置的推文，同时处理身份验证和错误情况。</p>
+<h3 id="_4">输入参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_text</td>
+<td>推文的主要文本内容</td>
+</tr>
+<tr>
+<td>attachment</td>
+<td>可选的媒体、深度链接、投票、地点或引用附件</td>
+</tr>
+<tr>
+<td>for_super_followers_only</td>
+<td>推文是否仅限超级粉丝可见</td>
+</tr>
+<tr>
+<td>exclude_reply_user_ids</td>
+<td>要从回复线程中排除的用户 ID</td>
+</tr>
+<tr>
+<td>in_reply_to_tweet_id</td>
+<td>正在回复的推文 ID</td>
+</tr>
+<tr>
+<td>reply_settings</td>
+<td>可回复推文的用户范围</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">输出结果<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tweet_id</td>
+<td>已创建推文的 ID</td>
+</tr>
+<tr>
+<td>tweet_url</td>
+<td>查看推文的 URL</td>
+</tr>
+<tr>
+<td>error</td>
+<td>发布失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">应用场景<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>自动化发布包含投票、媒体或引用等丰富内容的推文。</p>
+<hr />
+<h2 id="twitter_1">Twitter 删除推文模块<a class="headerlink" href="#twitter_1" title="Permanent link">&para;</a></h2>
+<h3 id="_7">功能概述<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>一个用于删除 Twitter 上指定推文的模块。</p>
+<h3 id="_8">功能说明<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>此模块通过推文ID删除现有推文。</p>
+<h3 id="_9">工作原理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>它使用Twitter API（Tweepy）删除指定ID的推文，处理身份验证和错误情况。</p>
+<h3 id="_10">输入<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的Twitter API凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要删除的推文ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">输出<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>删除是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>删除失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_12">可能的使用场景<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>自动清理过时或不相关的推文。</p>
+<hr />
+<h2 id="twitter_2">Twitter搜索近期推文模块<a class="headerlink" href="#twitter_2" title="Permanent link">&para;</a></h2>
+<h3 id="_13">功能定义<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>一个用于搜索Twitter上近期公开推文的模块。</p>
+<h3 id="_14">功能说明<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>该模块根据指定条件搜索推文，并提供筛选和分页选项。</p>
+<h3 id="_15">工作原理<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>它使用提供的参数查询Twitter API（Tweepy）搜索端点，并返回匹配的推文和元数据。</p>
+<h3 id="_16">输入<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>query</td>
+<td>搜索查询字符串</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数量</td>
+</tr>
+<tr>
+<td>pagination</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>搜索时间窗口开始时间</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>搜索时间窗口结束时间</td>
+</tr>
+<tr>
+<td>since_id</td>
+<td>返回此推文 ID 之后的结果</td>
+</tr>
+<tr>
+<td>until_id</td>
+<td>返回此推文 ID 之前的结果</td>
+</tr>
+<tr>
+<td>sort_order</td>
+<td>返回结果的排序方式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_17">输出<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tweet_ids</td>
+<td>匹配的推文 ID 列表</td>
+</tr>
+<tr>
+<td>tweet_texts</td>
+<td>推文文本内容列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>搜索失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">可能的使用场景<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>监控 Twitter 上特定话题或标签的提及情况。</p>
+<hr />
+<h2 id="twitter_3">Twitter 获取引用推文块<a class="headerlink" href="#twitter_3" title="Permanent link">&para;</a></h2>
+<h3 id="_19">功能概述<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>一个用于从 Twitter 检索引用推文（引用特定推文的推文）的功能块。</p>
+<h3 id="_20">功能说明<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>该功能块获取引用指定推文 ID 的推文列表，支持分页和筛选选项。</p>
+<h3 id="_21">工作原理<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取指定推文 ID 的引用推文，处理身份验证并返回带有可选扩展的推文数据。</p>
+<h3 id="_22">输入<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要获取引用推文的推文 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>要返回的最大结果数（最多 100）</td>
+</tr>
+<tr>
+<td>exclude</td>
+<td>要排除的推文类型</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_23">输出<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>引用推文ID列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>引用推文文本内容列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_24">可能的使用场景<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p>通过引用推文监控特定推文的互动和回应。</p>
+<hr />
+<h2 id="twitter_4">Twitter 转推功能块<a class="headerlink" href="#twitter_4" title="Permanent link">&para;</a></h2>
+<h3 id="_25">功能说明<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<p>一个用于在Twitter上转发现有条推文的功能块。</p>
+<h3 id="_26">功能作用<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>该功能块使用推文ID创建指定推文的转发。</p>
+<h3 id="_27">工作原理<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p>通过Twitter API (Tweepy) 使用给定ID转发推文，处理身份验证和错误情况。</p>
+<h3 id="_28">输入参数<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的Twitter API凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要转发的推文ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_29">输出结果<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>转发是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>转发失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_30">可能的使用场景<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>自动转发符合特定标准的内容。</p>
+<hr />
+<h2 id="twitter_5">Twitter 取消转推功能块<a class="headerlink" href="#twitter_5" title="Permanent link">&para;</a></h2>
+<h3 id="_31">功能说明<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<p>一个用于移除 Twitter 转推的模块。</p>
+<h3 id="_32">功能说明<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>该模块移除指定推文的现有转推。</p>
+<h3 id="_33">工作原理<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 通过给定的推文 ID 移除转推，处理身份验证和错误情况。</p>
+<h3 id="_34">输入参数<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要移除转推的推文 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_35">输出结果<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>转推移除是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>移除失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_36">可能的使用场景<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<p>基于特定条件自动清理转推。</p>
+<hr />
+<h2 id="twitter_6">Twitter 获取转推者模块<a class="headerlink" href="#twitter_6" title="Permanent link">&para;</a></h2>
+<h3 id="_37">模块简介<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<p>一个用于检索转发了特定推文的用户信息的模块。</p>
+<h3 id="_38">功能说明<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
+<p>该模块获取转发了指定推文 ID 的用户列表，支持分页和筛选选项。</p>
+<h3 id="_39">工作原理<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 获取给定推文 ID 的转推者信息，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_40">输入参数<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要获取转发者的推文 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-100)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_41">输出<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>转发用户的 ID 列表</td>
+</tr>
+<tr>
+<td>names</td>
+<td>转发用户的名称列表</td>
+</tr>
+<tr>
+<td>usernames</td>
+<td>转发用户的用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的用户数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_42">可能的使用场景<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<p>通过转发模式监控参与度并分析用户行为。</p>
+<hr />
+<h2 id="twitter_7">Twitter 获取用户提及区块<a class="headerlink" href="#twitter_7" title="Permanent link">&para;</a></h2>
+<h3 id="_43">功能概述<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<p>用于获取提及特定 Twitter 用户的推文的模块。</p>
+<h3 id="_44">功能说明<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
+<p>该模块通过用户 ID 获取提及该用户的推文。</p>
+<h3 id="_45">工作原理<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<p>通过提供的用户 ID 查询 Twitter API（使用 Tweepy）来获取提及该用户的推文，处理分页和过滤。</p>
+<h3 id="_46">输入参数<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要获取提及推文的用户 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页结果数量（5-100）</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_47">输出结果<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>推文ID列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>推文文本内容列表</td>
+</tr>
+<tr>
+<td>userIds</td>
+<td>提及目标用户的用户ID列表</td>
+</tr>
+<tr>
+<td>userNames</td>
+<td>提及目标用户的用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于获取下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据 <a href="./#common-output">更多信息</a></td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a></td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_48">可能的使用场景<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h3>
+<p>监控特定账号的提及情况，用于社区管理。</p>
+<hr />
+<h2 id="twitter_8">Twitter 获取主页时间线模块<a class="headerlink" href="#twitter_8" title="Permanent link">&para;</a></h2>
+<h3 id="_49">功能概述<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
+<p>一个用于从用户主页时间线获取推文的模块。</p>
+<h3 id="_50">功能说明<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
+<p>该模块返回认证用户及其关注账号最近发布的推文和转推集合。</p>
+<h3 id="_51">工作原理<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 从主页时间线获取推文，处理分页并应用过滤器。</p>
+<h3 id="_52">输入参数<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页结果数量 (5-100)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_53">输出<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>推文 ID 列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>推文文本内容列表</td>
+</tr>
+<tr>
+<td>userIds</td>
+<td>发布推文的用户 ID 列表</td>
+</tr>
+<tr>
+<td>userNames</td>
+<td>发布推文的用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_54">可能的使用场景<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h3>
+<p>监控和分析关注账号的内容。</p>
+<hr />
+<h2 id="twitter_9">Twitter 获取用户推文块<a class="headerlink" href="#twitter_9" title="Permanent link">&para;</a></h2>
+<h3 id="_55">功能说明<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h3>
+<p>一个用于获取特定 Twitter 用户所发布推文的模块。</p>
+<h3 id="_56">功能说明<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
+<p>该模块返回由单个用户（通过用户 ID 标识）撰写的推文。</p>
+<h3 id="_57">工作原理<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API（通过 Tweepy）从指定用户的时间线获取推文，处理分页和过滤。</p>
+<h3 id="_58">输入参数<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要获取推文的用户 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页结果数量（5-100）</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_59">输出结果<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>推文ID列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>推文文本内容列表</td>
+</tr>
+<tr>
+<td>userIds</td>
+<td>推文作者的用户ID列表</td>
+</tr>
+<tr>
+<td>userNames</td>
+<td>推文作者的用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_60">可能的使用场景<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h3>
+<p>分析特定Twitter账号的内容和活动模式。</p>
+<hr />
+<h2 id="twitter_10">Twitter 获取推文块<a class="headerlink" href="#twitter_10" title="Permanent link">&para;</a></h2>
+<h3 id="_61">功能概述<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h3>
+<p>通过推文ID检索特定推文详细信息的块。</p>
+<h3 id="_62">功能说明<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h3>
+<p>该块通过推文ID获取指定单条推文的信息，包括推文内容、作者详情和可选的扩展数据。</p>
+<h3 id="_63">工作原理<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h3>
+<p>使用Twitter API（Tweepy）通过ID获取单条推文，处理身份验证并返回带有可选扩展的推文数据。</p>
+<h3 id="_64">输入参数<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要获取的推文 ID</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_65">输出<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>推文 ID</td>
+</tr>
+<tr>
+<td>text</td>
+<td>推文文本内容</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>推文作者 ID</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>推文作者用户名</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a></td>
+</tr>
+<tr>
+<td>meta</td>
+<td>推文元数据 <a href="./#common-output">更多信息</a></td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_66">可能的使用场景<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h3>
+<p>检索特定推文的详细信息用于分析或监控。</p>
+<hr />
+<h2 id="twitter_11">Twitter 获取多条推文块<a class="headerlink" href="#twitter_11" title="Permanent link">&para;</a></h2>
+<h3 id="_67">功能概述<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h3>
+<p>通过 ID 检索多条推文信息的块。</p>
+<h3 id="_68">功能说明<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h3>
+<p>此模块通过推文ID批量获取多条推文信息（最多100条）。</p>
+<h3 id="_69">工作原理<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h3>
+<p>使用Twitter API（Tweepy）通过ID批量获取推文，处理身份验证并返回带有可选扩展字段的推文数据。</p>
+<h3 id="_70">输入参数<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的Twitter API凭证</td>
+</tr>
+<tr>
+<td>tweet_ids</td>
+<td>要获取的推文ID列表（最多100条）</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_71">输出结果<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>推文ID列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>推文文本内容列表</td>
+</tr>
+<tr>
+<td>userIds</td>
+<td>推文作者ID列表</td>
+</tr>
+<tr>
+<td>userNames</td>
+<td>推文作者用户名列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据数组</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>推文元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_72">可能的使用场景<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h3>
+<p>批量获取推文信息用于分析或归档目的。</p>
+<hr />
+<h2 id="twitter_12">Twitter 点赞推文模块<a class="headerlink" href="#twitter_12" title="Permanent link">&para;</a></h2>
+<h3 id="_73">功能说明<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h3>
+<p>用于在 Twitter 上点赞推文的模块。</p>
+<h3 id="_74">功能描述<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h3>
+<p>该模块通过指定推文 ID 使用 Twitter API 创建点赞操作。</p>
+<h3 id="_75">工作原理<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 通过给定 ID 点赞推文，处理身份验证和错误情况。</p>
+<h3 id="_76">输入参数<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要点赞的推文 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_77">输出结果<a class="headerlink" href="#_77" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>点赞是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>点赞失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_78">适用场景<a class="headerlink" href="#_78" title="Permanent link">&para;</a></h3>
+<p>自动点赞符合特定条件的推文。</p>
+<hr />
+<h2 id="twitter_13">Twitter 获取点赞用户模块<a class="headerlink" href="#twitter_13" title="Permanent link">&para;</a></h2>
+<h3 id="_79">功能说明<a class="headerlink" href="#_79" title="Permanent link">&para;</a></h3>
+<p>用于获取特定推文的点赞用户信息的模块。</p>
+<h3 id="_80">功能描述<a class="headerlink" href="#_80" title="Permanent link">&para;</a></h3>
+<p>该模块获取指定推文 ID 的点赞用户列表，支持分页和筛选选项。</p>
+<h3 id="_81">工作原理<a class="headerlink" href="#_81" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 获取给定推文 ID 的点赞用户信息，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_82">输入参数<a class="headerlink" href="#_82" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要获取点赞用户的推文 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>返回的最大结果数量 (1-100)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_83">输出<a class="headerlink" href="#_83" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>点赞用户的 ID 列表</td>
+</tr>
+<tr>
+<td>username</td>
+<td>点赞用户的用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的用户数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_84">可能的使用场景<a class="headerlink" href="#_84" title="Permanent link">&para;</a></h3>
+<p>通过跟踪推文点赞分析互动模式。</p>
+<hr />
+<h2 id="twitter_14">Twitter 获取已点赞推文块<a class="headerlink" href="#twitter_14" title="Permanent link">&para;</a></h2>
+<h3 id="_85">功能说明<a class="headerlink" href="#_85" title="Permanent link">&para;</a></h3>
+<p>一个用于检索特定 Twitter 用户点赞过的推文的块。</p>
+<h3 id="_86">功能作用<a class="headerlink" href="#_86" title="Permanent link">&para;</a></h3>
+<p>该块获取指定用户 ID 点赞过的推文列表。</p>
+<h3 id="_87">工作原理<a class="headerlink" href="#_87" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取指定用户 ID 点赞的推文，处理分页和过滤。</p>
+<h3 id="_88">输入参数<a class="headerlink" href="#_88" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要获取点赞推文的用户 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (5-100)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_89">输出结果<a class="headerlink" href="#_89" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>点赞推文 ID 列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>点赞推文文本内容列表</td>
+</tr>
+<tr>
+<td>userIds</td>
+<td>推文作者 ID 列表</td>
+</tr>
+<tr>
+<td>userNames</td>
+<td>推文作者用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_90">可能的使用场景<a class="headerlink" href="#_90" title="Permanent link">&para;</a></h3>
+<p>通过点赞推文模式分析用户兴趣和偏好。</p>
+<hr />
+<h2 id="twitter_15">Twitter 取消点赞推文块<a class="headerlink" href="#twitter_15" title="Permanent link">&para;</a></h2>
+<h3 id="_91">功能说明<a class="headerlink" href="#_91" title="Permanent link">&para;</a></h3>
+<p>一个用于取消先前在 Twitter 上点赞的推文的块。</p>
+<h3 id="_92">功能描述<a class="headerlink" href="#_92" title="Permanent link">&para;</a></h3>
+<p>该块使用推文 ID 移除指定推文的点赞。</p>
+<h3 id="_93">工作原理<a class="headerlink" href="#_93" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 通过给定的 ID 取消点赞推文，处理身份验证和错误情况。</p>
+<h3 id="_94">输入参数<a class="headerlink" href="#_94" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要取消点赞的推文 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_95">输出结果<a class="headerlink" href="#_95" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>取消点赞是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>取消点赞失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_96">可能的使用场景<a class="headerlink" href="#_96" title="Permanent link">&para;</a></h3>
+<p>基于特定条件自动清理点赞。</p>
+<hr />
+<h2 id="twitter_16">Twitter 隐藏回复块<a class="headerlink" href="#twitter_16" title="Permanent link">&para;</a></h2>
+<h3 id="_97">功能说明<a class="headerlink" href="#_97" title="Permanent link">&para;</a></h3>
+<p>一个用于隐藏对你推文的回复的块。</p>
+<h3 id="_98">功能描述<a class="headerlink" href="#_98" title="Permanent link">&para;</a></h3>
+<p>该块隐藏指定的回复推文，使其不在主对话线程中可见。</p>
+<h3 id="_99">工作原理<a class="headerlink" href="#_99" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 通过给定的推文 ID 隐藏回复推文，处理身份验证和错误情况。</p>
+<h3 id="_100">输入参数<a class="headerlink" href="#_100" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要隐藏的推文回复 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_101">输出<a class="headerlink" href="#_101" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>隐藏是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>隐藏失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_102">可能的使用场景<a class="headerlink" href="#_102" title="Permanent link">&para;</a></h3>
+<p>通过隐藏不当或不想要的回复来管理对话。</p>
+<hr />
+<h2 id="twitter_17">Twitter 取消隐藏回复块<a class="headerlink" href="#twitter_17" title="Permanent link">&para;</a></h2>
+<h3 id="_103">功能说明<a class="headerlink" href="#_103" title="Permanent link">&para;</a></h3>
+<p>一个用于取消隐藏先前隐藏的推文回复的块。</p>
+<h3 id="_104">功能作用<a class="headerlink" href="#_104" title="Permanent link">&para;</a></h3>
+<p>此块使隐藏的回复推文在对话线程中重新可见。</p>
+<h3 id="_105">工作原理<a class="headerlink" href="#_105" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 来取消隐藏具有给定推文 ID 的回复推文，处理身份验证和错误情况。</p>
+<h3 id="_106">输入<a class="headerlink" href="#_106" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要取消隐藏的推文回复 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_107">输出<a class="headerlink" href="#_107" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>取消隐藏是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>取消隐藏失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_108">可能的使用场景<a class="headerlink" href="#_108" title="Permanent link">&para;</a></h3>
+<p>当不再需要审核时恢复先前隐藏的回复。</p>
+<hr />
+<h2 id="twitter_18">Twitter 收藏推文块<a class="headerlink" href="#twitter_18" title="Permanent link">&para;</a></h2>
+<h3 id="_109">功能说明<a class="headerlink" href="#_109" title="Permanent link">&para;</a></h3>
+<p>一个用于在 Twitter 上收藏指定推文的块。</p>
+<h3 id="_110">功能作用<a class="headerlink" href="#_110" title="Permanent link">&para;</a></h3>
+<p>此模块通过推文ID为推文创建书签。</p>
+<h3 id="_111">工作原理<a class="headerlink" href="#_111" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 通过给定ID为推文添加书签，处理身份验证和错误情况。</p>
+<h3 id="_112">输入<a class="headerlink" href="#_112" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>要添加书签的推文ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_113">输出<a class="headerlink" href="#_113" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>书签是否添加成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>书签失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_114">可能的使用场景<a class="headerlink" href="#_114" title="Permanent link">&para;</a></h3>
+<p>保存推文以供后续参考和组织。</p>
+<hr />
+<h2 id="twitter_19">Twitter 获取已收藏推文模块<a class="headerlink" href="#twitter_19" title="Permanent link">&para;</a></h2>
+<h3 id="_115">功能说明<a class="headerlink" href="#_115" title="Permanent link">&para;</a></h3>
+<p>一个从 Twitter 获取用户已收藏推文的模块。</p>
+<h3 id="_116">功能描述<a class="headerlink" href="#_116" title="Permanent link">&para;</a></h3>
+<p>此模块获取经过身份验证用户已收藏的推文列表。</p>
+<h3 id="_117">工作原理<a class="headerlink" href="#_117" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取已收藏推文，处理分页和可选的数据扩展。</p>
+<h3 id="_118">输入<a class="headerlink" href="#_118" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-100)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_119">输出<a class="headerlink" href="#_119" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>已收藏推文 ID 列表</td>
+</tr>
+<tr>
+<td>text</td>
+<td>已收藏推文文本内容列表</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>推文作者 ID 列表</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>推文作者用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_120">可能的使用场景<a class="headerlink" href="#_120" title="Permanent link">&para;</a></h3>
+<p>检索和分析已保存的推文，用于内容策划或研究。</p>
+<hr />
+<h2 id="twitter_20">Twitter 移除收藏推文块<a class="headerlink" href="#twitter_20" title="Permanent link">&para;</a></h2>
+<h3 id="_121">功能说明<a class="headerlink" href="#_121" title="Permanent link">&para;</a></h3>
+<p>一个用于移除 Twitter 推文书签的功能块。</p>
+<h3 id="_122">功能描述<a class="headerlink" href="#_122" title="Permanent link">&para;</a></h3>
+<p>该功能块通过指定推文 ID 移除已存在的 Twitter 书签。</p>
+<h3 id="_123">实现原理<a class="headerlink" href="#_123" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 使用给定的推文 ID 移除书签，并处理身份验证和异常情况。</p>
+<h3 id="_124">输入参数<a class="headerlink" href="#_124" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具备所需权限的 Twitter API 凭证</td>
+</tr>
+<tr>
+<td>tweet_id</td>
+<td>需要移除书签的推文 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_125">输出结果<a class="headerlink" href="#_125" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>书签移除是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>移除失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_126">应用场景<a class="headerlink" href="#_126" title="Permanent link">&para;</a></h3>
+<p>通过移除过期或不再相关的已保存推文来管理书签。</p>
+<hr />
+<h2 id="twitter_21">Twitter 取消屏蔽用户功能块<a class="headerlink" href="#twitter_21" title="Permanent link">&para;</a></h2>
+<h3 id="_127">功能说明<a class="headerlink" href="#_127" title="Permanent link">&para;</a></h3>
+<p>一个用于解除 Twitter 平台上已屏蔽用户状态的功能块。</p>
+<h3 id="_128">功能描述<a class="headerlink" href="#_128" title="Permanent link">&para;</a></h3>
+<p>该功能块通过指定用户 ID 移除对相应用户的屏蔽状态。</p>
+<h3 id="_129">实现原理<a class="headerlink" href="#_129" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 使用给定的用户 ID 解除用户屏蔽，并处理身份验证和异常情况。</p>
+<h3 id="_130">输入参数<a class="headerlink" href="#_130" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具备所需权限的 Twitter API 凭证</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>需要解除屏蔽的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_131">输出结果<a class="headerlink" href="#_131" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>解除屏蔽是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>解除屏蔽失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_132">可能的使用场景<a class="headerlink" href="#_132" title="Permanent link">&para;</a></h3>
+<p>当需要恢复访问权限时，撤销之前被屏蔽的用户。</p>
+<hr />
+<h2 id="twitter_22">Twitter 获取被屏蔽用户 屏蔽<a class="headerlink" href="#twitter_22" title="Permanent link">&para;</a></h2>
+<h3 id="_133">功能说明<a class="headerlink" href="#_133" title="Permanent link">&para;</a></h3>
+<p>一个用于检索已认证用户所屏蔽用户列表的模块。</p>
+<h3 id="_134">功能作用<a class="headerlink" href="#_134" title="Permanent link">&para;</a></h3>
+<p>该模块获取被屏蔽用户的信息，支持分页和筛选选项。</p>
+<h3 id="_135">工作原理<a class="headerlink" href="#_135" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 获取被屏蔽用户列表，处理身份验证并返回带有可选扩展字段的用户数据。</p>
+<h3 id="_136">输入参数<a class="headerlink" href="#_136" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>要返回的最大结果数量 (1-1000)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_137">输出结果<a class="headerlink" href="#_137" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_ids</td>
+<td>被屏蔽用户ID列表</td>
+</tr>
+<tr>
+<td>usernames_</td>
+<td>被屏蔽用户名列表</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的额外数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_138">可能的使用场景<a class="headerlink" href="#_138" title="Permanent link">&para;</a></h3>
+<p>监控和管理被屏蔽用户，用于账户安全和内容审核。</p>
+<hr />
+<h2 id="twitter_23">Twitter 屏蔽用户功能块<a class="headerlink" href="#twitter_23" title="Permanent link">&para;</a></h2>
+<h3 id="_139">功能说明<a class="headerlink" href="#_139" title="Permanent link">&para;</a></h3>
+<p>一个用于在 Twitter 上屏蔽用户的功能块。</p>
+<h3 id="_140">功能作用<a class="headerlink" href="#_140" title="Permanent link">&para;</a></h3>
+<p>该功能块使用用户 ID 屏蔽指定用户。</p>
+<h3 id="_141">工作原理<a class="headerlink" href="#_141" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 使用给定用户 ID 屏蔽用户，处理身份验证和错误情况。</p>
+<h3 id="_142">输入参数<a class="headerlink" href="#_142" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>要屏蔽的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_143">输出结果<a class="headerlink" href="#_143" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>屏蔽是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>屏蔽失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_144">可能的使用场景<a class="headerlink" href="#_144" title="Permanent link">&para;</a></h3>
+<p>基于特定标准或行为自动屏蔽用户。</p>
+<h2 id="twitter_24">Twitter 取消关注用户功能块<a class="headerlink" href="#twitter_24" title="Permanent link">&para;</a></h2>
+<h3 id="_145">功能说明<a class="headerlink" href="#_145" title="Permanent link">&para;</a></h3>
+<p>一个用于取消关注 Twitter 用户的功能块。</p>
+<h3 id="_146">功能作用<a class="headerlink" href="#_146" title="Permanent link">&para;</a></h3>
+<p>该功能块使用用户 ID 取消关注指定用户。</p>
+<h3 id="_147">工作原理<a class="headerlink" href="#_147" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 使用给定用户 ID 取消关注用户，处理身份验证和错误情况。</p>
+<h3 id="_148">输入参数<a class="headerlink" href="#_148" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>要取消关注的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_149">输出结果<a class="headerlink" href="#_149" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>取消关注是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>取消关注失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_150">可能的使用场景<a class="headerlink" href="#_150" title="Permanent link">&para;</a></h3>
+<p>基于特定条件自动取消关注用户。</p>
+<hr />
+<h2 id="twitter_25">Twitter 关注用户功能块<a class="headerlink" href="#twitter_25" title="Permanent link">&para;</a></h2>
+<h3 id="_151">功能说明<a class="headerlink" href="#_151" title="Permanent link">&para;</a></h3>
+<p>用于关注 Twitter 用户的功能块。</p>
+<h3 id="_152">功能作用<a class="headerlink" href="#_152" title="Permanent link">&para;</a></h3>
+<p>该功能块使用用户 ID 来关注指定的 Twitter 用户。</p>
+<h3 id="_153">工作原理<a class="headerlink" href="#_153" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 使用给定的用户 ID 关注用户，处理身份验证和错误情况。如果目标用户设置了推文保护，此操作将发送关注请求。</p>
+<h3 id="_154">输入参数<a class="headerlink" href="#_154" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>要关注的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_155">输出结果<a class="headerlink" href="#_155" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>关注是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>关注失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_156">可能的使用场景<a class="headerlink" href="#_156" title="Permanent link">&para;</a></h3>
+<p>自动关注符合特定条件的用户。</p>
+<hr />
+<h2 id="twitter_26">Twitter 获取粉丝列表功能块<a class="headerlink" href="#twitter_26" title="Permanent link">&para;</a></h2>
+<h3 id="_157">功能说明<a class="headerlink" href="#_157" title="Permanent link">&para;</a></h3>
+<p>用于获取指定 Twitter 用户粉丝列表的功能块。</p>
+<h3 id="_158">功能作用<a class="headerlink" href="#_158" title="Permanent link">&para;</a></h3>
+<p>该功能块获取关注指定用户 ID 的用户列表，支持分页和筛选选项。</p>
+<h3 id="_159">工作原理<a class="headerlink" href="#_159" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取指定用户 ID 的关注者，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_160">输入参数<a class="headerlink" href="#_160" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>要获取关注者的用户 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-1000)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_161">输出结果<a class="headerlink" href="#_161" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>关注者用户 ID 列表</td>
+</tr>
+<tr>
+<td>usernames</td>
+<td>关注者用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的用户数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>额外请求的数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_162">可能的使用场景<a class="headerlink" href="#_162" title="Permanent link">&para;</a></h3>
+<p>分析关注者模式和人口统计数据。</p>
+<hr />
+<h2 id="twitter_27">Twitter 获取关注列表功能块<a class="headerlink" href="#twitter_27" title="Permanent link">&para;</a></h2>
+<h3 id="_163">功能概述<a class="headerlink" href="#_163" title="Permanent link">&para;</a></h3>
+<p>一个用于检索指定 Twitter 用户所关注用户列表的功能块。</p>
+<h3 id="_164">功能说明<a class="headerlink" href="#_164" title="Permanent link">&para;</a></h3>
+<p>此模块获取指定用户ID所关注的用户列表，支持分页和筛选选项。</p>
+<h3 id="_165">工作原理<a class="headerlink" href="#_165" title="Permanent link">&para;</a></h3>
+<p>通过Twitter API（Tweepy）获取给定用户ID的关注列表，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_166">输入参数<a class="headerlink" href="#_166" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的Twitter API凭证</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>需要获取关注列表的用户ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数（1-1000）</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>包含的推文特定字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_167">输出结果<a class="headerlink" href="#_167" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>关注用户ID列表</td>
+</tr>
+<tr>
+<td>usernames</td>
+<td>关注用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的用户数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a></td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a></td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_168">可能的使用场景<a class="headerlink" href="#_168" title="Permanent link">&para;</a></h3>
+<p>分析关注模式和网络连接关系。</p>
+<hr />
+<h2 id="twitter_28">Twitter 取消静音用户模块<a class="headerlink" href="#twitter_28" title="Permanent link">&para;</a></h2>
+<h3 id="_169">功能说明<a class="headerlink" href="#_169" title="Permanent link">&para;</a></h3>
+<p>用于解除 Twitter 上先前被禁言的用户。</p>
+<h3 id="_170">功能描述<a class="headerlink" href="#_170" title="Permanent link">&para;</a></h3>
+<p>该模块通过用户 ID 解除对指定用户的禁言。若目标用户当前未被禁言，请求将成功执行且无实际操作。</p>
+<h3 id="_171">实现原理<a class="headerlink" href="#_171" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 根据给定用户 ID 解除用户禁言，并处理身份验证及异常情况。</p>
+<h3 id="_172">输入参数<a class="headerlink" href="#_172" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具备所需权限范围的 Twitter API 凭证</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>待解除禁言的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_173">输出结果<a class="headerlink" href="#_173" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>解除禁言是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>解除禁言失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_174">应用场景<a class="headerlink" href="#_174" title="Permanent link">&para;</a></h3>
+<p>当需要恢复通信时撤销对用户的禁言操作。</p>
+<hr />
+<h2 id="twitter_29">Twitter 获取禁言用户列表模块<a class="headerlink" href="#twitter_29" title="Permanent link">&para;</a></h2>
+<h3 id="_175">功能说明<a class="headerlink" href="#_175" title="Permanent link">&para;</a></h3>
+<p>用于获取认证用户已禁言的用户列表。</p>
+<h3 id="_176">功能描述<a class="headerlink" href="#_176" title="Permanent link">&para;</a></h3>
+<p>该模块获取被禁言用户列表，支持分页和筛选选项。</p>
+<h3 id="_177">实现原理<a class="headerlink" href="#_177" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 获取被禁言用户数据，处理身份验证并返回带有可选扩展信息的用户数据。</p>
+<h3 id="_178">输入参数<a class="headerlink" href="#_178" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-1000，默认 10)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页/上一页的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_179">输出<a class="headerlink" href="#_179" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>已屏蔽用户 ID 列表</td>
+</tr>
+<tr>
+<td>usernames</td>
+<td>已屏蔽用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>已屏蔽用户的完整用户数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>包含分页信息的元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_180">可能的使用场景<a class="headerlink" href="#_180" title="Permanent link">&para;</a></h3>
+<p>监控和管理已屏蔽用户列表以进行内容过滤。</p>
+<hr />
+<h2 id="twitter_30">Twitter 屏蔽用户功能块<a class="headerlink" href="#twitter_30" title="Permanent link">&para;</a></h2>
+<h3 id="_181">功能说明<a class="headerlink" href="#_181" title="Permanent link">&para;</a></h3>
+<p>一个在 Twitter 上屏蔽指定用户的功能块。</p>
+<h3 id="_182">功能作用<a class="headerlink" href="#_182" title="Permanent link">&para;</a></h3>
+<p>该功能块使用用户 ID 屏蔽用户，以停止看到他们的推文。</p>
+<h3 id="_183">工作原理<a class="headerlink" href="#_183" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 通过给定的用户 ID 屏蔽用户，处理身份验证和错误情况。</p>
+<h3 id="_184">输入<a class="headerlink" href="#_184" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>target_user_id</td>
+<td>要禁言的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_185">输出<a class="headerlink" href="#_185" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>禁言是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>禁言失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_186">可能的使用场景<a class="headerlink" href="#_186" title="Permanent link">&para;</a></h3>
+<p>基于特定标准或行为自动禁言用户。</p>
+<hr />
+<h2 id="twitter_31">Twitter 获取用户屏蔽状态<a class="headerlink" href="#twitter_31" title="Permanent link">&para;</a></h2>
+<h3 id="_187">功能说明<a class="headerlink" href="#_187" title="Permanent link">&para;</a></h3>
+<p>通过用户 ID 或用户名获取单个 Twitter 用户信息的模块。</p>
+<h3 id="_188">功能作用<a class="headerlink" href="#_188" title="Permanent link">&para;</a></h3>
+<p>该模块获取指定 Twitter 用户的详细信息，包括基本资料数据和可选的扩展信息。</p>
+<h3 id="_189">工作原理<a class="headerlink" href="#_189" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 通过 ID 或用户名获取单个用户数据，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_190">输入<a class="headerlink" href="#_190" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>用户标识符（用户 ID 或用户名）</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_191">输出<a class="headerlink" href="#_191" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>用户 ID</td>
+</tr>
+<tr>
+<td>username_</td>
+<td>Twitter 用户名</td>
+</tr>
+<tr>
+<td>name_</td>
+<td>显示名称</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的用户数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_192">可能的使用场景<a class="headerlink" href="#_192" title="Permanent link">&para;</a></h3>
+<p>检索详细的用户档案信息用于分析或验证。</p>
+<hr />
+<h2 id="twitter_32">Twitter 获取用户块<a class="headerlink" href="#twitter_32" title="Permanent link">&para;</a></h2>
+<h3 id="_193">功能说明<a class="headerlink" href="#_193" title="Permanent link">&para;</a></h3>
+<p>一个通过用户ID或用户名检索多个Twitter用户信息的模块。</p>
+<h3 id="_194">功能描述<a class="headerlink" href="#_194" title="Permanent link">&para;</a></h3>
+<p>该模块可一次性获取最多100个用户的详细信息，包括基本档案数据和可选的扩展信息。</p>
+<h3 id="_195">工作原理<a class="headerlink" href="#_195" title="Permanent link">&para;</a></h3>
+<p>使用Twitter API（Tweepy）批量获取通过ID或用户名标识的多个用户数据，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_196">输入参数<a class="headerlink" href="#_196" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的Twitter API凭据</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>用户标识符列表（用户ID或用户名，最多100个）</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_197">输出结果<a class="headerlink" href="#_197" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>用户ID列表</td>
+</tr>
+<tr>
+<td>usernames_</td>
+<td>Twitter用户名列表</td>
+</tr>
+<tr>
+<td>names_</td>
+<td>显示名称列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的用户数据数组</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_198">可能的使用场景<a class="headerlink" href="#_198" title="Permanent link">&para;</a></h3>
+<p>批量检索用户档案信息用于分析或监控。</p>
+<hr />
+<h2 id="twitter_33">Twitter 搜索空间区块<a class="headerlink" href="#twitter_33" title="Permanent link">&para;</a></h2>
+<h3 id="_199">功能说明<a class="headerlink" href="#_199" title="Permanent link">&para;</a></h3>
+<p>一个通过指定搜索词搜索直播或预定Twitter空间的区块。</p>
+<h3 id="_200">功能描述<a class="headerlink" href="#_200" title="Permanent link">&para;</a></h3>
+<p>该区块基于标题关键词搜索Twitter空间，提供按状态（直播中/已预定）筛选和分页功能。</p>
+<h3 id="_201">工作原理<a class="headerlink" href="#_201" title="Permanent link">&para;</a></h3>
+<p>使用Twitter API（Tweepy）搜索符合查询参数的空间，处理身份验证并返回带有可选扩展的空间数据。</p>
+<h3 id="_202">输入参数<a class="headerlink" href="#_202" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>query</td>
+<td>在 Space 标题中搜索的关键词</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>返回的最大结果数量 (1-100, 默认 10)</td>
+</tr>
+<tr>
+<td>state</td>
+<td>要返回的 Space 类型 (live, scheduled, 或 all)</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>space_fields</td>
+<td>要包含的 Space 特定字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_203">输出<a class="headerlink" href="#_203" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>Space ID 列表</td>
+</tr>
+<tr>
+<td>titles</td>
+<td>Space 标题列表</td>
+</tr>
+<tr>
+<td>host_ids</td>
+<td>主持人 ID 列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的 Space 数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>请求的附加数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>包含分页信息的元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_204">可能的使用场景<a class="headerlink" href="#_204" title="Permanent link">&para;</a></h3>
+<p>查找相关的 Twitter Spaces 以进行内容发现和互动。</p>
+<hr />
+<h2 id="twitter-spaces">Twitter 获取 Spaces 块<a class="headerlink" href="#twitter-spaces" title="Permanent link">&para;</a></h2>
+<h3 id="_205">功能概述<a class="headerlink" href="#_205" title="Permanent link">&para;</a></h3>
+<p>一个通过 Space ID 或创建者用户 ID 检索多个 Twitter Spaces 信息的块。</p>
+<h3 id="_206">功能描述<a class="headerlink" href="#_206" title="Permanent link">&para;</a></h3>
+<p>该块使用 Space ID 或创建者用户 ID 获取最多 100 个 Space 的详细信息。</p>
+<h3 id="_207">工作原理<a class="headerlink" href="#_207" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 批量获取多个 Space 的数据，处理身份验证并返回带有可选扩展的 Space 数据。</p>
+<h3 id="_208">输入<a class="headerlink" href="#_208" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>选择通过 Space ID 或创建者用户 ID 进行查找</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>space_fields</td>
+<td>要包含的 Space 特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_209">输出<a class="headerlink" href="#_209" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>Space ID 列表</td>
+</tr>
+<tr>
+<td>titles</td>
+<td>Space 标题列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的 Space 数据数组</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>请求的附加数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_210">可能的使用场景<a class="headerlink" href="#_210" title="Permanent link">&para;</a></h3>
+<p>批量检索 Space 信息用于分析或监控。</p>
+<hr />
+<h2 id="twitter-id-space">Twitter 通过 ID 获取 Space 块<a class="headerlink" href="#twitter-id-space" title="Permanent link">&para;</a></h2>
+<h3 id="_211">功能概述<a class="headerlink" href="#_211" title="Permanent link">&para;</a></h3>
+<p>一个用于检索由 Space ID 指定的单个 Twitter Space 信息的块。</p>
+<h3 id="_212">功能描述<a class="headerlink" href="#_212" title="Permanent link">&para;</a></h3>
+<p>此块获取单个 Space 的详细信息，包括主持人信息和其他元数据。</p>
+<h3 id="_213">工作原理<a class="headerlink" href="#_213" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取单个 Space ID 的 Space 数据，处理身份验证并返回带有可选扩展的 Space 数据。</p>
+<h3 id="_214">输入参数<a class="headerlink" href="#_214" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>space_id</td>
+<td>要获取的 Space ID</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>space_fields</td>
+<td>要包含的 Space 特定字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_215">输出结果<a class="headerlink" href="#_215" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>Space ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td>Space 标题</td>
+</tr>
+<tr>
+<td>host_ids</td>
+<td>主持人 ID 列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的 Space 数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>请求的附加数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_216">可能的使用场景<a class="headerlink" href="#_216" title="Permanent link">&para;</a></h3>
+<p>获取特定 Space 的详细信息用于分析或展示。</p>
+<hr />
+<h2 id="twitter-space">Twitter 获取 Space 购买者模块<a class="headerlink" href="#twitter-space" title="Permanent link">&para;</a></h2>
+<h3 id="_217">功能概述<a class="headerlink" href="#_217" title="Permanent link">&para;</a></h3>
+<p>该模块用于检索购买了 Twitter Space 门票的用户列表。</p>
+<h3 id="_218">功能说明<a class="headerlink" href="#_218" title="Permanent link">&para;</a></h3>
+<p>此模块获取购买了特定 Space 门票的参会用户信息。</p>
+<h3 id="_219">工作原理<a class="headerlink" href="#_219" title="Permanent link">&para;</a></h3>
+<p>该模块使用 Twitter API (Tweepy) 获取 Space 的购买者信息，处理身份验证并返回带有可选扩展功能的用户数据。</p>
+<h3 id="_220">输入参数<a class="headerlink" href="#_220" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>space_id</td>
+<td>要获取购买者的 Space ID</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_221">输出<a class="headerlink" href="#_221" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buyer_ids</td>
+<td>购买者用户 ID 列表</td>
+</tr>
+<tr>
+<td>usernames</td>
+<td>购买者用户名列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的购买者用户数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_222">可能的使用场景<a class="headerlink" href="#_222" title="Permanent link">&para;</a></h3>
+<p>分析付费 Spaces 的门票销售和参会者信息。</p>
+<hr />
+<h2 id="twitter-space_1">Twitter 获取 Space 推文块<a class="headerlink" href="#twitter-space_1" title="Permanent link">&para;</a></h2>
+<h3 id="_223">功能概述<a class="headerlink" href="#_223" title="Permanent link">&para;</a></h3>
+<p>一个用于检索特定 Twitter Space 中分享的推文的块。</p>
+<h3 id="_224">功能说明<a class="headerlink" href="#_224" title="Permanent link">&para;</a></h3>
+<p>该块获取在 Space 会话期间分享的推文。</p>
+<h3 id="_225">工作原理<a class="headerlink" href="#_225" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 从 Space 获取推文，处理身份验证并返回带有可选扩展的推文数据。</p>
+<h3 id="_226">输入<a class="headerlink" href="#_226" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>space_id</td>
+<td>要获取推文的 Space ID</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_227">输出<a class="headerlink" href="#_227" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tweet_ids</td>
+<td>推文 ID 列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>推文文本列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>响应元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_228">可能的使用场景<a class="headerlink" href="#_228" title="Permanent link">&para;</a></h3>
+<p>捕获和分析 Space 会话期间分享的内容。</p>
+<hr />
+<h2 id="twitter_34">Twitter 获取列表块<a class="headerlink" href="#twitter_34" title="Permanent link">&para;</a></h2>
+<h3 id="_229">功能说明<a class="headerlink" href="#_229" title="Permanent link">&para;</a></h3>
+<p>一个用于检索特定 Twitter 列表详细信息的块。</p>
+<h3 id="_230">功能描述<a class="headerlink" href="#_230" title="Permanent link">&para;</a></h3>
+<p>该块通过列表 ID 获取 Twitter 列表的信息，包括基本列表数据和可选的扩展信息。</p>
+<h3 id="_231">工作原理<a class="headerlink" href="#_231" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取单个列表 ID 的列表数据，处理身份验证并返回带有可选扩展的列表数据。</p>
+<h3 id="_232">输入<a class="headerlink" href="#_232" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要检索的 Twitter 列表 ID</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>list_fields</td>
+<td>要包含的列表特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_233">输出<a class="headerlink" href="#_233" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>列表 ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>列表名称</td>
+</tr>
+<tr>
+<td>owner_id</td>
+<td>列表所有者 ID</td>
+</tr>
+<tr>
+<td>owner_username</td>
+<td>列表所有者用户名</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的列表数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>响应元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_234">可能的使用场景<a class="headerlink" href="#_234" title="Permanent link">&para;</a></h3>
+<p>检索特定 Twitter 列表的详细信息用于分析或显示。</p>
+<hr />
+<h2 id="twitter_35">Twitter 获取拥有的列表块<a class="headerlink" href="#twitter_35" title="Permanent link">&para;</a></h2>
+<h3 id="_235">功能说明<a class="headerlink" href="#_235" title="Permanent link">&para;</a></h3>
+<p>一个用于检索指定用户拥有的所有 Twitter 列表的块。</p>
+<h3 id="_236">功能作用<a class="headerlink" href="#_236" title="Permanent link">&para;</a></h3>
+<p>此块获取由用户 ID 拥有的 Twitter 列表，支持分页和筛选选项。</p>
+<h3 id="_237">工作原理<a class="headerlink" href="#_237" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 获取指定用户 ID 拥有的列表，处理身份验证并返回带有可选扩展的列表数据。</p>
+<h3 id="_238">输入<a class="headerlink" href="#_238" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要检索列表的用户 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-100，默认 10)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>获取下一页的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>list_fields</td>
+<td>要包含的列表特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_239">输出<a class="headerlink" href="#_239" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list_ids</td>
+<td>拥有的列表 ID 列表</td>
+</tr>
+<tr>
+<td>list_names</td>
+<td>拥有的列表名称列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的列表数据数组</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>包含分页信息的元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_240">可能的使用场景<a class="headerlink" href="#_240" title="Permanent link">&para;</a></h3>
+<p>分析拥有的列表以进行内容策划和受众管理。</p>
+<hr />
+<h2 id="twitter_36">Twitter 移除列表成员块<a class="headerlink" href="#twitter_36" title="Permanent link">&para;</a></h2>
+<h3 id="_241">功能说明<a class="headerlink" href="#_241" title="Permanent link">&para;</a></h3>
+<p>一个从认证用户拥有的指定 Twitter 列表中移除成员的块。</p>
+<h3 id="_242">功能描述<a class="headerlink" href="#_242" title="Permanent link">&para;</a></h3>
+<p>此模块用于从 Twitter 列表中移除指定用户（该用户当前为列表成员）。</p>
+<h3 id="_243">工作原理<a class="headerlink" href="#_243" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 从指定列表中移除用户，并处理身份验证和错误情况。</p>
+<h3 id="_244">输入<a class="headerlink" href="#_244" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要移除成员的列表 ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要从列表中移除的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_245">输出<a class="headerlink" href="#_245" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>移除是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>移除失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_246">可能的使用场景<a class="headerlink" href="#_246" title="Permanent link">&para;</a></h3>
+<p>通过移除不再符合列表标准的用户来管理列表成员资格。</p>
+<hr />
+<h2 id="twitter_37">Twitter 添加列表成员模块<a class="headerlink" href="#twitter_37" title="Permanent link">&para;</a></h2>
+<h3 id="_247">功能概述<a class="headerlink" href="#_247" title="Permanent link">&para;</a></h3>
+<p>一个将成员添加到认证用户拥有的指定 Twitter 列表的模块。</p>
+<h3 id="_248">功能描述<a class="headerlink" href="#_248" title="Permanent link">&para;</a></h3>
+<p>此模块将指定用户作为新成员添加到 Twitter 列表。</p>
+<h3 id="_249">工作原理<a class="headerlink" href="#_249" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 将用户添加到指定列表，并处理身份验证和错误情况。</p>
+<h3 id="_250">输入<a class="headerlink" href="#_250" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要添加成员的列表 ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要添加到列表的用户 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_251">输出<a class="headerlink" href="#_251" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>添加是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>添加失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_252">可能的使用场景<a class="headerlink" href="#_252" title="Permanent link">&para;</a></h3>
+<p>通过添加符合列表条件的用户来增长列表成员数量。</p>
+<hr />
+<h2 id="twitter_38">Twitter 获取列表成员块<a class="headerlink" href="#twitter_38" title="Permanent link">&para;</a></h2>
+<h3 id="_253">功能概述<a class="headerlink" href="#_253" title="Permanent link">&para;</a></h3>
+<p>一个用于检索指定 Twitter 列表所有成员的块。</p>
+<h3 id="_254">功能描述<a class="headerlink" href="#_254" title="Permanent link">&para;</a></h3>
+<p>该块获取给定列表成员的用户信息，支持分页和筛选选项。</p>
+<h3 id="_255">工作原理<a class="headerlink" href="#_255" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 获取指定列表的成员数据，处理身份验证，并返回带有可选扩展字段的用户数据。</p>
+<h3 id="_256">输入参数<a class="headerlink" href="#_256" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要获取成员的列表 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-100，默认 10)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文相关字段</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_257">输出结果<a class="headerlink" href="#_257" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>成员用户ID列表</td>
+</tr>
+<tr>
+<td>usernames</td>
+<td>成员用户名列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>成员的完整用户数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_258">可能的使用场景<a class="headerlink" href="#_258" title="Permanent link">&para;</a></h3>
+<p>分析列表成员资格和成员资料。</p>
+<hr />
+<h2 id="twitter_39">Twitter 获取列表成员资格块<a class="headerlink" href="#twitter_39" title="Permanent link">&para;</a></h2>
+<h3 id="_259">功能概述<a class="headerlink" href="#_259" title="Permanent link">&para;</a></h3>
+<p>一个用于检索指定用户所属的所有列表的块。</p>
+<h3 id="_260">功能描述<a class="headerlink" href="#_260" title="Permanent link">&para;</a></h3>
+<p>该块获取指定用户作为成员的列表信息，支持分页和筛选选项。</p>
+<h3 id="_261">工作原理<a class="headerlink" href="#_261" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 获取给定用户ID的列表成员资格数据，处理身份验证并返回带有可选扩展的列表数据。</p>
+<h3 id="_262">输入<a class="headerlink" href="#_262" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>要获取列表成员资格的用户ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-100，默认10)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>用于获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的额外数据字段</td>
+</tr>
+<tr>
+<td>list_fields</td>
+<td>要包含的列表特定字段</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_263">输出<a class="headerlink" href="#_263" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list_ids</td>
+<td>列表ID集合</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的列表成员数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>额外请求的数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_264">可能的使用场景<a class="headerlink" href="#_264" title="Permanent link">&para;</a></h3>
+<p>分析用户的列表成员关系，以了解其兴趣和社交联系。</p>
+<hr />
+<h2 id="twitter_40">Twitter 获取列表推文块<a class="headerlink" href="#twitter_40" title="Permanent link">&para;</a></h2>
+<h3 id="_265">功能概述<a class="headerlink" href="#_265" title="Permanent link">&para;</a></h3>
+<p>一个用于从指定Twitter列表中检索推文的模块。</p>
+<h3 id="_266">功能说明<a class="headerlink" href="#_266" title="Permanent link">&para;</a></h3>
+<p>该模块获取给定列表内发布的推文，支持分页、筛选和扩展数据选项。</p>
+<h3 id="_267">工作原理<a class="headerlink" href="#_267" title="Permanent link">&para;</a></h3>
+<p>通过Twitter API（Tweepy）从指定列表获取推文，处理身份验证并返回带有可选扩展功能的推文数据。</p>
+<h3 id="_268">输入参数<a class="headerlink" href="#_268" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要获取推文的列表 ID</td>
+</tr>
+<tr>
+<td>max_results</td>
+<td>每页最大结果数 (1-100，默认 10)</td>
+</tr>
+<tr>
+<td>pagination_token</td>
+<td>获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>media_fields</td>
+<td>要包含的媒体相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>place_fields</td>
+<td>要包含的位置相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>poll_fields</td>
+<td>要包含的投票相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>tweet_fields</td>
+<td>要包含的推文特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_269">输出<a class="headerlink" href="#_269" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tweet_ids</td>
+<td>来自列表的推文 ID 列表</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>推文文本内容列表</td>
+</tr>
+<tr>
+<td>next_token</td>
+<td>用于检索下一页的令牌</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的推文数据数组</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>分页和结果元数据 <a href="./#common-output">更多信息</a>。</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_270">可能的使用场景<a class="headerlink" href="#_270" title="Permanent link">&para;</a></h3>
+<p>监控和分析在精选 Twitter 列表中分享的推文。</p>
+<hr />
+<h2 id="twitter_41">Twitter 删除列表块<a class="headerlink" href="#twitter_41" title="Permanent link">&para;</a></h2>
+<h3 id="_271">功能说明<a class="headerlink" href="#_271" title="Permanent link">&para;</a></h3>
+<p>一个用于删除认证用户拥有的 Twitter 列表的区块。</p>
+<h3 id="_272">功能说明<a class="headerlink" href="#_272" title="Permanent link">&para;</a></h3>
+<p>该区块使用列表 ID 删除指定的 Twitter 列表。</p>
+<h3 id="_273">工作原理<a class="headerlink" href="#_273" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 删除指定列表，处理认证和错误情况。</p>
+<h3 id="_274">输入参数<a class="headerlink" href="#_274" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要删除的列表 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_275">输出结果<a class="headerlink" href="#_275" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>删除是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>删除失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_276">使用场景<a class="headerlink" href="#_276" title="Permanent link">&para;</a></h3>
+<p>移除过时或不必要的 Twitter 列表。</p>
+<hr />
+<h2 id="twitter_42">Twitter 更新列表区块<a class="headerlink" href="#twitter_42" title="Permanent link">&para;</a></h2>
+<h3 id="_277">功能概述<a class="headerlink" href="#_277" title="Permanent link">&para;</a></h3>
+<p>一个用于更新认证用户拥有的 Twitter 列表的区块。</p>
+<h3 id="_278">功能说明<a class="headerlink" href="#_278" title="Permanent link">&para;</a></h3>
+<p>该区块修改现有列表的名称和/或描述。</p>
+<h3 id="_279">工作原理<a class="headerlink" href="#_279" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 更新列表元数据，处理认证和错误情况。</p>
+<h3 id="_280">输入参数<a class="headerlink" href="#_280" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要更新的列表 ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>列表的新名称（可选）</td>
+</tr>
+<tr>
+<td>description</td>
+<td>列表的新描述（可选）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_281">输出结果<a class="headerlink" href="#_281" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>更新是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>更新失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_282">可能的使用场景<a class="headerlink" href="#_282" title="Permanent link">&para;</a></h3>
+<p>维护列表元数据以反映当前用途或组织方式。</p>
+<hr />
+<h2 id="twitter_43">Twitter 创建列表块<a class="headerlink" href="#twitter_43" title="Permanent link">&para;</a></h2>
+<h3 id="_283">功能说明<a class="headerlink" href="#_283" title="Permanent link">&para;</a></h3>
+<p>为认证用户创建新 Twitter 列表的功能块。</p>
+<h3 id="_284">功能描述<a class="headerlink" href="#_284" title="Permanent link">&para;</a></h3>
+<p>该功能块使用指定的名称、描述和隐私设置创建新的 Twitter 列表。</p>
+<h3 id="_285">工作原理<a class="headerlink" href="#_285" title="Permanent link">&para;</a></h3>
+<p>通过 Twitter API (Tweepy) 创建新列表，处理身份验证并返回列表详细信息。</p>
+<h3 id="_286">输入参数<a class="headerlink" href="#_286" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>name</td>
+<td>新列表的名称</td>
+</tr>
+<tr>
+<td>description</td>
+<td>列表描述（可选）</td>
+</tr>
+<tr>
+<td>private</td>
+<td>列表是否应为私有</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_287">输出结果<a class="headerlink" href="#_287" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>已创建列表的 URL</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>已创建列表的 ID</td>
+</tr>
+<tr>
+<td>error</td>
+<td>创建失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_288">可能的使用场景<a class="headerlink" href="#_288" title="Permanent link">&para;</a></h3>
+<p>创建列表以围绕特定主题或兴趣组织 Twitter 用户。</p>
+<hr />
+<h2 id="twitter_44">Twitter 取消固定列表块<a class="headerlink" href="#twitter_44" title="Permanent link">&para;</a></h2>
+<h3 id="_289">功能说明<a class="headerlink" href="#_289" title="Permanent link">&para;</a></h3>
+<p>允许用户取消固定指定 Twitter 列表的功能块。</p>
+<h3 id="_290">功能描述<a class="headerlink" href="#_290" title="Permanent link">&para;</a></h3>
+<p>该功能块从用户的固定列表中移除 Twitter 列表。</p>
+<h3 id="_291">工作原理<a class="headerlink" href="#_291" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 通过列表 ID 取消固定列表，处理身份验证和错误情况。</p>
+<h3 id="_292">输入<a class="headerlink" href="#_292" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要取消固定的列表 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_293">输出<a class="headerlink" href="#_293" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>取消固定是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>取消固定失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_294">可能的使用场景<a class="headerlink" href="#_294" title="Permanent link">&para;</a></h3>
+<p>通过移除不再优先的列表来管理已固定的列表。</p>
+<hr />
+<h2 id="twitter_45">Twitter 固定列表块<a class="headerlink" href="#twitter_45" title="Permanent link">&para;</a></h2>
+<h3 id="_295">功能概述<a class="headerlink" href="#_295" title="Permanent link">&para;</a></h3>
+<p>允许用户固定指定 Twitter 列表的功能块。</p>
+<h3 id="_296">功能说明<a class="headerlink" href="#_296" title="Permanent link">&para;</a></h3>
+<p>此功能块将 Twitter 列表固定在用户列表的顶部显示。</p>
+<h3 id="_297">工作原理<a class="headerlink" href="#_297" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 通过列表 ID 固定列表，处理身份验证和错误情况。</p>
+<h3 id="_298">输入<a class="headerlink" href="#_298" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需作用域的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要固定的列表 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_299">输出<a class="headerlink" href="#_299" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>固定是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>固定失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_300">可能的使用场景<a class="headerlink" href="#_300" title="Permanent link">&para;</a></h3>
+<p>优先处理重要列表以便快速访问。</p>
+<hr />
+<h2 id="twitter_46">Twitter 获取已固定列表块<a class="headerlink" href="#twitter_46" title="Permanent link">&para;</a></h2>
+<h3 id="_301">功能概述<a class="headerlink" href="#_301" title="Permanent link">&para;</a></h3>
+<p>一个用于获取认证用户已固定的所有 Twitter 列表的模块。</p>
+<h3 id="_302">功能说明<a class="headerlink" href="#_302" title="Permanent link">&para;</a></h3>
+<p>该模块获取用户已固定的列表集合，提供附加数据和筛选选项。</p>
+<h3 id="_303">工作原理<a class="headerlink" href="#_303" title="Permanent link">&para;</a></h3>
+<p>使用 Twitter API (Tweepy) 获取已固定列表数据，处理认证并返回带有可选扩展项的列表信息。</p>
+<h3 id="_304">输入参数<a class="headerlink" href="#_304" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>expansions</td>
+<td>要包含的附加数据字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>list_fields</td>
+<td>要包含的列表特定字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+<tr>
+<td>user_fields</td>
+<td>要包含的用户相关字段 <a href="./#common-input">更多信息</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_305">输出结果<a class="headerlink" href="#_305" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list_ids</td>
+<td>已固定列表 ID 列表</td>
+</tr>
+<tr>
+<td>list_names</td>
+<td>已固定列表名称列表</td>
+</tr>
+<tr>
+<td>data</td>
+<td>完整的列表数据</td>
+</tr>
+<tr>
+<td>included</td>
+<td>请求的附加数据</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>响应元数据</td>
+</tr>
+<tr>
+<td>error</td>
+<td>请求失败时的错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_306">可能的使用场景<a class="headerlink" href="#_306" title="Permanent link">&para;</a></h3>
+<p>监控和管理已固定列表以实现组织化和快速访问。</p>
+<hr />
+<h2 id="twitter_47">Twitter 取消关注列表模块<a class="headerlink" href="#twitter_47" title="Permanent link">&para;</a></h2>
+<h3 id="_307">功能概述<a class="headerlink" href="#_307" title="Permanent link">&para;</a></h3>
+<p>一个用于取消关注认证用户当前正在关注的 Twitter 列表的模块。</p>
+<h3 id="_308">功能说明<a class="headerlink" href="#_308" title="Permanent link">&para;</a></h3>
+<p>此模块使用列表 ID 取消关注指定的 Twitter 列表，将其从用户关注的列表中移除。</p>
+<h3 id="_309">工作原理<a class="headerlink" href="#_309" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 通过给定的列表 ID 取消关注列表，并处理身份验证和错误情况。</p>
+<h3 id="_310">输入<a class="headerlink" href="#_310" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要取消关注的列表 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_311">输出<a class="headerlink" href="#_311" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>取消关注是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>取消关注失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_312">可能的使用场景<a class="headerlink" href="#_312" title="Permanent link">&para;</a></h3>
+<p>通过移除不再相关的列表来管理已关注的列表。</p>
+<hr />
+<h2 id="twitter_48">Twitter 关注列表模块<a class="headerlink" href="#twitter_48" title="Permanent link">&para;</a></h2>
+<h3 id="_313">功能概述<a class="headerlink" href="#_313" title="Permanent link">&para;</a></h3>
+<p>一个为认证用户关注 Twitter 列表的模块。</p>
+<h3 id="_314">功能描述<a class="headerlink" href="#_314" title="Permanent link">&para;</a></h3>
+<p>此模块使用列表 ID 关注指定的 Twitter 列表，将其添加到用户关注的列表中。</p>
+<h3 id="_315">工作原理<a class="headerlink" href="#_315" title="Permanent link">&para;</a></h3>
+<p>它使用 Twitter API (Tweepy) 通过给定的列表 ID 关注列表，并处理身份验证和错误情况。</p>
+<h3 id="_316">输入<a class="headerlink" href="#_316" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>credentials</td>
+<td>具有所需权限范围的 Twitter API 凭据</td>
+</tr>
+<tr>
+<td>list_id</td>
+<td>要关注的列表 ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_317">输出<a class="headerlink" href="#_317" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>关注是否成功</td>
+</tr>
+<tr>
+<td>error</td>
+<td>关注失败时的错误消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_318">可能的用例<a class="headerlink" href="#_318" title="Permanent link">&para;</a></h3>
+<p>匹配用户兴趣或包含相关内容的下述列表。</p>
+<hr />
+<h2 id="_319">通用输入<a class="headerlink" href="#_319" title="Permanent link">&para;</a></h2>
+<p>Twitter API 允许您在发起请求时选择想要获取的信息类型。以下是您可以请求的不同信息类别：</p>
+<h3 id="expansions">expansions<a class="headerlink" href="#expansions" title="Permanent link">&para;</a></h3>
+<p>关于被提及或关联的推文、图片和用户的额外信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Poll_IDs</td>
+<td>获取推文中所有投票的相关信息，包括投票选项和结果</td>
+</tr>
+<tr>
+<td>Media_Keys</td>
+<td>获取推文附带的图片、视频或GIF的详细信息</td>
+</tr>
+<tr>
+<td>Author_User_ID</td>
+<td>获取推文作者的信息，例如个人资料详情</td>
+</tr>
+<tr>
+<td>Edit_History_Tweet_IDs</td>
+<td>显示推文是否及何时被编辑过，以及具体变更内容</td>
+</tr>
+<tr>
+<td>Mentioned_Usernames</td>
+<td>获取所有被@提及用户的个人资料信息</td>
+</tr>
+<tr>
+<td>Place_ID</td>
+<td>获取推文中标记位置的详细信息</td>
+</tr>
+<tr>
+<td>Reply_To_User_ID</td>
+<td>获取此推文回复对象的相关信息</td>
+</tr>
+<tr>
+<td>Referenced_Tweet_ID</td>
+<td>获取此推文引用或转发的任何推文的详细信息</td>
+</tr>
+<tr>
+<td>Referenced_Tweet_Author_ID</td>
+<td>获取被引用原始推文作者的个人资料信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="media_fields">media_fields<a class="headerlink" href="#media_fields" title="Permanent link">&para;</a></h3>
+<p>关于图片、视频和其他媒体文件的信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duration_in_Milliseconds</td>
+<td>视频或音频片段播放时长（毫秒）</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>图片或视频的像素高度</td>
+</tr>
+<tr>
+<td>Media_Key</td>
+<td>标识该特定媒体文件的唯一代码</td>
+</tr>
+<tr>
+<td>Preview_Image_URL</td>
+<td>图片预览缩略图的网络链接</td>
+</tr>
+<tr>
+<td>Media_Type</td>
+<td>媒体类型（照片、视频、GIF等）</td>
+</tr>
+<tr>
+<td>Media_URL</td>
+<td>查看完整媒体的网络链接</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>图片或视频的像素宽度</td>
+</tr>
+<tr>
+<td>Public_Metrics</td>
+<td>公开可见的数据指标（观看次数、播放次数等）</td>
+</tr>
+<tr>
+<td>Non_Public_Metrics</td>
+<td>仅推文作者可见的私有数据指标</td>
+</tr>
+<tr>
+<td>Organic_Metrics</td>
+<td>自然互动数据指标（非推广内容）</td>
+</tr>
+<tr>
+<td>Promoted_Metrics</td>
+<td>付费推广效果数据指标</td>
+</tr>
+<tr>
+<td>Alternative_Text</td>
+<td>为无障碍访问提供的媒体描述</td>
+</tr>
+<tr>
+<td>Media_Variants</td>
+<td>可用的不同尺寸/质量版本（如高清与标清视频）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="place_fields">place_fields<a class="headerlink" href="#place_fields" title="Permanent link">&para;</a></h3>
+<p>推文中提及位置的相关信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contained_Within_Places</td>
+<td>该地点所属的更大区域（如州内的城市）</td>
+</tr>
+<tr>
+<td>Country</td>
+<td>完整的国家名称</td>
+</tr>
+<tr>
+<td>Country_Code</td>
+<td>国家的简短双字母代码（如 US 代表美国）</td>
+</tr>
+<tr>
+<td>Full_Location_Name</td>
+<td>包含城市、州、国家等的完整名称</td>
+</tr>
+<tr>
+<td>Geographic_Coordinates</td>
+<td>地图上的精确位置（纬度和经度）</td>
+</tr>
+<tr>
+<td>Place_ID</td>
+<td>标识此特定地点的唯一代码</td>
+</tr>
+<tr>
+<td>Place_Name</td>
+<td>地点的主要名称（如"时代广场"）</td>
+</tr>
+<tr>
+<td>Place_Type</td>
+<td>地点类型（城市、企业、地标等）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="poll_fields">poll_fields<a class="headerlink" href="#poll_fields" title="Permanent link">&para;</a></h3>
+<p>推文中投票的相关信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duration_Minutes</td>
+<td>投票保持开放的时长（分钟）</td>
+</tr>
+<tr>
+<td>End_DateTime</td>
+<td>投票结束的确切日期和时间</td>
+</tr>
+<tr>
+<td>Poll_ID</td>
+<td>标识此特定投票的唯一代码</td>
+</tr>
+<tr>
+<td>Poll_Options</td>
+<td>人们可以投票选择的不同选项</td>
+</tr>
+<tr>
+<td>Voting_Status</td>
+<td>投票是否仍在开放或已关闭</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tweet_fields">tweet_fields<a class="headerlink" href="#tweet_fields" title="Permanent link">&para;</a></h3>
+<p>推文本身的相关信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tweet_Attachments</td>
+<td>推文中包含的所有媒体、链接或投票</td>
+</tr>
+<tr>
+<td>Author_ID</td>
+<td>标识推文作者的唯一代码</td>
+</tr>
+<tr>
+<td>Context_Annotations</td>
+<td>关于推文主题的额外信息</td>
+</tr>
+<tr>
+<td>Conversation_ID</td>
+<td>连接对话中所有回复的代码</td>
+</tr>
+<tr>
+<td>Creation_Time</td>
+<td>推文发布时间</td>
+</tr>
+<tr>
+<td>Edit_Controls</td>
+<td>推文是否可编辑及编辑时长限制</td>
+</tr>
+<tr>
+<td>Tweet_Entities</td>
+<td>推文中的特殊部分，如#话题标签、@提及和链接</td>
+</tr>
+<tr>
+<td>Geographic_Location</td>
+<td>推文发布的地理位置</td>
+</tr>
+<tr>
+<td>Tweet_ID</td>
+<td>该特定推文的唯一代码</td>
+</tr>
+<tr>
+<td>Reply_To_User_ID</td>
+<td>此推文回复的对象</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>推文使用的语言</td>
+</tr>
+<tr>
+<td>Public_Metrics</td>
+<td>转发数、点赞数和回复数等统计数据</td>
+</tr>
+<tr>
+<td>Sensitive_Content_Flag</td>
+<td>推文可能包含敏感内容的警告标识</td>
+</tr>
+<tr>
+<td>Referenced_Tweets</td>
+<td>与此推文相关联的其他推文</td>
+</tr>
+<tr>
+<td>Reply_Settings</td>
+<td>允许回复此推文的用户范围</td>
+</tr>
+<tr>
+<td>Tweet_Source</td>
+<td>发布推文所使用的应用或网站</td>
+</tr>
+<tr>
+<td>Tweet_Text</td>
+<td>推文中的实际文字内容</td>
+</tr>
+<tr>
+<td>Withheld_Content</td>
+<td>推文是否在某些国家/地区被隐藏</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user_fields">user_fields<a class="headerlink" href="#user_fields" title="Permanent link">&para;</a></h3>
+<p>关于Twitter用户的信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account_Creation_Date</td>
+<td>用户加入 Twitter 的时间</td>
+</tr>
+<tr>
+<td>User_Bio</td>
+<td>个人资料中的"关于我"文本</td>
+</tr>
+<tr>
+<td>User_Entities</td>
+<td>个人资料中的链接和@提及</td>
+</tr>
+<tr>
+<td>User_ID</td>
+<td>用户的唯一 Twitter 用户代码</td>
+</tr>
+<tr>
+<td>User_Location</td>
+<td>用户声明的所在地</td>
+</tr>
+<tr>
+<td>Latest_Tweet_ID</td>
+<td>用户最新推文的代码</td>
+</tr>
+<tr>
+<td>Display_Name</td>
+<td>用户的完整个人资料名称（非@用户名）</td>
+</tr>
+<tr>
+<td>Pinned_Tweet_ID</td>
+<td>固定在个人资料顶部的推文代码</td>
+</tr>
+<tr>
+<td>Profile_Picture_URL</td>
+<td>个人资料图片的链接</td>
+</tr>
+<tr>
+<td>Is_Protected_Account</td>
+<td>用户的推文是否为私密状态</td>
+</tr>
+<tr>
+<td>Account_Statistics</td>
+<td>关注者数、正在关注数和推文数</td>
+</tr>
+<tr>
+<td>Profile_URL</td>
+<td>个人资料网页的链接</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>用户在 Twitter 上使用的@用户名</td>
+</tr>
+<tr>
+<td>Is_Verified</td>
+<td>用户是否拥有验证标记</td>
+</tr>
+<tr>
+<td>Verification_Type</td>
+<td>用户拥有的验证类型</td>
+</tr>
+<tr>
+<td>Content_Withholding_Info</td>
+<td>用户内容是否在某些地区被隐藏</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_320">额外说明<a class="headerlink" href="#_320" title="Permanent link">&para;</a></h2>
+<ul>
+<li>使用扩展和字段的组合来构建精确查询。例如：</li>
+<li>要获取包含媒体详情的推文，需包含 <code>expansions=Media_Keys</code> 和相关的 <code>media_fields</code>。</li>
+<li>
+<p>要在推文中获取用户数据，需添加 <code>expansions=Author_User_ID</code> 和适当的 <code>user_fields</code>。</p>
+</li>
+<li>
+<p>在 <code>includes</code> 下返回的数据有助于使用 ID 将扩展的数据对象与其父实体进行交叉引用。</p>
+</li>
+</ul>
+<h2 id="_321">常见输出<a class="headerlink" href="#_321" title="Permanent link">&para;</a></h2>
+<p>Twitter API 在许多端点返回标准化的响应元素。以下是您将遇到的常见输出字段：</p>
+<h3 id="data">data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
+<p>响应中请求的主要数据</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>对象的唯一标识符</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>对象类型（推文、用户等）</td>
+</tr>
+<tr>
+<td>Properties</td>
+<td>对象特定字段，如推文的文本内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="includes">includes<a class="headerlink" href="#includes" title="Permanent link">&para;</a></h3>
+<p>主要数据中引用的额外扩展数据对象</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tweets</td>
+<td>被引用的完整推文对象</td>
+</tr>
+<tr>
+<td>Users</td>
+<td>作者/提及用户的个人资料数据</td>
+</tr>
+<tr>
+<td>Places</td>
+<td>地理位置标记内容的位置数据</td>
+</tr>
+<tr>
+<td>Media</td>
+<td>附加照片/视频的详细信息</td>
+</tr>
+<tr>
+<td>Polls</td>
+<td>嵌入式投票的相关信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="meta">meta<a class="headerlink" href="#meta" title="Permanent link">&para;</a></h3>
+<p>关于响应和分页的元数据</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Result_Count</td>
+<td>返回的项目数量</td>
+</tr>
+<tr>
+<td>Next_Token</td>
+<td>获取下一页结果的令牌</td>
+</tr>
+<tr>
+<td>Previous_Token</td>
+<td>获取上一页的令牌</td>
+</tr>
+<tr>
+<td>Newest_ID</td>
+<td>结果中最新的ID</td>
+</tr>
+<tr>
+<td>Oldest_ID</td>
+<td>结果中最旧的ID</td>
+</tr>
+<tr>
+<td>Total_Tweet_Count</td>
+<td>匹配推文总数（搜索时）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="errors">errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h3>
+<p>发生的任何错误的详细信息</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Title</td>
+<td>简要错误描述</td>
+</tr>
+<tr>
+<td>Detail</td>
+<td>详细错误消息</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>错误类别/分类</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>HTTP状态码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_322">非分页响应<a class="headerlink" href="#_322" title="Permanent link">&para;</a></h3>
+<p>针对单对象查询：</p>
+<ul>
+<li>data：包含请求的对象</li>
+<li>includes：引用的对象</li>
+<li>errors：遇到的任何错误</li>
+</ul>
+<h3 id="_323">分页响应<a class="headerlink" href="#_323" title="Permanent link">&para;</a></h3>
+<p>针对多对象查询：</p>
+<ul>
+<li>data：对象数组</li>
+<li>includes：引用的对象</li>
+<li>meta：分页详细信息</li>
+<li>errors：遇到的任何错误</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 27, 2025 00:41:50 UTC">August 27, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 8, 2025 19:47:00 UTC">January 8, 2025</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.sections", "navigation.footer", "navigation.top", "navigation.tracking", "navigation.tabs", "toc.follow", "toc.integrate", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../../_javascript/tablesort.js"></script>
+      
+        <script src="../../../../_javascript/mathjax.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
