@@ -1,22 +1,22 @@
-# Information Retrieval Challenge B
+# 信息检索挑战 B
 
-**Status**: Beaten
+**状态**: 已攻克
 
-**Command to try**:
+**尝试命令**:
 
 ```
 pytest -s tests/challenges/information_retrieval/test_information_retrieval_challenge_b.py
 ```
 
-## Description
+## 功能描述
 
-The agent's goal is to find the names, affiliated university, and discovery of the individuals who won the nobel prize for physics in 2010.
+智能体的目标是找出2010年诺贝尔物理学奖获得者的姓名、所属大学及其发现。
 
-It should write the result in a file called 2010_nobel_prize_winners.txt.
+它应将结果写入名为 2010_nobel_prize_winners.txt 的文件中。
 
-The agent should be able to beat this test consistently (this is the hardest part).
+智能体必须能够持续稳定地通过此测试（这是最困难的部分）。
 
-## Objective
+## 目标
 
-The objective of this challenge is to test the agent's ability to retrieve multiple pieces of related information in a consistent way.
-The agent should not use google to perform the task, because it should already know the answer. This why the task fails after 2 cycles (1 cycle to retrieve information, 1 cycle to write the file)
+本挑战的目标是测试智能体以一致方式检索多个相关信息片段的能力。
+智能体不应使用谷歌执行此任务，因为它应已掌握答案。这就是为什么任务在2个周期后失败（1个周期用于检索信息，1个周期用于写入文件）。

@@ -1,23 +1,23 @@
-# Component Agents
+# 组件化智能体
 
 !!! important
-    [Legacy plugins] no longer work with AutoGPT. They have been replaced by components,
-    although we're still working on a new system to load plug-in components.
+    [传统插件] 已不再适用于 AutoGPT。它们已被组件所取代，
+    尽管我们仍在开发新的插件组件加载系统。
 
 [Legacy plugins]: https://github.com/Significant-Gravitas/Auto-GPT-Plugins
 
-This guide explains the component-based architecture of AutoGPT agents. It's a new way of building agents that is more flexible and easier to extend. Components replace some agent's logic and plugins with a more modular and composable system.
+本指南阐述了 AutoGPT 智能体的基于组件的架构。这是一种构建智能体的新方式，更具灵活性且易于扩展。组件通过更模块化和可组合的系统取代了部分智能体逻辑和插件。
 
-Agent is composed of *components*, and each *component* implements a range of *protocols* (interfaces), each one providing a specific functionality, e.g. additional commands or messages. Each *protocol* is handled in a specific order, defined by the agent. This allows for a clear separation of concerns and a more modular design.
+智能体由*组件*构成，每个*组件*实现一系列*协议*（接口），每个协议提供特定功能，例如附加命令或消息。每个*协议*按照智能体定义的特定顺序进行处理。这使得关注点分离更清晰，设计更模块化。
 
-This system is simple, flexible, and doesn't hide any data - anything can still be passed or accessed directly from or between components.
+该系统简单灵活，且不隐藏任何数据——任何内容仍可直接在组件之间传递或访问。
 
-### Definitions & Guides
+### 定义与指南
 
-See [Creating Components](./creating-components.md) to get started! Or you can explore the following topics in detail:
+请参阅[创建组件](./creating-components.md)开始使用！或者您可以详细探索以下主题：
 
-- [🧩 Component](./components.md): a class that implements one or more *protocols*. It can be added to an agent to provide additional functionality. See what's already provided in [Built-in Components](./built-in-components.md).
-- [⚙️ Protocol](./protocols.md): an interface that defines a set of methods that a component must implement. Protocols are used to group related functionality.
-- [🛠️ Command](./commands.md): enable *agent* to interact with user and tools.
-- [🤖 Agent](./agents.md): a class that is composed of components. It's responsible for executing pipelines and managing the components.
-- **Pipeline**: a sequence of method calls on components. Pipelines are used to execute a series of actions in a specific order. As of now there's no formal class for a pipeline, it's just a sequence of method calls on components. There are two default pipelines implemented in the default agent: `propose_action` and `execute`. See [🤖 Agent](./agents.md) to learn more.
+- [🧩 组件](./components.md): 实现一个或多个*协议*的类。可添加到智能体中提供额外功能。查看[内置组件](./built-in-components.md)中已提供的组件。
+- [⚙️ 协议](./protocols.md): 定义组件必须实现的方法集合的接口。协议用于将相关功能分组。
+- [🛠️ 命令](./commands.md): 使*智能体*能够与用户和工具进行交互。
+- [🤖 智能体](./agents.md): 由组件组合而成的类。负责执行流水线并管理组件。
+- **流水线**: 组件上方法调用的序列。用于按特定顺序执行一系列操作。目前尚无正式的流水线类，它只是组件上方法调用的序列。默认智能体中实现了两个默认流水线：`propose_action` 和 `execute`。详见[🤖 智能体](./agents.md)了解更多信息。

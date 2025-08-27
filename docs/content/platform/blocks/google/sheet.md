@@ -1,56 +1,68 @@
-## Google Sheets Read
+## Google Sheets 读取
 
-### What it is
-A block that reads data from a Google Sheets spreadsheet.
+### 功能说明
 
-### What it does
-This block retrieves information from a specified range within a Google Sheets spreadsheet.
+从 Google Sheets 电子表格读取数据的模块。
 
-### How it works
-The block connects to Google Sheets using provided credentials, then fetches data from the specified spreadsheet and range.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块从 Google Sheets 电子表格的指定范围检索信息。
+
+### 工作原理
+
+模块使用提供的凭据连接到 Google Sheets，然后从指定的电子表格和范围获取数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Authentication information required to access Google Sheets |
-| Spreadsheet ID | The unique identifier of the spreadsheet you want to read from |
-| Range | The specific area of the spreadsheet you want to read (e.g., "Sheet1!A1:B2") |
+| 凭据 | 访问 Google Sheets 所需的认证信息 |
+| 电子表格 ID | 要读取的电子表格的唯一标识符 |
+| 范围 | 要读取的电子表格特定区域（例如 "Sheet1!A1:B2"） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | The data retrieved from the spreadsheet, organized in rows and columns |
-| Error | Any error message that occurred during the process |
+| 结果 | 从电子表格检索的数据，按行和列组织 |
+| 错误 | 过程中出现的任何错误信息 |
 
-### Possible use case
-A marketing team could use this block to automatically retrieve the latest campaign performance data from a shared Google Sheets document for analysis and reporting.
+### 可能的使用场景
+
+营销团队可以使用此模块自动从共享的 Google Sheets 文档中检索最新的活动表现数据，用于分析和报告。
 
 ---
 
-## Google Sheets Write
+## Google Sheets 写入
 
-### What it is
-A block that writes data to a Google Sheets spreadsheet.
+### 功能说明
 
-### What it does
-This block allows you to input data into a specified range within a Google Sheets spreadsheet.
+向 Google Sheets 电子表格写入数据的模块。
 
-### How it works
-The block authenticates with Google Sheets using provided credentials, then updates the specified spreadsheet range with the given data.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块允许您向 Google Sheets 电子表格的指定范围输入数据。
+
+### 工作原理
+
+模块使用提供的凭据与 Google Sheets 进行认证，然后使用给定数据更新指定的电子表格范围。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Authentication information required to access Google Sheets |
-| Spreadsheet ID | The unique identifier of the spreadsheet you want to write to |
-| Range | The specific area of the spreadsheet where you want to write data (e.g., "Sheet1!A1:B2") |
-| Values | The data you want to write to the spreadsheet, organized in rows and columns |
+| Credentials | 访问 Google Sheets 所需的身份验证信息 |
+| Spreadsheet ID | 要写入的电子表格的唯一标识符 |
+| Range | 要写入数据的电子表格特定区域（例如："Sheet1!A1:B2"） |
+| Values | 要写入电子表格的数据，按行和列组织 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | Information about the write operation, such as the number of cells, columns, and rows updated |
-| Error | Any error message that occurred during the process |
+| Result | 写入操作的相关信息，例如更新的单元格、列和行数量 |
+| Error | 过程中发生的任何错误消息 |
 
-### Possible use case
-An automated inventory system could use this block to update stock levels in a Google Sheets spreadsheet whenever products are sold or restocked, ensuring real-time inventory tracking.
+### 可能的使用场景
+
+自动化库存系统可以使用此模块在商品售出或补货时更新 Google Sheets 电子表格中的库存水平，确保实现实时库存跟踪。

@@ -1,16 +1,16 @@
-# ⚙️ Protocols
+# ⚙️ 协议
 
-Protocols are *interfaces* implemented by [Components](./components.md) used to group related functionality. Each protocol needs to be handled explicitly by the agent at some point of the execution. We provide a comprehensive list of built-in protocols that are already handled in the built-in `Agent`, so when you inherit from the base agent all built-in protocols will work!
+协议是由[组件](./components.md)实现的*接口*，用于将相关功能分组。每个协议都需要在执行的某个时刻由智能体显式处理。我们提供了内置协议的完整列表，这些协议已在内置的 `Agent` 中得到处理，因此当您继承基础智能体时，所有内置协议都将正常工作！
 
-**Protocols are listed in the order of the default execution.**
+**协议按默认执行顺序列出。**
 
-## Order-independent protocols
+## 顺序无关协议
 
-Components implementing exclusively order-independent protocols can added in any order, including in-between ordered protocols.
+仅实现顺序无关协议的组件可以按任意顺序添加，包括在有序协议之间添加。
 
 ### `DirectiveProvider`
 
-Yields constraints, resources and best practices for the agent. This has no direct impact on other protocols; is purely informational and will be passed to a llm when the prompt is built.
+为智能体提供约束条件、资源和最佳实践。这对其他协议没有直接影响；纯粹是信息性的，在构建提示时将传递给大语言模型。
 
 ```py
 class DirectiveProvider(AgentComponent):
@@ -24,7 +24,7 @@ class DirectiveProvider(AgentComponent):
         return iter([])
 ```
 
-**Example** A web-search component can provide a resource information. Keep in mind that this actually doesn't allow the agent to access the internet. To do this a relevant `Command` needs to be provided.
+**示例** 网络搜索组件可以提供资源信息。请注意，这实际上并不允许智能体访问互联网。要实现这一点，需要提供相关的 `Command`。
 
 ```py
 class WebSearchComponent(DirectiveProvider):
@@ -35,7 +35,7 @@ class WebSearchComponent(DirectiveProvider):
 
 ### `CommandProvider`
 
-Provides a command that can be executed by the agent.
+提供可由智能体执行的命令。
 
 ```py
 class CommandProvider(AgentComponent):
@@ -43,9 +43,9 @@ class CommandProvider(AgentComponent):
         ...
 ```
 
-The easiest way to provide a command is to use `command` decorator on a component method and then yield the method. Each command needs a name, description and a parameter schema using `JSONSchema`. By default method name is used as a command name, and first part of docstring for the description (before `Args:` or `Returns:`) and schema can be provided in the decorator.
+提供命令的最简单方式是在组件方法上使用 `command` 装饰器，然后 yield 该方法。每个命令都需要名称、描述和使用 `JSONSchema` 的参数模式。默认情况下，方法名称用作命令名称，文档字符串的第一部分（在 `Args:` 或 `Returns:` 之前）用作描述，模式可以在装饰器中提供。
 
-**Example** Calculator component that can perform multiplication. Agent is able to call this command if it's relevant to a current task and will see the returned result.
+**示例** 能够执行乘法运算的计算器组件。如果与当前任务相关，代理能够调用此命令，并将看到返回的结果。
 
 ```py
 from forge.agent import CommandProvider, Component
@@ -82,18 +82,18 @@ class CalculatorComponent(CommandProvider):
         return str(a * b)
 ```
 
-The agent will be able to call this command, named `multiply` with two arguments and will receive the result. The command description will be: `Multiplies two numbers.`
+智能体将能够调用这个名为 `multiply` 的命令，它有两个参数，并将收到结果。命令描述将是：`将两个数字相乘。`
 
-To learn more about commands see [🛠️ Commands](./commands.md).
+要了解更多关于命令的信息，请参阅 [🛠️ 命令](./commands.md)。
 
-## Order-dependent protocols
+## 顺序依赖协议
 
-The order of components implementing order-dependent protocols is important.
-Some components may depend on the results of components before them.
+实现顺序依赖协议的组件顺序很重要。
+某些组件可能依赖于它们之前组件的结果。
 
 ### `MessageProvider`
 
-Yields messages that will be added to the agent's prompt. You can use either `ChatMessage.user()`: this will interpreted as a user-sent message or `ChatMessage.system()`: that will be more important.
+生成将被添加到代理提示中的消息。您可以使用 `ChatMessage.user()`：这将被解释为用户发送的消息，或 `ChatMessage.system()`：这将更加重要。
 
 ```py
 class MessageProvider(AgentComponent):
@@ -101,7 +101,7 @@ class MessageProvider(AgentComponent):
         ...
 ```
 
-**Example** Component that provides a message to the agent's prompt.
+**示例** 向代理提示提供消息的组件。
 
 ```py
 class HelloComponent(MessageProvider):
@@ -111,7 +111,7 @@ class HelloComponent(MessageProvider):
 
 ### `AfterParse`
 
-Protocol called after the response is parsed.
+在响应解析后调用的协议。
 
 ```py
 class AfterParse(AgentComponent):
@@ -119,7 +119,7 @@ class AfterParse(AgentComponent):
         ...
 ```
 
-**Example** Component that logs the response after it's parsed.
+**示例** 在响应解析后记录日志的组件。
 
 ```py
 class LoggerComponent(AfterParse):
@@ -127,9 +127,9 @@ class LoggerComponent(AfterParse):
         logger.info(f"Response: {response}")
 ```
 
-### `ExecutionFailure` 
+### `ExecutionFailure`
 
-Protocol called when the execution of the command fails.
+当命令执行失败时调用的协议。
 
 ```py
 class ExecutionFailure(AgentComponent):
@@ -138,7 +138,7 @@ class ExecutionFailure(AgentComponent):
         ...
 ```
 
-**Example** Component that logs the error when the command fails.
+**示例** 在命令失败时记录错误的组件。
 
 ```py
 class LoggerComponent(ExecutionFailure):
@@ -148,7 +148,7 @@ class LoggerComponent(ExecutionFailure):
 
 ### `AfterExecute`
 
-Protocol called after the command is successfully executed by the agent.
+协议在代理成功执行命令后被调用。
 
 ```py
 class AfterExecute(AgentComponent):
@@ -156,7 +156,7 @@ class AfterExecute(AgentComponent):
         ...
 ```
 
-**Example** Component that logs the result after the command is executed.
+**示例** 在执行命令后记录结果的组件。
 
 ```py
 class LoggerComponent(AfterExecute):

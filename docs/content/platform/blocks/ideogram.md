@@ -1,33 +1,39 @@
-# Ideogram Model
+# Ideogram 模型
 
-## What it is
-The Ideogram Model block is an AI-powered image generation tool that creates custom images based on text prompts and various settings.
+## 功能概述
 
-## What it does
-This block generates images using the Ideogram AI model, allowing users to create unique visuals by describing what they want in text. It offers various customization options, including different model versions, aspect ratios, and style preferences.
+Ideogram 模型块是一款基于人工智能的图像生成工具，可根据文本提示和各种设置创建自定义图像。
 
-## How it works
-The block takes a text prompt and several optional parameters as input. It then sends this information to the Ideogram API, which processes the request and generates an image. The resulting image URL is returned as output. If requested, the block can also upscale the generated image for higher quality.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该模块使用 Ideogram AI 模型生成图像，允许用户通过文本描述所需内容来创建独特视觉效果。它提供多种自定义选项，包括不同模型版本、宽高比和风格偏好。
+
+## 工作原理
+
+该模块接收文本提示和若干可选参数作为输入，随后将这些信息发送至 Ideogram API 进行处理并生成图像。生成的图像 URL 将作为输出返回。若需更高画质，该模块还可对生成图像进行超分辨率处理。
+
+## 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| API Key | Your personal Ideogram API key for authentication |
-| Prompt | The text description of the image you want to generate |
-| Image Generation Model | Choose from different versions of the Ideogram model |
-| Aspect Ratio | Select the desired dimensions for your image |
-| Upscale Image | Option to enhance the image quality after generation |
-| Magic Prompt Option | Enables automatic enhancement of your text prompt |
-| Seed | An optional number for reproducible image generation |
-| Style Type | Choose a specific artistic style for your image |
-| Negative Prompt | Describe elements you want to exclude from the image |
-| Color Palette Preset | Select a predefined color scheme for your image |
+| API Key | 用于身份验证的个人 Ideogram API 密钥 |
+| Prompt | 想要生成图像的文本描述 |
+| Image Generation Model | 从不同版本的 Ideogram 模型中选择 |
+| Aspect Ratio | 选择所需的图像尺寸比例 |
+| Upscale Image | 生成后提升图像质量的选项 |
+| Magic Prompt Option | 启用文本提示的自动增强功能 |
+| Seed | 用于可重复图像生成的可选数字 |
+| Style Type | 为图像选择特定艺术风格 |
+| Negative Prompt | 描述希望从图像中排除的元素 |
+| Color Palette Preset | 为图像选择预定义配色方案 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | The URL of the generated image |
-| Error | An error message if something goes wrong during the process |
+| 结果 | 生成图像的 URL |
+| 错误 | 处理过程中出现错误时的错误消息 |
 
-## Possible use case
-A marketing team needs unique visuals for a new product campaign. They can use the Ideogram Model block to quickly generate custom images based on their product descriptions and brand guidelines, exploring different styles and aspect ratios without the need for a professional designer.
+## 可能的使用场景
+
+营销团队需要为新产品活动提供独特的视觉素材。他们可以使用 Ideogram 模型块，根据产品描述和品牌指南快速生成定制图像，无需专业设计师即可探索不同风格和宽高比。

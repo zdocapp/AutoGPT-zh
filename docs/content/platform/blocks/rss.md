@@ -1,32 +1,38 @@
-# Read RSS Feed
+# 读取 RSS 订阅源
 
-## What it is
-A block that retrieves and processes entries from an RSS feed.
+## 功能概述
 
-## What it does
-This block reads entries from a specified RSS feed URL, filters them based on a given time period, and outputs the entries one by one.
+用于检索和处理 RSS 订阅源条目的功能块。
 
-## How it works
-The block connects to the provided RSS feed URL, fetches the feed content, and processes each entry. It checks if the entry's publication date falls within the specified time period and, if so, formats and outputs the entry information.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该功能块从指定的 RSS 订阅源 URL 读取条目，根据给定时间范围进行筛选，并逐个输出符合条件的条目。
+
+## 工作原理
+
+功能块会连接至提供的 RSS 订阅源 URL，获取订阅内容并处理每个条目。它会检查条目的发布日期是否处于指定时间范围内，若符合条件则格式化并输出条目信息。
+
+## 输入参数
+
+| 输入项 | 说明 |
 |-------|-------------|
-| RSS URL | The web address of the RSS feed you want to read from |
-| Time Period | The number of minutes to look back for new entries, relative to when the block starts running |
-| Polling Rate | How often (in seconds) the block should check for new entries |
-| Run Continuously | Whether the block should keep checking for new entries indefinitely or just run once |
+| RSS URL | 需要读取的 RSS 订阅源的网络地址 |
+| 时间范围 | 相对于功能块开始运行时间，回溯查找新条目的分钟数 |
+| 轮询频率 | 功能块检查新条目的时间间隔（单位：秒） |
+| 持续运行 | 功能块应无限期持续检查新条目，还是仅运行一次 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出项 | 说明 |
 |--------|-------------|
-| Entry | An RSS feed item containing the following information: |
-| | - Title: The headline or name of the item |
-| | - Link: The web address where the full item can be found |
-| | - Description: A brief summary or excerpt of the item |
-| | - Publication Date: When the item was published |
-| | - Author: Who wrote or created the item |
-| | - Categories: Topics or tags associated with the item |
+| 条目 | 包含以下信息的 RSS 订阅项： |
+| | - 标题：条目的标题或名称 |
+| | - 链接：可查看完整条目的网页地址 |
+| | - 描述：条目的简要摘要或摘录 |
+| | - 发布日期：条目的发布时间 |
+| | - 作者：条目的撰写者或创建者 |
+| | - 分类：与条目关联的主题或标签 |
 
-## Possible use case
-A news aggregator application could use this block to continuously monitor multiple RSS feeds from different news sources. The application could then display the latest news items to users, categorized by topic and sorted by publication date.
+## 可能的使用场景
+
+一个新闻聚合应用程序可以使用此功能块持续监控来自不同新闻源的多个RSS订阅源。该应用程序随后可按主题分类并依发布时间排序，向用户展示最新的新闻条目。

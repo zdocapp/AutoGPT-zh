@@ -1,17 +1,17 @@
-# Find available voices for D-ID
+# 查找 D-ID 可用语音
 
 1. **ElevenLabs**
-   - Select any voice from the voice list: https://api.elevenlabs.io/v1/voices
-   - Copy the voice_id
-   - Use it as a string in the voice_id field in the CreateTalkingAvatarClip Block
+   - 从语音列表中选择任意语音：https://api.elevenlabs.io/v1/voices
+   - 复制 voice_id
+   - 在 CreateTalkingAvatarClip 块的 voice_id 字段中将其作为字符串使用
 
-2. **Microsoft Azure Voices**
-    - Select any voice from the voice gallery: https://speech.microsoft.com/portal/voicegallery
-    - Click on the "Sample code" tab on the right
-    - Copy the voice name, for example: config.SpeechSynthesisVoiceName ="en-GB-AbbiNeural"
-    - Use this string en-GB-AbbiNeural in the voice_id field in the CreateTalkingAvatarClip Block
+2. **Microsoft Azure 语音**
+    - 从语音库中选择任意语音：https://speech.microsoft.com/portal/voicegallery
+    - 点击右侧的"示例代码"标签页
+    - 复制语音名称，例如：config.SpeechSynthesisVoiceName ="en-GB-AbbiNeural"
+    - 在 CreateTalkingAvatarClip 块的 voice_id 字段中使用此字符串 en-GB-AbbiNeural
 
-3. **Amazon Polly Voices**
-    - Select any voice from the voice list: https://docs.aws.amazon.com/polly/latest/dg/available-voices.html
-    - Copy the voice name / ID
-    - Use it as string in the voice_id field in the CreateTalkingAvatarClip Block
+3. **Amazon Polly 语音**
+    - 从语音列表中选择任意语音：https://docs.aws.amazon.com/polly/latest/dg/available-voices.html
+    - 复制语音名称/ID
+    - 在 CreateTalkingAvatarClip 块的 voice_id 字段中将其作为字符串使用

@@ -1,303 +1,328 @@
-# Getting Started with AutoGPT: Self-Hosting Guide
+# AutoGPT 入门指南：自托管教程
 
-## Introduction
+## 项目说明
 
-This guide will help you setup the server and builder for the project.
+本指南将帮助您设置项目的服务器和构建器。
 
 <!-- The video is listed in the root Readme.md of the repo -->
 
 <!--We also offer this in video format. You can check it out [here](https://github.com/Significant-Gravitas/AutoGPT?tab=readme-ov-file#how-to-setup-for-self-hosting). -->
 
 !!! warning
-    **DO NOT FOLLOW ANY OUTSIDE TUTORIALS AS THEY WILL LIKELY BE OUT OF DATE**
+    **请勿遵循任何外部教程，因为它们很可能已过时**
 
-## Prerequisites
+## 前置条件
 
-To setup the server, you need to have the following installed:
+要设置服务器，您需要安装以下组件：
 
 - [Node.js](https://nodejs.org/en/)
 - [Docker](https://docs.docker.com/get-docker/)
 - [Git](https://git-scm.com/downloads)
 
-### Checking if you have Node.js & NPM installed
+### 检查是否已安装 Node.js 和 NPM
 
-We use Node.js to run our frontend application.
+我们使用 Node.js 来运行前端应用程序。
 
-If you need assistance installing Node.js:
+如需安装 Node.js 的帮助：
 https://nodejs.org/en/download/
 
-NPM is included with Node.js, but if you need assistance installing NPM:
+NPM 已包含在 Node.js 中，但如果您需要安装 NPM 的帮助：
 https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-You can check if you have Node.js & NPM installed by running the following command:
+您可以通过运行以下命令来检查是否已安装 Node.js 和 NPM：
 
 ```bash
 node -v
 npm -v
 ```
 
-Once you have Node.js installed, you can proceed to the next step.
+安装 Node.js 后，您可以继续下一步。
 
-### Checking if you have Docker & Docker Compose installed
+### 检查是否已安装 Docker 和 Docker Compose
 
-Docker containerizes applications, while Docker Compose orchestrates multi-container Docker applications.
+Docker 用于容器化应用程序，而 Docker Compose 用于编排多容器 Docker 应用程序。
 
-If you need assistance installing docker:
+如需安装 Docker 的帮助：
 https://docs.docker.com/desktop/
 
-Docker-compose is included in Docker Desktop, but if you need assistance installing docker compose: 
+Docker-compose 已包含在 Docker Desktop 中，但如果您需要安装 Docker Compose 的帮助：
 https://docs.docker.com/compose/install/
 
-You can check if you have Docker installed by running the following command:
+您可以通过运行以下命令来检查是否已安装 Docker：
 
 ```bash
 docker -v
 docker compose -v
 ```
 
-Once you have Docker and Docker Compose installed, you can proceed to the next step.
+安装好 Docker 和 Docker Compose 后，您可以继续下一步。
 
 <details>
  <summary>
- Raspberry Pi 5 Specific Notes
+ Raspberry Pi 5 特定说明
  </summary>
-    On Raspberry Pi 5 with Raspberry Pi OS, the default 16K page size will cause issues with the <code>supabase-vector</code> container (expected: 4K).
+    在运行 Raspberry Pi OS 的 Raspberry Pi 5 上，默认的 16K 页面大小会导致 <code>supabase-vector</code> 容器出现问题（预期应为 4K）。
     </br>
-    To fix this, edit <code>/boot/firmware/config.txt</code> and add:
+    要解决此问题，请编辑 <code>/boot/firmware/config.txt</code> 并添加：
     </br>
     ```ini
     kernel=kernel8.img
     ```
-    Then reboot. You can check your page size with:
+    然后重新启动。您可以通过以下命令检查页面大小：
     </br>
     ```bash
     getconf PAGESIZE
     ```
-    <code>16384</code> means 16K (incorrect), and <code>4096</code> means 4K (correct).
-    After adjusting, <code>docker compose up -d --build</code> should work normally.
+    <code>16384</code> 表示 16K（不正确），<code>4096</code> 表示 4K（正确）。
+    调整后，<code>docker compose up -d --build</code> 应能正常工作。
     </br>
-    See <a href="https://github.com/supabase/supabase/issues/33816">supabase/supabase #33816</a> for additional context.
+    更多背景信息请参阅 <a href="https://github.com/supabase/supabase/issues/33816">supabase/supabase #33816</a>。
 </details>
 
-## Quick Setup with Auto Setup Script (Recommended)  
-If you're self-hosting AutoGPT locally, we recommend using our official setup script to simplify the process. This will install dependencies (like Docker), pull the latest code, and launch the app with minimal effort.
+## 使用自动设置脚本快速设置（推荐）
 
-For macOS/Linux:
+如果您在本地自托管 AutoGPT，我们推荐使用官方设置脚本简化流程。这将安装依赖项（如 Docker），拉取最新代码，并以最小工作量启动应用程序。
+
+适用于 macOS/Linux：
+
 ```
 curl -fsSL https://setup.agpt.co/install.sh -o install.sh && bash install.sh
 ```
 
-For Windows (PowerShell):
+适用于 Windows（PowerShell）：
+
 ```
 powershell -c "iwr https://setup.agpt.co/install.bat -o install.bat; ./install.bat"
 ```
 
-This method is ideal if you're setting up for development or testing and want to skip manual configuration.
+如果您正在进行开发或测试设置，并希望跳过手动配置，此方法是理想选择。
 
+## 手动设置
 
-## Manual Setup
+### 克隆代码库
 
-### Cloning the Repository
-The first step is cloning the AutoGPT repository to your computer.
-To do this, open a terminal window in a folder on your computer and run:
+第一步是将 AutoGPT 代码库克隆到您的计算机。
+为此，请在计算机上的文件夹中打开终端窗口并运行：
+
 ```
 git clone https://github.com/Significant-Gravitas/AutoGPT.git
 ```
-If you get stuck, follow [this guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-Once that's complete you can continue the setup process.
+如果遇到问题，请按照[此指南](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)操作。
 
-### Running the AutoGPT Platform
+完成后，您可以继续设置过程。
 
-To run the platform, follow these steps:
+### 运行 AutoGPT 平台
 
-* Navigate to the `autogpt_platform` directory inside the AutoGPT folder:
+要运行该平台，请按照以下步骤操作：
+
+* 进入 AutoGPT 文件夹内的 `autogpt_platform` 目录：
   ```bash
    cd AutoGPT/autogpt_platform
   ```
 
-- Copy the `.env.default` file to `.env` in `autogpt_platform`:
+- 将 `.env.default` 文件复制到 `autogpt_platform` 中的 `.env`：
 
   ```
    cp .env.default .env
   ```
 
-  This command will copy the `.env.default` file to `.env` in the `autogpt_platform` directory. You can modify the `.env` file to add your own environment variables.
+  此命令会将 `.env.default` 文件复制到 `autogpt_platform` 目录中的 `.env`。您可以修改 `.env` 文件以添加自己的环境变量。
 
-- Run the platform services:
+- 运行平台服务：
   ```
    docker compose up -d --build
   ```
-  This command will start all the necessary backend services defined in the `docker-compose.yml` file in detached mode.
+  此命令将以分离模式启动 `docker-compose.yml` 文件中定义的所有必要后端服务。
 
-### Checking if the application is running
+### 检查应用程序是否正在运行
 
-You can check if the server is running by visiting [http://localhost:3000](http://localhost:3000) in your browser.
+您可以在浏览器中访问 [http://localhost:3000](http://localhost:3000) 来检查服务器是否正在运行。
 
-**Notes:**
- 
-By default the application for different services run on the following ports: 
+**注意：**
 
-Frontend UI Server: 3000
-Backend Websocket Server: 8001
-Execution API Rest Server: 8006
+默认情况下，不同服务的应用程序运行在以下端口：
 
-### Additional Notes
+前端 UI 服务器：3000
+后端 WebSocket 服务器：8001
+执行 API REST 服务器：8006
 
-You may want to change your encryption key in the `.env` file in the `autogpt_platform/backend` directory.
+### 补充说明
 
-To generate a new encryption key, run the following command in python:
+您可能需要在 `autogpt_platform/backend` 目录中的 `.env` 文件中更改加密密钥。
+
+要生成新的加密密钥，请在 python 中运行以下命令：
 
 ```python
 from cryptography.fernet import Fernet;Fernet.generate_key().decode()
 ```
 
-Or run the following command in the `autogpt_platform/backend` directory:
+或者在 `autogpt_platform/backend` 目录中运行以下命令：
 
 ```bash
 poetry run cli gen-encrypt-key
 ```
 
-Then, replace the existing key in the `autogpt_platform/backend/.env` file with the new one.
+然后，将 `autogpt_platform/backend/.env` 文件中的现有密钥替换为新密钥。
 
-### 📌 Windows Installation Note
+### 📌 Windows 安装说明
 
-When installing Docker on Windows, it is **highly recommended** to select **WSL 2** instead of Hyper-V. Using Hyper-V can cause compatibility issues with Supabase, leading to the `supabase-db` container being marked as **unhealthy**.
+在 Windows 上安装 Docker 时，**强烈建议**选择 **WSL 2** 而不是 Hyper-V。使用 Hyper-V 可能导致与 Supabase 的兼容性问题，导致 `supabase-db` 容器被标记为 **不健康**。
 
-#### **Steps to enable WSL 2 for Docker:**
-1. Install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install).
-2. Ensure that your Docker settings use WSL 2 as the default backend:
-  - Open **Docker Desktop**.
-  - Navigate to **Settings > General**.
-  - Check **Use the WSL 2 based engine**.
-3. Restart **Docker Desktop**.
+#### **为 Docker 启用 WSL 2 的步骤：**
 
-#### **Already Installed Docker with Hyper-V?**
-If you initially installed Docker with Hyper-V, you **don’t need to reinstall** it. You can switch to WSL 2 by following these steps:
-1. Open **Docker Desktop**.
-2. Go to **Settings > General**.
-3. Enable **Use the WSL 2 based engine**.
-4. Restart Docker.
+1. 安装 [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install)。
+2. 确保您的 Docker 设置使用 WSL 2 作为默认后端：
 
-🚨 **Warning:** Enabling WSL 2 may **erase your existing containers and build history**. If you have important containers, consider backing them up before switching.
+- 打开 **Docker Desktop**。
+  - 导航至 **设置 > 常规**。
+  - 勾选 **使用基于 WSL 2 的引擎**。
 
-For more details, refer to [Docker's official documentation](https://docs.docker.com/desktop/windows/wsl/).
+3. 重启 **Docker Desktop**。
 
+#### **已经使用 Hyper-V 安装了 Docker？**
 
-## Development
+如果您最初使用 Hyper-V 安装了 Docker，您**无需重新安装**。您可以通过以下步骤切换到 WSL 2：
 
-### Frontend Development
+1. 打开 **Docker Desktop**。
+2. 转到 **设置 > 常规**。
+3. 启用 **使用基于 WSL 2 的引擎**。
+4. 重启 Docker。
 
-#### Running the frontend locally
+🚨 **警告：** 启用 WSL 2 可能会**清除您现有的容器和构建历史记录**。如果您有重要的容器，请在切换前考虑备份它们。
 
-To run the frontend locally, you need to have Node.js and PNPM installed on your machine.
+更多详细信息，请参阅 [Docker 官方文档](https://docs.docker.com/desktop/windows/wsl/)。
 
-Install [Node.js](https://nodejs.org/en/download/) to manage dependencies and run the frontend application.
+## 开发指南
 
-Install [PNPM](https://pnpm.io/installation) to manage the frontend dependencies.
+### 前端开发
 
-Run the service dependencies (backend, database, message queues, etc.):
+#### 本地运行前端
+
+要在本地运行前端，您需要在机器上安装 Node.js 和 PNPM。
+
+安装 [Node.js](https://nodejs.org/en/download/) 以管理依赖项并运行前端应用程序。
+
+安装 [PNPM](https://pnpm.io/installation) 以管理前端依赖项。
+
+运行服务依赖项（后端、数据库、消息队列等）：
+
 ```sh
 docker compose --profile local up deps_backend --build --detach
 ```
 
-Go to the `autogpt_platform/frontend` directory:
+进入 `autogpt_platform/frontend` 目录：
+
 ```sh
 cd frontend
 ```
 
-Install the dependencies:
+安装依赖：
+
 ```sh
 pnpm install
 ```
 
-Generate the API client:
+生成 API 客户端：
+
 ```sh
 pnpm generate:api-client
 ```
 
-Run the frontend application:
+运行前端应用程序：
+
 ```sh
 pnpm dev
 ```
 
-#### Formatting & Linting
+#### 代码格式化与检查
 
-Auto formatter and linter are set up in the project. To run them:
-Format the code:
+项目中已设置自动格式化程序和检查工具。运行方式如下：
+格式化代码：
+
 ```sh
 pnpm format
 ```
 
-Lint the code:
+检查代码：
+
 ```sh
 pnpm lint
 ```
 
-#### Testing
+#### 测试
 
-To run the tests, you can use the following command:
+要运行测试，您可以使用以下命令：
+
 ```sh
 pnpm test
 ```
 
-### Backend Development
+### 后端开发
 
-#### Running the backend locally
+#### 本地运行后端
 
-To run the backend locally, you need to have Python 3.10 or higher installed on your machine.
+要在本地运行后端，您需要在机器上安装 Python 3.10 或更高版本。
 
-Install [Poetry](https://python-poetry.org/docs/#installation) to manage dependencies and virtual environments.
+安装 [Poetry](https://python-poetry.org/docs/#installation) 以管理依赖项和虚拟环境。
 
-Run the backend dependencies (database, message queues, etc.):
+运行后端依赖项（数据库、消息队列等）：
+
 ```sh
 docker compose --profile local up deps --build --detach
 ```
 
-Go to the `autogpt_platform/backend` directory:
+进入 `autogpt_platform/backend` 目录：
+
 ```sh
 cd backend
 ```
 
-Install the dependencies:
+安装依赖：
+
 ```sh
 poetry install --with dev
 ```
 
-Run the backend server:
+运行后端服务器：
+
 ```sh
 poetry run app
 ```
 
-#### Formatting & Linting
-Auto formatter and linter are set up in the project. To run them:
+#### 代码格式化与检查
 
-Format the code:
+项目中已设置自动格式化程序和检查工具。运行方式如下：
+
+格式化代码：
+
 ```sh
 poetry run format
 ```
 
-Lint the code:
+检查代码：
+
 ```sh
 poetry run lint
 ```
 
-#### Testing
+#### 测试
 
-To run the tests:
+要运行测试：
 
 ```sh
 poetry run pytest -s 
 ```
 
-## Adding a New Agent Block
+## 添加新的智能体模块
 
-To add a new agent block, you need to create a new class that inherits from `Block` and provides the following information:
-* All the block code should live in the `blocks` (`backend.blocks`) module.
-* `input_schema`: the schema of the input data, represented by a Pydantic object.
-* `output_schema`: the schema of the output data, represented by a Pydantic object.
-* `run` method: the main logic of the block.
-* `test_input` & `test_output`: the sample input and output data for the block, which will be used to auto-test the block.
-* You can mock the functions declared in the block using the `test_mock` field for your unit tests.
-* Once you finish creating the block, you can test it by running `poetry run pytest backend/blocks/test/test_block.py -s`.
-* Create a Pull Request to the `dev` branch of the repository with your changes so you can share it with the community :)
+要添加新的智能体模块，您需要创建一个继承自 `Block` 的新类并提供以下信息：
+
+* 所有模块代码都应位于 `blocks` (`backend.blocks`) 模块中
+* `input_schema`：输入数据的模式，由 Pydantic 对象表示
+* `output_schema`：输出数据的模式，由 Pydantic 对象表示
+* `run` 方法：模块的主要逻辑
+* `test_input` 和 `test_output`：模块的示例输入和输出数据，将用于自动测试模块
+* 您可以使用 `test_mock` 字段来模拟模块中声明的函数，以便进行单元测试
+* 完成模块创建后，可以通过运行 `poetry run pytest backend/blocks/test/test_block.py -s` 来测试它
+* 将您的更改创建 Pull Request 到存储库的 `dev` 分支，以便与社区分享 :)

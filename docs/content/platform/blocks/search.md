@@ -1,111 +1,135 @@
-## Get Wikipedia Summary
+## 获取维基百科摘要
 
-### What it is
-A block that retrieves a summary of a given topic from Wikipedia.
+### 功能说明
 
-### What it does
-This block takes a topic as input and fetches a concise summary about that topic from Wikipedia's API.
+一个从维基百科获取指定主题摘要的功能块。
 
-### How it works
-The block sends a request to Wikipedia's API with the provided topic. It then extracts the summary from the response and returns it. If there's an error during this process, it will return an error message instead.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收一个主题作为输入，通过维基百科API获取关于该主题的简明摘要。
+
+### 工作原理
+
+该功能块向维基百科API发送包含所提供主题的请求，然后从响应中提取摘要并返回。如果在此过程中出现错误，将返回错误信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Topic | The subject you want to get a summary about from Wikipedia |
+| 主题 | 您想要从维基百科获取摘要的主题 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Summary | A brief overview of the requested topic from Wikipedia |
-| Error | An error message if the summary retrieval fails |
+| 摘要 | 来自维基百科的请求主题的简要概述 |
+| 错误 | 如果摘要获取失败，返回错误信息 |
 
-### Possible use case
-A student researching for a project could use this block to quickly get overviews of various topics, helping them decide which areas to focus on for more in-depth study.
+### 可能的使用场景
+
+学生进行项目研究时可以使用此功能块快速获取各种主题的概述，帮助他们决定需要深入研究的重点领域。
 
 ---
 
-## Search The Web
+## 网络搜索
 
-### What it is
-A block that performs web searches and returns the results.
+### 功能说明
 
-### What it does
-This block takes a search query and returns a list of relevant web pages, including their titles, URLs, and brief descriptions.
+一个执行网络搜索并返回结果的功能块。
 
-### How it works
-The block sends the search query to a search engine API, processes the results, and returns them in a structured format.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收搜索查询并返回相关网页列表，包括标题、URL和简要描述。
+
+### 工作原理
+
+该功能块将搜索查询发送到搜索引擎API，处理结果并以结构化格式返回。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Query | The search term or phrase to look up on the web |
-| Number of Results | How many search results to return (optional, default may vary) |
+| 查询 | 需要在网络上查找的搜索词或短语 |
+| 结果数量 | 返回的搜索结果数量（可选，默认值可能有所不同） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Results | A list of search results, each containing a title, URL, and description |
-| Error | An error message if the search fails |
+| 结果 | 搜索结果列表，每个结果包含标题、URL和描述 |
+| 错误 | 搜索失败时的错误信息 |
 
-### Possible use case
-A content creator could use this block to research trending topics in their field, gathering ideas for new articles or videos.
+### 可能的使用场景
+
+内容创作者可以使用此模块研究其领域的热门话题，为新文章或视频收集创意。
 
 ---
 
-## Extract Website Content
+## 提取网站内容
 
-### What it is
-A block that retrieves and extracts content from specified websites.
+### 功能说明
 
-### What it does
-This block takes a URL as input, visits the webpage, and extracts the main content, removing navigation elements, ads, and other non-essential parts.
+从指定网站检索并提取内容的模块。
 
-### How it works
-The block sends a request to the given URL, downloads the HTML content, and uses content extraction algorithms to identify and extract the main text content of the page.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块以URL作为输入，访问网页并提取主要内容，移除导航元素、广告和其他非必要部分。
+
+### 工作原理
+
+模块向给定URL发送请求，下载HTML内容，并使用内容提取算法识别并提取页面的主要文本内容。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| URL | The web address of the page to extract content from |
+| URL | 要提取内容的页面网址 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Content | The main text content extracted from the webpage |
-| Title | The title of the webpage |
-| Error | An error message if the content extraction fails |
+| 内容 | 从网页提取的主要文本内容 |
+| 标题 | 网页标题 |
+| 错误 | 内容提取失败时的错误信息 |
 
-### Possible use case
-A data analyst could use this block to automatically extract article content from news websites for sentiment analysis or topic modeling.
+### 可能的使用场景
+
+数据分析师可以使用此模块自动从新闻网站提取文章内容，用于情感分析或主题建模。
 
 ---
 
-## Get Weather Information
+## 获取天气信息
 
-### What it is
-A block that fetches current weather data for a specified location.
+### 功能说明
 
-### What it does
-This block takes a location name as input and returns current weather information such as temperature, humidity, and weather conditions.
+获取指定位置当前天气数据的模块。
 
-### How it works
-The block sends a request to a weather API (like OpenWeatherMap) with the provided location. It then processes the response to extract relevant weather data.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块接收位置名称作为输入，返回当前天气信息，如温度、湿度和天气状况。
+
+### 工作原理
+
+该模块通过提供的位置向天气API（如OpenWeatherMap）发送请求，然后处理响应以提取相关天气数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Location | The city or area you want to get weather information for |
-| API Key | Your personal OpenWeatherMap API key (this is kept secret) |
-| Use Celsius | An option to choose between Celsius (true) or Fahrenheit (false) for temperature |
+| 位置 | 您希望获取天气信息的城市或地区 |
+| API密钥 | 您个人的OpenWeatherMap API密钥（此信息保密） |
+| 使用摄氏度 | 选择温度单位为摄氏度（true）或华氏度（false）的选项 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Temperature | The current temperature in the specified location |
-| Humidity | The current humidity percentage in the specified location |
-| Condition | A description of the current weather condition (e.g., "overcast clouds") |
-| Error | A message explaining what went wrong if the weather data retrieval fails |
+| 温度 | 指定位置的当前温度 |
+| 湿度 | 指定位置的当前湿度百分比 |
+| 天气状况 | 当前天气状况描述（例如："阴天多云"） |
+| 错误 | 天气数据获取失败时的错误说明信息 |
 
-### Possible use case
-A travel planning application could use this block to provide users with current weather information for their destination cities.
+### 可能的使用场景
+
+旅行规划应用程序可使用此模块为用户提供目的地城市的实时天气信息。

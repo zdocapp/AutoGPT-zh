@@ -1,30 +1,28 @@
-# Text to Speech
+# 文本转语音
 
-Enter this command to use TTS _(Text-to-Speech)_ for AutoGPT
+输入此命令以使用 TTS（文本转语音）功能为 AutoGPT 提供语音支持
 
 ```shell
 ./autogpt.sh --speak
 ```
 
-Eleven Labs provides voice technologies such as voice design, speech synthesis, and
-premade voices that AutoGPT can use for speech.
+Eleven Labs 提供语音技术，包括语音设计、语音合成和预制语音，AutoGPT 可使用这些功能进行语音输出。
 
-1. Go to [ElevenLabs](https://beta.elevenlabs.io/) and make an account if you don't
-    already have one.
-2. Choose and setup the *Starter* plan.
-3. Click the top right icon and find *Profile* to locate your API Key.
+1. 访问 [ElevenLabs](https://beta.elevenlabs.io/)，如无账户请先注册
+2. 选择并设置 *Starter* 套餐
+3. 点击右上角图标，找到 *Profile* 以获取您的 API 密钥
 
-In the `.env` file set:
+在 `.env` 文件中设置：
 
 - `ELEVENLABS_API_KEY`
-- `ELEVENLABS_VOICE_1_ID` (example: _"premade/Adam"_)
+- `ELEVENLABS_VOICE_1_ID`（示例：_"premade/Adam"_）
 
-### List of available voices
+### 可用语音列表
 
 !!! note
-    You can use either the name or the voice ID to configure a voice
+    您可以使用名称或语音 ID 来配置语音
 
-| Name   | Voice ID |
+| 名称   | 语音 ID |
 | ------ | -------- |
 | Rachel | `21m00Tcm4TlvDq8ikWAM` |
 | Domi   | `AZnzlk1XvdvUeBnXmlld` |

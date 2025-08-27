@@ -1,113 +1,137 @@
-## Match Text Pattern
+## 匹配文本模式
 
-### What it is
-A block that matches text against a specified pattern.
+### 功能说明
 
-### What it does
-This block takes input text and a pattern, then checks if the text matches the pattern. It forwards the data to either a positive or negative output based on whether a match is found.
+用于将文本与指定模式进行匹配的功能块。
 
-### How it works
-The block uses regular expressions to search for the specified pattern within the input text. It considers options like case sensitivity and whether the dot should match all characters.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收输入文本和模式，检查文本是否与模式匹配。根据是否找到匹配项，将数据转发到正向或负向输出端。
+
+### 工作原理
+
+该功能块使用正则表达式在输入文本中搜索指定模式。支持选项包括大小写敏感性以及点号是否匹配所有字符。
+
+### 输入
+
+| 输入项 | 描述 |
 |-------|-------------|
-| Text | The text to be matched against the pattern |
-| Match | The pattern (regular expression) to search for in the text |
-| Data | Additional information to be forwarded to the output |
-| Case sensitive | Option to make the match case-sensitive or not |
-| Dot all | Option to make the dot character match all characters, including newlines |
+| 文本 | 需要与模式进行匹配的文本内容 |
+| 匹配模式 | 在文本中搜索的正则表达式模式 |
+| 数据 | 需要转发到输出端的附加信息 |
+| 区分大小写 | 设置匹配是否区分大小写的选项 |
+| 点号全匹配 | 设置点号字符是否匹配所有字符（包括换行符）的选项 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Positive | The output data if a match is found |
-| Negative | The output data if no match is found |
+| 正向输出 | 找到匹配项时的输出数据 |
+| 负向输出 | 未找到匹配项时的输出数据 |
 
-### Possible use case
-Filtering customer feedback messages based on specific keywords or phrases to categorize them as positive or negative reviews.
+### 可能的使用场景
+
+基于特定关键词或短语筛选客户反馈消息，将其分类为正面或负面评价。
 
 ---
 
-## Extract Text Information
+## 提取文本信息
 
-### What it is
-A block that extracts specific information from text using a pattern.
+### 功能说明
 
-### What it does
-This block searches for a pattern within the input text and extracts a portion of the text based on that pattern.
+使用模式从文本中提取特定信息的功能块。
 
-### How it works
-The block uses regular expressions to find the specified pattern in the text. It then extracts a particular group from the match, which can be the entire match or a specific captured group.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块在输入文本中搜索模式，并根据该模式提取文本的特定部分。
+
+### 工作原理
+
+该模块使用正则表达式在文本中查找指定模式。然后从匹配项中提取特定组，可以是整个匹配项或特定的捕获组。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Text | The text from which to extract information |
-| Pattern | The pattern (regular expression) used to find the desired information |
-| Group | The group number to extract from the match (0 for the entire match) |
-| Case sensitive | Option to make the match case-sensitive or not |
-| Dot all | Option to make the dot character match all characters, including newlines |
+| 文本 | 从中提取信息的文本 |
+| 模式 | 用于查找所需信息的模式（正则表达式） |
+| 组 | 从匹配项中提取的组号（0表示整个匹配项） |
+| 区分大小写 | 使匹配区分大小写或不区分大小写的选项 |
+| 点匹配所有 | 使点字符匹配所有字符（包括换行符）的选项 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Positive | The extracted text if a match is found |
-| Negative | The original text if no match is found |
+| 肯定 | 如果找到匹配项，则输出提取的文本 |
+| 否定 | 如果未找到匹配项，则输出原始文本 |
 
-### Possible use case
-Extracting phone numbers or email addresses from a large body of text, such as a customer database.
+### 可能的使用场景
+
+从大量文本（如客户数据库）中提取电话号码或电子邮件地址。
 
 ---
 
-## Fill Text Template
+## 填充文本模板
 
-### What it is
-A block that fills a text template with provided values.
+### 功能说明
 
-### What it does
-This block takes a template string and a dictionary of values, then replaces placeholders in the template with the corresponding values.
+一个使用提供的值填充文本模板的模块。
 
-### How it works
-The block uses a template engine to replace placeholders in the format string with the provided values. It supports both simple placeholder replacement and more complex operations like loops.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块接收模板字符串和值字典，然后用相应的值替换模板中的占位符。
+
+### 工作原理
+
+该模块使用模板引擎将格式字符串中的占位符替换为提供的值。它支持简单的占位符替换和更复杂的操作（如循环）。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Values | A dictionary containing the values to be inserted into the template |
-| Format | The template string with placeholders for the values |
+| Values | 包含要插入模板的值的字典 |
+| Format | 带有值占位符的模板字符串 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Output | The formatted text with placeholders replaced by actual values |
+| Output | 占位符被实际值替换后的格式化文本 |
 
-### Possible use case
-Generating personalized email messages by filling a template with customer-specific information like name, order details, or account status.
+### 可能的使用场景
+
+通过使用客户特定信息（如姓名、订单详情或账户状态）填充模板来生成个性化电子邮件消息。
 
 ---
 
-## Combine Texts
+## 合并文本
 
-### What it is
-A block that combines multiple text inputs into a single output.
+### 功能说明
 
-### What it does
-This block takes a list of text inputs and joins them together, optionally using a specified delimiter.
+将多个文本输入合并为单个输出的功能块。
 
-### How it works
-The block concatenates all the input texts in the order they are provided, inserting the specified delimiter (if any) between each text.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收一个文本输入列表并将它们连接在一起，可选择使用指定的分隔符。
+
+### 工作原理
+
+该功能块按提供顺序连接所有输入文本，在每个文本之间插入指定的分隔符（如果有）。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Input | A list of text strings to be combined |
-| Delimiter | An optional string to be inserted between each text input (default is an empty string) |
+| Input | 要合并的文本字符串列表 |
+| Delimiter | 在每个文本输入之间插入的可选字符串（默认为空字符串） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Output | The combined text |
+| Output | 合并后的文本 |
 
-### Possible use case
-Merging multiple parts of an address (street, city, state, zip code) into a single, formatted address string.
+### 可能的使用场景
+
+将地址的多个部分（街道、城市、州、邮政编码）合并为单个格式化地址字符串。

@@ -1,87 +1,87 @@
-# AutoGPT Documentation
+# AutoGPT 文档
 
-Welcome to the AutoGPT Documentation.
+欢迎来到 AutoGPT 文档。
 
-## What is the AutoGPT Platform?
+## 什么是 AutoGPT 平台？
 
-The AutoGPT Platform is a groundbreaking system that revolutionizes AI utilization for businesses and individuals. It enables the creation, deployment, and management of continuous agents that work tirelessly on your behalf, bringing unprecedented efficiency and innovation to your workflows.
+AutoGPT 平台是一个革命性的系统，彻底改变了企业和个人对人工智能的利用方式。它能够创建、部署和管理持续运行的智能体，这些智能体不知疲倦地为您工作，为工作流程带来前所未有的效率和创新。
 
-### Key Features
+### 核心特性
 
-- **Seamless Integration and Low-Code Workflows**: Rapidly create complex workflows without extensive coding knowledge.
-- **Autonomous Operation and Continuous Agents**: Deploy cloud-based assistants that run indefinitely, activating on relevant triggers.
-- **Intelligent Automation and Maximum Efficiency**: Streamline workflows by automating repetitive processes.
-- **Reliable Performance and Predictable Execution**: Enjoy consistent and dependable long-running processes.
+- **无缝集成与低代码工作流**：无需深入的编码知识即可快速创建复杂的工作流程。
+- **自主操作与持续智能体**：部署基于云的助手，可无限期运行并在相关触发条件下激活。
+- **智能自动化与极致效率**：通过自动化重复流程来简化工作流。
+- **可靠性能与可预测执行**：享受一致且可靠的长时运行流程。
 
-## Platform Architecture
+## 平台架构
 
-The AutoGPT Platform consists of two main components:
+AutoGPT 平台由两个主要组件组成：
 
-### 1. AutoGPT Server
+### 1. AutoGPT 服务器
 
-The powerhouse of our platform, containing:
+我们平台的核心引擎，包含：
 
--  **Source Code**: Core logic driving agents and automation processes.
--  **Infrastructure**: Robust systems ensuring reliable and scalable performance.
--  **Marketplace**: A comprehensive marketplace for pre-built agents.
+-  **源代码**：驱动智能体和自动化流程的核心逻辑。
+-  **基础设施**：确保可靠和可扩展性能的健壮系统。
+-  **市场**：提供预构建智能体的综合市场。
 
-### 2. AutoGPT Frontend
+### 2. AutoGPT 前端
 
-The user interface where you interact with the platform:
+用户与平台交互的界面：
 
--  **Agent Builder**: Design and configure your own AI agents.
--  **Workflow Management**: Build, modify, and optimize automation workflows.
--  **Deployment Controls**: Manage the lifecycle of your agents.
--  **Ready-to-Use Agents**: Select from pre-configured agents.
--  **Agent Interaction**: Run and interact with agents through a user-friendly interface.
--  **Monitoring and Analytics**: Track agent performance and gain insights.
+-  **Agent Builder**: 设计和配置您自己的AI智能体。
+-  **工作流管理**: 构建、修改和优化自动化工作流。
+-  **部署控制**: 管理智能体的生命周期。
+-  **即用型智能体**: 从预配置的智能体中进行选择。
+-  **智能体交互**: 通过用户友好的界面运行智能体并与之交互。
+-  **监控与分析**: 跟踪智能体性能并获得洞察。
 
-##  Platform Components
+##  平台组件
 
-### Agents and Workflows
+### 智能体与工作流
 
-In the platform, you can create highly customized workflows to build agents. An agent is essentially an automated workflow that you design to perform specific tasks or processes. Create customized workflows to build agents for various tasks, including:
+在平台中，您可以创建高度定制化的工作流来构建智能体。智能体本质上是一个您设计的、用于执行特定任务或流程的自动化工作流。创建定制化工作流可为各种任务构建智能体，包括：
 
-- Data processing and analysis
-- Task scheduling and management
-- Communication and notification systems
-- Integration between different software tools
-- AI-powered decision making and content generation
+- 数据处理与分析
+- 任务调度与管理
+- 通信与通知系统
+- 不同软件工具间的集成
+- 基于AI的决策制定与内容生成
 
-### Blocks as Integrations
+### 集成块 (Blocks)
 
-Blocks represent actions and are the building blocks of your workflows, including:
+块代表操作，是您工作流的基础构建模块，包括：
 
-- Connections to external services
-- Data processing tools
-- AI models for various tasks
-- Custom scripts or functions
-- Conditional logic and decision-making components
+- 外部服务的连接
+- 数据处理工具
+- 用于各种任务的AI模型
+- 自定义脚本或函数
+- 条件逻辑与决策组件
 
-You can learn more under: [Build your own Blocks](platform/new_blocks.md)
+您可以在以下位置了解更多信息：[构建您自己的块](platform/new_blocks.md)
 
-## Available Language Models
+## 可用语言模型
 
-The platform comes pre-integrated with cutting-edge LLM providers:
+平台预先集成了前沿的LLM提供商：
 
 - OpenAI - https://openai.com/
 - Anthropic - https://www.anthropic.com/
 - Groq - https://groq.com/
 - Llama - https://llamaindex.ai/
 - AI/ML API - [https://aimlapi.com/](https://aimlapi.com/?utm_source=autogpt&utm_medium=github&utm_campaign=integration)
-  - AI/ML API provides 300+ AI models including Deepseek, Gemini, ChatGPT. The models run at enterprise-grade rate limits and uptimes.
+  - AI/ML API 提供 300+ 个 AI 模型，包括 Deepseek、Gemini、ChatGPT。这些模型以企业级的速率限制和正常运行时间运行。
 
-## License Overview 
+## 许可证概览
 
-We've adopted a dual-license approach to balance open collaboration with sustainable development:
+我们采用了双许可证方法，以平衡开放协作与可持续发展：
 
-- **MIT License**: The majority of the AutoGPT repository remains under this license.
-- **Polyform Shield License**: Applies to the new `autogpt_platform` folder.
+- **MIT 许可证**：AutoGPT 仓库的大部分内容仍采用此许可证。
+- **Polyform Shield 许可证**：适用于新的 `autogpt_platform` 文件夹。
 
-This strategy allows us to share previously closed-source components, fostering a vibrant ecosystem of developers and users.
+这一策略使我们能够分享之前闭源的组件，从而培育一个充满活力的开发者和用户生态系统。
 
-## Ready to Get Started?
+## 准备开始？
 
-- Read the [Getting Started docs](https://docs.agpt.co/platform/getting-started/) to self-host
-- [Join the waitlist](https://agpt.co/waitlist) for the cloud-hosted beta
-- [Contribute](contribute/index.md)
+- 阅读 [入门文档](https://docs.agpt.co/platform/getting-started/) 以进行自托管
+- [加入云托管测试版的等待名单](https://agpt.co/waitlist)
+- [参与贡献](contribute/index.md)

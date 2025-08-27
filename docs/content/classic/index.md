@@ -1,113 +1,107 @@
-# AutoGPT Agent
+# AutoGPT 智能体
 
-[🔧 **Setup**](setup/index.md)
+[🔧 **安装配置**](setup/index.md)
 &ensp;|&ensp;
-[💻 **User guide**](./usage.md)
+[💻 **使用指南**](./usage.md)
 &ensp;|&ensp;
 [🐙 **GitHub**](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt)
 
-**Location:** `classic/original_autogpt/` in the GitHub repo
+**位置：** GitHub 仓库中的 `classic/original_autogpt/` 目录
 
-**Maintance Notice:** AutoGPT Classic is not supported from a security perspective. 
-Dependencies will not be updated, nor will issues be fixed. If someone wishes to
-contribute to novel development, we will give best effort merging to the changes that
-pass the existing CI.
+**维护声明：** AutoGPT Classic 版本不再提供安全支持。
+依赖项将不再更新，问题也不会修复。如果有人希望参与新功能开发，
+我们将尽力合并通过现有 CI 检查的变更。
 
-AutoGPT Classic was conceived when OpenAI published their GPT-4 model accompanied by a paper
-outlining the advanced reasoning and task-solving abilities of the model. The concept
-was (and still is) fairly simple: let an LLM decide what to do over and over, while
-feeding the results of its actions back into the prompt. This allows the program to
-iteratively and incrementally work towards its objective.
+AutoGPT Classic 诞生于 OpenAI 发布 GPT-4 模型之际，伴随的论文阐述了该模型
+先进的推理和任务解决能力。其概念（至今依然）相当简单：让大型语言模型反复决策，
+同时将其行动结果反馈至提示词中。这使得程序能够以迭代和渐进的方式实现目标。
 
-The fact that this program is able to execute actions on behalf of its user makes
-it an **agent**. In the case of AutoGPT Classic, the user still has to authorize every action,
-but as the project progresses we'll be able to give the agent more autonomy and only
-require consent for select actions.
+该程序能够代表用户执行操作，这使其成为一个**智能体**。在 AutoGPT Classic 中，
+用户仍需授权每个操作，但随着项目进展，我们将赋予智能体更高自主权，
+仅对特定操作需要用户确认。
 
-AutoGPT Classic is a **generalist agent**, meaning it is not designed with a specific task in
-mind. Instead, it is designed to be able to execute a wide range of tasks across many
-disciplines, as long as it can be done on a computer.
+AutoGPT Classic 是一个**通用型智能体**，这意味着它并非为特定任务而设计。相反，它被设计为能够在计算机上执行跨多个学科的广泛任务。
 
-# AutoGPT Classic Documentation
+# AutoGPT Classic 文档
 
-Welcome to the AutoGPT Classic Documentation.
+欢迎来到 AutoGPT Classic 文档。
 
-The AutoGPT Classic project consists of four main components:
+AutoGPT Classic 项目包含四个主要组件：
 
-- The [Agent](#agent) &ndash; also known as just "AutoGPT Classic"
-- The [Benchmark](#benchmark) &ndash; AKA `agbenchmark`
-- The [Forge](#forge)
-- The [Frontend](#frontend)
+- [智能体（Agent）](#agent) &ndash; 也称为 "AutoGPT Classic"
+- [基准测试（Benchmark）](#benchmark) &ndash; 又名 `agbenchmark`
+- [锻造厂（Forge）](#forge)
+- [前端（Frontend）](#frontend)
 
-To tie these together, we also have a [CLI] at the root of the project.
+为了将这些组件整合在一起，我们在项目根目录还提供了一个 [CLI]。
 
-## 🤖 Agent
+## 🤖 智能体
 
-**[📖 About AutoGPT Classic](#autogpt-agent)**
+**[📖 关于 AutoGPT Classic](#autogpt-agent)**
 &ensp;|&ensp;
-**[🔧 Setup](setup/index.md)**
+**[🔧 设置](setup/index.md)**
 &ensp;|&ensp;
-**[💻 Usage](./usage.md)**
+**[💻 使用指南](./usage.md)**
 
-The former heart of AutoGPT, and the project that kicked it all off: a semi-autonomous agent powered by LLMs to execute any task for you*.
+这是 AutoGPT 的前核心项目，也是一切的起点：一个由大型语言模型驱动的半自主智能体，可为您执行任何任务*。
 
-We continue to develop this project with the goal of providing access to AI assistance to the masses, and building the future transparently and together.
+我们持续开发这个项目，目标是向大众提供人工智能辅助服务，并以透明和协作的方式共同构建未来。
 
-- 💡 **Explore** - See what AI can do and be inspired by a glimpse of the future.
+- 💡 **探索** - 看看人工智能能做什么，并通过对未来的一瞥获得灵感。
 
-- 🚀 **Build with us** - We welcome any input, whether it's code or ideas for new features or improvements! Join us on [Discord](https://discord.gg/autogpt) and find out how you can join in on the action.
+- 🚀 **与我们共建** - 我们欢迎任何形式的贡献，无论是代码还是新功能或改进的想法！加入我们的 [Discord](https://discord.gg/autogpt)，了解如何参与其中。
 
-If you'd like to see what's next, check out the [AutoGPT Platform](../index.md).
+如果您想了解后续发展，请查看 [AutoGPT 平台](../index.md)。
 
-<small>* it isn't quite there yet, but that is the ultimate goal that we are still pursuing</small>
+<small>* 虽然尚未完全实现，但这是我们持续追求的终极目标</small>
 
 ---
 
-## 🎯 Benchmark
+## 🎯 基准测试
 
-**[🗒️ Readme](https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/benchmark/README.md)**
+**[🗒️ 说明文档](https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/benchmark/README.md)**
 
-Measure your agent's performance! The `agbenchmark` can be used with any agent that supports the agent protocol, and the integration with the project's [CLI] makes it even easier to use with AutoGPT Classic and forge-based agents. The benchmark offers a stringent testing environment. Our framework allows for autonomous, objective performance evaluations, ensuring your agents are primed for real-world action.
+衡量您智能体的性能！`agbenchmark` 可与任何支持智能体协议的智能体配合使用，且与项目 [CLI] 的集成使其在 AutoGPT Classic 和基于 forge 的智能体上使用更加便捷。该基准测试提供严格的测试环境。我们的框架支持自主、客观的性能评估，确保您的智能体为实际应用做好充分准备。
 
 <!-- TODO: insert visual demonstrating the benchmark -->
 
-- 📦 [**`agbenchmark`**](https://pypi.org/project/agbenchmark/) on Pypi
+- 📦 [**`agbenchmark`**](https://pypi.org/project/agbenchmark/) 于 Pypi
 
-- 🔌 **Agent Protocol Standardization** - AutoGPT Classic uses the agent protocol from the AI Engineer Foundation to ensure compatibility with many agents, both from within and outside the project.
+- 🔌 **智能体协议标准化** - AutoGPT Classic 采用 AI Engineer Foundation 的智能体协议，确保与项目内外众多智能体的兼容性。
 
 ---
 
 ## 🏗️ Forge
 
-**[📖 Introduction](../forge/get-started.md)**
+**[📖 介绍](../forge/get-started.md)**
 &ensp;|&ensp;
-**[🚀 Quickstart](https://github.com/Significant-Gravitas/AutoGPT/blob/master/QUICKSTART.md)**
+**[🚀 快速入门](https://github.com/Significant-Gravitas/AutoGPT/blob/master/QUICKSTART.md)**
 
 <!-- TODO: have the guides all in one place -->
 
-Forge your own agent! The Forge is a ready-to-go template for your agent application. All the boilerplate code is already handled, letting you channel all your creativity into the things that set *your* agent apart.
+打造您自己的智能体！Forge 是一个即用型智能体应用模板。所有样板代码均已处理完毕，让您能将全部创造力专注于让*您的*智能体脱颖而出的核心特性。
 
-- 🛠️ **Building with Ease** - We've set the groundwork so you can focus on your agent's personality and capabilities. Comprehensive tutorials are available [here](https://aiedge.medium.com/autogpt-forge-e3de53cc58ec).
-
----
-
-## 💻 Frontend
-
-**[🗒️ Readme](https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/frontend/README.md)**
-
-An easy-to-use and open source frontend for any Agent Protocol-compliant agent.
-
-- 🎮 **User-Friendly Interface** - Manage your agents effortlessly.
-
-- 🔄 **Seamless Integration** - Smooth connectivity between your agent and our benchmarking system.
+- 🛠️ **轻松构建** - 我们已打好基础，让您能专注于智能体个性与能力开发。完整教程请参阅[此处](https://aiedge.medium.com/autogpt-forge-e3de53cc58ec)。
 
 ---
 
-## 🔧 CLI
+## 💻 前端
+
+**[🗒️ 说明文档](https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/frontend/README.md)**
+
+为任何符合智能体协议规范的智能体提供易用的开源前端界面。
+
+- 🎮 **用户友好界面** - 轻松管理您的智能体
+
+- 🔄 **无缝集成** - 实现智能体与基准测试系统的流畅连接
+
+---
+
+## 🔧 命令行界面
+
 [CLI]: #cli
 
-The project CLI makes it easy to use all of the components of AutoGPT Classic in the repo, separately or
-together. To install its dependencies, simply run `./run setup`, and you're ready to go!
+项目CLI可便捷调用代码库中AutoGPT Classic的所有组件，支持单独或组合使用。只需运行`./run setup`安装依赖，即可立即开始使用！
 
 ```shell
 $ ./run
@@ -122,23 +116,23 @@ Commands:
   setup      Installs dependencies needed for your system.
 ```
 
-Common commands:
+常用命令：
 
-* `./run agent start autogpt` &ndash; [runs](./usage.md#serve-agent-protocol-mode-with-ui) the AutoGPT Classic agent
-* `./run agent create <name>` &ndash; creates a new Forge-based agent project at `agents/<name>`
-* `./run benchmark start <agent>` &ndash; benchmarks the specified agent
+* `./run agent start autogpt` &ndash; [运行](./usage.md#serve-agent-protocol-mode-with-ui) AutoGPT Classic智能体
+* `./run agent create <名称>` &ndash; 在`agents/<名称>`路径创建基于Forge的新智能体项目
+* `./run benchmark start <智能体>` &ndash; 对指定智能体进行基准测试
 
 ---
 
-🤔 Join the AutoGPT Discord server for any queries:
+🤔 如有疑问请加入AutoGPT Discord服务器：
 [discord.gg/autogpt](https://discord.gg/autogpt)
 
-### Glossary of Terms
+### 术语表
 
-- **Repository**: Space where your project resides.
-- **Forking**: Copying a repository under your account.
-- **Cloning**: Making a local copy of a repository.
-- **Agent**: The AutoGPT you'll create and develop.
-- **Benchmarking**: Testing your agent's skills in the Forge.
-- **Forge**: The template for building your AutoGPT agent.
-- **Frontend**: The UI for tasks, logs, and task history.
+- **Repository**: 存储项目代码的仓库空间。
+- **Forking**: 将仓库复制到您账户下的操作。
+- **Cloning**: 创建仓库的本地副本。
+- **Agent**: 您将创建和开发的 AutoGPT 智能体。
+- **Benchmarking**: 在 Forge 环境中测试智能体能力的基准评估。
+- **Forge**: 用于构建 AutoGPT 智能体的模板框架。
+- **Frontend**: 用于任务管理、日志查看和历史记录的用户界面。

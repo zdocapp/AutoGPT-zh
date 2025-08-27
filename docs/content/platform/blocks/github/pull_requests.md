@@ -1,182 +1,218 @@
-# Pull Requests
+# 拉取请求
 
-## GitHub List Pull Requests
+## GitHub 列出拉取请求
 
-### What it is
-A block that retrieves a list of pull requests from a specified GitHub repository.
+### 功能说明
 
-### What it does
-This block fetches all open pull requests for a given GitHub repository and provides their titles and URLs.
+一个从指定 GitHub 仓库获取拉取请求列表的功能块。
 
-### How it works
-It connects to the GitHub API using the provided credentials and repository URL, then retrieves the list of pull requests and formats the information for easy viewing.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块获取指定 GitHub 仓库中所有开放的拉取请求，并提供它们的标题和 URL。
+
+### 工作原理
+
+它使用提供的凭据和仓库 URL 连接到 GitHub API，然后获取拉取请求列表并格式化信息以便于查看。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication details to access the repository |
-| Repository URL | The URL of the GitHub repository to fetch pull requests from |
+| Credentials | 用于访问仓库的 GitHub 认证信息 |
+| Repository URL | 要获取拉取请求的 GitHub 仓库 URL |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| Pull Request | A list of pull requests, each containing: |
-| - Title | The title of the pull request |
-| - URL | The web address of the pull request |
-| Error | An error message if the operation fails |
+| Pull Request | 拉取请求列表，每个包含： |
+| - Title | 拉取请求的标题 |
+| - URL | 拉取请求的网页地址 |
+| Error | 操作失败时的错误信息 |
 
-### Possible use case
-A development team leader wants to quickly review all open pull requests in their project repository to prioritize code reviews.
+### 使用场景
+
+开发团队负责人希望快速查看项目仓库中所有开放的拉取请求，以便优先安排代码审查。
 
 ---
 
-## GitHub Make Pull Request
+## GitHub 创建拉取请求
 
-### What it is
-A block that creates a new pull request in a specified GitHub repository.
+### 功能说明
 
-### What it does
-This block allows users to create a new pull request by providing details such as title, body, and branch information.
+一个在指定 GitHub 仓库中创建新拉取请求的功能块。
 
-### How it works
-It uses the GitHub API to create a new pull request with the given information, including the source and target branches for the changes.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块允许用户通过提供标题、正文和分支信息等详细信息来创建新的拉取请求。
+
+### 工作原理
+
+它使用 GitHub API 创建包含给定信息的新拉取请求，包括变更的源分支和目标分支。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication details to access the repository |
-| Repository URL | The URL of the GitHub repository where the pull request will be created |
-| Title | The title of the new pull request |
-| Body | The description or content of the pull request |
-| Head | The name of the branch containing the changes |
-| Base | The name of the branch you want to merge the changes into |
+| Credentials | 用于访问仓库的 GitHub 认证信息 |
+| Repository URL | 将在其中创建拉取请求的 GitHub 仓库 URL |
+| Title | 新拉取请求的标题 |
+| Body | 拉取请求的描述或内容 |
+| Head | 包含变更的分支名称 |
+| Base | 要将变更合并到的目标分支名称 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Number | The unique identifier of the created pull request |
-| URL | The web address of the newly created pull request |
-| Error | An error message if the pull request creation fails |
+| Number | 已创建拉取请求的唯一标识符 |
+| URL | 新创建拉取请求的网页地址 |
+| Error | 如果拉取请求创建失败，显示错误信息 |
 
-### Possible use case
-A developer has finished working on a new feature in a separate branch and wants to create a pull request to merge their changes into the main branch for review.
+### 可能的使用场景
+
+开发者在独立分支上完成新功能开发后，希望创建拉取请求将其变更合并到主分支以供审查。
 
 ---
 
-## GitHub Read Pull Request
+## GitHub 读取拉取请求
 
-### What it is
-A block that retrieves detailed information about a specific GitHub pull request.
+### 功能说明
 
-### What it does
-This block fetches and provides comprehensive information about a given pull request, including its title, body, author, and optionally, the changes made.
+一个用于获取特定 GitHub 拉取请求详细信息的模块。
 
-### How it works
-It connects to the GitHub API using the provided credentials and pull request URL, then retrieves and formats the requested information.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该模块获取并提供指定拉取请求的全面信息，包括其标题、正文、作者，以及可选的变更内容。
+
+### 工作原理
+
+它使用提供的凭据和拉取请求URL连接到GitHub API，然后检索并格式化所请求的信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication details to access the repository |
-| Pull Request URL | The URL of the specific GitHub pull request to read |
-| Include PR Changes | An option to include the actual changes made in the pull request |
+| Credentials | 用于访问仓库的GitHub认证信息 |
+| Pull Request URL | 要读取的特定GitHub拉取请求的URL |
+| Include PR Changes | 包含拉取请求中实际更改的选项 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Title | The title of the pull request |
-| Body | The description or content of the pull request |
-| Author | The username of the person who created the pull request |
-| Changes | A list of changes made in the pull request (if requested) |
-| Error | An error message if reading the pull request fails |
+| Title | 拉取请求的标题 |
+| Body | 拉取请求的描述或内容 |
+| Author | 创建拉取请求的用户名 |
+| Changes | 拉取请求中所做更改的列表（如请求） |
+| Error | 如果读取拉取请求失败时的错误消息 |
 
-### Possible use case
-A code reviewer wants to get a comprehensive overview of a pull request, including its description and changes, before starting the review process.
+### 可能的使用场景
+
+代码审查人员在开始审查过程前，希望获取拉取请求的全面概览，包括其描述和更改内容。
 
 ---
 
-## GitHub Assign PR Reviewer
+## GitHub分配PR审查者
 
-### What it is
-A block that assigns a reviewer to a specific GitHub pull request.
+### 功能说明
 
-### What it does
-This block allows users to assign a designated reviewer to a given pull request in a GitHub repository.
+一个用于将审查者分配到特定GitHub拉取请求的模块。
 
-### How it works
-It uses the GitHub API to add the specified user as a reviewer for the given pull request.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该模块允许用户为GitHub仓库中的指定拉取请求分配指定的审查者。
+
+### 工作原理
+
+它使用GitHub API将指定用户添加为给定拉取请求的审查者。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication details to access the repository |
-| Pull Request URL | The URL of the specific GitHub pull request to assign a reviewer to |
-| Reviewer | The username of the GitHub user to be assigned as a reviewer |
+| Credentials | 用于访问仓库的 GitHub 认证信息 |
+| Pull Request URL | 需要分配审阅者的特定 GitHub 拉取请求的 URL |
+| Reviewer | 将被分配为审阅者的 GitHub 用户名 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Status | A message indicating whether the reviewer was successfully assigned |
-| Error | An error message if the reviewer assignment fails |
+| Status | 指示审阅者是否成功分配的消息 |
+| Error | 审阅者分配失败时的错误消息 |
 
-### Possible use case
-A project manager wants to assign a specific team member to review a newly created pull request for a critical feature.
+### 可能的使用场景
+
+项目经理希望指派特定团队成员审阅新创建的关键功能拉取请求。
 
 ---
 
-## GitHub Unassign PR Reviewer
+## GitHub 取消分配 PR 审阅者
 
-### What it is
-A block that removes an assigned reviewer from a specific GitHub pull request.
+### 功能说明
 
-### What it does
-This block allows users to unassign a previously designated reviewer from a given pull request in a GitHub repository.
+一个用于从特定 GitHub 拉取请求中移除已分配审阅者的功能块。
 
-### How it works
-It uses the GitHub API to remove the specified user from the list of reviewers for the given pull request.
+### 作用
 
-### Inputs
-| Input | Description |
+该功能块允许用户从 GitHub 仓库的指定拉取请求中取消分配先前指定的审阅者。
+
+### 工作原理
+
+它使用 GitHub API 从指定拉取请求的审阅者列表中移除特定用户。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication details to access the repository |
-| Pull Request URL | The URL of the specific GitHub pull request to unassign a reviewer from |
-| Reviewer | The username of the GitHub user to be unassigned as a reviewer |
+| Credentials | 用于访问仓库的 GitHub 认证信息 |
+| Pull Request URL | 需要取消分配审阅者的特定 GitHub 拉取请求的 URL |
+| Reviewer | 将被取消分配审阅者身份的 GitHub 用户名 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Status | A message indicating whether the reviewer was successfully unassigned |
-| Error | An error message if the reviewer unassignment fails |
+| 状态 | 表示审阅者是否成功取消分配的消息 |
+| 错误 | 审阅者取消分配失败时的错误消息 |
 
-### Possible use case
-A team lead realizes that an assigned reviewer is unavailable and wants to remove them from a pull request to reassign it to another team member.
+### 可能的使用场景
+
+团队负责人发现分配的审阅者不可用，希望将其从拉取请求中移除以便重新分配给其他团队成员。
 
 ---
 
-## GitHub List PR Reviewers
+## GitHub 列出 PR 审阅者
 
-### What it is
-A block that retrieves a list of all assigned reviewers for a specific GitHub pull request.
+### 功能说明
 
-### What it does
-This block fetches and provides information about all the reviewers currently assigned to a given pull request in a GitHub repository.
+用于获取特定 GitHub 拉取请求中所有已分配审阅者列表的功能块。
 
-### How it works
-It connects to the GitHub API using the provided credentials and pull request URL, then retrieves and formats the list of assigned reviewers.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块获取并提供 GitHub 仓库中指定拉取请求当前分配的所有审阅者信息。
+
+### 工作原理
+
+它使用提供的凭据和拉取请求 URL 连接到 GitHub API，然后检索并格式化已分配审阅者列表。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication details to access the repository |
-| Pull Request URL | The URL of the specific GitHub pull request to list reviewers for |
+| 凭据 | 用于访问仓库的 GitHub 认证信息 |
+| 拉取请求 URL | 需要列出审阅者的特定 GitHub 拉取请求 URL |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Reviewer | A list of assigned reviewers, each containing: |
-| - Username | The GitHub username of the reviewer |
-| - URL | The profile URL of the reviewer |
-| Error | An error message if listing the reviewers fails |
+| 审阅者 | 已分配审阅者列表，每个包含： |
+| - 用户名 | 审阅者的 GitHub 用户名 |
+| - URL | 审阅者的个人资料 URL |
+| 错误 | 列出审阅者失败时的错误消息 |
 
-### Possible use case
-A project coordinator wants to check who is currently assigned to review a specific pull request to ensure all necessary team members are involved in the code review process.
+### 可能的使用场景
+
+项目协调员想要检查当前谁被指派审查特定的拉取请求，以确保所有必要的团队成员都参与了代码审查过程。

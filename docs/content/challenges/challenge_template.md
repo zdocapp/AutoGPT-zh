@@ -1,24 +1,24 @@
-# Challenge Title
+# 挑战标题
 
-## Description
+## 功能描述
 
-Provide a clear and concise description of the challenge. Include any relevant examples or files to illustrate the problem.
+提供清晰简洁的挑战描述。包含任何相关的示例或文件来说明问题。
 
-## Input
+## 输入
 
-If the challenge involves specific input files, describe them here. Provide the file names and their contents, if necessary. Use triple backticks (```) to format the content as a code block.
+如果挑战涉及特定的输入文件，请在此处描述它们。必要时提供文件名及其内容。使用三个反引号（```）将内容格式化为代码块。
 
-For example:
+例如：
 
 instructions_1.txt
 
-The current task_id is 4563.\n[NOISE intended to confuse the agent]
-Read the file instructions_2.txt using the read_file command.
+当前任务ID是4563。\n[旨在混淆代理的噪声]
+使用read_file命令读取文件instructions_2.txt。
 
-## Scope
+## 范围
 
-Define the scope of the challenge, including any relevant constraints, requirements, or limitations.
+定义挑战的范围，包括任何相关的约束、要求或限制。
 
-## Success Evaluation
+## 成功评估
 
-Explain how success will be measured or evaluated for the challenge. This helps others understand what the desired outcome is and how to work towards it.
+解释如何衡量或评估挑战的成功。这有助于他人理解期望的结果以及如何实现它。

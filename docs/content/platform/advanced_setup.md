@@ -1,16 +1,16 @@
-# Advanced Setup
+# 高级设置
 
-The advanced steps below are intended for people with sysadmin experience. If you are not comfortable with these steps, please refer to the [basic setup guide](../platform/getting-started.md).
+以下高级步骤适用于具有系统管理员经验的用户。如果您对这些步骤不熟悉，请参考[基础设置指南](../platform/getting-started.md)。
 
-## Introduction
+## 项目说明
 
-For the advanced setup, first follow the [basic setup guide](../platform/getting-started.md) to get the server up and running. Once you have the server running, you can follow the steps below to configure the server for your specific needs.
+进行高级设置时，请首先按照[基础设置指南](../platform/getting-started.md)启动并运行服务器。当服务器正常运行后，您可以按照以下步骤根据特定需求配置服务器。
 
-## Configuration
+## 配置
 
-### Setting config via environment variables
+### 通过环境变量设置配置
 
-The server uses environment variables to store configs. You can set these environment variables in a `.env` file in the root of the project. The `.env` file should look like this:
+服务器使用环境变量存储配置。您可以在项目根目录的 `.env` 文件中设置这些环境变量。`.env` 文件应如下所示：
 
 ```bash
 # .env
@@ -18,123 +18,122 @@ KEY1=value1
 KEY2=value2
 ```
 
-The server will automatically load the `.env` file when it starts. You can also set the environment variables directly in your shell. Refer to your operating system's documentation on how to set environment variables in the current session.
+服务器启动时将自动加载 `.env` 文件。您也可以在 shell 中直接设置环境变量。请参考您操作系统的文档了解如何在当前会话中设置环境变量。
 
-The valid options are listed in `.env.default` in the root of the builder and server directories. You can copy the `.env.default` file to `.env` and modify the values as needed.
+有效选项列在构建器和服务器目录根目录下的 `.env.default` 文件中。您可以将 `.env.default` 文件复制为 `.env` 并根据需要修改值。
 
 ```bash
 # Copy the .env.default file to .env
 cp .env.default .env
 ```
 
-### Secrets directory
+### 密钥目录
 
-The secret directory is located at `./secrets`. You can store any secrets you need in this directory. The server will automatically load the secrets when it starts.
+密钥目录位于 `./secrets`。您可以将所需的任何密钥存储在此目录中。服务器启动时将自动加载这些密钥。
 
-An example for a secret called `my_secret` would look like this:
+名为 `my_secret` 的密钥示例如下所示：
 
 ```bash
 # ./secrets/my_secret
 my_secret_value
 ```
 
-This is useful when running on docker so you can copy the secrets into the container without exposing them in the Dockerfile.
+这在 Docker 环境中运行时非常有用，您可以将密钥复制到容器中，而无需在 Dockerfile 中暴露它们。
 
-## Database selection
-
+## 数据库选择
 
 ### PostgreSQL
 
-We use a Supabase PostgreSQL as the database. You will swap the commands you use to generate and run prisma to the following
+我们使用 Supabase PostgreSQL 作为数据库。您需要将用于生成和运行 Prisma 的命令替换为以下内容
 
 ```bash
 poetry run prisma generate --schema postgres/schema.prisma
 ```
 
-This will generate the Prisma client for PostgreSQL. You will also need to run the PostgreSQL database in a separate container. You can use the `docker-compose.yml` file in the `rnd` directory to run the PostgreSQL database.
+这将生成适用于 PostgreSQL 的 Prisma 客户端。您还需要在单独的容器中运行 PostgreSQL 数据库。您可以使用 `rnd` 目录中的 `docker-compose.yml` 文件来运行 PostgreSQL 数据库。
 
 ```bash
 cd autogpt_platform/
 docker compose up -d --build
 ```
 
-You can then run the migrations from the `backend` directory.
+然后您可以从 `backend` 目录运行迁移。
 
 ```bash
 cd ../backend
 prisma migrate dev --schema postgres/schema.prisma
 ```
 
-## AutoGPT Agent Server Advanced set up
+## AutoGPT 代理服务器高级设置
 
-This guide walks you through a dockerized set up, with an external DB (postgres)
+本指南将引导您完成使用外部数据库（postgres）的 Docker 化设置
 
-### Setup
+### 环境配置
 
-We use the Poetry to manage the dependencies. To set up the project, follow these steps inside this directory:
+我们使用 Poetry 来管理依赖项。要设置项目，请在此目录内按照以下步骤操作：
 
-0. Install Poetry
+0. 安装 Poetry
     ```sh
     pip install poetry
     ```
     
-1. Configure Poetry to use .venv in your project directory
+1. 配置 Poetry 在项目目录中使用 .venv
     ```sh
     poetry config virtualenvs.in-project true
     ```
 
-2. Enter the poetry shell
+2. 进入 poetry shell
 
    ```sh
    poetry shell
    ```
 
-3. Install dependencies
+3. 安装依赖项
 
    ```sh
    poetry install
    ```
 
-4. Copy .env.default to .env
+4. 复制 .env.default 为 .env
 
    ```sh
    cp .env.default .env
    ```
 
-5. Generate the Prisma client
+5. 生成 Prisma 客户端
 
    ```sh
    poetry run prisma generate
    ```
 
-   > In case Prisma generates the client for the global Python installation instead of the virtual environment, the current mitigation is to just uninstall the global Prisma package:
+   > 如果 Prisma 为全局 Python 安装而不是虚拟环境生成客户端，目前的缓解方法是卸载全局 Prisma 包：
    >
    > ```sh
    > pip uninstall prisma
    > ```
    >
-   > Then run the generation again. The path _should_ look something like this:  
+   > 然后再次运行生成命令。路径_应该_看起来像这样：  
    > `<some path>/pypoetry/virtualenvs/backend-TQIRSwR6-py3.12/bin/prisma`
 
-6. Run the postgres database from the /rnd folder
+6. 从 /rnd 文件夹运行 postgres 数据库
 
    ```sh
    cd autogpt_platform/
    docker compose up -d
    ```
 
-7. Run the migrations (from the backend folder)
+7. 运行迁移（从 backend 文件夹）
 
    ```sh
    cd ../backend
    prisma migrate deploy
    ```
 
-### Running The Server
+### 运行服务器
 
-#### Starting the server directly
+#### 直接启动服务器
 
-Run the following command:
+运行以下命令：
 
 ```sh
 poetry run app

@@ -1,106 +1,130 @@
-## Get Current Time
+## 获取当前时间
 
-### What it is
-A block that provides the current time.
+### 功能说明
 
-### What it does
-This block outputs the current time in hours, minutes, and seconds.
+提供当前时间的模块。
 
-### How it works
-When triggered, the block retrieves the current system time and formats it as a string in the HH:MM:SS format.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块输出当前时间的小时、分钟和秒数。
+
+### 工作原理
+
+当触发时，该模块获取当前系统时间并将其格式化为 HH:MM:SS 格式的字符串。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| trigger | A string input that activates the block. The content of this input doesn't affect the output. |
+| trigger | 激活模块的字符串输入。此输入的内容不影响输出。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| time | A string representing the current time in the format HH:MM:SS (e.g., "14:30:45"). |
+| time | 表示当前时间的字符串，格式为 HH:MM:SS（例如 "14:30:45"）。 |
 
-### Possible use case
-This block could be used in a chatbot that needs to provide the current time to users when asked.
+### 可能的使用场景
+
+该模块可用于需要在用户询问时提供当前时间的聊天机器人中。
 
 ---
 
-## Get Current Date
+## 获取当前日期
 
-### What it is
-A block that provides the current date, with an optional offset.
+### 功能说明
 
-### What it does
-This block outputs the current date or a date offset from the current date by a specified number of days.
+提供当前日期的模块，支持可选偏移量。
 
-### How it works
-When triggered, the block retrieves the current system date. If an offset is provided, it calculates a new date by subtracting the offset number of days from the current date. The resulting date is then formatted as a string in the YYYY-MM-DD format.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块输出当前日期或从当前日期偏移指定天数的日期。
+
+### 工作原理
+
+当触发时，该模块获取当前系统日期。如果提供了偏移量，它会通过从当前日期减去偏移天数来计算新日期。然后将结果日期格式化为 YYYY-MM-DD 格式的字符串。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| trigger | A string input that activates the block. The content of this input doesn't affect the output. |
-| offset | An integer or string representing the number of days to subtract from the current date. If not provided or invalid, it defaults to 0. |
+| trigger | 激活模块的字符串输入。此输入的内容不影响输出。 |
+| offset | 整数或字符串，表示要从当前日期减去的天数。如果未提供或无效，则默认为 0。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| date | A string representing the date in the format YYYY-MM-DD (e.g., "2023-05-15"). |
+| date | 表示日期的字符串，格式为 YYYY-MM-DD（例如："2023-05-15"）。 |
 
-### Possible use case
-This block could be used in a scheduling application to calculate and display dates for upcoming events or deadlines.
+### 可能的使用场景
+
+该模块可用于调度应用程序中，用于计算和显示即将发生的事件或截止日期。
 
 ---
 
-## Get Current Date and Time
+## 获取当前日期和时间
 
-### What it is
-A block that provides both the current date and time.
+### 功能说明
 
-### What it does
-This block outputs the current date and time combined into a single string.
+提供当前日期和时间的模块。
 
-### How it works
-When triggered, the block retrieves the current system date and time, then formats them together as a string in the YYYY-MM-DD HH:MM:SS format.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块输出合并为单个字符串的当前日期和时间。
+
+### 工作原理
+
+触发时，该模块获取当前系统日期和时间，然后将它们格式化为 YYYY-MM-DD HH:MM:SS 格式的字符串。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| trigger | A string input that activates the block. The content of this input doesn't affect the output. |
+| trigger | 激活该模块的字符串输入。此输入的内容不影响输出。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| date_time | A string representing the current date and time in the format YYYY-MM-DD HH:MM:SS (e.g., "2023-05-15 14:30:45"). |
+| date_time | 表示当前日期和时间的字符串，格式为 YYYY-MM-DD HH:MM:SS（例如："2023-05-15 14:30:45"）。 |
 
-### Possible use case
-This block could be used in a logging system to timestamp events with both date and time information.
+### 可能的使用场景
+
+该模块可用于日志系统中，为事件添加包含日期和时间信息的时间戳。
 
 ---
 
-## Countdown Timer
+## 倒计时定时器
 
-### What it is
-A block that acts as a countdown timer, triggering after a specified duration.
+### 功能说明
 
-### What it does
-This block waits for a specified amount of time and then outputs a message.
+作为倒计时定时器的模块，在指定持续时间后触发。
 
-### How it works
-The block takes input for the duration in days, hours, minutes, and seconds. It calculates the total wait time in seconds, pauses execution for that duration, and then outputs the specified message.
+### 功能描述
 
-### Inputs
-| Input | Description | Default |
+该模块等待指定的时间量，然后输出消息。
+
+### 工作原理
+
+该模块接收以天、小时、分钟和秒为单位的持续时间输入。它计算总等待时间（以秒为单位），暂停执行该持续时间，然后输出指定的消息。
+
+### 输入
+
+| 输入 | 描述 | 默认值 |
 |-------|-------------|---------|
-| input_message | The message to be output when the timer finishes. | "timer finished" |
-| seconds | The number of seconds to wait. | 0 |
-| minutes | The number of minutes to wait. | 0 |
-| hours | The number of hours to wait. | 0 |
-| days | The number of days to wait. | 0 |
+| input_message | 计时器结束时输出的消息。 | "timer finished" |
+| seconds | 等待的秒数。 | 0 |
+| minutes | 等待的分钟数。 | 0 |
+| hours | 等待的小时数。 | 0 |
+| days | 等待的天数。 | 0 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| output_message | The message specified in the input_message, output after the timer completes. |
+| output_message | 在计时器完成后输出的 input_message 中指定的消息。 |
 
-### Possible use case
-This block could be used in a reminder application to trigger notifications after a set amount of time, or in a cooking app to notify users when a recipe step is complete.
+### 可能的使用场景
+
+该模块可用于提醒应用程序中，在经过设定的时间后触发通知；或用于烹饪应用程序中，在食谱步骤完成时通知用户。

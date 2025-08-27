@@ -1,722 +1,860 @@
-# Todoist Blocks
+# Todoist 功能块
 
-## Todoist Create Label
+## Todoist 创建标签
 
-### What it is
-A block that creates a new label in Todoist.
+### 功能说明
 
-### What it does
-Creates a new label in Todoist with specified name, order, color and favorite status.
+一个在 Todoist 中创建新标签的功能块。
 
-### How it works
-It takes label details as input, connects to Todoist API, creates the label and returns the created label's details.
+### 功能描述
 
-### Inputs
-| Input | Description |
+通过指定名称、排序、颜色和收藏状态，在 Todoist 中创建新标签。
+
+### 工作原理
+
+接收标签详细信息作为输入，连接 Todoist API，创建标签并返回所创建标签的详细信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Name | Name of the label |
-| Order | Optional label order |
-| Color | Optional color of the label icon |
-| Is Favorite | Whether label is marked as favorite |
+| 凭据 | Todoist API 凭据 |
+| 名称 | 标签名称 |
+| 排序 | 可选的标签排序 |
+| 颜色 | 可选的标签图标颜色 |
+| 是否收藏 | 标签是否标记为收藏 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ID | ID of the created label |
-| Name | Name of the label |
-| Color | Color of the label |
-| Order | Label order |
-| Is Favorite | Favorite status |
-| Error | Error message if request failed |
+| ID | 创建标签的 ID |
+| 名称 | 标签名称 |
+| 颜色 | 标签颜色 |
+| 排序 | 标签排序 |
+| 是否收藏 | 收藏状态 |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Creating new labels to organize and categorize tasks in Todoist.
+### 可能的使用场景
+
+创建新标签以在 Todoist 中组织和分类任务。
 
 ---
 
-## Todoist List Labels
+## Todoist 列出标签
 
-### What it is
-A block that retrieves all personal labels from Todoist.
+### 功能说明
 
-### What it does
-Fetches all personal labels from the user's Todoist account.
+一个从 Todoist 检索所有个人标签的功能块。
 
-### How it works
-Connects to Todoist API using provided credentials and retrieves all labels.
+### 功能描述
 
-### Inputs
-| Input | Description |
+从用户的 Todoist 账户中获取所有个人标签。
+
+### 工作原理
+
+使用提供的凭据连接 Todoist API 并检索所有标签。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
+| 凭据 | Todoist API 凭据 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Labels | List of complete label data |
-| Label IDs | List of label IDs |
-| Label Names | List of label names |
-| Error | Error message if request failed |
+| 标签 | 完整标签数据列表 |
+| 标签 ID | 标签 ID 列表 |
+| 标签名称 | 标签名称列表 |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Getting an overview of all labels to organize tasks or find specific labels.
+### 可能的使用场景
+
+获取所有标签的概览以组织任务或查找特定标签。
 
 ---
 
-## Todoist Get Label
+## Todoist 获取标签
 
-### What it is
-A block that retrieves a specific label by ID.
+### 功能说明
 
-### What it does
-Fetches details of a specific label using its ID.
+通过ID检索特定标签的块。
 
-### How it works
-Uses the label ID to retrieve label details from Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+使用标签ID从Todoist API获取特定标签的详细信息。
+
+### 工作原理
+
+使用标签ID从Todoist API检索标签详细信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Label ID | ID of label to retrieve |
+| 凭据 | Todoist API凭据 |
+| 标签ID | 要检索的标签ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ID | Label ID |
-| Name | Label name |
-| Color | Label color |
-| Order | Label order |
-| Is Favorite | Favorite status |
-| Error | Error message if request failed |
+| ID | 标签ID |
+| 名称 | 标签名称 |
+| 颜色 | 标签颜色 |
+| 排序 | 标签排序 |
+| 是否收藏 | 收藏状态 |
+| 错误 | 请求失败时的错误消息 |
 
-### Possible use case
-Looking up details of a specific label for editing or verification.
+### 可能的使用场景
+
+查找特定标签的详细信息以进行编辑或验证。
 
 ---
 
-## Todoist Create Task
+## Todoist 创建任务
 
-### What it is
-A block that creates a new task in Todoist.
+### 功能说明
 
-### What it does
-Creates a new task with specified content, description, project assignment and other optional parameters.
+在Todoist中创建新任务的块。
 
-### How it works
-Takes task details and creates a new task via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+使用指定的内容、描述、项目分配和其他可选参数创建新任务。
+
+### 工作原理
+
+获取任务详细信息并通过Todoist API创建新任务。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Content | Task content |
-| Description | Optional task description |
-| Project ID | Optional project to add task to |
-| Section ID | Optional section to add task to |
-| Parent ID | Optional parent task ID |
-| Order | Optional task order |
-| Labels | Optional task labels |
-| Priority | Optional priority (1-4) |
-| Due Date | Optional due date |
-| Deadline Date | Optional deadline date |
-| Assignee ID | Optional assignee |
-| Duration Unit | Optional duration unit |
-| Duration | Optional duration amount |
+| Credentials | Todoist API 凭据 |
+| Content | 任务内容 |
+| Description | 可选任务描述 |
+| Project ID | 可选的项目 ID，用于添加任务 |
+| Section ID | 可选的分区 ID，用于添加任务 |
+| Parent ID | 可选的父任务 ID |
+| Order | 可选的任务排序 |
+| Labels | 可选的任务标签 |
+| Priority | 可选优先级 (1-4) |
+| Due Date | 可选截止日期 |
+| Deadline Date | 可选最后期限日期 |
+| Assignee ID | 可选分配对象 |
+| Duration Unit | 可选持续时间单位 |
+| Duration | 可选持续时间数量 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ID | Created task ID |
-| URL | Task URL |
-| Complete Data | Complete task data |
-| Error | Error message if request failed |
+| ID | 创建的任务 ID |
+| URL | 任务 URL |
+| Complete Data | 完整任务数据 |
+| Error | 请求失败时的错误信息 |
 
-### Possible use case
-Creating new tasks with full customization of parameters.
+### 可能的使用场景
+
+创建新任务并支持参数完全自定义。
 
 ---
 
-## Todoist Get Tasks
+## Todoist 获取任务
 
-### What it is
-A block that retrieves active tasks from Todoist.
+### 功能说明
 
-### What it does
-Fetches tasks based on optional filters like project, section, label etc.
+从 Todoist 获取活动任务的模块。
 
-### How it works
-Queries Todoist API with provided filters to get matching tasks.
+### 功能描述
 
-### Inputs
-| Input | Description |
+根据可选过滤器（如项目、分区、标签等）获取任务。
+
+### 工作原理
+
+使用提供的过滤器查询 Todoist API 以获取匹配的任务。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Project ID | Optional filter by project |
-| Section ID | Optional filter by section |
-| Label | Optional filter by label |
-| Filter | Optional custom filter string |
-| Lang | Optional filter language |
-| IDs | Optional specific task IDs |
+| Credentials | Todoist API 凭据 |
+| Project ID | 可选按项目筛选 |
+| Section ID | 可选按分区筛选 |
+| Label | 可选按标签筛选 |
+| Filter | 可选自定义筛选字符串 |
+| Lang | 可选筛选语言 |
+| IDs | 可选特定任务 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| IDs | List of task IDs |
-| URLs | List of task URLs |
-| Complete Data | Complete task data |
-| Error | Error message if request failed |
+| IDs | 任务ID列表 |
+| URLs | 任务URL列表 |
+| Complete Data | 完整任务数据 |
+| Error | 请求失败时的错误信息 |
 
-### Possible use case
-Retrieving tasks matching specific criteria for review or processing.
+### 可能的使用场景
+
+检索符合特定条件的任务以供审查或处理。
 
 ---
 
-## Todoist Update Task
+## Todoist 更新任务
 
-### What it is
-A block that updates an existing task.
+### 功能说明
 
-### What it does
-Updates specified fields of an existing task.
+用于更新现有任务的模块。
 
-### How it works
-Takes task ID and updated fields, applies changes via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+更新现有任务的指定字段。
+
+### 工作原理
+
+接收任务ID和更新字段，通过Todoist API应用更改。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Task ID | ID of task to update |
-| Content | New task content |
-| Description | New description |
-| Project ID | New project ID |
-| Section ID | New section ID |
-| Parent ID | New parent task ID |
-| Order | New order |
-| Labels | New labels |
-| Priority | New priority |
-| Due Date | New due date |
-| Deadline Date | New deadline date |
-| Assignee ID | New assignee |
-| Duration Unit | New duration unit |
-| Duration | New duration |
+| Credentials | Todoist API凭证 |
+| Task ID | 要更新的任务ID |
+| Content | 新任务内容 |
+| Description | 新描述 |
+| Project ID | 新项目ID |
+| Section ID | 新分区ID |
+| Parent ID | 新父任务ID |
+| Order | 新排序 |
+| Labels | 新标签 |
+| Priority | 新优先级 |
+| Due Date | 新截止日期 |
+| Deadline Date | 新最后期限日期 |
+| Assignee ID | 新分配对象 |
+| Duration Unit | 新持续时间单位 |
+| Duration | 新持续时间 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether update succeeded |
-| Error | Error message if failed |
+| Success | 更新是否成功 |
+| Error | 失败时的错误信息 |
 
-### Possible use case
-Modifying task details like due dates, priority etc.
+### 可能的使用场景
+
+修改任务详情，如截止日期、优先级等。
 
 ---
 
-## Todoist Close Task
+## Todoist 关闭任务
 
-### What it is
-A block that completes/closes a task.
+### 功能说明
 
-### What it does
-Marks a task as complete in Todoist.
+用于完成/关闭任务的模块。
 
-### How it works
-Uses task ID to mark it complete via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+在Todoist中将任务标记为完成。
+
+### 工作原理
+
+使用任务ID通过Todoist API将其标记为完成。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Task ID | ID of task to close |
+| Credentials | Todoist API 凭据 |
+| Task ID | 要关闭的任务 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether task was closed |
-| Error | Error message if failed |
+| Success | 任务是否已关闭 |
+| Error | 失败时的错误信息 |
 
-### Possible use case
-Marking tasks as done in automated workflows.
+### 可能的使用场景
+
+在自动化工作流中将任务标记为已完成。
 
 ---
 
-## Todoist Reopen Task
+## Todoist 重新打开任务
 
-### What it is
-A block that reopens a completed task.
+### 功能说明
 
-### What it does
-Marks a completed task as active again.
+重新打开已完成任务的模块。
 
-### How it works
-Uses task ID to reactivate via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+将已完成的任务重新标记为活动状态。
+
+### 工作原理
+
+使用任务 ID 通过 Todoist API 重新激活。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Task ID | ID of task to reopen |
+| Credentials | Todoist API 凭据 |
+| Task ID | 要重新打开的任务 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether task was reopened |
-| Error | Error message if failed |
+| Success | 任务是否已重新打开 |
+| Error | 失败时的错误信息 |
 
-### Possible use case
-Reactivating tasks that were closed accidentally or need to be repeated.
+### 可能的使用场景
+
+重新激活意外关闭或需要重复执行的任务。
 
 ---
 
-## Todoist Delete Task
+## Todoist 删除任务
 
-### What it is
-A block that permanently deletes a task.
+### 功能说明
 
-### What it does
-Removes a task completely from Todoist.
+永久删除任务的模块。
 
-### How it works
-Uses task ID to delete via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+从 Todoist 中完全移除任务。
+
+### 工作原理
+
+使用任务 ID 通过 Todoist API 删除。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Task ID | ID of task to delete |
+| Credentials | Todoist API 凭据 |
+| Task ID | 要删除的任务 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether deletion succeeded |
-| Error | Error message if failed |
+| Success | 删除是否成功 |
+| Error | 失败时的错误信息 |
 
-### Possible use case
-Removing unwanted or obsolete tasks from the system.
+### 可能的使用场景
+
+从系统中移除不需要或过时的任务。
 
 ---
 
-## Todoist List Projects
+## Todoist 列出项目
 
-### What it is
-A block that retrieves all projects from Todoist.
+### 功能说明
 
-### What it does
-Fetches all projects and their details from a user's Todoist account.
+从 Todoist 检索所有项目的模块。
 
-### How it works
-Connects to Todoist API using provided credentials and retrieves all projects.
+### 功能描述
 
-### Inputs
-| Input | Description |
+从用户的 Todoist 账户获取所有项目及其详细信息。
+
+### 工作原理
+
+使用提供的凭据连接 Todoist API 并检索所有项目。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
+| 凭据 | Todoist API 凭据 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Names List | List of project names |
-| IDs List | List of project IDs |
-| URL List | List of project URLs |
-| Complete Data | Complete project data |
-| Error | Error message if request failed |
+| 名称列表 | 项目名称列表 |
+| ID 列表 | 项目 ID 列表 |
+| URL 列表 | 项目 URL 列表 |
+| 完整数据 | 完整的项目数据 |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Getting an overview of all projects for organization or automation.
+### 可能的使用场景
+
+获取所有项目的概览以用于组织或自动化。
 
 ---
 
-## Todoist Create Project
+## Todoist 创建项目
 
-### What it is
-A block that creates a new project in Todoist.
+### 功能说明
 
-### What it does
-Creates a new project with specified name, parent project, color and other settings.
+在 Todoist 中创建新项目的功能块。
 
-### How it works
-Takes project details and creates via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+使用指定的名称、父项目、颜色和其他设置创建新项目。
+
+### 工作原理
+
+接收项目详细信息并通过 Todoist API 进行创建。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Name | Name of the project |
-| Parent ID | Optional parent project ID |
-| Color | Optional color of project icon |
-| Is Favorite | Whether project is favorite |
-| View Style | Display style (list/board) |
+| 凭据 | Todoist API 凭据 |
+| 名称 | 项目名称 |
+| 父 ID | 可选的父项目 ID |
+| 颜色 | 可选的项目图标颜色 |
+| 是否收藏 | 项目是否为收藏项目 |
+| 视图样式 | 显示样式（列表/看板） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether creation succeeded |
-| Error | Error message if failed |
+| 成功 | 是否创建成功 |
+| 错误 | 失败时的错误信息 |
 
-### Possible use case
-Creating new projects programmatically for workflow automation.
+### 可能的使用场景
+
+通过编程方式创建新项目以实现工作流自动化。
 
 ---
 
-## Todoist Get Project
+## Todoist 获取项目
 
-### What it is
-A block that retrieves details for a specific project.
+### 功能说明
 
-### What it does
-Fetches complete details of a single project by ID.
+检索特定项目详细信息的功能块。
 
-### How it works
-Uses project ID to retrieve details via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+通过 ID 获取单个项目的完整详细信息。
+
+### 工作原理
+
+使用项目ID通过Todoist API检索详细信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Project ID | ID of project to get |
+| 凭据 | Todoist API凭据 |
+| 项目ID | 要获取的项目ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Project ID | ID of the project |
-| Project Name | Name of the project |
-| Project URL | URL of the project |
-| Complete Data | Complete project data |
-| Error | Error message if failed |
+| 项目ID | 项目的ID |
+| 项目名称 | 项目的名称 |
+| 项目URL | 项目的URL |
+| 完整数据 | 完整的项目数据 |
+| 错误 | 失败时的错误信息 |
 
-### Possible use case
-Looking up project details for verification or editing.
+### 可能的使用场景
+
+查找项目详细信息以进行验证或编辑。
 
 ---
 
-## Todoist Update Project
+## Todoist 更新项目
 
-### What it is
-A block that updates an existing project.
+### 功能说明
 
-### What it does
-Updates specified fields of an existing project.
+用于更新现有项目的功能块。
 
-### How it works
-Takes project ID and updated fields, applies via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+更新现有项目的指定字段。
+
+### 工作原理
+
+接收项目ID和更新字段，通过Todoist API应用更改。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Project ID | ID of project to update |
-| Name | New project name |
-| Color | New color for icon |
-| Is Favorite | New favorite status |
-| View Style | New display style |
+| 凭据 | Todoist API凭据 |
+| 项目ID | 要更新的项目ID |
+| 名称 | 新项目名称 |
+| 颜色 | 图标的新颜色 |
+| 是否收藏 | 新的收藏状态 |
+| 视图样式 | 新的显示样式 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether update succeeded |
-| Error | Error message if failed |
+| 成功 | 更新是否成功 |
+| 错误 | 失败时的错误信息 |
 
-### Possible use case
-Modifying project settings or reorganizing projects.
+### 可能的使用场景
+
+修改项目设置或重新组织项目。
 
 ---
 
-## Todoist Delete Project
+## Todoist 删除项目
 
-### What it is
-A block that deletes a project and its contents.
+### 功能说明
 
-### What it does
-Permanently removes a project including sections and tasks.
+用于删除项目及其内容的功能块。
 
-### How it works
-Uses project ID to delete via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+永久移除项目，包括分区和任务。
+
+### 工作原理
+
+使用项目ID通过Todoist API进行删除。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Project ID | ID of project to delete |
+| Credentials | Todoist API 凭据 |
+| Project ID | 要删除的项目 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether deletion succeeded |
-| Error | Error message if failed |
+| Success | 删除是否成功 |
+| Error | 失败时的错误信息 |
 
-### Possible use case
-Removing completed or obsolete projects.
+### 可能的使用场景
+
+移除已完成或废弃的项目。
 
 ---
 
-## Todoist List Collaborators
+## Todoist 列出协作者
 
-### What it is
-A block that retrieves collaborators on a project.
+### 功能说明
 
-### What it does
-Fetches all collaborators and their details for a specific project.
+获取项目协作者的模块。
 
-### How it works
-Uses project ID to get collaborator list via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+获取特定项目的所有协作者及其详细信息。
+
+### 工作原理
+
+通过 Todoist API 使用项目 ID 获取协作者列表。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Project ID | ID of project to check |
+| Credentials | Todoist API 凭据 |
+| Project ID | 要检查的项目 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Collaborator IDs | List of collaborator IDs |
-| Collaborator Names | List of collaborator names |
-| Collaborator Emails | List of collaborator emails |
-| Complete Data | Complete collaborator data |
-| Error | Error message if failed |
+| Collaborator IDs | 协作者 ID 列表 |
+| Collaborator Names | 协作者名称列表 |
+| Collaborator Emails | 协作者邮箱列表 |
+| Complete Data | 完整的协作者数据 |
+| Error | 失败时的错误信息 |
 
-### Possible use case
-Managing project sharing and collaboration.
+### 可能的使用场景
+
+管理项目共享与协作。
 
 ---
 
-## Todoist List Sections
+## Todoist 列出分区
 
-### What it is
-A block that retrieves sections from Todoist.
+### 功能说明
 
-### What it does
-Fetches all sections, optionally filtered by project.
+从 Todoist 检索分区的模块。
 
-### How it works
-Connects to Todoist API to retrieve sections list.
+### 功能描述
 
-### Inputs
-| Input | Description |
+获取所有分区，可选择按项目筛选。
+
+### 工作原理
+
+连接 Todoist API 以检索分区列表。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Project ID | Optional project filter |
+| Credentials | Todoist API 凭据 |
+| Project ID | 可选项目筛选器 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Names List | List of section names |
-| IDs List | List of section IDs |
-| Complete Data | Complete section data |
-| Error | Error message if failed |
+| 名称列表 | 分区名称列表 |
+| ID列表 | 分区ID列表 |
+| 完整数据 | 完整的分区数据 |
+| 错误 | 失败时的错误信息 |
 
-### Possible use case
-Getting section information for task organization.
+### 可能的使用场景
+
+获取任务组织的分区信息。
 
 ---
 
-## Todoist Get Section
+## Todoist 获取分区
 
-### What it is
-A block that retrieves details for a specific section.
+### 功能说明
 
-### What it does
-Fetches complete details of a single section by ID.
+用于获取特定分区详细信息的模块。
 
-### How it works
-Uses section ID to retrieve details via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+通过ID获取单个分区的完整详细信息。
+
+### 工作原理
+
+使用分区ID通过Todoist API检索详细信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Section ID | ID of section to get |
+| 凭据 | Todoist API凭据 |
+| 分区ID | 要获取的分区ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ID | Section ID |
-| Project ID | Parent project ID |
-| Order | Section order |
-| Name | Section name |
-| Error | Error message if failed |
+| ID | 分区ID |
+| 项目ID | 父项目ID |
+| 顺序 | 分区排序 |
+| 名称 | 分区名称 |
+| 错误 | 失败时的错误信息 |
 
-### Possible use case
-Looking up section details for task management.
+### 可能的使用场景
+
+查找任务管理的分区详细信息。
 
 ---
 
-## Todoist Delete Section
+## Todoist 删除分区
 
-### What it is
-A block that deletes a section and its tasks.
+### 功能说明
 
-### What it does
-Permanently removes a section including all tasks.
+用于删除分区及其任务的模块。
 
-### How it works
-Uses section ID to delete via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+永久移除分区及其所有任务。
+
+### 工作原理
+
+使用分区ID通过Todoist API进行删除。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Section ID | ID of section to delete |
+| 凭据 | Todoist API凭据 |
+| 分区ID | 要删除的分区ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether deletion succeeded |
-| Error | Error message if failed |
+| 成功 | 删除是否成功 |
+| 错误 | 失败时的错误信息 |
 
-### Possible use case
-Removing unused sections or reorganizing projects.
+### 可能的使用场景
+
+移除未使用的分区或重新组织项目。
 
 ---
 
-## Todoist Create Comment
+## Todoist 创建评论
 
-### What it is
-A block that creates a new comment on a Todoist task or project.
+### 功能说明
 
-### What it does
-Creates a comment with specified content on either a task or project.
+一个用于在 Todoist 任务或项目中创建新评论的块。
 
-### How it works
-Takes comment content and task/project ID, creates comment via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+在任务或项目上创建具有指定内容的评论。
+
+### 工作原理
+
+接收评论内容和任务/项目 ID，通过 Todoist API 创建评论。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Content | Comment content |
-| ID Type | Task ID or Project ID to comment on |
-| Attachment | Optional file attachment |
+| 凭据 | Todoist API 凭据 |
+| 内容 | 评论内容 |
+| ID 类型 | 要评论的任务 ID 或项目 ID |
+| 附件 | 可选文件附件 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ID | ID of created comment |
-| Content | Comment content |
-| Posted At | Comment timestamp |
-| Task ID | Associated task ID |
-| Project ID | Associated project ID |
-| Error | Error message if request failed |
+| ID | 创建的评论 ID |
+| 内容 | 评论内容 |
+| 发布时间 | 评论时间戳 |
+| 任务 ID | 关联的任务 ID |
+| 项目 ID | 关联的项目 ID |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Adding notes and comments to tasks or projects automatically.
+### 可能的使用场景
+
+自动为任务或项目添加备注和评论。
 
 ---
 
-## Todoist Get Comments
+## Todoist 获取评论
 
-### What it is
-A block that retrieves all comments for a task or project.
+### 功能说明
 
-### What it does
-Fetches all comments associated with a specific task or project.
+一个用于检索任务或项目的所有评论的块。
 
-### How it works
-Uses task/project ID to get comments list via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+获取与特定任务或项目关联的所有评论。
+
+### 工作原理
+
+使用任务/项目 ID 通过 Todoist API 获取评论列表。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| ID Type | Task ID or Project ID to get comments for |
+| 凭据 | Todoist API 凭据 |
+| ID 类型 | 要获取评论的任务 ID 或项目 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Comments | List of comments |
-| Error | Error message if request failed |
+| 评论 | 评论列表 |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Reviewing comment history on tasks or projects.
+### 可能的使用场景
+
+查看任务或项目上的评论历史。
 
 ---
 
-## Todoist Get Comment
+## Todoist 获取评论
 
-### What it is
-A block that retrieves a specific comment by ID.
+### 功能说明
 
-### What it does
-Fetches details of a single comment using its ID.
+一个通过 ID 检索特定评论的块。
 
-### How it works
-Uses comment ID to retrieve details via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+使用评论ID获取单个评论的详细信息。
+
+### 工作原理
+
+通过Todoist API使用评论ID检索详细信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Comment ID | ID of comment to retrieve |
+| 凭据 | Todoist API凭据 |
+| 评论ID | 要检索的评论ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Content | Comment content |
-| ID | Comment ID |
-| Posted At | Comment timestamp |
-| Project ID | Associated project ID |
-| Task ID | Associated task ID |
-| Attachment | Optional file attachment |
-| Error | Error message if request failed |
+| 内容 | 评论内容 |
+| ID | 评论ID |
+| 发布时间 | 评论时间戳 |
+| 项目ID | 关联的项目ID |
+| 任务ID | 关联的任务ID |
+| 附件 | 可选的文件附件 |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Looking up specific comment details for reference.
+### 可能的使用场景
+
+查找特定评论详细信息以供参考。
 
 ---
 
-## Todoist Update Comment
+## Todoist 更新评论
 
-### What it is
-A block that updates an existing comment.
+### 功能说明
 
-### What it does
-Updates the content of a specific comment.
+用于更新现有评论的功能块。
 
-### How it works
-Takes comment ID and new content, updates via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+更新特定评论的内容。
+
+### 工作原理
+
+接收评论ID和新内容，通过Todoist API进行更新。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Comment ID | ID of comment to update |
-| Content | New content for the comment |
+| 凭据 | Todoist API凭据 |
+| 评论ID | 要更新的评论ID |
+| 内容 | 评论的新内容 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether update succeeded |
-| Error | Error message if request failed |
+| 成功 | 更新是否成功 |
+| 错误 | 请求失败时的错误信息 |
 
-### Possible use case
-Modifying existing comments to fix errors or update information.
+### 可能的使用场景
+
+修改现有评论以修正错误或更新信息。
 
 ---
 
-## Todoist Delete Comment
+## Todoist 删除评论
 
-### What it is
-A block that deletes a comment.
+### 功能说明
 
-### What it does
-Permanently removes a comment from a task or project.
+用于删除评论的功能块。
 
-### How it works
-Uses comment ID to delete via Todoist API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+永久移除任务或项目中的评论。
+
+### 工作原理
+
+通过Todoist API使用评论ID进行删除。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | Todoist API credentials |
-| Comment ID | ID of comment to delete |
+| Credentials | Todoist API 凭据 |
+| Comment ID | 要删除的评论 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Success | Whether deletion succeeded |
-| Error | Error message if request failed |
+| Success | 删除是否成功 |
+| Error | 请求失败时的错误信息 |
 
-### Possible use case
-Removing outdated or incorrect comments from tasks/projects.
+### 可能的使用场景
+
+从任务/项目中移除过时或不正确的评论。

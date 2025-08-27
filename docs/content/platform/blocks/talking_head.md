@@ -1,35 +1,41 @@
-## Create Talking Avatar Video
+## 创建会说话的虚拟形象视频
 
-### What it is
-This block is an AI-powered tool that creates video clips featuring a talking avatar using the D-ID service.
+### 功能说明
 
-### What it does
-It generates a video of a digital avatar speaking a given script, with customizable voice, presenter, and visual settings.
+该模块是一个AI驱动的工具，使用D-ID服务创建带有会说话虚拟形象的视频片段。
 
-### How it works
-The block sends a request to the D-ID API with your specified parameters. It then regularly checks the status of the video creation process until it's complete or an error occurs.
+### 功能描述
 
-### Inputs
-| Input | Description |
+它能生成数字虚拟形象讲述给定脚本的视频，支持自定义语音、主持人和视觉设置。
+
+### 工作原理
+
+该模块向D-ID API发送包含您指定参数的请求，然后定期检查视频创建过程的状态，直到完成或出现错误。
+
+### 输入
+
+| 输入项 | 描述 |
 |-------|-------------|
-| API Key | Your D-ID API key for authentication |
-| Script Input | The text you want the avatar to speak |
-| Provider | The voice provider to use (options: microsoft, elevenlabs, amazon) |
-| Voice ID | The specific voice to use for the avatar |
-| Presenter ID | The visual appearance of the avatar |
-| Driver ID | The animation style for the avatar |
-| Result Format | The file format of the final video (options: mp4, gif, wav) |
-| Crop Type | How the video should be cropped (options: wide, square, vertical) |
-| Subtitles | Whether to include subtitles in the video |
-| SSML | Whether the input script uses Speech Synthesis Markup Language |
-| Max Polling Attempts | Maximum number of times to check for video completion |
-| Polling Interval | Time to wait between each status check (in seconds) |
+| API密钥 | 用于身份验证的D-ID API密钥 |
+| 脚本输入 | 希望虚拟形象讲述的文本内容 |
+| 提供商 | 使用的语音提供商（选项：microsoft, elevenlabs, amazon） |
+| 语音ID | 虚拟形象使用的特定语音 |
+| 主持人ID | 虚拟形象的视觉外观 |
+| 驱动ID | 虚拟形象的动画风格 |
+| 结果格式 | 最终视频的文件格式（选项：mp4, gif, wav） |
+| 裁剪类型 | 视频裁剪方式（选项：wide, square, vertical） |
+| 字幕 | 是否在视频中包含字幕 |
+| SSML | 输入脚本是否使用语音合成标记语言 |
+| 最大轮询尝试次数 | 检查视频完成状态的最大次数 |
+| 轮询间隔 | 每次状态检查之间的等待时间（秒） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| Output | 描述 |
 |--------|-------------|
-| Video URL | The web address where you can access the completed video |
-| Error | A message explaining what went wrong if the video creation failed |
+| Video URL | 可访问已生成视频的网络地址 |
+| Error | 视频创建失败时说明错误原因的消息 |
 
-### Possible use case
-A marketing team could use this block to create engaging video content for social media. They could input a script promoting a new product, select a friendly-looking avatar, and generate a video that explains the product's features in an appealing way.
+### 可能的使用场景
+
+营销团队可以使用此模块为社交媒体创建引人入胜的视频内容。他们可以输入推广新产品的脚本，选择外观友好的虚拟形象，并生成以吸引人的方式解释产品功能的视频。

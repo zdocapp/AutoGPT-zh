@@ -1,28 +1,34 @@
-# Send Web Request
+# 发送网络请求
 
-## What it is
-The Send Web Request block is a tool for making HTTP requests to specified web addresses.
+## 功能概述
 
-## What it does
-This block allows you to send various types of web requests (such as GET, POST, PUT, etc.) to a given URL, optionally including headers and a request body. It then processes the response and categorizes it based on the status code received.
+Send Web Request 模块是一个用于向指定网址发送 HTTP 请求的工具。
 
-## How it works
-When activated, the block takes the provided URL, request method, headers, and body. It then sends the request to the specified web address. Upon receiving a response, it analyzes the status code and returns the response data in one of three categories: successful response, client error, or server error.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该模块允许您向给定 URL 发送各种类型的网络请求（如 GET、POST、PUT 等），可选择包含请求头和请求体。随后它会处理响应并根据接收到的状态码对响应进行分类。
+
+## 工作原理
+
+当激活时，该模块接收提供的 URL、请求方法、请求头和请求体，然后向指定网址发送请求。收到响应后，它会分析状态码并将响应数据归为以下三类之一：成功响应、客户端错误或服务器错误。
+
+## 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| URL | The web address to which the request will be sent |
-| Method | The type of HTTP request (e.g., GET, POST, PUT). Default is POST |
-| Headers | Additional information sent with the request, such as authentication tokens or content type. This is optional |
-| Body | The main content of the request, typically used for sending data in POST or PUT requests. This is optional |
+| URL | 请求将发送到的网址 |
+| Method | HTTP 请求类型（如 GET、POST、PUT）。默认为 POST |
+| Headers | 随请求发送的附加信息，如身份验证令牌或内容类型。此为可选项 |
+| Body | 请求的主要内容，通常用于在 POST 或 PUT 请求中发送数据。此为可选项 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Response | The data received from a successful request (status codes 200-299) |
-| Client Error | Information about errors caused by the client, such as invalid requests (status codes 400-499) |
-| Server Error | Information about errors on the server side (status codes 500-599) |
+| Response | 从成功请求（状态码 200-299）接收到的数据 |
+| Client Error | 关于客户端引起的错误信息，如无效请求（状态码 400-499） |
+| Server Error | 关于服务器端错误的信息（状态码 500-599） |
 
-## Possible use case
-This block could be used in an application that needs to interact with external APIs. For example, it could send user data to a registration service, retrieve product information from an e-commerce platform, or post updates to a social media service. The block's ability to handle different types of responses makes it versatile for various web-based interactions.
+## 可能的使用场景
+
+该模块可用于需要与外部 API 交互的应用程序。例如，它可以向注册服务发送用户数据、从电子商务平台检索产品信息，或向社交媒体服务发布更新。该模块处理不同类型响应的能力使其适用于各种基于网络的交互场景。

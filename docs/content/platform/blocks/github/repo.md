@@ -1,234 +1,282 @@
-# Repository
+# 代码仓库
 
-## GitHub List Tags
+## GitHub 列出标签
 
-### What it is
-A block that retrieves and lists all tags for a specified GitHub repository.
+### 功能说明
 
-### What it does
-This block fetches all tags associated with a given GitHub repository and provides their names and URLs.
+用于获取并列出指定 GitHub 代码仓库所有标签的功能块。
 
-### How it works
-The block connects to the GitHub API using provided credentials, sends a request to retrieve tag information for the specified repository, and then processes the response to extract tag names and URLs.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块获取指定 GitHub 代码仓库关联的所有标签，并提供标签名称和 URL 信息。
+
+### 工作原理
+
+该功能块使用提供的凭据连接 GitHub API，发送请求获取指定代码仓库的标签信息，然后处理响应以提取标签名称和 URL。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository to fetch tags from |
+| 凭据 | 访问代码仓库所需的 GitHub 认证凭据 |
+| 代码仓库 URL | 需要获取标签的 GitHub 代码仓库 URL |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Tag | Information about each tag, including its name and URL |
-| Error | Any error message if the tag listing process fails |
+| 标签 | 每个标签的信息，包括名称和 URL |
+| 错误 | 标签列表获取过程中出现的任何错误信息 |
 
-### Possible use case
-A developer wants to quickly view all release tags for a project to identify the latest version or track the project's release history.
+### 可能的使用场景
+
+开发人员希望快速查看项目的所有发布标签，以识别最新版本或跟踪项目的发布历史。
 
 ---
 
-## GitHub List Branches
+## GitHub 列出分支
 
-### What it is
-A block that retrieves and lists all branches for a specified GitHub repository.
+### 功能说明
 
-### What it does
-This block fetches all branches associated with a given GitHub repository and provides their names and URLs.
+用于获取并列出指定 GitHub 代码仓库所有分支的功能块。
 
-### How it works
-The block authenticates with the GitHub API, sends a request to get branch information for the specified repository, and then processes the response to extract branch names and URLs.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块获取指定 GitHub 代码仓库关联的所有分支，并提供分支名称和 URL 信息。
+
+### 工作原理
+
+该功能块通过 GitHub API 进行身份验证，发送请求获取指定代码仓库的分支信息，然后处理响应以提取分支名称和 URL。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository to fetch branches from |
+| Credentials | 访问仓库所需的 GitHub 认证凭据 |
+| Repository URL | 要从中获取分支的 GitHub 仓库 URL |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Branch | Information about each branch, including its name and URL |
-| Error | Any error message if the branch listing process fails |
+| Branch | 关于每个分支的信息，包括其名称和 URL |
+| Error | 如果分支列表过程失败，显示任何错误消息 |
 
-### Possible use case
-A project manager wants to review all active branches in a repository to track ongoing development efforts and feature implementations.
+### 可能的使用场景
+
+项目经理希望查看仓库中的所有活跃分支，以跟踪正在进行的开发工作和功能实现。
 
 ---
 
-## GitHub List Discussions
+## GitHub 列出讨论
 
-### What it is
-A block that retrieves and lists recent discussions for a specified GitHub repository.
+### 功能说明
 
-### What it does
-This block fetches a specified number of recent discussions from a given GitHub repository and provides their titles and URLs.
+一个用于检索并列出指定 GitHub 仓库近期讨论的模块。
 
-### How it works
-The block uses the GitHub GraphQL API to request discussion data for the specified repository, processes the response, and extracts discussion titles and URLs.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块从给定的 GitHub 仓库获取指定数量的近期讨论，并提供其标题和 URL。
+
+### 工作原理
+
+该模块使用 GitHub GraphQL API 请求指定仓库的讨论数据，处理响应，并提取讨论标题和 URL。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository to fetch discussions from |
-| Number of Discussions | The number of recent discussions to retrieve (default is 5) |
+| Credentials | 访问仓库所需的 GitHub 认证凭据 |
+| Repository URL | 要从中获取讨论的 GitHub 仓库 URL |
+| Number of Discussions | 要检索的近期讨论数量（默认为 5） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Discussion | Information about each discussion, including its title and URL |
-| Error | Any error message if the discussion listing process fails |
+| Discussion | 每个讨论的信息，包括其标题和URL |
+| Error | 讨论列表过程失败时的任何错误信息 |
 
-### Possible use case
-A community manager wants to monitor recent discussions in a project's repository to identify trending topics or issues that need attention.
+### 可能的使用场景
+
+社区管理员希望监控项目仓库中的近期讨论，以识别需要关注的热门话题或问题。
 
 ---
 
-## GitHub List Releases
+## GitHub 列出发布版本
 
-### What it is
-A block that retrieves and lists all releases for a specified GitHub repository.
+### 功能说明
 
-### What it does
-This block fetches all releases associated with a given GitHub repository and provides their names and URLs.
+一个用于检索并列出指定GitHub仓库所有发布版本的模块。
 
-### How it works
-The block connects to the GitHub API, sends a request to get release information for the specified repository, and then processes the response to extract release names and URLs.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块获取与给定GitHub仓库关联的所有发布版本，并提供其名称和URL。
+
+### 工作原理
+
+该模块连接到GitHub API，发送请求以获取指定仓库的发布信息，然后处理响应以提取发布名称和URL。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository to fetch releases from |
+| Credentials | 访问仓库所需的GitHub认证凭据 |
+| Repository URL | 要从中获取发布版本的GitHub仓库URL |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Release | Information about each release, including its name and URL |
-| Error | Any error message if the release listing process fails |
+| Release | 每个发布版本的信息，包括其名称和URL |
+| Error | 发布版本列表过程失败时的任何错误信息 |
 
-### Possible use case
-A user wants to view all official releases of a software project to choose the appropriate version for installation or to track the project's release history.
+### 可能的使用场景
+
+用户希望查看软件项目的所有正式发布版本，以选择适合安装的版本或跟踪项目的发布历史。
 
 ---
 
-## GitHub Read File
+## GitHub 读取文件
 
-### What it is
-A block that reads the content of a specified file from a GitHub repository.
+### 功能说明
 
-### What it does
-This block retrieves the content of a specified file from a given GitHub repository, providing both the raw and decoded text content along with the file size.
+一个用于从GitHub仓库读取指定文件内容的模块。
 
-### How it works
-The block authenticates with the GitHub API, sends a request to fetch the specified file's content, and then processes the response to provide the file's raw content, decoded text content, and size.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块从指定的 GitHub 仓库中检索特定文件的内容，提供原始和解码后的文本内容以及文件大小信息。
+
+### 工作原理
+
+该模块通过 GitHub API 进行身份验证，发送请求获取指定文件内容，并处理响应以提供文件的原始内容、解码文本内容和文件大小。
+
+### 输入
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository containing the file |
-| File Path | The path to the file within the repository |
-| Branch | The branch name to read from (defaults to "master") |
+| 凭据 | 访问仓库所需的 GitHub 认证凭据 |
+| 仓库URL | 包含文件的 GitHub 仓库 URL |
+| 文件路径 | 仓库内文件的路径 |
+| 分支 | 读取内容的分支名称（默认为 "master"） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| Text Content | The content of the file decoded as UTF-8 text |
-| Raw Content | The raw base64-encoded content of the file |
-| Size | The size of the file in bytes |
-| Error | Any error message if the file reading process fails |
+| 文本内容 | 以 UTF-8 文本解码的文件内容 |
+| 原始内容 | 原始 base64 编码的文件内容 |
+| 大小 | 文件大小的字节数 |
+| 错误信息 | 文件读取过程中出现的任何错误消息 |
 
-### Possible use case
-A developer wants to quickly view the contents of a configuration file or source code file in a GitHub repository without having to clone the entire repository.
+### 可能的使用场景
+
+开发人员希望快速查看 GitHub 仓库中配置文件或源代码文件的内容，而无需克隆整个仓库。
 
 ---
 
-## GitHub Read Folder
+## GitHub 读取文件夹
 
-### What it is
-A block that reads the content of a specified folder from a GitHub repository.
+### 功能说明
 
-### What it does
-This block retrieves the list of files and directories within a specified folder from a given GitHub repository.
+一个用于读取 GitHub 仓库中指定文件夹内容的模块。
 
-### How it works
-The block connects to the GitHub API, sends a request to fetch the contents of the specified folder, and then processes the response to provide information about files and directories within that folder.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块从指定的 GitHub 仓库中检索指定文件夹内的文件和目录列表。
+
+### 工作原理
+
+该模块连接到 GitHub API，发送请求获取指定文件夹的内容，然后处理响应以提供该文件夹内文件和目录的信息。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository containing the folder |
-| Folder Path | The path to the folder within the repository |
-| Branch | The branch name to read from (defaults to "master") |
+| 凭据 | 访问存储库所需的 GitHub 认证凭据 |
+| 存储库 URL | 包含文件夹的 GitHub 存储库 URL |
+| 文件夹路径 | 存储库内文件夹的路径 |
+| 分支 | 要读取的分支名称（默认为 "master"） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| File | Information about each file in the folder, including its name, path, and size |
-| Directory | Information about each directory in the folder, including its name and path |
-| Error | Any error message if the folder reading process fails |
+| 文件 | 文件夹中每个文件的信息，包括其名称、路径和大小 |
+| 目录 | 文件夹中每个目录的信息，包括其名称和路径 |
+| 错误 | 如果文件夹读取过程失败，显示任何错误消息 |
 
-### Possible use case
-A project manager wants to explore the structure of a repository or specific folder to understand the organization of files and directories without cloning the entire repository.
+### 可能的使用场景
+
+项目经理希望在不克隆整个存储库的情况下，探索存储库或特定文件夹的结构，以了解文件和目录的组织方式。
 
 ---
 
-## GitHub Make Branch
+## GitHub 创建分支
 
-### What it is
-A block that creates a new branch in a GitHub repository.
+### 功能说明
 
-### What it does
-This block creates a new branch in a specified GitHub repository, based on an existing source branch.
+一个在 GitHub 存储库中创建新分支的模块。
 
-### How it works
-The block authenticates with the GitHub API, retrieves the latest commit SHA of the source branch, and then creates a new branch pointing to that commit.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块在指定的 GitHub 存储库中基于现有的源分支创建一个新分支。
+
+### 工作原理
+
+该模块通过 GitHub API 进行身份验证，获取源分支的最新提交 SHA，然后创建一个指向该提交的新分支。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository where the new branch will be created |
-| New Branch | The name of the new branch to create |
-| Source Branch | The name of the existing branch to use as the starting point for the new branch |
+| Credentials | 访问仓库所需的 GitHub 认证凭据 |
+| Repository URL | 将在其中创建新分支的 GitHub 仓库 URL |
+| New Branch | 要创建的新分支名称 |
+| Source Branch | 作为新分支起点的现有分支名称 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Status | A message indicating the success of the branch creation operation |
-| Error | Any error message if the branch creation process fails |
+| Status | 指示分支创建操作成功与否的消息 |
+| Error | 分支创建过程失败时的错误信息 |
 
-### Possible use case
-A developer wants to start working on a new feature and needs to create a new branch based on the current state of the main development branch.
+### 可能的使用场景
+
+开发人员希望开始处理新功能，需要基于主开发分支的当前状态创建一个新分支。
 
 ---
 
-## GitHub Delete Branch
+## GitHub 删除分支
 
-### What it is
-A block that deletes a specified branch from a GitHub repository.
+### 功能说明
 
-### What it does
-This block removes a specified branch from a given GitHub repository.
+从 GitHub 仓库中删除指定分支的模块。
 
-### How it works
-The block authenticates with the GitHub API and sends a delete request for the specified branch.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块从给定的 GitHub 仓库中移除指定分支。
+
+### 工作原理
+
+该模块通过 GitHub API 进行身份验证，并发送删除指定分支的请求。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | GitHub authentication credentials required to access the repository |
-| Repository URL | The URL of the GitHub repository containing the branch to be deleted |
-| Branch | The name of the branch to delete |
+| Credentials | 访问仓库所需的 GitHub 认证凭据 |
+| Repository URL | 包含待删除分支的 GitHub 仓库 URL |
+| Branch | 要删除的分支名称 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Status | A message indicating the success of the branch deletion operation |
-| Error | Any error message if the branch deletion process fails |
+| Status | 指示分支删除操作成功状态的消息 |
+| Error | 分支删除过程失败时的错误信息 |
 
-### Possible use case
-After merging a feature branch into the main development branch, a developer wants to clean up the repository by removing the now-obsolete feature branch.
+### 可能的使用场景
+
+将功能分支合并到主开发分支后，开发人员希望通过删除现已过时的功能分支来清理代码库。

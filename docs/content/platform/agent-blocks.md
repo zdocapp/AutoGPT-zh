@@ -1,86 +1,84 @@
-# **How to Create an AI Agent as a Block in AutoGPT**
+# **如何在 AutoGPT 中创建 AI 智能体块**
 
-## **Overview**
+## **概述**
 
-This guide explains how to create a reusable agent block that can be used as a component in other agents.
+本指南介绍如何创建可重用的智能体块，该块可作为其他智能体中的组件使用。
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/G5t5wbfomNE?si=dek4KKAPmx8DVOxm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
 
-## **What Are Agent Blocks?**
+## **什么是智能体块？**
 
-Agent blocks are pre-configured, reusable AI workflows that can be used as components within larger automation systems. Think of them as "smart building blocks" - each agent block is itself a complete workflow that can:
+智能体块是预先配置、可重用的 AI 工作流，可作为组件在更大的自动化系统中使用。可以将它们视为"智能构建块"——每个智能体块本身就是一个完整的工作流，能够：
 
-- Accept specific inputs
-- Process data using AI and traditional automation
-- Produce defined outputs
-- Be easily reused in different contexts
+- 接受特定输入
+- 使用 AI 和传统自动化处理数据
+- 产生定义的输出
+- 在不同上下文中轻松重用
 
-The power of agent blocks lies in their modularity. Once you create an agent with a specific capability (like translating text or analyzing sentiment), you can reuse it as a single block in other workflows. This means you can:
+智能体块的强大之处在于其模块化特性。一旦创建具有特定功能（如翻译文本或分析情感）的智能体，就可以在其他工作流中将其作为单个块重复使用。这意味着您可以：
 
-- Combine multiple agent blocks to create more complex automations
-- Reuse proven workflows without rebuilding them
-- Share agent blocks with other users
-- Create hierarchical systems where specialized agents work together
+- 组合多个智能体块以创建更复杂的自动化
+- 重用经过验证的工作流而无需重新构建
+- 与其他用户共享智能体块
+- 创建专业智能体协同工作的分层系统
 
-For example, a content creation workflow might combine several agent blocks:
+例如，内容创建工作流可能组合多个智能体块：
 
-- A research agent block that gathers information
-- A writing agent block that creates the initial draft
-- An editing agent block that polishes the content
-- A formatting agent block that prepares the final output
+- 收集信息的研究智能体块
+- 创建初稿的写作智能体块
+- 润色内容的编辑智能体块
+- 准备最终输出的格式化智能体块
 
-## **Creating the Base Agent**
+## **创建基础智能体**
 
-### **Required Components**
+### **必需组件**
 
-1. Input Block
-2. AI Text Generator Block
-3. Output Block
+1. 输入块
+2. AI文本生成器块
+3. 输出块
 
-### **Step-by-Step Setup**
+### **分步设置**
 
-1. **Add and Configure Blocks**
-    * Add an Input Block
-    * Add an AI Text Generator Block
-    * Add an Output Block
-2. **Connect Components**
-    * Connect Input's result to AI Text Generator's Prompt
-    * Connect AI Text Generator's response to Output's value
-3. **Name the Components**
-    * Name the Input Block: "question"
-    * Name the Output Block: "answer"
-4. **Save the Agent**
-    * Choose a descriptive name (e.g., "Weather Agent")
-    * Click Save
+1. **添加并配置块**
+    * 添加输入块
+    * 添加AI文本生成器块
+    * 添加输出块
+2. **连接组件**
+    * 将输入块的结果连接到AI文本生成器的提示
+    * 将AI文本生成器的响应连接到输出块的值
+3. **命名组件**
+    * 命名输入块："question"
+    * 命名输出块："answer"
+4. **保存智能体**
+    * 选择描述性名称（例如"Weather Agent"）
+    * 点击保存
 
+## **转换为块**
 
+1. **访问块菜单**
+    * 进入构建器界面
+    * 点击块菜单
+    * 点击智能体标签或搜索您的智能体名称
+2. **使用智能体块**
+    * 点击智能体块添加到工作流中
+    * 使用描述性名称保存新智能体（例如"Weather Agent"）
 
-## **Converting to a Block**
+## **测试智能体块**
 
-1. **Access the Block Menu**
-    * Go to the Builder interface
-    * Click the Blocks menu
-    * Click the agent tag or search the name of your agent
-2. **Using the Agent Block**
-    * Click on the agent block to add to your workflow
-    * Save the new agent with a descriptive name (e.g., "Weather Agent")
+1. **运行智能体**
+    * 输入测试问题（例如"地球距离月球有多远？"）
+    * 点击运行
+2. **查看结果**
+    * 选项1：检查"智能体输出"部分*
+    * 选项2：点击"查看更多"获取详细结果
 
-## **Testing the Agent Block**
+*注意：如果没有输出块，则"智能体输出"按钮将显示为空白。您可以在查看更多或块底部看到输出。
 
-1. **Run the Agent**
-    * Enter a test question (e.g., "How far is the Earth from the Moon?")
-    * Click Run
-2. **View Results**
-    * Option 1: Check "Agent Outputs" section*
-    * Option 2: Click "View More" for detailed results
+## **高级用法**
 
-*Note: if there is no output block then the "Agent Outputs" button will show up blank. You can see the output under view more or at bottom of the block.
-
-## **Advanced Usage**
-
-* You can make more complex agents by combining multiple agent blocks
-* Chain different agents together for more sophisticated workflows
+* 您可以通过组合多个智能体模块来构建更复杂的智能体
+* 将不同的智能体串联起来以实现更复杂的工作流程
 
 ## **Note**
 
-This is a basic example that can be expanded upon to create more complex agent blocks with additional functionality.
+这是一个基础示例，可以进一步扩展以创建具有附加功能的更复杂智能体模块。

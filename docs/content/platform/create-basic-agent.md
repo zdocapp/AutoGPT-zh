@@ -1,112 +1,128 @@
-# **Creating a Basic AI Agent with AutoGPT**
+# **使用 AutoGPT 创建基础 AI 智能体**
 
-## **Overview**
+## **概述**
 
-This guide walks through creating a simple question-answer AI agent using AutoGPT's visual builder. This is a basic example that can be expanded into more complex agents.
+本指南将引导您使用 AutoGPT 的可视化构建器创建一个简单的问答 AI 智能体。这是一个基础示例，可扩展为更复杂的智能体。
 
-## **Example Agent: Q&A (with AI)**
+## **示例智能体：问答（使用 AI）**
 
-A step-by-step guide to creating a simple Q&A agent using input and output blocks.
+使用输入和输出块创建简单问答智能体的分步指南。
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/ih57vRbH0H0?si=PGHx_qquYpXofiu_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center> 
 
-## **Components Required**
-1. Input Block
-2. AI Text Generator Block
-3. Output Block
+## **所需组件**
 
-## **Step-by-Step Instructions**
+1. 输入块
+2. AI文本生成器块
+3. 输出块
 
-### **1. Set Up the Basic Structure**
-1. Add an Input Block
-2. Add an AI Text Generator Block
-3. Add an Output Block
+## **分步说明**
 
-### **2. Connect the Components**
-1. Connect the Input Block to the AI Text Generator's Prompt
-2. Connect the AI Text Generator's response to the Output Block's value
+### **1. 设置基础结构**
 
-### **3. Configure Block Names**
-* Name the Input Block: "question"
-* Name the Output Block: "answer"
+1. 添加输入块
+2. 添加 AI 文本生成器块
+3. 添加输出块
 
-### **4. Save the Agent**
-1. Click the Save button
-2. Name your agent (e.g., "question and answer")
+### **2. 连接组件**
 
-### **5. Test the Agent**
-1. Click the Run button
-2. Enter a question in the input field (e.g., "How far is Earth from Pluto?")
-3. View the results through either:
-    * The "View More" option
-    * The "Agent Outputs" section
+1. 将输入块连接到 AI 文本生成器的提示
+2. 将 AI 文本生成器的响应连接到输出块的值
 
-## **Viewing Results**
+### **3. 配置块名称**
 
-You can access the AI's response in two ways:
+* 将输入块命名为："question"
+* 将输出块命名为："answer"
 
-* Click "View More" for detailed results
-* Check the "Agent Outputs" section for the response
+### **4. 保存智能体**
 
-## **Example Agent: Calculator (without AI)**
+1. 点击保存按钮
+2. 为智能体命名（例如："question and answer"）
 
-A step-by-step guide to creating a simple calculator agent using input and output blocks.
+### **5. 测试智能体**
+
+1. 点击运行按钮
+2. 在输入字段中输入问题（例如："地球离冥王星有多远？"）
+3. 通过以下任一方式查看结果：
+    * "查看更多"选项
+    * "智能体输出"部分
+
+## **查看结果**
+
+您可以通过两种方式访问 AI 的响应：
+
+* 点击"查看更多"获取详细结果
+* 检查"智能体输出"部分获取响应
+
+## **示例智能体：计算器（不使用 AI）**
+
+使用输入和输出块创建简单计算器代理的分步指南。
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/ESLKHcXxRvA?si=i2L2sloLskSMO8_I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
 
-##**Components Required**
-* Input Block (2 instances)
-* Calculator Block
-* Output Block
+##**所需组件**
 
-## **Setup Instructions**
+* 输入块（2个实例）
+* 计算器块
+* 输出块
 
-### **1. Adding Input Blocks**
-1. Add two input blocks, positioned one below the other
-2. Name the first input block "a"
-3. Name the second input block "b"
+## **设置说明**
 
-### **2. Adding Calculator Block**
-1. Add a calculator block to your workspace
-2. Position it after the input blocks
+### **1. 添加输入块**
 
-### **3. Adding Output Block**
-1. Add an output block
-2. Name it "results"
+1. 添加两个输入块，一个位于另一个下方
+2. 将第一个输入块命名为"a"
+3. 将第二个输入块命名为"b"
 
-### **4. Connecting the Blocks**
-1. Connect the "a" input block to the "a" input on the calculator block
-2. Connect the "b" input block to the "b" input on the calculator block
-3. Connect the calculator block's result to the value input of the output block
+### **2. 添加计算器块**
 
-### **5. Saving Your Agent**
-1. Name your agent (e.g., "Simple Calculate Agent")
-2. Save the configuration
+1. 向工作区添加一个计算器块
+2. 将其放置在输入块之后
 
-## **Testing Your Calculator**
+### **3. 添加输出块**
 
-### **Running Calculations**
-1. Enter values in both input blocks
-2. Select the desired operation (e.g., multiply)
-3. Click the "Run" button to execute the calculation
+1. 添加一个输出块
+2. 将其命名为"results"
 
-### **Viewing Results**
+### **4. 连接块**
 
-There are two ways to view the calculation results:
+1. 将"a"输入块连接到计算器块的"a"输入
+2. 将"b"输入块连接到计算器块的"b"输入
+3. 将计算器块的结果连接到输出块的value输入
 
-1. Click "View More" to see the detailed output
-2. Check the "Agent Outputs" section, which displays results from the output block
+### **5. 保存代理**
 
-## **Example Calculation**
-* Input A: 227
-* Input B: 17
-* Operation: Multiply
-* Expected output will be shown in the results section
+1. 为代理命名（例如"简单计算代理"）
+2. 保存配置
 
-## **Tips**
-* Always save your agent after making changes
-* Verify all connections are properly made before running
-* Use the "View More" option for detailed output information
+## **测试计算器**
+
+### **运行计算**
+
+1. 在两个输入块中输入数值
+2. 选择所需操作（例如乘法）
+3. 点击"运行"按钮执行计算
+
+### **查看结果**
+
+有两种方式可以查看计算结果：
+
+1. 点击"查看更多"以查看详细输出
+2. 检查"代理输出"部分，该部分显示来自输出块的结果
+
+## **示例计算**
+
+* 输入 A: 227
+* 输入 B: 17
+* 操作: 乘法
+* 预期输出将在结果部分显示
+
+## **提示**
+
+* 修改后务必保存您的智能体
+* 运行前验证所有连接是否正确建立
+* 使用"查看更多"选项获取详细的输出信息
 
 ## **Note**
-While these are basic example, you can enhance the agent with additional blocks and functionality to create more complex interactions.
+
+虽然这些都是基础示例，但您可以通过添加更多模块和功能来增强智能体，创建更复杂的交互。

@@ -1,48 +1,48 @@
-# Contributing to the Docs
+# 贡献文档
 
-We welcome contributions to our documentation! If you would like to contribute, please follow the steps below.
+我们欢迎您为我们的文档做出贡献！如果您想要贡献，请按照以下步骤操作。
 
-## Setting up the Docs
+## 设置文档环境
 
-1. Clone the repository:
+1. 克隆代码库：
 
     ```shell
     git clone github.com/Significant-Gravitas/AutoGPT.git
     ```
 
-1. Install the dependencies:
+1. 安装依赖项：
 
     ```shell
     python -m pip install -r docs/requirements.txt
     ```
 
-    or
+    或
 
     ```shell
     python3 -m pip install -r docs/requirements.txt
     ```
 
-1. Start iterating using mkdocs' live server:
+1. 使用 mkdocs 的实时服务器开始迭代：
 
     ```shell
     mkdocs serve
     ```
 
-1. Open your browser and navigate to `http://127.0.0.1:8000`.
+1. 打开浏览器并访问 `http://127.0.0.1:8000`。
 
-1. The server will automatically reload the docs when you save your changes.
+1. 当您保存更改时，服务器将自动重新加载文档。
 
-## Adding a new page
+## 添加新页面
 
-1. Create a new markdown file in the `docs/content` directory.
-1. Add the new page to the `nav` section in the `mkdocs.yml` file.
-1. Add the content to the new markdown file.
-1. Run `mkdocs serve` to see your changes.
+1. 在 `docs/content` 目录中创建一个新的 markdown 文件。
+1. 在 `mkdocs.yml` 文件的 `nav` 部分添加新页面。
+1. 向新的 markdown 文件中添加内容。
+1. 运行 `mkdocs serve` 查看您的更改。
 
-## Checking links
+## 检查链接
 
-To check for broken links in the documentation, run `mkdocs build` and look for warnings in the console output.
+要检查文档中的损坏链接，请运行 `mkdocs build` 并在控制台输出中查找警告信息。
 
-## Submitting a Pull Request
+## 提交拉取请求
 
-When you're ready to submit your changes, please create a pull request. We will review your changes and merge them if they are appropriate.
+当您准备好提交更改时，请创建一个拉取请求。我们将审核您的更改，如果合适的话会将其合并。

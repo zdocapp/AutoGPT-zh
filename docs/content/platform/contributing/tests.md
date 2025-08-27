@@ -1,101 +1,101 @@
-# Testing
+# 测试
 
-We use [Playwright](https://playwright.dev/) for our testing framework.
+我们使用 [Playwright](https://playwright.dev/) 作为测试框架。
 
-## Before you start
+## 开始之前
 
-Almost all of the tests require that you are running the frontend and backend servers. You will hit strange and hard to debug errors if you don't have them running because the tests will try to interact with the application when it's not running in an interactable state.
+几乎所有测试都需要您同时运行前端和后端服务器。如果没有运行这些服务器，您会遇到奇怪且难以调试的错误，因为测试会在应用程序处于不可交互状态时尝试与其进行交互。
 
-## Running the tests
+## 运行测试
 
-To run the tests, you can use the following commands:
+要运行测试，您可以使用以下命令：
 
-Running the tests without the UI, and headless:
+无界面运行测试（headless 模式）：
 
 ```bash
 pnpm test
 ```
 
-If you want to run the tests in a UI where you can identify each locator used you can use the following command:
+如果您希望在可以识别每个使用的定位器的 UI 中运行测试，可以使用以下命令：
 
 ```bash
 pnpm test-ui
 ```
 
-You can also pass `--debug` to the test command to open the browsers in view mode rather than headless. This works with both the `pnpm test` and `pnpm test-ui` commands.
+您还可以向测试命令传递 `--debug` 参数，以在视图模式下打开浏览器而不是无头模式。这适用于 `pnpm test` 和 `pnpm test-ui` 命令。
 
 ```bash
 pnpm test --debug
 ```
 
-In CI, we run the tests in headless mode, with multiple browsers, and retry a failed test up to 2 times.
+在 CI 环境中，我们以无头模式运行测试，使用多个浏览器，并对失败的测试最多重试 2 次。
 
-You can find the full configuration in [playwright.config.ts](https://github.com/Significant-Gravitas/Autogpt/blob/master/autogpt_platform/frontend/playwright.config.ts).
+您可以在 [playwright.config.ts](https://github.com/Significant-Gravitas/Autogpt/blob/master/autogpt_platform/frontend/playwright.config.ts) 中找到完整配置。
 
-### Debugging tests
+### 调试测试
 
-There's a lot of different ways to debug tests.
+有多种不同的调试测试方法。
 
-My preferred is a mix of playwright's test editor and vscode.
+我偏好混合使用 Playwright 的测试编辑器和 VSCode。
 
-No matter what you do, you should **always** double check that your locators are correct. Playwright will often "time out" and not give you the error message that the locator is incorrect because it can't find the element. You can do this via devtools on your browser and they should be visible on the elements tab when you use the inspect and select elements tools.
+无论您做什么，都应该**始终**仔细检查定位器是否正确。Playwright 经常会"超时"而不会给出定位器错误的提示信息，因为它无法找到元素。您可以通过浏览器的开发者工具进行检查，在使用检查和选择元素工具时，它们应该在元素标签页中可见。
 
-#### Using the playwright test editor
+#### 使用 Playwright 测试编辑器
 
-If you need to debug a test, you can use the below command to open the test in the playwright test editor. This is helpful if you want to see the test in the browser and see the state of the page as the test sees it and the locators it uses.
+如果您需要调试测试，可以使用以下命令在 Playwright 测试编辑器中打开测试。这对于想要在浏览器中查看测试、了解页面状态以及测试使用的定位器非常有帮助。
 
 ```bash
 pnpm test --debug --test-name-pattern="test-name"
 ```
 
-#### Using vscode
+#### 使用 VSCode
 
-You can install the [Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) extension to get autocomplete for the playwright api (id: `ms-playwright.playwright`).
+您可以安装 [Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) 扩展来获得 Playwright API 的自动补全功能（ID：`ms-playwright.playwright`）。
 
-Installing this will enable the `Test Explorer` view in vscode which allows you to run, debug, and view all tests in the current project. Adding breakpoints to your tests and running them will automatically open the test editor with the correct context.
+安装此扩展将在 VSCode 中启用 `Test Explorer` 视图，允许您运行、调试和查看当前项目中的所有测试。在测试中添加断点并运行它们将自动在正确的上下文中打开测试编辑器。
 
-## Setting up for generating tests
+## 设置用于生成测试
 
-With playwright, you can generate tests from existing recordings of user sessions. This is useful for creating tests that are more representative of how a user would interact with the application. We generally use this for checking what ids stuff will have and what needs ids to be added.
+使用 Playwright，您可以从现有的用户会话录制中生成测试。这对于创建更能代表用户与应用程序交互方式的测试非常有用。我们通常使用此功能来检查元素将具有哪些 ID 以及需要添加哪些 ID。
 
-It is super annoying to continuously login so I highly recommend using a saved session for your tests.
-This will save a file called `.auth/gentest-user.json` that can be loaded for all future gentests so that you don't have to login every time.
+持续登录非常烦人，因此我强烈建议在测试中使用保存的会话。
+这将生成一个名为 `.auth/gentest-user.json` 的文件，可在所有未来的生成测试中加载，这样您就不必每次都登录。
 
-### Saving a session for gen tests to always use
+### 为生成测试保存会话以供永久使用
 
 ```bash
 pnpm gentests --save-storage .auth/gentest-user.json
 ```
 
-Stop your session with `CTRL + C` after you are logged in and swap the `--save-storage` flag with `--load-storage` to load the session for all future tests.
+登录后使用 `CTRL + C` 停止会话，并将 `--save-storage` 标志替换为 `--load-storage`，以便为所有未来测试加载会话。
 
-### Loading a session for gen tests to always use
+### 为生成测试加载会话以供永久使用
 
 ```bash
 pnpm gentests --load-storage .auth/gentest-user.json
 ```
 
-## How to make a new test
+## 如何创建新测试
 
-Tests are composed of page objects and test files.
+测试由页面对象和测试文件组成。
 
-A page object is a class that contains methods for interacting with a page.
+页面对象是一个包含与页面交互方法的类。
 
-A test file is a file that contains tests for a page or a set of pages.
+测试文件是包含一个页面或一组页面测试的文件。
 
-### Making a new Page Object
+### 创建新的页面对象
 
-For tests, we use the [page object model](https://playwright.dev/docs/pom). This is a pattern where each page is a class that contains all the methods and locators for that page.
-This is useful for keeping your tests organized and easy to read as well as ensuring that your tests only need to be updated in one place when the UI changes.
+对于测试，我们使用[页面对象模型](https://playwright.dev/docs/pom)。这是一种模式，其中每个页面都是一个类，包含该页面的所有方法和定位器。
+这有助于保持测试的组织性和可读性，并确保在 UI 更改时只需在一个位置更新测试。
 
-You should make a new page object (only when needing to add a new page, or **UI element** that is across multiple tests) using the following example.
+您应当创建一个新的页面对象（仅在需要添加新页面或**跨多个测试的UI元素**时），参考以下示例。
 
-We extend the `BasePage` class which contains shared methods for pages that have the common functionality like a navbar. If you add something like that (for example a sidebar) you should add it to the `BasePage` class. Otherwise, you should make a new page object.
+我们扩展了包含共享方法的 `BasePage` 类，这些方法适用于具有通用功能（如导航栏）的页面。如果您添加了类似的功能（例如侧边栏），则应将其添加到 `BasePage` 类中。否则，您应当创建一个新的页面对象。
 
-Each page object should be in its own file and be named like `page-name.page.ts`.
-A page object should contain methods that are actions that a user can do on that page. For example, clicking a button, filling out a form, etc. It should also contain the various helpful abstractions that are unique to that page. For example, the `BuildPage` has a method to connect blocks together.
+每个页面对象应位于单独的文件中，并按 `page-name.page.ts` 格式命名。
+页面对象应包含用户可在该页面上执行的操作方法，例如点击按钮、填写表单等。它还应包含该页面特有的各种有用抽象。例如，`BuildPage` 有一个连接块的方法。
 
-This is a shortened example of a page object for the profile page:
+以下是配置文件页面对象的简化示例：
 
 <!-- I know there's a floating } but it closes the imported code block and makes this a valid copy-able block -->
 
@@ -104,51 +104,51 @@ This is a shortened example of a page object for the profile page:
 }
 ```
 
-### Making a new Test File
+### 创建新的测试文件
 
-For tests, we use our page objects to create tests. Each test file should be in the `tests` folder and be named like `test-name.spec.ts`. A test file can contain multiple tests. Each of which shuld be related to the same conceptual function. For example, a test file for the build page could have tests for building agents, creating inputs and outputs, and connecting blocks. If the you wanted to speciifically test building agents, you could make a new test called `building-agents.spec.ts`.
+对于测试，我们使用页面对象来创建测试。每个测试文件应位于 `tests` 文件夹中，并按 `test-name.spec.ts` 格式命名。一个测试文件可以包含多个测试，每个测试应与相同的概念功能相关。例如，构建页面的测试文件可以包含构建智能体、创建输入输出以及连接块的测试。如果您想专门测试构建智能体，可以创建一个名为 `building-agents.spec.ts` 的新测试。
 
-Tests can inherit from one or more page objects, have pre-actions, and have post-actions, as well as many other features. You can learn more about the different features and how to use them [here](https://playwright.dev/docs/test-actions).
+测试可以继承一个或多个页面对象，具备前置操作和后置操作，以及许多其他特性。您可以在[此处](https://playwright.dev/docs/test-actions)了解更多关于不同特性及其使用方法的信息。
 
-A good focused (`unit` or `single concept`) test will:
+一个优秀的聚焦测试（`单元测试`或`单一概念测试`）应具备：
 
-- Have a short name that describes what it is testing
-- Have a single concept (building a agent, adding all blocks, connecting two blocks, etc.)
-- Check pre-conditions, actions, and post-conditions, as well as have multiple validations along the way
+- 简短的名称描述测试内容
+- 单一测试概念（构建智能体、添加所有模块、连接两个模块等）
+- 检查前置条件、操作和后置条件，并在过程中进行多重验证
 
-A good non-focused (`integration` or `multiple concepts`) test will:
+一个优秀的非聚焦测试（`集成测试`或`多概念测试`）应具备：
 
-- Have a short name that describes what it is testing
-- Have multiple concepts (building agents, creating-?exporting->importing->running an agent, connecting blocks in multiple ways with multiple inputs and outputs, etc.)
-- Have a clear user experience that they are making sure works (for example, clicking the build button and making sure the agent is built, or clicking the export button and making sure the agent is exported and shows up in the monitoring system)
-- Not focus on a single concept, but instead test the flow of the application as a whole. Remember you're not testing the pixel perfect UI, but the user experience.
+- 简短的名称描述测试内容
+- 多个测试概念（构建多个智能体、创建->导出->导入->运行智能体、通过多种方式连接具有多个输入输出的模块等）
+- 明确的用户体验验证（例如点击构建按钮确保智能体成功构建，或点击导出按钮确保智能体正确导出并显示在监控系统中）
+- 不专注于单一概念，而是测试应用程序的整体流程。请记住您测试的不是像素级完美的UI，而是用户体验
 
-A good test suite will have a healthy mix of focused and non-focused tests.
+一个优秀的测试套件应合理搭配聚焦测试和非聚焦测试。
 
-### Example Focused Test & Explanation
+### 聚焦测试示例与说明
 
 ```typescript title="frontend/src/tests/build.spec.ts"
 --8<-- "autogpt_platform/frontend/src/tests/build.spec.ts:BuildPageExample"
 });
 ```
 
-1. The `test.describe` is used to group tests together. In this case, it's used to group all the tests for the build page together.
-2. The `let buildPage: BuildPage;` is used to create a new instance of the build page.
-3. The `test.beforeEach` is used to run code before each test. In this case, it's used to login the user before each test. `page` is the page object that is passed in from the fixture, `loginPage` is the page object for the login page, and `testUser` is the user object that is passed in from the fixture. The fixture is used to handle authentication and other common shared state tasks.
-4. The `await page.goto("/login");` is used to navigate to the login page.
-5. The `await test.expect(page).toHaveURL("/");` is used to check that the page has navigated to the home page (and are therefore logged in).
-6. The `test("user can add a block", async ({ page }) => {` is used to define a new test.
-7. The `await test.expect(buildPage.isLoaded()).resolves.toBeTruthy();` is used to check that the build page has loaded. This could reasonably done in the `test.beforeEach` but is done here for clarity due to other tests in this suite.
-8. The `await test.expect(page).toHaveURL(new RegExp("/.*build"));` is used to check that the page has navigated to the build page.
-9. The `await buildPage.closeTutorial();` is used to close the tutorial on the build page, noticibly this wrapping funciton doesn't actually care if its open or not, it ensures that it **will** be closed. This is a useful and common pattern for ensuring that something will be done, without caring if it is already done. It could be used for things like toggling a setting, closing/opening a sidebar, etc.
-10. The `await buildPage.openBlocksPanel();` is used to open the blocks panel on the build page, in the same way described for the `closeTutorial` function.
-11. The `await buildPage.addBlock(block);` is used to add a specific block to the build page. It's another utility function that could be done in line, but due to how the Page Object pattern works, we should keep them in the page object. (It's also useful for keeping the test code cleaner and is used in other tests)
-12. The `await buildPage.closeBlocksPanel();` is used to close the blocks panel on the build page.
-13. The `await test.expect(buildPage.hasBlock(block)).resolves.toBeTruthy();` is used to check that the block has been added to the build page.
+1. `test.describe` 用于将测试分组。此处用于将构建页面的所有测试归为一组。
+2. `let buildPage: BuildPage;` 用于创建构建页面的新实例。
+3. `test.beforeEach` 用于在每个测试前运行代码。此处用于在每个测试前登录用户。`page` 是从 fixture 传入的页面对象，`loginPage` 是登录页面的页面对象，`testUser` 是从 fixture 传入的用户对象。fixture 用于处理身份验证和其他常见的共享状态任务。
+4. `await page.goto("/login");` 用于导航到登录页面。
+5. `await test.expect(page).toHaveURL("/");` 用于检查页面是否已导航到主页（即用户已登录）。
+6. `test("user can add a block", async ({ page }) => {` 用于定义新测试。
+7. `await test.expect(buildPage.isLoaded()).resolves.toBeTruthy();` 用于检查构建页面是否已加载。这可以合理地在 `test.beforeEach` 中完成，但为了清晰起见在此处完成，因为该测试套件中还有其他测试。
+8. `await test.expect(page).toHaveURL(new RegExp("/.*build"));` 用于检查页面是否已导航到构建页面。
+9. `await buildPage.closeTutorial();` 用于关闭构建页面上的教程。值得注意的是，这个包装函数实际上并不关心教程是否已打开，它确保教程**将**被关闭。这是一个有用且常见的模式，用于确保某件事会被完成，而不关心它是否已经完成。它可以用于切换设置、关闭/打开侧边栏等场景。
+10. `await buildPage.openBlocksPanel();` 用于打开构建页面上的积木面板，其方式与 `closeTutorial` 函数描述相同。
+11. `await buildPage.addBlock(block);` 用于将特定积木添加到构建页面。这是另一个可以在代码行内完成的实用函数，但由于页面对象模式的工作方式，我们应该将它们保留在页面对象中。（它也有助于保持测试代码更清晰，并在其他测试中使用）
+12. `await buildPage.closeBlocksPanel();` 用于关闭构建页面上的积木面板。
+13. `await test.expect(buildPage.hasBlock(block)).resolves.toBeTruthy();` 用于检查积木是否已添加到构建页面。
 
-### Passing information between tests
+### 在测试间传递信息
 
-You can pass information between tests using the `testInfo` object. This is useful for things like passing the id of an agent between beforeAll so that you can have a shared setup for multiple tests.
+你可以使用 `testInfo` 对象在测试间传递信息。这在诸如在 beforeAll 中传递代理 ID 的场景中非常有用，这样你就可以为多个测试设置共享的配置。
 
 ```typescript title="frontend/src/tests/monitor.spec.ts"
 --8<-- "autogpt_platform/frontend/src/tests/monitor.spec.ts:AttachAgentId"
@@ -160,25 +160,24 @@ You can pass information between tests using the `testInfo` object. This is usef
 });
 ```
 
+## 另请参阅
 
-## See Also
-
-- [Writing Tests](https://playwright.dev/docs/writing-tests)
-- [Code Generation](https://playwright.dev/docs/codegen-intro)
-- [Test UI Mode](https://playwright.dev/docs/test-ui-mode)
-- [Trace Viewer](https://playwright.dev/docs/trace-viewer-intro)
-- [Getting Started with VSCode](https://playwright.dev/docs/getting-started-vscode)
-- [Debugging Tests](https://playwright.dev/docs/debug)
-- [Test Fixtures](https://playwright.dev/docs/test-fixtures)
-- [Global Setup and Teardown](https://playwright.dev/docs/test-global-setup-teardown)
-- [Test Parameterization](https://playwright.dev/docs/test-parameterize)
-- [Test Events](https://playwright.dev/docs/events)
-- [Test Components](https://playwright.dev/docs/test-components)
-- [Test Sharding](https://playwright.dev/docs/test-sharding)
-- [Accessibility Testing](https://playwright.dev/docs/accessibility-testing)
-- [Authentication](https://playwright.dev/docs/auth)
-- [Mocking](https://playwright.dev/docs/mock)
-- [Mock Browser APIs](https://playwright.dev/docs/mock-browser-apis)
-- [Code Generation](https://playwright.dev/docs/codegen)
-- [Pages](https://playwright.dev/docs/pages)
-- [Test Annotations](https://playwright.dev/docs/test-annotations)
+- [编写测试](https://playwright.dev/docs/writing-tests)
+- [代码生成](https://playwright.dev/docs/codegen-intro)
+- [测试 UI 模式](https://playwright.dev/docs/test-ui-mode)
+- [追踪查看器](https://playwright.dev/docs/trace-viewer-intro)
+- [VSCode 入门指南](https://playwright.dev/docs/getting-started-vscode)
+- [调试测试](https://playwright.dev/docs/debug)
+- [测试夹具](https://playwright.dev/docs/test-fixtures)
+- [全局设置与拆卸](https://playwright.dev/docs/test-global-setup-teardown)
+- [测试参数化](https://playwright.dev/docs/test-parameterize)
+- [测试事件](https://playwright.dev/docs/events)
+- [测试组件](https://playwright.dev/docs/test-components)
+- [测试分片](https://playwright.dev/docs/test-sharding)
+- [无障碍测试](https://playwright.dev/docs/accessibility-testing)
+- [身份验证](https://playwright.dev/docs/auth)
+- [模拟](https://playwright.dev/docs/mock)
+- [模拟浏览器 API](https://playwright.dev/docs/mock-browser-apis)
+- [代码生成](https://playwright.dev/docs/codegen)
+- [页面](https://playwright.dev/docs/pages)
+- [测试注解](https://playwright.dev/docs/test-annotations)

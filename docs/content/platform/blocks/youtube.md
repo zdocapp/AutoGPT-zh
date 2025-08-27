@@ -1,26 +1,31 @@
-## Transcribe YouTube Video
+## YouTube 视频转录
 
-### What it is
-A block that transcribes the audio content of a YouTube video into text.
+### 功能说明
 
-### What it does
-This block takes a YouTube video URL as input and produces a text transcript of the video's audio content. It also extracts and provides the unique video ID associated with the YouTube video.
+将 YouTube 视频的音频内容转录为文本的功能块。
 
-### How it works
-The block first extracts the video ID from the provided YouTube URL. It then uses this ID to fetch the video's transcript. The transcript is processed and formatted into a readable text format. If any errors occur during this process, the block will capture and report them.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收 YouTube 视频 URL 作为输入，生成视频音频内容的文本转录。同时提取并提供与 YouTube 视频关联的唯一视频 ID。
+
+### 工作原理
+
+功能块首先从提供的 YouTube URL 中提取视频 ID，随后使用该 ID 获取视频转录稿。转录稿经过处理并格式化为可读文本格式。若在此过程中发生任何错误，功能块将捕获并报告错误信息。
+
+### 输入
+
+| 输入项 | 描述 |
 |-------|-------------|
-| YouTube URL | The web address of the YouTube video you want to transcribe. This can be in various formats, such as a standard watch URL, a shortened URL, or an embed URL. |
+| YouTube URL | 需要转录的 YouTube 视频网址。支持多种格式，包括标准观看链接、短链接或嵌入链接。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Video ID | The unique identifier for the YouTube video, extracted from the input URL. |
-| Transcript | The full text transcript of the video's audio content. |
-| Error | Any error message that occurs if the transcription process fails. |
+| 视频 ID | 从输入 URL 中提取的 YouTube 视频唯一标识符。 |
+| 转录文本 | 视频音频内容的完整文本转录。 |
+| 错误信息 | 转录过程失败时返回的错误消息。 |
 
-### Possible use case
-A content creator could use this block to automatically generate subtitles for their YouTube videos. They could also use it to create text-based summaries of video content for SEO purposes or to make their content more accessible to hearing-impaired viewers.
+### 可能的使用场景
 
+内容创作者可使用此功能块自动生成 YouTube 视频字幕，也可用于创建基于文本的视频内容摘要以提升 SEO 效果，或为听障观众提供更便捷的内容访问方式。

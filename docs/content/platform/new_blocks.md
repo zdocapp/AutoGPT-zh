@@ -1,26 +1,26 @@
-# Contributing to AutoGPT Agent Server: Creating and Testing Blocks
+# 为 AutoGPT Agent Server 贡献：创建与测试模块
 
-This guide will walk you through the process of creating and testing a new block for the AutoGPT Agent Server, using the WikipediaSummaryBlock as an example.
+本指南将以 WikipediaSummaryBlock 为例，引导您完成为 AutoGPT Agent Server 创建和测试新模块的全过程。
 
-## Understanding Blocks and Testing
+## 理解模块与测试
 
-Blocks are reusable components that can be connected to form a graph representing an agent's behavior. Each block has inputs, outputs, and a specific function. Proper testing is crucial to ensure blocks work correctly and consistently.
+模块是可复用的组件，可以连接起来形成表示智能体行为的图。每个模块都有输入、输出和特定功能。充分的测试对于确保模块正确且一致地工作至关重要。
 
-## Creating and Testing a New Block
+## 创建与测试新模块
 
-Follow these steps to create and test a new block:
+请遵循以下步骤来创建和测试一个新模块：
 
-1. **Create a new Python file** for your block in the `autogpt_platform/backend/backend/blocks` directory. Name it descriptively and use snake_case. For example: `get_wikipedia_summary.py`.
+1. **创建一个新的 Python 文件**用于你的块，放在 `autogpt_platform/backend/backend/blocks` 目录中。使用描述性名称并采用蛇形命名法。例如：`get_wikipedia_summary.py`。
 
-2. **Import necessary modules and create a class that inherits from `Block`**. Make sure to include all necessary imports for your block.
+2. **导入必要的模块并创建一个继承自 `Block` 的类**。确保包含你的块所需的所有导入。
 
-    Every block should contain the following:
+    每个块应包含以下内容：
 
     ```python
     from backend.data.block import Block, BlockSchema, BlockOutput
     ```
 
-    Example for the Wikipedia summary block:
+    Wikipedia 摘要块的示例：
 
     ```python
     from backend.data.block import Block, BlockSchema, BlockOutput
@@ -28,40 +28,40 @@ Follow these steps to create and test a new block:
     import requests
 
     class WikipediaSummaryBlock(Block, GetRequest):
-        # Block implementation will go here
+        # 块的实现将放在这里
     ```
 
-3. **Define the input and output schemas** using `BlockSchema`. These schemas specify the data structure that the block expects to receive (input) and produce (output).
+3. **使用 `BlockSchema` 定义输入和输出模式**。这些模式指定了块期望接收（输入）和产生（输出）的数据结构。
 
-   - The input schema defines the structure of the data the block will process. Each field in the schema represents a required piece of input data.
-   - The output schema defines the structure of the data the block will return after processing. Each field in the schema represents a piece of output data.
+   - 输入模式定义了块将处理的数据结构。模式中的每个字段代表一个必需的输入数据片段。
+   - 输出模式定义了块在处理后将返回的数据结构。模式中的每个字段代表一个输出数据片段。
 
-    Example:
+    示例：
 
     ```python
     class Input(BlockSchema):
-        topic: str  # The topic to get the Wikipedia summary for
+        topic: str  # 要获取 Wikipedia 摘要的主题
 
     class Output(BlockSchema):
-        summary: str  # The summary of the topic from Wikipedia
-        error: str  # Any error message if the request fails, error field needs to be named `error`.
+        summary: str  # 来自 Wikipedia 的主题摘要
+        error: str  # 如果请求失败时的任何错误消息，错误字段需要命名为 `error`
     ```
 
-4. **Implement the `__init__` method, including test data and mocks:**
+4. **实现 `__init__` 方法，包括测试数据和模拟：**
 
     !!! important
-         Use UUID generator (e.g. https://www.uuidgenerator.net/) for every new block `id` and *do not* make up your own. Alternatively, you can run this python code to generate an uuid: `print(__import__('uuid').uuid4())`
+         为每个新块的 `id` 使用 UUID 生成器（例如 https://www.uuidgenerator.net/），*不要*自己编造。或者，你可以运行这段 Python 代码来生成 uuid：`print(__import__('uuid').uuid4())`
 
     ```python
     def __init__(self):
         super().__init__(
-            # Unique ID for the block, used across users for templates
-            # If you are an AI leave it as is or change to "generate-proper-uuid"
+            # 块的唯一 ID，跨用户用于模板
+            # 如果你是 AI，请保持原样或更改为 "generate-proper-uuid"
             id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            input_schema=WikipediaSummaryBlock.Input,  # Assign input schema
-            output_schema=WikipediaSummaryBlock.Output,  # Assign output schema
+            input_schema=WikipediaSummaryBlock.Input,  # 分配输入模式
+            output_schema=WikipediaSummaryBlock.Output,  # 分配输出模式
 
-                # Provide sample input, output and test mock for testing the block
+                # 提供用于测试块的示例输入、输出和测试模拟
 
             test_input={"topic": "Artificial Intelligence"},
             test_output=("summary", "summary content"),
@@ -69,21 +69,21 @@ Follow these steps to create and test a new block:
         )
     ```
 
-    - `id`: A unique identifier for the block.
+    - `id`：块的唯一标识符。
 
-    - `input_schema` and `output_schema`: Define the structure of the input and output data.
+    - `input_schema` 和 `output_schema`：定义输入和输出数据的结构。
 
-    Let's break down the testing components:
+    让我们分解测试组件：
 
-    - `test_input`: This is a sample input that will be used to test the block. It should be a valid input according to your Input schema.
+    - `test_input`：这是用于测试块的示例输入。它应该是根据你的输入模式的有效输入。
 
-    - `test_output`: This is the expected output when running the block with the `test_input`. It should match your Output schema. For non-deterministic outputs or when you only want to assert the type, you can use Python types instead of specific values. In this example, `("summary", str)` asserts that the output key is "summary" and its value is a string.
+    - `test_output`：这是使用 `test_input` 运行块时的预期输出。它应该与你的输出模式匹配。对于非确定性输出或当你只想断言类型时，可以使用 Python 类型而不是特定值。在此示例中，`("summary", str)` 断言输出键为 "summary" 且其值为字符串。
 
-    - `test_mock`: This is crucial for blocks that make network calls. It provides a mock function that replaces the actual network call during testing.
+    - `test_mock`：这对于进行网络调用的块至关重要。它提供了一个模拟函数，在测试期间替换实际的网络调用。
 
-     In this case, we're mocking the `get_request` method to always return a dictionary with an 'extract' key, simulating a successful API response. This allows us to test the block's logic without making actual network requests, which could be slow, unreliable, or rate-limited.
+     在这种情况下，我们模拟 `get_request` 方法始终返回一个带有 'extract' 键的字典，模拟成功的 API 响应。这使我们能够测试块的逻辑而无需进行实际的网络请求，这些请求可能缓慢、不可靠或受到速率限制。
 
-5. **Implement the `run` method with error handling.** This should contain the main logic of the block:
+5. **实现带有错误处理的 `run` 方法**。这应包含块的主要逻辑：
 
    ```python
    def run(self, input_data: Input, **kwargs) -> BlockOutput:
@@ -98,24 +98,26 @@ Follow these steps to create and test a new block:
            raise RuntimeError(f"HTTP error occurred: {http_err}")
    ```
 
-   - **Try block**: Contains the main logic to fetch and process the Wikipedia summary.
-   - **API request**: Send a GET request to the Wikipedia API.
-   - **Error handling**: Handle various exceptions that might occur during the API request and data processing. We don't need to catch all exceptions, only the ones we expect and can handle. The uncaught exceptions will be automatically yielded as `error` in the output. Any block that raises an exception (or yields an `error` output) will be marked as failed. Prefer raising exceptions over yielding `error`, as it will stop the execution immediately.
-   - **Yield**: Use `yield` to output the results. Prefer to output one result object at a time. If you are calling a function that returns a list, you can yield each item in the list separately. You can also yield the whole list as well, but do both rather than yielding the list. For example: If you were writing a block that outputs emails, you'd yield each email as a separate result object, but you could also yield the whole list as an additional single result object. Yielding output named `error` will break the execution right away and mark the block execution as failed.
-   - **kwargs**: The `kwargs` parameter is used to pass additional arguments to the block. It is not used in the example above, but it is available to the block. You can also have args as inline signatures in the run method ala `def run(self, input_data: Input, *, user_id: str, **kwargs) -> BlockOutput:`.
-       Available kwargs are:
-       - `user_id`: The ID of the user running the block.
-       - `graph_id`: The ID of the agent that is executing the block. This is the same for every version of the agent
-       - `graph_exec_id`: The ID of the execution of the agent. This changes every time the agent has a new "run"
-       - `node_exec_id`: The ID of the execution of the node. This changes every time the node is executed
-       - `node_id`: The ID of the node that is being executed. It changes every version of the graph, but not every time the node is executed.
+   - **Try 块**：包含获取和处理 Wikipedia 摘要的主要逻辑。
+   - **API 请求**：向 Wikipedia API 发送 GET 请求。
+   - **错误处理**：处理在 API 请求和数据处理过程中可能发生的各种异常。我们不需要捕获所有异常，只捕获我们预期并能处理的异常。未捕获的异常将自动作为 `error` 在输出中产生。任何引发异常（或产生 `error` 输出）的块将被标记为失败。优先选择引发异常而不是产生 `error`，因为它会立即停止执行。
+   - **Yield**：使用 `yield` 输出结果。优先一次输出一个结果对象。如果你调用一个返回列表的函数，可以分别产生列表中的每个项目。你也可以将整个列表作为一个单独的结果对象产生，但两种方式都要做，而不是只产生列表。例如：如果你正在编写一个输出电子邮件的块，你会将每个电子邮件作为单独的结果对象产生，但也可以将整个列表作为一个额外的单一结果对象产生。产生名为 `error` 的输出将立即中断执行并将块执行标记为失败。
+   - **kwargs**：`kwargs` 参数用于向块传递额外的参数。在上面的示例中未使用，但它对块可用。你也可以在 run 方法中使用内联签名参数，如 `def run(self, input_data: Input, *, user_id: str, **kwargs) -> BlockOutput:`。
+       可用的 kwargs 包括：
+       - `user_id`：运行块的用户 ID。
+       - `graph_id`：正在执行块的代理 ID。对于代理的每个版本都是相同的
+       - `graph_exec_id`：代理执行的 ID。每次代理有新的 "运行" 时都会改变
+       - `node_exec_id`：节点执行的 ID。每次执行节点时都会改变
+       - `node_id`：正在执行的节点的 ID。它在图的每个版本中都会改变，但不是每次执行节点时都改变。
 
-### Field Types
+### 字段类型
 
-#### oneOf fields
-`oneOf` allows you to specify that a field must be exactly one of several possible options. This is useful when you want your block to accept different types of inputs that are mutually exclusive.
+#### oneOf 字段
 
-Example:
+`oneOf` 允许您指定字段必须是多个可能选项中的恰好一个。当您希望区块接受互斥的不同类型输入时，这非常有用。
+
+示例：
+
 ```python
 attachment: Union[Media, DeepLink, Poll, Place, Quote] = SchemaField(
     discriminator='discriminator',
@@ -123,9 +125,10 @@ attachment: Union[Media, DeepLink, Poll, Place, Quote] = SchemaField(
 )
 ```
 
-The `discriminator` parameter tells AutoGPT which field to look at in the input to determine which type it is.
+`discriminator` 参数告诉 AutoGPT 在输入中查看哪个字段以确定其类型。
 
-In each model, you need to define the discriminator value:
+在每个模型中，您需要定义鉴别器值：
+
 ```python
 class Media(BaseModel):
     discriminator: Literal['media']
@@ -136,10 +139,12 @@ class DeepLink(BaseModel):
     direct_message_deep_link: str
 ```
 
-#### OptionalOneOf fields
-`OptionalOneOf` is similar to `oneOf` but allows the field to be optional (None). This means the field can be either one of the specified types or None.
+#### OptionalOneOf 字段
 
-Example:
+`OptionalOneOf` 类似于 `oneOf`，但允许字段为可选（None）。这意味着字段可以是指定类型之一，也可以是 None。
+
+示例：
+
 ```python
 attachment: Union[Media, DeepLink, Poll, Place, Quote] | None = SchemaField(
     discriminator='discriminator',
@@ -147,16 +152,14 @@ attachment: Union[Media, DeepLink, Poll, Place, Quote] | None = SchemaField(
 )
 ```
 
-The key difference is the `| None` which makes the entire field optional.
+关键区别在于 `| None`，它使整个字段变为可选。
 
-### Blocks with authentication
+### 带认证的区块
 
-Our system supports auth offloading for API keys and OAuth2 authorization flows.
-Adding a block with API key authentication is straight-forward, as is adding a block
-for a service that we already have OAuth2 support for.
+我们的系统支持 API 密钥和 OAuth2 授权流程的认证卸载。
+添加带有 API 密钥认证的区块非常简单，为我们已支持 OAuth2 的服务添加区块也同样简单。
 
-Implementing the block itself is relatively simple. On top of the instructions above,
-you're going to add a `credentials` parameter to the `Input` model and the `run` method:
+实现区块本身相对简单。除了上述说明外，您还需要向 `Input` 模型和 `run` 方法添加一个 `credentials` 参数：
 
 ```python
 from backend.data.model import (
@@ -241,10 +244,10 @@ class BlockWithAPIKeyAndOAuth(Block):
         ...
 ```
 
-The credentials will be automagically injected by the executor in the back end.
+凭证将由后端执行器自动注入。
 
-The `APIKeyCredentials` and `OAuth2Credentials` models are defined [here](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/autogpt_libs/autogpt_libs/supabase_integration_credentials_store/types.py).
-To use them in e.g. an API request, you can either access the token directly:
+`APIKeyCredentials` 和 `OAuth2Credentials` 模型定义在[此处](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/autogpt_libs/autogpt_libs/supabase_integration_credentials_store/types.py)。
+要在例如 API 请求中使用它们，您可以直接访问令牌：
 
 ```python
 # credentials: APIKeyCredentials
@@ -264,7 +267,7 @@ response = requests.post(
 )
 ```
 
-or use the shortcut `credentials.auth_header()`:
+或使用快捷方式 `credentials.auth_header()`：
 
 ```python
 # credentials: APIKeyCredentials | OAuth2Credentials
@@ -274,32 +277,32 @@ response = requests.post(
 )
 ```
 
-The `ProviderName` enum is the single source of truth for which providers exist in our system.
-Naturally, to add an authenticated block for a new provider, you'll have to add it here too.
+`ProviderName` 枚举是我们系统中存在哪些提供者的单一事实来源。
+自然地，要为新的提供者添加认证块，您也需要在此处添加它。
+
 <details>
-<summary><code>ProviderName</code> definition</summary>
+<summary><code>ProviderName</code> 定义</summary>
 
 ```python title="backend/integrations/providers.py"
 --8<-- "autogpt_platform/backend/backend/integrations/providers.py:ProviderName"
 ```
+
 </details>
 
-#### Multiple credentials inputs
-Multiple credentials inputs are supported, under the following conditions:
-- The name of each of the credentials input fields must end with `_credentials`.
-- The names of the credentials input fields must match the names of the corresponding
-  parameters on the `run(..)` method of the block.
-- If more than one of the credentials parameters are required, `test_credentials`
-  is a `dict[str, Credentials]`, with for each required credentials input the
-  parameter name as the key and suitable test credentials as the value.
+#### 多个凭据输入
 
+支持多个凭据输入，但需满足以下条件：
 
-#### Adding an OAuth2 service integration
+- 每个凭据输入字段的名称必须以 `_credentials` 结尾。
+- 凭据输入字段的名称必须与块 `run(..)` 方法上相应参数的名称匹配。
+- 如果需要多个凭据参数，`test_credentials` 是一个 `dict[str, Credentials]`，其中每个必需的凭据输入都以参数名作为键，并使用合适的测试凭据作为值。
 
-To add support for a new OAuth2-authenticated service, you'll need to add an `OAuthHandler`.
-All our existing handlers and the base class can be found [here][OAuth2 handlers].
+#### 添加 OAuth2 服务集成
 
-Every handler must implement the following parts of the [`BaseOAuthHandler`] interface:
+要添加对新的 OAuth2 认证服务的支持，您需要添加一个 `OAuthHandler`。
+我们所有现有的处理程序和基类都可以在[此处][OAuth2 handlers]找到。
+
+每个处理程序都必须实现 [`BaseOAuthHandler`] 接口的以下部分：
 
 ```python title="backend/integrations/oauth/base.py"
 --8<-- "autogpt_platform/backend/backend/integrations/oauth/base.py:BaseOAuthHandler1"
@@ -310,104 +313,104 @@ Every handler must implement the following parts of the [`BaseOAuthHandler`] int
 --8<-- "autogpt_platform/backend/backend/integrations/oauth/base.py:BaseOAuthHandler6"
 ```
 
-As you can see, this is modeled after the standard OAuth2 flow.
+如您所见，这是按照标准 OAuth2 流程建模的。
 
-Aside from implementing the `OAuthHandler` itself, adding a handler into the system requires two more things:
+除了实现 `OAuthHandler` 本身之外，将处理程序添加到系统中还需要另外两件事：
 
-- Adding the handler class to `HANDLERS_BY_NAME` under [`integrations/oauth/__init__.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/__init__.py)
+- 将处理程序类添加到 [`integrations/oauth/__init__.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/__init__.py) 中的 `HANDLERS_BY_NAME`
 
 ```python title="backend/integrations/oauth/__init__.py"
 --8<-- "autogpt_platform/backend/backend/integrations/oauth/__init__.py:HANDLERS_BY_NAMEExample"
 ```
 
-- Adding `{provider}_client_id` and `{provider}_client_secret` to the application's `Secrets` under [`util/settings.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/util/settings.py)
+- 将 `{provider}_client_id` 和 `{provider}_client_secret` 添加到 [`util/settings.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/util/settings.py) 中应用程序的 `Secrets` 中
 
 ```python title="backend/util/settings.py"
 --8<-- "autogpt_platform/backend/backend/util/settings.py:OAuthServerCredentialsExample"
 ```
 
 [OAuth2 handlers]: https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/integrations/oauth
+
 [`BaseOAuthHandler`]: https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/base.py
 
-#### Adding to the frontend
+#### 添加到前端
 
-You will need to add the provider (api or oauth) to the `CredentialsInput` component in [`frontend/src/components/integrations/credentials-input.tsx`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/frontend/src/components/integrations/credentials-input.tsx).
+您需要将提供程序（api 或 oauth）添加到 [`frontend/src/components/integrations/credentials-input.tsx`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/frontend/src/components/integrations/credentials-input.tsx) 中的 `CredentialsInput` 组件。
 
 ```ts title="frontend/src/components/integrations/credentials-input.tsx"
 --8<-- "autogpt_platform/frontend/src/components/integrations/credentials-input.tsx:ProviderIconsEmbed"
 ```
 
-You will also need to add the provider to the credentials provider list in [`frontend/src/components/integrations/helper.ts`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/frontend/src/components/integrations/helper.ts).
+您还需要将提供程序添加到 [`frontend/src/components/integrations/helper.ts`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/frontend/src/components/integrations/helper.ts) 中的凭据提供程序列表中。
 
 ```ts title="frontend/src/components/integrations/helper.ts"
 --8<-- "autogpt_platform/frontend/src/components/integrations/helper.ts:CredentialsProviderNames"
 ```
 
-Finally you will need to add the provider to the `CredentialsType` enum in [`frontend/src/lib/autogpt-server-api/types.ts`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/frontend/src/lib/autogpt-server-api/types.ts).
+最后，您需要将提供者添加到 [`frontend/src/lib/autogpt-server-api/types.ts`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/frontend/src/lib/autogpt-server-api/types.ts) 中的 `CredentialsType` 枚举。
 
 ```ts title="frontend/src/lib/autogpt-server-api/types.ts"
 --8<-- "autogpt_platform/frontend/src/lib/autogpt-server-api/types.ts:BlockIOCredentialsSubSchema"
 ```
 
-#### Example: GitHub integration
+#### 示例：GitHub 集成
 
-- GitHub blocks with API key + OAuth2 support: [`blocks/github`](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/github/)
+- 支持 API 密钥 + OAuth2 的 GitHub 模块：[`blocks/github`](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/github/)
 
 ```python title="backend/blocks/github/issues.py"
 --8<-- "autogpt_platform/backend/backend/blocks/github/issues.py:GithubCommentBlockExample"
 ```
 
-- GitHub OAuth2 handler: [`integrations/oauth/github.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/github.py)
+- GitHub OAuth2 处理器：[`integrations/oauth/github.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/github.py)
 
 ```python title="backend/integrations/oauth/github.py"
 --8<-- "autogpt_platform/backend/backend/integrations/oauth/github.py:GithubOAuthHandlerExample"
 ```
 
-#### Example: Google integration
+#### 示例：Google 集成
 
-- Google OAuth2 handler: [`integrations/oauth/google.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/google.py)
+- Google OAuth2 处理器：[`integrations/oauth/google.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/oauth/google.py)
 
 ```python title="backend/integrations/oauth/google.py"
 --8<-- "autogpt_platform/backend/backend/integrations/oauth/google.py:GoogleOAuthHandlerExample"
 ```
 
-You can see that google has defined a `DEFAULT_SCOPES` variable, this is used to set the scopes that are requested no matter what the user asks for.
+您可以看到 Google 定义了一个 `DEFAULT_SCOPES` 变量，这用于设置无论用户请求什么都会请求的作用域。
 
 ```python title="backend/blocks/google/_auth.py"
 --8<-- "autogpt_platform/backend/backend/blocks/google/_auth.py:GoogleOAuthIsConfigured"
 ```
 
-You can also see that `GOOGLE_OAUTH_IS_CONFIGURED` is used to disable the blocks that require OAuth if the oauth is not configured. This is in the `__init__` method of each block. This is because there is no api key fallback for google blocks so we need to make sure that the oauth is configured before we allow the user to use the blocks.
+您还可以看到 `GOOGLE_OAUTH_IS_CONFIGURED` 用于在未配置 OAuth 时禁用需要 OAuth 的模块。这在每个模块的 `__init__` 方法中。这是因为 Google 模块没有 API 密钥回退，因此我们需要确保在允许用户使用这些模块之前已配置 OAuth。
 
-### Webhook-triggered Blocks
+### Webhook 触发的模块
 
-Webhook-triggered blocks allow your agent to respond to external events in real-time.
-These blocks are triggered by incoming webhooks from third-party services
-rather than being executed manually.
+Webhook 触发的模块允许您的智能体实时响应外部事件。
+这些模块由来自第三方服务的传入 Webhook 触发，
+而非手动执行。
 
-Creating and running a webhook-triggered block involves three main components:
+创建和运行 Webhook 触发的模块涉及三个主要组件：
 
-- The block itself, which specifies:
-    - Inputs for the user to select a resource and events to subscribe to
-    - A `credentials` input with the scopes needed to manage webhooks
-    - Logic to turn the webhook payload into outputs for the webhook block
-- The `WebhooksManager` for the corresponding webhook service provider, which handles:
-    - (De)registering webhooks with the provider
-    - Parsing and validating incoming webhook payloads
-- The credentials system for the corresponding service provider, which may include an `OAuthHandler`
+- 模块本身，用于指定：
+    - 用户选择资源和订阅事件的输入项
+    - 带有管理 Webhook 所需权限范围的 `credentials` 输入
+    - 将 Webhook 有效载荷转换为 Webhook 模块输出的逻辑
+- 对应 Webhook 服务提供商的 `WebhooksManager`，负责处理：
+    - 向提供商（取消）注册 Webhook
+    - 解析和验证传入的 Webhook 有效载荷
+- 对应服务提供商的凭证系统，可能包含 `OAuthHandler`
 
-There is more going on under the hood, e.g. to store and retrieve webhooks and their
-links to nodes, but to add a webhook-triggered block you shouldn't need to make changes
-to those parts of the system.
+底层还有更多机制在运作，例如存储和检索 Webhook 及其与节点的链接，
+但添加 Webhook 触发的模块时，您无需对系统的这些部分进行修改。
 
-#### Creating a Webhook-triggered Block
+#### 创建 Webhook 触发的模块
 
-To create a webhook-triggered block, follow these additional steps on top of the basic block creation process:
+要创建 Webhook 触发的模块，请在基本模块创建流程的基础上遵循以下额外步骤：
 
-1. **Define `webhook_config`** in your block's `__init__` method.
+1. **在块的 `__init__` 方法中定义 `webhook_config`**
 
     <details>
-    <summary>Example: <code>GitHubPullRequestTriggerBlock</code></summary>
+    <summary>示例：<code>GitHubPullRequestTriggerBlock</code></summary>
 
     ```python title="backend/blocks/github/triggers.py"
     --8<-- "autogpt_platform/backend/backend/blocks/github/triggers.py:example-webhook_config"
@@ -415,45 +418,45 @@ To create a webhook-triggered block, follow these additional steps on top of the
     </details>
 
     <details>
-    <summary><code>BlockWebhookConfig</code> definition</summary>
+    <summary><code>BlockWebhookConfig</code> 定义</summary>
 
     ```python title="backend/data/block.py"
     --8<-- "autogpt_platform/backend/backend/data/block.py:BlockWebhookConfig"
     ```
     </details>
 
-2. **Define event filter input** in your block's Input schema.
-    This allows the user to select which specific types of events will trigger the block in their agent.
+2. **在块的输入模式中定义事件过滤器输入**
+    这允许用户选择在其代理中触发块的具体事件类型。
 
     <details>
-    <summary>Example: <code>GitHubPullRequestTriggerBlock</code></summary>
+    <summary>示例：<code>GitHubPullRequestTriggerBlock</code></summary>
 
     ```python title="backend/blocks/github/triggers.py"
     --8<-- "autogpt_platform/backend/backend/blocks/github/triggers.py:example-event-filter"
     ```
     </details>
 
-    - The name of the input field (`events` in this case) must match `webhook_config.event_filter_input`.
-    - The event filter itself must be a Pydantic model with only boolean fields.
+    - 输入字段的名称（本例中为 `events`）必须与 `webhook_config.event_filter_input` 匹配。
+    - 事件过滤器本身必须是一个仅包含布尔字段的 Pydantic 模型。
 
-4. **Include payload field** in your block's Input schema.
+4. **在块的输入模式中包含有效载荷字段**
 
     <details>
-    <summary>Example: <code>GitHubTriggerBase</code></summary>
+    <summary>示例：<code>GitHubTriggerBase</code></summary>
 
     ```python title="backend/blocks/github/triggers.py"
     --8<-- "autogpt_platform/backend/backend/blocks/github/triggers.py:example-payload-field"
     ```
     </details>
 
-5. **Define `credentials` input** in your block's Input schema.
-    - Its scopes must be sufficient to manage a user's webhooks through the provider's API
-    - See [Blocks with authentication](#blocks-with-authentication) for further details
+5. **在块的输入模式中定义 `credentials` 输入**
+    - 其权限范围必须足以通过提供商的 API 管理用户的 webhook
+    - 更多详细信息请参阅[带身份验证的块](#blocks-with-authentication)
 
-6. **Process webhook payload** and output relevant parts of it in your block's `run` method.
+6. **处理 webhook 有效载荷**并在块的 `run` 方法中输出其相关部分。
 
     <details>
-    <summary>Example: <code>GitHubPullRequestTriggerBlock</code></summary>
+    <summary>示例：<code>GitHubPullRequestTriggerBlock</code></summary>
 
     ```python
     def run(self, input_data: Input, **kwargs) -> BlockOutput:
@@ -464,13 +467,12 @@ To create a webhook-triggered block, follow these additional steps on top of the
         yield "pull_request", input_data.payload["pull_request"]
     ```
 
-    Note that the `credentials` parameter can be omitted if the credentials
-    aren't used at block runtime, like in the example.
+    请注意，如果凭据在块运行时未被使用（如示例中所示），可以省略 `credentials` 参数。
     </details>
 
-#### Adding a Webhooks Manager
+#### 添加 Webhooks 管理器
 
-To add support for a new webhook provider, you'll need to create a WebhooksManager that implements the `BaseWebhooksManager` interface:
+要添加对新 webhook 提供商的支持，您需要创建一个实现 `BaseWebhooksManager` 接口的 WebhooksManager：
 
 ```python title="backend/integrations/webhooks/_base.py"
 --8<-- "autogpt_platform/backend/backend/integrations/webhooks/_base.py:BaseWebhooksManager1"
@@ -481,64 +483,66 @@ To add support for a new webhook provider, you'll need to create a WebhooksManag
 --8<-- "autogpt_platform/backend/backend/integrations/webhooks/_base.py:BaseWebhooksManager5"
 ```
 
-And add a reference to your `WebhooksManager` class in `load_webhook_managers`:
+并在 `load_webhook_managers` 中添加对您的 `WebhooksManager` 类的引用：
 
 ```python title="backend/integrations/webhooks/__init__.py"
 --8<-- "autogpt_platform/backend/backend/integrations/webhooks/__init__.py:load_webhook_managers"
 ```
 
-#### Example: GitHub Webhook Integration
+#### 示例：GitHub Webhook 集成
 
 <details>
 <summary>
-GitHub Webhook triggers: <a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/blocks/github/triggers.py"><code>blocks/github/triggers.py</code></a>
+GitHub Webhook 触发器：<a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/blocks/github/triggers.py"><code>blocks/github/triggers.py</code></a>
 </summary>
 
 ```python title="backend/blocks/github/triggers.py"
 --8<-- "autogpt_platform/backend/backend/blocks/github/triggers.py:GithubTriggerExample"
 ```
+
 </details>
 
 <details>
 <summary>
-GitHub Webhooks Manager: <a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/webhooks/github.py"><code>integrations/webhooks/github.py</code></a>
+GitHub Webhooks 管理器：<a href="https://github.com/Significant-Gravitas/AutoGPT/blob/master/autogpt_platform/backend/backend/integrations/webhooks/github.py"><code>integrations/webhooks/github.py</code></a>
 </summary>
 
 ```python title="backend/integrations/webhooks/github.py"
 --8<-- "autogpt_platform/backend/backend/integrations/webhooks/github.py:GithubWebhooksManager"
 ```
+
 </details>
 
-## Key Points to Remember
+## 关键要点
 
-- **Unique ID**: Give your block a unique ID in the **init** method.
-- **Input and Output Schemas**: Define clear input and output schemas.
-- **Error Handling**: Implement error handling in the `run` method.
-- **Output Results**: Use `yield` to output results in the `run` method.
-- **Testing**: Provide test input and output in the **init** method for automatic testing.
+- **唯一标识符**：在 **init** 方法中为您的块指定一个唯一 ID
+- **输入和输出模式**：定义清晰的输入和输出模式
+- **错误处理**：在 `run` 方法中实现错误处理
+- **输出结果**：在 `run` 方法中使用 `yield` 输出结果
+- **测试**：在 **init** 方法中提供测试输入和输出以进行自动测试
 
-## Understanding the Testing Process
+## 理解测试流程
 
-The testing of blocks is handled by `test_block.py`, which does the following:
+块的测试由 `test_block.py` 处理，该文件执行以下操作：
 
-1. It calls the block with the provided `test_input`.
-   If the block has a `credentials` field, `test_credentials` is passed in as well.
-2. If a `test_mock` is provided, it temporarily replaces the specified methods with the mock functions.
-3. It then asserts that the output matches the `test_output`.
+1. 它使用提供的 `test_input` 调用代码块。
+   如果代码块包含 `credentials` 字段，则同时传入 `test_credentials`。
+2. 如果提供了 `test_mock`，它会临时用模拟函数替换指定的方法。
+3. 然后断言输出与 `test_output` 匹配。
 
-For the WikipediaSummaryBlock:
+对于 WikipediaSummaryBlock：
 
-- The test will call the block with the topic "Artificial Intelligence".
-- Instead of making a real API call, it will use the mock function, which returns `{"extract": "summary content"}`.
-- It will then check if the output key is "summary" and its value is a string.
+- 测试将使用主题 "Artificial Intelligence" 调用该代码块
+- 它将使用模拟函数而非进行实际的 API 调用，该函数返回 `{"extract": "summary content"}`
+- 然后检查输出键是否为 "summary" 及其值是否为字符串
 
-This approach allows us to test the block's logic comprehensively without relying on external services, while also accommodating non-deterministic outputs.
+这种方法使我们能够全面测试代码块的逻辑，而无需依赖外部服务，同时还能适应非确定性输出。
 
-## Security Best Practices for SSRF Prevention
+## SSRF 防护的安全最佳实践
 
-When creating blocks that handle external URL inputs or make network requests, it's crucial to use the platform's built-in SSRF protection mechanisms. The `backend.util.request` module provides a secure `Requests` wrapper class that should be used for all HTTP requests.
+创建处理外部 URL 输入或进行网络请求的代码块时，使用平台内置的 SSRF 保护机制至关重要。`backend.util.request` 模块提供了一个安全的 `Requests` 包装器类，应用于所有 HTTP 请求。
 
-### Using the Secure Requests Wrapper
+### 使用安全请求包装器
 
 ```python
 from backend.util.request import requests
@@ -557,29 +561,29 @@ class MyNetworkBlock(Block):
             raise RuntimeError(f"Request failed: {e}")
 ```
 
-The `Requests` wrapper provides these security features:
+`Requests` 包装器提供以下安全功能：
 
-1. **URL Validation**:
-    - Blocks requests to private IP ranges (RFC 1918)
-    - Validates URL format and protocol
-    - Resolves DNS and checks IP addresses
-    - Supports whitelisting trusted origins
+1. **URL 验证**:
+    - 阻止对私有 IP 范围（RFC 1918）的请求
+    - 验证 URL 格式和协议
+    - 解析 DNS 并检查 IP 地址
+    - 支持白名单可信来源
 
-2. **Secure Defaults**:
-    - Disables redirects by default
-    - Raises exceptions for non-200 status codes
-    - Supports custom headers and validators
+2. **安全默认设置**:
+    - 默认禁用重定向
+    - 对非 200 状态码抛出异常
+    - 支持自定义标头和验证器
 
-3. **Protected IP Ranges**:
-   The wrapper denies requests to these networks:
+3. **受保护的 IP 范围**:
+   包装器拒绝访问以下网络的请求：
 
     ```python title="backend/util/request.py"
     --8<-- "autogpt_platform/backend/backend/util/request.py:BLOCKED_IP_NETWORKS"
     ```
 
-### Custom Request Configuration
+### 自定义请求配置
 
-If you need to customize the request behavior:
+如需自定义请求行为：
 
 ```python
 from backend.util.request import Requests
@@ -592,96 +596,96 @@ custom_requests = Requests(
 )
 ```
 
-## Tips for Effective Block Testing
+## 有效阻断测试技巧
 
-1. **Provide realistic test_input**: Ensure your test input covers typical use cases.
+1. **提供真实的测试输入**：确保测试输入涵盖典型使用场景。
 
-2. **Define appropriate test_output**:
+2. **定义合适的测试输出**：
 
-    - For deterministic outputs, use specific expected values.
-    - For non-deterministic outputs or when only the type matters, use Python types (e.g., `str`, `int`, `dict`).
-    - You can mix specific values and types, e.g., `("key1", str), ("key2", 42)`.
+    - 对于确定性输出，使用具体的期望值。
+    - 对于非确定性输出或仅需关注类型的情况，使用 Python 类型（如 `str`、`int`、`dict`）。
+    - 可以混合使用具体值和类型，例如 `("key1", str), ("key2", 42)`。
 
-3. **Use test_mock for network calls**: This prevents tests from failing due to network issues or API changes.
+3. **对网络调用使用 test_mock**：这可以防止因网络问题或 API 变更导致测试失败。
 
-4. **Consider omitting test_mock for blocks without external dependencies**: If your block doesn't make network calls or use external resources, you might not need a mock.
+4. **考虑省略无外部依赖的测试模拟**：如果代码块不进行网络调用或使用外部资源，可能不需要模拟。
 
-5. **Consider edge cases**: Include tests for potential error conditions in your `run` method.
+5. **考虑边界情况**：在 `run` 方法中包含对潜在错误条件的测试。
 
-6. **Update tests when changing block behavior**: If you modify your block, ensure the tests are updated accordingly.
+6. **修改代码块行为时更新测试**：如果修改了代码块，请确保相应更新测试。
 
-By following these steps, you can create new blocks that extend the functionality of the AutoGPT Agent Server.
+通过遵循这些步骤，您可以创建扩展 AutoGPT Agent Server 功能的新代码块。
 
-## Blocks we want to see
+## 我们希望看到的代码块
 
-Below is a list of blocks that we would like to see implemented in the AutoGPT Agent Server. If you're interested in contributing, feel free to pick one of these blocks or chose your own.
+以下是我们希望在 AutoGPT Agent Server 中实现的代码块列表。如果您有兴趣贡献，请随意选择其中一个代码块或选择您自己的创意。
 
-If you would like to implement one of these blocks, open a pull request and we will start the review process.
+如果您想实现其中一个代码块，请提交拉取请求，我们将启动审核流程。
 
-### Consumer Services/Platforms
+### 消费者服务/平台
 
-- Google sheets - [~~Read/Append~~](https://github.com/Significant-Gravitas/AutoGPT/pull/8236)
-- Email - Read/Send with [~~Gmail~~](https://github.com/Significant-Gravitas/AutoGPT/pull/8236), Outlook, Yahoo, Proton, etc
-- Calendar - Read/Write with Google Calendar, Outlook Calendar, etc
-- Home Assistant - Call Service, Get Status
-- Dominos - Order Pizza, Track Order
-- Uber - Book Ride, Track Ride
-- Notion - Create/Read Page, Create/Append/Read DB
-- Google drive - read/write/overwrite file/folder
+- Google sheets - [~~读取/追加~~](https://github.com/Significant-Gravitas/AutoGPT/pull/8236)
+- 电子邮件 - 通过 [~~Gmail~~](https://github.com/Significant-Gravitas/AutoGPT/pull/8236)、Outlook、Yahoo、Proton 等读取/发送
+- 日历 - 通过 Google Calendar、Outlook Calendar 等读取/写入
+- Home Assistant - 调用服务、获取状态
+- Dominos - 订购披萨、跟踪订单
+- Uber - 预订乘车、跟踪行程
+- Notion - 创建/读取页面、创建/追加/读取数据库
+- Google drive - 读取/写入/覆盖文件/文件夹
 
-### Social Media
+### 社交媒体
 
-- Twitter - Post, Reply, Get Replies, Get Comments, Get Followers, Get Following, Get Tweets, Get Mentions
-- Instagram - Post, Reply, Get Comments, Get Followers, Get Following, Get Posts, Get Mentions, Get Trending Posts
-- TikTok - Post, Reply, Get Comments, Get Followers, Get Following, Get Videos, Get Mentions, Get Trending Videos
-- LinkedIn - Post, Reply, Get Comments, Get Followers, Get Following, Get Posts, Get Mentions, Get Trending Posts
-- YouTube - Transcribe Videos/Shorts, Post Videos/Shorts, Read/Reply/React to Comments, Update Thumbnails, Update Description, Update Tags, Update Titles, Get Views, Get Likes, Get Dislikes, Get Subscribers, Get Comments, Get Shares, Get Watch Time, Get Revenue, Get Trending Videos, Get Top Videos, Get Top Channels
-- Reddit - Post, Reply, Get Comments, Get Followers, Get Following, Get Posts, Get Mentions, Get Trending Posts
-- Treatwell (and related Platforms) - Book, Cancel, Review, Get Recommendations
-- Substack - Read/Subscribe/Unsubscribe, Post/Reply, Get Recommendations
-- Discord - Read/Post/Reply, Moderation actions
-- GoodReads - Read/Post/Reply, Get Recommendations
+- Twitter - 发布推文、回复、获取回复、获取评论、获取粉丝、获取关注、获取推文、获取提及
+- Instagram - 发布帖子、回复、获取评论、获取粉丝、获取关注、获取帖子、获取提及、获取热门帖子
+- TikTok - 发布视频、回复、获取评论、获取粉丝、获取关注、获取视频、获取提及、获取热门视频
+- LinkedIn - 发布帖子、回复、获取评论、获取粉丝、获取关注、获取帖子、获取提及、获取热门帖子
+- YouTube - 转录视频/短视频、发布视频/短视频、读取/回复/回应评论、更新缩略图、更新描述、更新标签、更新标题、获取观看次数、获取点赞、获取点踩、获取订阅者、获取评论、获取分享、获取观看时长、获取收入、获取热门视频、获取热门视频、获取热门频道
+- Reddit - 发布帖子、回复、获取评论、获取粉丝、获取关注、获取帖子、获取提及、获取热门帖子
+- Treatwell（及相关平台）- 预订、取消、评价、获取推荐
+- Substack - 阅读/订阅/取消订阅、发布/回复、获取推荐
+- Discord - 读取/发布/回复、管理操作
+- GoodReads - 阅读/发布/回复、获取推荐
 
-### E-commerce
+### 电子商务
 
-- Airbnb - Book, Cancel, Review, Get Recommendations
-- Amazon - Order, Track Order, Return, Review, Get Recommendations
-- eBay - Order, Track Order, Return, Review, Get Recommendations
-- Upwork - Post Jobs, Hire Freelancer, Review Freelancer, Fire Freelancer
+- Airbnb - 预订、取消、评价、获取推荐
+- Amazon - 下单、跟踪订单、退货、评价、获取推荐
+- eBay - 下单、跟踪订单、退货、评价、获取推荐
+- Upwork - 发布工作、雇佣自由职业者、评价自由职业者、解雇自由职业者
 
-### Business Tools
+### 商业工具
 
-- External Agents - Call other agents similar to AutoGPT
-- Trello - Create/Read/Update/Delete Cards, Lists, Boards
-- Jira - Create/Read/Update/Delete Issues, Projects, Boards
-- Linear - Create/Read/Update/Delete Issues, Projects, Boards
-- Excel - Read/Write/Update/Delete Rows, Columns, Sheets
-- Slack - Read/Post/Reply to Messages, Create Channels, Invite Users
-- ERPNext - Create/Read/Update/Delete Invoices, Orders, Customers, Products
-- Salesforce - Create/Read/Update/Delete Leads, Opportunities, Accounts
-- HubSpot - Create/Read/Update/Delete Contacts, Deals, Companies
-- Zendesk - Create/Read/Update/Delete Tickets, Users, Organizations
-- Odoo - Create/Read/Update/Delete Sales Orders, Invoices, Customers
-- Shopify - Create/Read/Update/Delete Products, Orders, Customers
-- WooCommerce - Create/Read/Update/Delete Products, Orders, Customers
-- Squarespace - Create/Read/Update/Delete Pages, Products, Orders
+- External Agents - 调用类似 AutoGPT 的其他智能体
+- Trello - 创建/读取/更新/删除卡片、列表、看板
+- Jira - 创建/读取/更新/删除问题、项目、看板
+- Linear - 创建/读取/更新/删除问题、项目、看板
+- Excel - 读取/写入/更新/删除行、列、工作表
+- Slack - 读取/发布/回复消息，创建频道，邀请用户
+- ERPNext - 创建/读取/更新/删除发票、订单、客户、产品
+- Salesforce - 创建/读取/更新/删除潜在客户、商机、账户
+- HubSpot - 创建/读取/更新/删除联系人、交易、公司
+- Zendesk - 创建/读取/更新/删除工单、用户、组织
+- Odoo - 创建/读取/更新/删除销售订单、发票、客户
+- Shopify - 创建/读取/更新/删除产品、订单、客户
+- WooCommerce - 创建/读取/更新/删除产品、订单、客户
+- Squarespace - 创建/读取/更新/删除页面、产品、订单
 
-## Agent Templates we want to see
+## 我们希望看到的智能体模板
 
-### Data/Information
+### 数据/信息
 
-- Summarize top news of today, of this week, this month via Apple News or other large media outlets BBC, TechCrunch, hackernews, etc
-- Create, read, and summarize substack newsletters or any newsletters (blog writer vs blog reader)
-- Get/read/summarize the most viral Twitter, Instagram, TikTok (general social media accounts) of the day, week, month
-- Get/Read any LinkedIn posts or profile that mention AI Agents
-- Read/Summarize discord (might not be able to do this because you need access)
-- Read / Get most read books in a given month, year, etc from GoodReads or Amazon Books, etc
-- Get dates for specific shows across all streaming services
-  - Suggest/Recommend/Get most watched shows in a given month, year, etc across all streaming platforms
-- Data analysis from xlsx data set
-  - Gather via Excel or Google Sheets data > Sample the data randomly (sample block takes top X, bottom X, randomly, etc) > pass that to LLM Block to generate a script for analysis of the full data > Python block to run the script> making a loop back through LLM Fix Block on error > create chart/visualization (potentially in the code block?) > show the image as output (this may require frontend changes to show)
-- Tiktok video search and download
+- 通过 Apple News 或其他大型媒体（如 BBC、TechCrunch、hackernews 等）汇总今日、本周、本月的重要新闻
+- 创建、阅读并总结 Substack 新闻简报或任何类型的新闻简报（博客作者视角 vs 博客读者视角）
+- 获取/阅读/总结当日、本周、本月在 Twitter、Instagram、TikTok（泛指社交媒体账号）上最热门的帖子
+- 获取/阅读提及 AI Agents 的 LinkedIn 帖子或个人资料
+- 阅读/总结 Discord 内容（可能因需要访问权限而无法实现）
+- 从 GoodReads 或 Amazon Books 等平台获取指定月份、年份等时段内最受关注的书籍
+- 获取所有流媒体平台上特定节目的播出日期
+  - 推荐/获取所有流媒体平台在指定月份、年份等时段内最受欢迎的节目
+- 对 xlsx 数据集进行数据分析
+  - 通过 Excel 或 Google Sheets 采集数据 > 随机抽样数据（抽样模块可提取前 X 条、后 X 条或随机抽取等）> 将数据传递给 LLM 模块生成分析完整数据的脚本 > Python 模块运行脚本 > 出错时通过 LLM 修复模块循环处理 > 创建图表/可视化（可能在代码块中实现）> 将图像显示为输出（可能需要前端调整以展示）
+- TikTok 视频搜索与下载
 
-### Marketing
+### 市场营销
 
-- Portfolio site design and enhancements
+- 作品集网站设计与优化

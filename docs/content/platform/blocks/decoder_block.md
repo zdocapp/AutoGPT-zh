@@ -1,27 +1,33 @@
-# Text Decoder
+# 文本解码器
 
-## What it is
-A tool that converts text with special characters into regular, readable text.
+## 功能概述
 
-## What it does
-It takes a string of text that contains escaped characters (like '\n' for new lines or '\"' for quotation marks) and converts them into their actual representations in the text.
+一个将包含特殊字符的文本转换为常规可读文本的工具。
 
-## How it works
-The Text Decoder looks at the input text and identifies special character sequences. It then replaces these sequences with their actual characters, making the text more readable and removing any escape characters.
+## 功能说明
 
-## Inputs
-| Input | Description |
+它接收包含转义字符（如换行符 '\n' 或引号 '\"'）的文本字符串，并将其转换为文本中的实际表示形式。
+
+## 工作原理
+
+文本解码器会检查输入文本并识别特殊字符序列，然后将这些序列替换为实际字符，使文本更易读并移除所有转义字符。
+
+## 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| Text | The text you want to decode, which may contain escaped characters like '\n' for new lines or '\"' for quotation marks |
+| 文本 | 您想要解码的文本，可能包含转义字符，如换行符 '\n' 或引号 '\"' |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Decoded Text | The text after processing, with all escape sequences converted to their actual characters |
-| Error | If there's a problem during the decoding process, an error message will be provided instead |
+| 解码后的文本 | 处理后的文本，所有转义序列都已转换为实际字符 |
+| 错误 | 如果在解码过程中出现问题，将提供错误消息而非解码结果 |
 
-## Possible use case
-Imagine you receive a text message that looks like this: "Hello\nWorld!\nThis is a \"quoted\" string." The Text Decoder can convert it into a more readable format:
+## 可能的使用场景
+
+假设您收到这样一条文本消息："Hello\nWorld!\nThis is a \"quoted\" string." 文本解码器可以将其转换为更易读的格式：
 
 ```
 Hello
@@ -29,4 +35,4 @@ World!
 This is a "quoted" string.
 ```
 
-This could be useful when working with data from various sources where text might be encoded to preserve special characters, such as when importing data from a file or receiving it from an API.
+这在处理来自各种来源的数据时可能很有用，当文本可能被编码以保留特殊字符时，例如从文件导入数据或从API接收数据时。

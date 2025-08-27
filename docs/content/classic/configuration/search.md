@@ -1,37 +1,34 @@
-## 🔍 Google API Keys Configuration
+## 🔍 Google API 密钥配置
 
 !!! note
-    This section is optional. Use the official Google API if search attempts return
-    error 429. To use the `google` command, you need to set up your
-    Google API key in your environment variables or pass it with configuration to the [`WebSearchComponent`](../../forge/components/built-in-components.md).
+    此部分为可选配置。当搜索尝试返回错误 429 时，请使用官方 Google API。要使用 `google` 命令，您需要在环境变量中设置 Google API 密钥，或通过配置将其传递给 [`WebSearchComponent`](../../forge/components/built-in-components.md)。
 
-Create your project:
+创建您的项目：
 
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
-1. If you don't already have an account, create one and log in
-1. Create a new project by clicking on the *Select a Project* dropdown at the top of the
-    page and clicking *New Project*
-1. Give it a name and click *Create*
-1. Set up a custom search API and add to your .env file:
-    1. Go to the [APIs & Services Dashboard](https://console.cloud.google.com/apis/dashboard)
-    1. Click *Enable APIs and Services*
-    1. Search for *Custom Search API* and click on it
-    1. Click *Enable*
-    1. Go to the [Credentials](https://console.cloud.google.com/apis/credentials) page
-    1. Click *Create Credentials*
-    1. Choose *API Key*
-    1. Copy the API key
-    1. Set it as the `GOOGLE_API_KEY` in your `.env` file
-1. [Enable](https://console.developers.google.com/apis/api/customsearch.googleapis.com)
-    the Custom Search API on your project. (Might need to wait few minutes to propagate.)
-    Set up a custom search engine and add to your .env file:
-    1. Go to the [Custom Search Engine](https://cse.google.com/cse/all) page
-    1. Click *Add*
-    1. Set up your search engine by following the prompts.
-        You can choose to search the entire web or specific sites
-    1. Once you've created your search engine, click on *Control Panel*
-    1. Click *Basics*
-    1. Copy the *Search engine ID*
-    1. Set it as the `CUSTOM_SEARCH_ENGINE_ID` in your `.env` file
+1. 前往 [Google Cloud Console](https://console.cloud.google.com/)
+1. 如果您还没有账户，请创建一个并登录
+1. 通过点击页面顶部的*选择项目*下拉菜单并点击*新建项目*来创建新项目
+1. 为其命名并点击*创建*
+1. 设置自定义搜索 API 并添加到您的 .env 文件中：
+    1. 前往 [APIs & Services 仪表板](https://console.cloud.google.com/apis/dashboard)
+    1. 点击*启用 API 和服务*
+    1. 搜索*Custom Search API*并点击它
+    1. 点击*启用*
+    1. 前往[凭据](https://console.cloud.google.com/apis/credentials)页面
+    1. 点击*创建凭据*
+    1. 选择*API 密钥*
+    1. 复制 API 密钥
+    1. 将其设置为 `.env` 文件中的 `GOOGLE_API_KEY`
+1. 在您的项目上[启用](https://console.developers.google.com/apis/api/customsearch.googleapis.com)
+    Custom Search API（可能需要等待几分钟才能生效）
+    设置自定义搜索引擎并添加到您的 .env 文件中：
+    1. 前往[自定义搜索引擎](https://cse.google.com/cse/all)页面
+    1. 点击*添加*
+    1. 按照提示设置您的搜索引擎
+        您可以选择搜索整个网络或特定网站
+    1. 创建搜索引擎后，点击*控制面板*
+    1. 点击*基础*
+    1. 复制*搜索引擎 ID*
+    1. 将其设置为 `.env` 文件中的 `CUSTOM_SEARCH_ENGINE_ID`
 
-_Remember that your free daily custom search quota allows only up to 100 searches. To increase this limit, you need to assign a billing account to the project to profit from up to 10K daily searches._
+请注意，您的免费每日自定义搜索配额仅允许最多100次搜索。如需提高此限制，您需要为项目分配一个结算账户，以便享受每日最多10,000次搜索的服务。

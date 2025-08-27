@@ -1,1966 +1,2299 @@
-# Twitter API Integration Blocks
+# Twitter API 集成模块
 
-## Twitter Post Tweet Block
+## Twitter 发布推文模块
 
-### What it is
-A block that creates tweets on Twitter with various optional attachments and settings.
+### 功能概述
 
-### What it does
-This block allows posting tweets with text content and optional attachments like media, polls, quotes, or deep links.
+一个可在 Twitter 上创建推文的模块，支持多种可选附件和设置。
 
-### How it works
-It uses the Twitter API (Tweepy) to create a tweet with the specified content and settings, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块允许发布包含文本内容的推文，并支持媒体、投票、引用或深度链接等可选附件。
+
+### 工作原理
+
+通过 Twitter API (Tweepy) 创建具有指定内容和设置的推文，同时处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_text | Main text content of the tweet |
-| attachment | Optional media, deep link, poll, place or quote attachment |
-| for_super_followers_only | Whether the tweet is exclusively for super followers |
-| exclude_reply_user_ids | User IDs to exclude from reply thread |
-| in_reply_to_tweet_id | ID of tweet being replied to |
-| reply_settings | Who can reply to the tweet |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_text | 推文的主要文本内容 |
+| attachment | 可选的媒体、深度链接、投票、地点或引用附件 |
+| for_super_followers_only | 推文是否仅限超级粉丝可见 |
+| exclude_reply_user_ids | 要从回复线程中排除的用户 ID |
+| in_reply_to_tweet_id | 正在回复的推文 ID |
+| reply_settings | 可回复推文的用户范围 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| tweet_id | ID of the created tweet |
-| tweet_url | URL to view the tweet |
-| error | Error message if posting failed |
+| tweet_id | 已创建推文的 ID |
+| tweet_url | 查看推文的 URL |
+| error | 发布失败时的错误信息 |
 
-### Possible use case
-Automating tweet publishing with rich content like polls, media or quotes.
+### 应用场景
+
+自动化发布包含投票、媒体或引用等丰富内容的推文。
 
 ---
 
-## Twitter Delete Tweet Block
+## Twitter 删除推文模块
 
-### What it is
-A block that deletes a specified tweet on Twitter.
+### 功能概述
 
-### What it does
-This block removes an existing tweet using its tweet ID.
+一个用于删除 Twitter 上指定推文的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to delete the tweet with the given ID, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+此模块通过推文ID删除现有推文。
+
+### 工作原理
+
+它使用Twitter API（Tweepy）删除指定ID的推文，处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to delete |
+| credentials | 具有所需作用域的Twitter API凭据 |
+| tweet_id | 要删除的推文ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether deletion was successful |
-| error | Error message if deletion failed |
+| success | 删除是否成功 |
+| error | 删除失败时的错误信息 |
 
-### Possible use case
-Automated cleanup of old or irrelevant tweets.
+### 可能的使用场景
+
+自动清理过时或不相关的推文。
 
 ---
 
-## Twitter Search Recent Tweets Block
+## Twitter搜索近期推文模块
 
-### What it is
-A block that searches recent public tweets on Twitter.
+### 功能定义
 
-### What it does
-This block searches for tweets matching specified criteria with options for filtering and pagination.
+一个用于搜索Twitter上近期公开推文的模块。
 
-### How it works
-It queries the Twitter API (Tweepy) search endpoint with the provided parameters and returns matching tweets and metadata.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块根据指定条件搜索推文，并提供筛选和分页选项。
+
+### 工作原理
+
+它使用提供的参数查询Twitter API（Tweepy）搜索端点，并返回匹配的推文和元数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| query | Search query string |
-| max_results | Maximum number of results per page |
-| pagination | Token for getting next page of results |
-| expansions | Additional data fields to include |
-| start_time | Start of search time window |
-| end_time | End of search time window |
-| since_id | Return results after this tweet ID |
-| until_id | Return results before this tweet ID |
-| sort_order | Order of returned results |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| query | 搜索查询字符串 |
+| max_results | 每页最大结果数量 |
+| pagination | 用于获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 |
+| start_time | 搜索时间窗口开始时间 |
+| end_time | 搜索时间窗口结束时间 |
+| since_id | 返回此推文 ID 之后的结果 |
+| until_id | 返回此推文 ID 之前的结果 |
+| sort_order | 返回结果的排序方式 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| tweet_ids | List of matching tweet IDs |
-| tweet_texts | List of tweet text contents |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data |
-| included | Additional requested data |
-| meta | Pagination and result metadata |
-| error | Error message if search failed |
+| tweet_ids | 匹配的推文 ID 列表 |
+| tweet_texts | 推文文本内容列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的推文数据 |
+| included | 请求的附加数据 |
+| meta | 分页和结果元数据 |
+| error | 搜索失败时的错误信息 |
 
-### Possible use case
-Monitoring Twitter for mentions of specific topics or hashtags.
+### 可能的使用场景
+
+监控 Twitter 上特定话题或标签的提及情况。
 
 ---
 
-## Twitter Get Quote Tweets Block
+## Twitter 获取引用推文块
 
-### What it is
-A block that retrieves quote tweets (tweets that quote a specific tweet) from Twitter.
+### 功能概述
 
-### What it does
-This block gets a list of tweets that quote the specified tweet ID, with options for pagination and filtering.
+一个用于从 Twitter 检索引用推文（引用特定推文的推文）的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch quote tweets for a given tweet ID, handling authentication and returning tweet data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该功能块获取引用指定推文 ID 的推文列表，支持分页和筛选选项。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取指定推文 ID 的引用推文，处理身份验证并返回带有可选扩展的推文数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to get quotes for |
-| max_results | Maximum number of results to return (max 100) |
-| exclude | Types of tweets to exclude |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需范围的 Twitter API 凭据 |
+| tweet_id | 要获取引用推文的推文 ID |
+| max_results | 要返回的最大结果数（最多 100） |
+| exclude | 要排除的推文类型 |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的额外数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of quote tweet IDs |
-| texts | List of quote tweet text contents |
-| next_token | Token for retrieving next page [more info](twitter.md#common-output). |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 引用推文ID列表 |
+| texts | 引用推文文本内容列表 |
+| next_token | 用于检索下一页的令牌 [更多信息](twitter.md#common-output)。 |
+| data | 完整的推文数据 |
+| included | 额外请求的数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Monitoring engagement and responses to specific tweets through quote tweets.
+### 可能的使用场景
+
+通过引用推文监控特定推文的互动和回应。
 
 ---
 
-## Twitter Retweet Block
+## Twitter 转推功能块
 
-### What it is
-A block that retweets an existing tweet on Twitter.
+### 功能说明
 
-### What it does
-This block creates a retweet of the specified tweet using its tweet ID.
+一个用于在Twitter上转发现有条推文的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to retweet the tweet with the given ID, handling authentication and error cases.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该功能块使用推文ID创建指定推文的转发。
+
+### 工作原理
+
+通过Twitter API (Tweepy) 使用给定ID转发推文，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to retweet |
+| credentials | 具有所需权限范围的Twitter API凭据 |
+| tweet_id | 要转发的推文ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether retweet was successful |
-| error | Error message if retweet failed |
+| success | 转发是否成功 |
+| error | 转发失败时的错误信息 |
 
-### Possible use case
-Automated retweeting of content matching specific criteria.
+### 可能的使用场景
+
+自动转发符合特定标准的内容。
 
 ---
 
-## Twitter Remove Retweet Block
+## Twitter 取消转推功能块
 
-### What it is
-A block that removes a retweet on Twitter.
+### 功能说明
 
-### What it does
-This block removes an existing retweet of the specified tweet.
+一个用于移除 Twitter 转推的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to remove the retweet with the given tweet ID, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块移除指定推文的现有转推。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 通过给定的推文 ID 移除转推，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to remove retweet from |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要移除转推的推文 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| success | Whether retweet removal was successful |
-| error | Error message if removal failed |
+| success | 转推移除是否成功 |
+| error | 移除失败时的错误信息 |
 
-### Possible use case
-Automated cleanup of retweets based on certain conditions.
+### 可能的使用场景
+
+基于特定条件自动清理转推。
 
 ---
 
-## Twitter Get Retweeters Block
+## Twitter 获取转推者模块
 
-### What it is
-A block that retrieves information about users who have retweeted a specific tweet.
+### 模块简介
 
-### What it does
-This block gets a list of users who have retweeted the specified tweet ID, with options for pagination and filtering.
+一个用于检索转发了特定推文的用户信息的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch retweeter information for a given tweet ID, handling authentication and returning user data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块获取转发了指定推文 ID 的用户列表，支持分页和筛选选项。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 获取给定推文 ID 的转推者信息，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入参数
+
+| Input | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to get retweeters for |
-| max_results | Maximum number of results per page (1-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要获取转发者的推文 ID |
+| max_results | 每页最大结果数 (1-100) |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| Output | 描述 |
 |--------|-------------|
-| ids | List of user IDs who retweeted |
-| names | List of user names who retweeted |
-| usernames | List of usernames who retweeted |
-| next_token | Token for retrieving next page |
-| data | Complete user data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 转发用户的 ID 列表 |
+| names | 转发用户的名称列表 |
+| usernames | 转发用户的用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的用户数据 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Monitoring engagement and analyzing user behavior through retweet patterns.
+### 可能的使用场景
+
+通过转发模式监控参与度并分析用户行为。
 
 ---
 
-## Twitter Get User Mentions Block
+## Twitter 获取用户提及区块
 
-### What it is
-A block that retrieves tweets mentioning a specific Twitter user.
+### 功能概述
 
-### What it does
-This block gets tweets where a user is mentioned, using their user ID.
+用于获取提及特定 Twitter 用户的推文的模块。
 
-### How it works
-It queries the Twitter API (Tweepy) with the provided user ID to fetch tweets mentioning that user, handling pagination and filters.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块通过用户 ID 获取提及该用户的推文。
+
+### 工作原理
+
+通过提供的用户 ID 查询 Twitter API（使用 Tweepy）来获取提及该用户的推文，处理分页和过滤。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| user_id | ID of user to get mentions for |
-| max_results | Number of results per page (5-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| user_id | 要获取提及推文的用户 ID |
+| max_results | 每页结果数量（5-100） |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of Tweet IDs |
-| texts | List of tweet text contents |
-| userIds | List of user IDs who mentioned target user |
-| userNames | List of usernames who mentioned target user |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 推文ID列表 |
+| texts | 推文文本内容列表 |
+| userIds | 提及目标用户的用户ID列表 |
+| userNames | 提及目标用户的用户名列表 |
+| next_token | 用于获取下一页的令牌 |
+| data | 完整的推文数据 |
+| included | 额外请求的数据 [更多信息](twitter.md#common-output) |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output) |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Monitoring mentions of specific accounts for community management.
+### 可能的使用场景
+
+监控特定账号的提及情况，用于社区管理。
 
 ---
 
-## Twitter Get Home Timeline Block
+## Twitter 获取主页时间线模块
 
-### What it is
-A block that retrieves tweets from a user's home timeline.
+### 功能概述
 
-### What it does
-This block returns a collection of recent tweets and retweets posted by the authenticated user and accounts they follow.
+一个用于从用户主页时间线获取推文的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch tweets from the home timeline, handling pagination and applying filters.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块返回认证用户及其关注账号最近发布的推文和转推集合。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 从主页时间线获取推文，处理分页并应用过滤器。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| max_results | Number of results per page (5-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| max_results | 每页结果数量 (5-100) |
+| pagination_token | 获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of Tweet IDs |
-| texts | List of tweet text contents |
-| userIds | List of user IDs who authored tweets |
-| userNames | List of usernames who authored tweets |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 推文 ID 列表 |
+| texts | 推文文本内容列表 |
+| userIds | 发布推文的用户 ID 列表 |
+| userNames | 发布推文的用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的推文数据 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Monitoring and analyzing content from followed accounts.
+### 可能的使用场景
+
+监控和分析关注账号的内容。
 
 ---
 
-## Twitter Get User Tweets Block
+## Twitter 获取用户推文块
 
-### What it is
-A block that retrieves tweets posted by a specific Twitter user.
+### 功能说明
 
-### What it does
-This block returns tweets authored by a single user, identified by their user ID.
+一个用于获取特定 Twitter 用户所发布推文的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch tweets from a specified user's timeline, handling pagination and filters.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块返回由单个用户（通过用户 ID 标识）撰写的推文。
+
+### 工作原理
+
+它使用 Twitter API（通过 Tweepy）从指定用户的时间线获取推文，处理分页和过滤。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| user_id | ID of user to get tweets from |
-| max_results | Number of results per page (5-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| user_id | 要获取推文的用户 ID |
+| max_results | 每页结果数量（5-100） |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input) |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input) |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input) |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input) |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of Tweet IDs |
-| texts | List of tweet text contents |
-| userIds | List of user IDs who authored tweets |
-| userNames | List of usernames who authored tweets |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 推文ID列表 |
+| texts | 推文文本内容列表 |
+| userIds | 推文作者的用户ID列表 |
+| userNames | 推文作者的用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的推文数据 |
+| included | 额外请求的数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误消息 |
 
-### Possible use case
-Analyzing content and activity patterns of specific Twitter accounts.
+### 可能的使用场景
+
+分析特定Twitter账号的内容和活动模式。
 
 ---
 
-## Twitter Get Tweet Block
+## Twitter 获取推文块
 
-### What it is
-A block that retrieves detailed information about a specific tweet by its ID.
+### 功能概述
 
-### What it does
-This block fetches information about a single tweet specified by the tweet ID, including tweet content, author details, and optional expanded data.
+通过推文ID检索特定推文详细信息的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch a single tweet by its ID, handling authentication and returning tweet data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该块通过推文ID获取指定单条推文的信息，包括推文内容、作者详情和可选的扩展数据。
+
+### 工作原理
+
+使用Twitter API（Tweepy）通过ID获取单条推文，处理身份验证并返回带有可选扩展的推文数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to fetch |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要获取的推文 ID |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input) |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input) |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input) |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input) |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| id | Tweet ID |
-| text | Tweet text content |
-| userId | ID of tweet author |
-| userName | Username of tweet author |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Tweet metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| id | 推文 ID |
+| text | 推文文本内容 |
+| userId | 推文作者 ID |
+| userName | 推文作者用户名 |
+| data | 完整的推文数据 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output) |
+| meta | 推文元数据 [更多信息](twitter.md#common-output) |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Retrieving detailed information about specific tweets for analysis or monitoring.
+### 可能的使用场景
+
+检索特定推文的详细信息用于分析或监控。
 
 ---
 
-## Twitter Get Tweets Block
+## Twitter 获取多条推文块
 
-### What it is
-A block that retrieves information about multiple tweets by their IDs.
+### 功能概述
 
-### What it does
-This block fetches information about multiple tweets (up to 100) specified by their tweet IDs.
+通过 ID 检索多条推文信息的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to batch fetch tweets by their IDs, handling authentication and returning tweet data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+此模块通过推文ID批量获取多条推文信息（最多100条）。
+
+### 工作原理
+
+使用Twitter API（Tweepy）通过ID批量获取推文，处理身份验证并返回带有可选扩展字段的推文数据。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_ids | List of tweet IDs to fetch (max 100) |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的Twitter API凭证 |
+| tweet_ids | 要获取的推文ID列表（最多100条） |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of tweet IDs |
-| texts | List of tweet text contents |
-| userIds | List of tweet author IDs |
-| userNames | List of tweet author usernames |
-| data | Complete tweet data array |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Tweet metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 推文ID列表 |
+| texts | 推文文本内容列表 |
+| userIds | 推文作者ID列表 |
+| userNames | 推文作者用户名列表 |
+| data | 完整的推文数据数组 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output)。 |
+| meta | 推文元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Batch retrieval of tweet information for analysis or archival purposes.
+### 可能的使用场景
+
+批量获取推文信息用于分析或归档目的。
 
 ---
 
-## Twitter Like Tweet Block
+## Twitter 点赞推文模块
 
-### What it is
-A block that likes a tweet on Twitter.
+### 功能说明
 
-### What it does
-This block creates a like on a specified tweet using its tweet ID.
+用于在 Twitter 上点赞推文的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to like the tweet with the given ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块通过指定推文 ID 使用 Twitter API 创建点赞操作。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 通过给定 ID 点赞推文，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to like |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要点赞的推文 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| success | Whether like was successful |
-| error | Error message if like failed |
+| success | 点赞是否成功 |
+| error | 点赞失败时的错误信息 |
 
-### Possible use case
-Automated liking of tweets matching specific criteria.
+### 适用场景
+
+自动点赞符合特定条件的推文。
 
 ---
 
-## Twitter Get Liking Users Block
+## Twitter 获取点赞用户模块
 
-### What it is
-A block that retrieves information about users who liked a specific tweet.
+### 功能说明
 
-### What it does
-This block gets a list of users who have liked the specified tweet ID, with options for pagination and filtering.
+用于获取特定推文的点赞用户信息的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch information about users who liked a given tweet ID, handling authentication and returning user data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块获取指定推文 ID 的点赞用户列表，支持分页和筛选选项。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 获取给定推文 ID 的点赞用户信息，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of tweet to get liking users for |
-| max_results | Maximum number of results to return (1-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要获取点赞用户的推文 ID |
+| max_results | 返回的最大结果数量 (1-100) |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| id | List of user IDs who liked |
-| username | List of usernames who liked |
-| next_token | Token for retrieving next page |
-| data | Complete user data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| id | 点赞用户的 ID 列表 |
+| username | 点赞用户的用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的用户数据 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing engagement patterns through tracking tweet likes.
+### 可能的使用场景
+
+通过跟踪推文点赞分析互动模式。
 
 ---
 
-## Twitter Get Liked Tweets Block
+## Twitter 获取已点赞推文块
 
-### What it is
-A block that retrieves tweets liked by a specific Twitter user.
+### 功能说明
 
-### What it does
-This block gets a list of tweets that have been liked by the specified user ID.
+一个用于检索特定 Twitter 用户点赞过的推文的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch tweets liked by a given user ID, handling pagination and filters.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该块获取指定用户 ID 点赞过的推文列表。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取指定用户 ID 点赞的推文，处理分页和过滤。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| user_id | ID of user to get liked tweets for |
-| max_results | Maximum number of results per page (5-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| user_id | 要获取点赞推文的用户 ID |
+| max_results | 每页最大结果数 (5-100) |
+| pagination_token | 获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| ids | List of liked tweet IDs |
-| texts | List of liked tweet text contents |
-| userIds | List of tweet author IDs |
-| userNames | List of tweet author usernames |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 点赞推文 ID 列表 |
+| texts | 点赞推文文本内容列表 |
+| userIds | 推文作者 ID 列表 |
+| userNames | 推文作者用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的推文数据 |
+| included | 额外请求的数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing user interests and preferences through liked tweet patterns.
+### 可能的使用场景
+
+通过点赞推文模式分析用户兴趣和偏好。
 
 ---
 
-## Twitter Unlike Tweet Block
+## Twitter 取消点赞推文块
 
-### What it is
-A block that unlikes a previously liked tweet on Twitter.
+### 功能说明
 
-### What it does
-This block removes a like from the specified tweet using its tweet ID.
+一个用于取消先前在 Twitter 上点赞的推文的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to unlike the tweet with the given ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块使用推文 ID 移除指定推文的点赞。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 通过给定的 ID 取消点赞推文，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to unlike |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要取消点赞的推文 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether unlike was successful |
-| error | Error message if unlike failed |
+| success | 取消点赞是否成功 |
+| error | 取消点赞失败时的错误信息 |
 
-### Possible use case
-Automated cleanup of likes based on certain conditions.
+### 可能的使用场景
+
+基于特定条件自动清理点赞。
 
 ---
 
-## Twitter Hide Reply Block
+## Twitter 隐藏回复块
 
-### What it is
-A block that hides a reply to one of your tweets.
+### 功能说明
 
-### What it does
-This block hides a specified reply tweet from being visible in the main conversation thread.
+一个用于隐藏对你推文的回复的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to hide a reply tweet with the given tweet ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块隐藏指定的回复推文，使其不在主对话线程中可见。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 通过给定的推文 ID 隐藏回复推文，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet reply to hide |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要隐藏的推文回复 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether hiding was successful |
-| error | Error message if hiding failed |
+| success | 隐藏是否成功 |
+| error | 隐藏失败时的错误信息 |
 
-### Possible use case
-Moderating conversations by hiding inappropriate or unwanted replies.
+### 可能的使用场景
+
+通过隐藏不当或不想要的回复来管理对话。
 
 ---
 
-## Twitter Unhide Reply Block
+## Twitter 取消隐藏回复块
 
-### What it is
-A block that unhides a previously hidden reply to a tweet.
+### 功能说明
 
-### What it does
-This block makes a hidden reply tweet visible again in the conversation thread.
+一个用于取消隐藏先前隐藏的推文回复的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to unhide a reply tweet with the given tweet ID, handling authentication and error cases.
+### 功能作用
 
-### Inputs
-| Input | Description |
+此块使隐藏的回复推文在对话线程中重新可见。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 来取消隐藏具有给定推文 ID 的回复推文，处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet reply to unhide |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| tweet_id | 要取消隐藏的推文回复 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether unhiding was successful |
-| error | Error message if unhiding failed |
+| success | 取消隐藏是否成功 |
+| error | 取消隐藏失败时的错误信息 |
 
-### Possible use case
-Restoring previously hidden replies when moderation is no longer needed.
+### 可能的使用场景
+
+当不再需要审核时恢复先前隐藏的回复。
 
 ---
 
-## Twitter Bookmark Tweet Block
+## Twitter 收藏推文块
 
-### What it is
-A block that bookmarks a specified tweet on Twitter.
+### 功能说明
 
-### What it does
-This block creates a bookmark for a tweet using its tweet ID.
+一个用于在 Twitter 上收藏指定推文的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to bookmark the tweet with the given ID, handling authentication and error cases.
+### 功能作用
 
-### Inputs
-| Input | Description |
+此模块通过推文ID为推文创建书签。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 通过给定ID为推文添加书签，处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to bookmark |
+| credentials | 具有所需作用域的 Twitter API 凭据 |
+| tweet_id | 要添加书签的推文ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether bookmark was successful |
-| error | Error message if bookmark failed |
+| success | 书签是否添加成功 |
+| error | 书签失败时的错误信息 |
 
-### Possible use case
-Saving tweets for later reference and organization.
+### 可能的使用场景
+
+保存推文以供后续参考和组织。
 
 ---
 
-## Twitter Get Bookmarked Tweets Block
+## Twitter 获取已收藏推文模块
 
-### What it is
-A block that retrieves a user's bookmarked tweets from Twitter.
+### 功能说明
 
-### What it does
-This block gets a list of tweets that have been bookmarked by the authenticated user.
+一个从 Twitter 获取用户已收藏推文的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch bookmarked tweets, handling pagination and optional data expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块获取经过身份验证用户已收藏的推文列表。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取已收藏推文，处理分页和可选的数据扩展。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| max_results | Maximum number of results per page (1-100) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| max_results | 每页最大结果数 (1-100) |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| id | List of bookmarked tweet IDs |
-| text | List of bookmarked tweet text contents |
-| userId | List of tweet author IDs |
-| userName | List of tweet author usernames |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| id | 已收藏推文 ID 列表 |
+| text | 已收藏推文文本内容列表 |
+| userId | 推文作者 ID 列表 |
+| userName | 推文作者用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的推文数据 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Retrieving and analyzing saved tweets for content curation or research.
+### 可能的使用场景
+
+检索和分析已保存的推文，用于内容策划或研究。
 
 ---
 
-## Twitter Remove Bookmark Tweet Block
+## Twitter 移除收藏推文块
 
-### What it is
-A block that removes a bookmark from a tweet on Twitter.
+### 功能说明
 
-### What it does
-This block removes an existing bookmark from a specified tweet using its tweet ID.
+一个用于移除 Twitter 推文书签的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to remove the bookmark with the given tweet ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块通过指定推文 ID 移除已存在的 Twitter 书签。
+
+### 实现原理
+
+通过 Twitter API (Tweepy) 使用给定的推文 ID 移除书签，并处理身份验证和异常情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| tweet_id | ID of the tweet to remove bookmark from |
+| credentials | 具备所需权限的 Twitter API 凭证 |
+| tweet_id | 需要移除书签的推文 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| success | Whether bookmark removal was successful |
-| error | Error message if removal failed |
+| success | 书签移除是否成功 |
+| error | 移除失败时的错误信息 |
 
-### Possible use case
-Managing bookmarks by removing outdated or no longer relevant saved tweets.
+### 应用场景
+
+通过移除过期或不再相关的已保存推文来管理书签。
 
 ---
 
-## Twitter Unblock User Block
+## Twitter 取消屏蔽用户功能块
 
-### What it is
-A block that unblocks a user that has been previously blocked on Twitter.
+### 功能说明
 
-### What it does
-This block removes a block from a specified user using their user ID.
+一个用于解除 Twitter 平台上已屏蔽用户状态的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to unblock a user with the given user ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块通过指定用户 ID 移除对相应用户的屏蔽状态。
+
+### 实现原理
+
+通过 Twitter API (Tweepy) 使用给定的用户 ID 解除用户屏蔽，并处理身份验证和异常情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of the user to unblock |
+| credentials | 具备所需权限的 Twitter API 凭证 |
+| target_user_id | 需要解除屏蔽的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether unblock was successful |
-| error | Error message if unblock failed |
+| success | 解除屏蔽是否成功 |
+| error | 解除屏蔽失败时的错误信息 |
 
-### Possible use case
-Reverting previously blocked users when access should be restored.
+### 可能的使用场景
+
+当需要恢复访问权限时，撤销之前被屏蔽的用户。
 
 ---
 
-## Twitter Get Blocked Users Block
+## Twitter 获取被屏蔽用户 屏蔽
 
-### What it is
-A block that retrieves a list of users that have been blocked by the authenticated user.
+### 功能说明
 
-### What it does
-This block gets information about users who have been blocked, with options for pagination and filtering.
+一个用于检索已认证用户所屏蔽用户列表的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch a list of blocked users, handling authentication and returning user data with optional expansions.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该模块获取被屏蔽用户的信息，支持分页和筛选选项。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 获取被屏蔽用户列表，处理身份验证并返回带有可选扩展字段的用户数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| max_results | Maximum number of results to return (1-1000) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include |
-| tweet_fields | Tweet-specific fields to include |
-| user_fields | User-related fields to include |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| max_results | 要返回的最大结果数量 (1-1000) |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的额外数据字段 |
+| tweet_fields | 要包含的推文特定字段 |
+| user_fields | 要包含的用户相关字段 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| user_ids | List of blocked user IDs |
-| usernames_ | List of blocked usernames |
-| included | Additional requested data |
-| meta | Pagination and result metadata |
-| next_token | Token for retrieving next page |
-| error | Error message if request failed |
+| user_ids | 被屏蔽用户ID列表 |
+| usernames_ | 被屏蔽用户名列表 |
+| included | 请求的额外数据 |
+| meta | 分页和结果元数据 |
+| next_token | 用于检索下一页的令牌 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Monitoring and managing blocked users for account safety and moderation.
+### 可能的使用场景
+
+监控和管理被屏蔽用户，用于账户安全和内容审核。
 
 ---
 
-## Twitter Block User Block
+## Twitter 屏蔽用户功能块
 
-### What it is
-A block that blocks a user on Twitter.
+### 功能说明
 
-### What it does
-This block blocks a specified user using their user ID.
+一个用于在 Twitter 上屏蔽用户的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to block a user with the given user ID, handling authentication and error cases.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该功能块使用用户 ID 屏蔽指定用户。
+
+### 工作原理
+
+通过 Twitter API (Tweepy) 使用给定用户 ID 屏蔽用户，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of the user to block |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| target_user_id | 要屏蔽的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| success | Whether block was successful |
-| error | Error message if block failed |
+| success | 屏蔽是否成功 |
+| error | 屏蔽失败时的错误信息 |
 
-### Possible use case
-Automating user blocking based on specific criteria or behaviors.
+### 可能的使用场景
 
-## Twitter Unfollow User Block
+基于特定标准或行为自动屏蔽用户。
 
-### What it is
-A block that unfollows a Twitter user.
+## Twitter 取消关注用户功能块
 
-### What it does
-This block unfollows a specified user using their user ID.
+### 功能说明
 
-### How it works
-It uses the Twitter API (Tweepy) to unfollow a user with the given user ID, handling authentication and error cases.
+一个用于取消关注 Twitter 用户的功能块。
 
-### Inputs
-| Input | Description |
+### 功能作用
+
+该功能块使用用户 ID 取消关注指定用户。
+
+### 工作原理
+
+通过 Twitter API (Tweepy) 使用给定用户 ID 取消关注用户，处理身份验证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of the user to unfollow |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| target_user_id | 要取消关注的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether unfollow was successful |
-| error | Error message if unfollow failed |
+| success | 取消关注是否成功 |
+| error | 取消关注失败时的错误信息 |
 
-### Possible use case
-Automating unfollowing users based on specific criteria.
+### 可能的使用场景
+
+基于特定条件自动取消关注用户。
 
 ---
 
-## Twitter Follow User Block
+## Twitter 关注用户功能块
 
-### What it is
-A block that follows a Twitter user.
+### 功能说明
 
-### What it does
-This block follows a specified user using their user ID.
+用于关注 Twitter 用户的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to follow a user with the given user ID, handling authentication and error cases. If the target user has protected tweets, this will send a follow request.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该功能块使用用户 ID 来关注指定的 Twitter 用户。
+
+### 工作原理
+
+通过 Twitter API (Tweepy) 使用给定的用户 ID 关注用户，处理身份验证和错误情况。如果目标用户设置了推文保护，此操作将发送关注请求。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of the user to follow |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| target_user_id | 要关注的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether follow was successful |
-| error | Error message if follow failed |
+| success | 关注是否成功 |
+| error | 关注失败时的错误信息 |
 
-### Possible use case
-Automating following of users matching specific criteria.
+### 可能的使用场景
+
+自动关注符合特定条件的用户。
 
 ---
 
-## Twitter Get Followers Block
+## Twitter 获取粉丝列表功能块
 
-### What it is
-A block that retrieves a list of followers for a specified Twitter user.
+### 功能说明
 
-### What it does
-This block gets a list of users who follow the specified user ID, with options for pagination and filtering.
+用于获取指定 Twitter 用户粉丝列表的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch followers for a given user ID, handling authentication and returning user data with optional expansions.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该功能块获取关注指定用户 ID 的用户列表，支持分页和筛选选项。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取指定用户 ID 的关注者，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of user to get followers for |
-| max_results | Maximum number of results per page (1-1000) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| target_user_id | 要获取关注者的用户 ID |
+| max_results | 每页最大结果数 (1-1000) |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的额外数据字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of follower user IDs |
-| usernames | List of follower usernames |
-| next_token | Token for retrieving next page |
-| data | Complete user data |
-| includes | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 关注者用户 ID 列表 |
+| usernames | 关注者用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的用户数据 |
+| includes | 额外请求的数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing follower patterns and demographics.
+### 可能的使用场景
+
+分析关注者模式和人口统计数据。
 
 ---
 
-## Twitter Get Following Block
+## Twitter 获取关注列表功能块
 
-### What it is
-A block that retrieves a list of users that a specified Twitter user follows.
+### 功能概述
 
-### What it does
-This block gets a list of users being followed by the specified user ID, with options for pagination and filtering.
+一个用于检索指定 Twitter 用户所关注用户列表的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch following list for a given user ID, handling authentication and returning user data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+此模块获取指定用户ID所关注的用户列表，支持分页和筛选选项。
+
+### 工作原理
+
+通过Twitter API（Tweepy）获取给定用户ID的关注列表，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of user to get following list for |
-| max_results | Maximum number of results per page (1-1000) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的Twitter API凭证 |
+| target_user_id | 需要获取关注列表的用户ID |
+| max_results | 每页最大结果数（1-1000） |
+| pagination_token | 获取下一页结果的令牌 |
+| expansions | 包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| tweet_fields | 包含的推文特定字段 [更多信息](twitter.md#common-input) |
+| user_fields | 包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| ids | List of following user IDs |
-| usernames | List of following usernames |
-| next_token | Token for retrieving next page |
-| data | Complete user data |
-| includes | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| ids | 关注用户ID列表 |
+| usernames | 关注用户名列表 |
+| next_token | 检索下一页的令牌 |
+| data | 完整的用户数据 |
+| includes | 请求的附加数据 [更多信息](twitter.md#common-output) |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output) |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing following patterns and network connections.
+### 可能的使用场景
+
+分析关注模式和网络连接关系。
 
 ---
 
-## Twitter Unmute User Block
+## Twitter 取消静音用户模块
 
-### What it is
-A block that unmutes a previously muted user on Twitter.
+### 功能说明
 
-### What it does
-This block unmutes a specified user using their user ID. The request succeeds with no action if the target user is not currently muted.
+用于解除 Twitter 上先前被禁言的用户。
 
-### How it works
-It uses the Twitter API (Tweepy) to unmute a user with the given user ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块通过用户 ID 解除对指定用户的禁言。若目标用户当前未被禁言，请求将成功执行且无实际操作。
+
+### 实现原理
+
+通过 Twitter API (Tweepy) 根据给定用户 ID 解除用户禁言，并处理身份验证及异常情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of the user to unmute |
+| credentials | 具备所需权限范围的 Twitter API 凭证 |
+| target_user_id | 待解除禁言的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| success | Whether unmute was successful |
-| error | Error message if unmute failed |
+| success | 解除禁言是否成功 |
+| error | 解除禁言失败时的错误信息 |
 
-### Possible use case
-Reverting muted users when communication should be restored.
+### 应用场景
+
+当需要恢复通信时撤销对用户的禁言操作。
 
 ---
 
-## Twitter Get Muted Users Block
+## Twitter 获取禁言用户列表模块
 
-### What it is
-A block that retrieves a list of users muted by the authenticated user.
+### 功能说明
 
-### What it does
-This block gets a list of muted users with options for pagination and filtering.
+用于获取认证用户已禁言的用户列表。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch muted users, handling authentication and returning user data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块获取被禁言用户列表，支持分页和筛选选项。
+
+### 实现原理
+
+通过 Twitter API (Tweepy) 获取被禁言用户数据，处理身份验证并返回带有可选扩展信息的用户数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| max_results | Maximum results per page (1-1000, default 10) |
-| pagination_token | Token for getting next/previous page |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| max_results | 每页最大结果数 (1-1000，默认 10) |
+| pagination_token | 用于获取下一页/上一页的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of muted user IDs |
-| usernames | List of muted usernames |
-| next_token | Token for retrieving next page |
-| data | Complete user data for muted users |
-| includes | Additional requested data |
-| meta | Metadata including pagination info |
-| error | Error message if request failed |
+| ids | 已屏蔽用户 ID 列表 |
+| usernames | 已屏蔽用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 已屏蔽用户的完整用户数据 |
+| includes | 额外请求的数据 |
+| meta | 包含分页信息的元数据 |
+| error | 请求失败时的错误消息 |
 
-### Possible use case
-Monitoring and managing muted users list for content filtering.
+### 可能的使用场景
+
+监控和管理已屏蔽用户列表以进行内容过滤。
 
 ---
 
-## Twitter Mute User Block
+## Twitter 屏蔽用户功能块
 
-### What it is
-A block that mutes a specified user on Twitter.
+### 功能说明
 
-### What it does
-This block mutes a user using their user ID to stop seeing their tweets.
+一个在 Twitter 上屏蔽指定用户的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to mute a user with the given user ID, handling authentication and error cases.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该功能块使用用户 ID 屏蔽用户，以停止看到他们的推文。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 通过给定的用户 ID 屏蔽用户，处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| target_user_id | ID of the user to mute |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| target_user_id | 要禁言的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether mute was successful |
-| error | Error message if mute failed |
+| success | 禁言是否成功 |
+| error | 禁言失败时的错误信息 |
 
-### Possible use case
-Automating user muting based on specific criteria or behaviors.
+### 可能的使用场景
+
+基于特定标准或行为自动禁言用户。
 
 ---
 
-## Twitter Get User Block
+## Twitter 获取用户屏蔽状态
 
-### What it is
-A block that retrieves information about a single Twitter user by either their user ID or username.
+### 功能说明
 
-### What it does
-This block fetches detailed user information, including basic profile data and optional expanded information, for a specified Twitter user.
+通过用户 ID 或用户名获取单个 Twitter 用户信息的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch user data for a single user identified by either ID or username, handling authentication and returning user data with optional expansions.
+### 功能作用
 
-### Inputs
-| Input | Description |
+该模块获取指定 Twitter 用户的详细信息，包括基本资料数据和可选的扩展信息。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 通过 ID 或用户名获取单个用户数据，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| identifier | User identifier (either user ID or username) |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| identifier | 用户标识符（用户 ID 或用户名） |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| id | User ID |
-| username_ | Twitter username |
-| name_ | Display name |
-| data | Complete user data |
-| included | Additional requested data |
-| error | Error message if request failed |
+| id | 用户 ID |
+| username_ | Twitter 用户名 |
+| name_ | 显示名称 |
+| data | 完整的用户数据 |
+| included | 额外请求的数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Retrieving detailed user profile information for analysis or verification.
+### 可能的使用场景
+
+检索详细的用户档案信息用于分析或验证。
 
 ---
 
-## Twitter Get Users Block
+## Twitter 获取用户块
 
-### What it is
-A block that retrieves information about multiple Twitter users by their IDs or usernames.
+### 功能说明
 
-### What it does
-This block fetches detailed user information for up to 100 users at once, including basic profile data and optional expanded information.
+一个通过用户ID或用户名检索多个Twitter用户信息的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to batch fetch user data for multiple users identified by either IDs or usernames, handling authentication and returning user data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块可一次性获取最多100个用户的详细信息，包括基本档案数据和可选的扩展信息。
+
+### 工作原理
+
+使用Twitter API（Tweepy）批量获取通过ID或用户名标识的多个用户数据，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| identifier | List of user identifiers (either user IDs or usernames, max 100) |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的Twitter API凭据 |
+| identifier | 用户标识符列表（用户ID或用户名，最多100个） |
+| expansions | 要包含的额外数据字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of user IDs |
-| usernames_ | List of Twitter usernames |
-| names_ | List of display names |
-| data | Complete user data array |
-| included | Additional requested data |
-| error | Error message if request failed |
+| ids | 用户ID列表 |
+| usernames_ | Twitter用户名列表 |
+| names_ | 显示名称列表 |
+| data | 完整的用户数据数组 |
+| included | 额外请求的数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Batch retrieval of user profile information for analysis or monitoring.
+### 可能的使用场景
+
+批量检索用户档案信息用于分析或监控。
 
 ---
 
-## Twitter Search Spaces Block
+## Twitter 搜索空间区块
 
-### What it is
-A block that searches for live or scheduled Twitter Spaces by specified search terms.
+### 功能说明
 
-### What it does
-This block searches for Twitter Spaces based on title keywords, with options to filter by state (live/scheduled) and pagination.
+一个通过指定搜索词搜索直播或预定Twitter空间的区块。
 
-### How it works
-It uses the Twitter API (Tweepy) to search for Spaces matching the query parameters, handling authentication and returning Space data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该区块基于标题关键词搜索Twitter空间，提供按状态（直播中/已预定）筛选和分页功能。
+
+### 工作原理
+
+使用Twitter API（Tweepy）搜索符合查询参数的空间，处理身份验证并返回带有可选扩展的空间数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| query | Search term to find in Space titles |
-| max_results | Maximum number of results to return (1-100, default 10) |
-| state | Type of Spaces to return (live, scheduled, or all) |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| space_fields | Space-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| query | 在 Space 标题中搜索的关键词 |
+| max_results | 返回的最大结果数量 (1-100, 默认 10) |
+| state | 要返回的 Space 类型 (live, scheduled, 或 all) |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| space_fields | 要包含的 Space 特定字段 [更多信息](twitter.md#common-input) |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of space IDs |
-| titles | List of space titles |
-| host_ids | List of host IDs |
-| next_token | Token for retrieving next page |
-| data | Complete space data |
-| includes | Additional requested data |
-| meta | Metadata including pagination info |
-| error | Error message if request failed |
+| ids | Space ID 列表 |
+| titles | Space 标题列表 |
+| host_ids | 主持人 ID 列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的 Space 数据 |
+| includes | 请求的附加数据 |
+| meta | 包含分页信息的元数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Finding relevant Twitter Spaces for content discovery and engagement.
+### 可能的使用场景
+
+查找相关的 Twitter Spaces 以进行内容发现和互动。
 
 ---
 
-## Twitter Get Spaces Block
+## Twitter 获取 Spaces 块
 
-### What it is
-A block that retrieves information about multiple Twitter Spaces specified by Space IDs or creator user IDs.
+### 功能概述
 
-### What it does
-This block fetches detailed information for up to 100 Spaces using either their Space IDs or creator user IDs.
+一个通过 Space ID 或创建者用户 ID 检索多个 Twitter Spaces 信息的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to batch fetch Space data for multiple Spaces, handling authentication and returning Space data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块使用 Space ID 或创建者用户 ID 获取最多 100 个 Space 的详细信息。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 批量获取多个 Space 的数据，处理身份验证并返回带有可选扩展的 Space 数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| identifier | Choice of lookup by Space IDs or creator user IDs |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| space_fields | Space-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需作用域的 Twitter API 凭据 |
+| identifier | 选择通过 Space ID 或创建者用户 ID 进行查找 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| space_fields | 要包含的 Space 特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of Space IDs |
-| titles | List of Space titles |
-| data | Complete Space data array |
-| includes | Additional requested data |
-| error | Error message if request failed |
+| ids | Space ID 列表 |
+| titles | Space 标题列表 |
+| data | 完整的 Space 数据数组 |
+| includes | 请求的附加数据 |
+| error | 请求失败时的错误消息 |
 
-### Possible use case
-Batch retrieval of Space information for analytics or monitoring.
+### 可能的使用场景
+
+批量检索 Space 信息用于分析或监控。
 
 ---
 
-## Twitter Get Space By ID Block
+## Twitter 通过 ID 获取 Space 块
 
-### What it is
-A block that retrieves information about a single Twitter Space specified by Space ID.
+### 功能概述
 
-### What it does
-This block fetches detailed information about a single Space, including host information and other metadata.
+一个用于检索由 Space ID 指定的单个 Twitter Space 信息的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch Space data for a single Space ID, handling authentication and returning Space data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此块获取单个 Space 的详细信息，包括主持人信息和其他元数据。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取单个 Space ID 的 Space 数据，处理身份验证并返回带有可选扩展的 Space 数据。
+
+### 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| space_id | ID of Space to retrieve |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| space_fields | Space-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| space_id | 要获取的 Space ID |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| space_fields | 要包含的 Space 特定字段 [更多信息](twitter.md#common-input) |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
 | id | Space ID |
-| title | Space title |
-| host_ids | List of host IDs |
-| data | Complete Space data |
-| includes | Additional requested data |
-| error | Error message if request failed |
+| title | Space 标题 |
+| host_ids | 主持人 ID 列表 |
+| data | 完整的 Space 数据 |
+| includes | 请求的附加数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Retrieving detailed information about a specific Space for analysis or display.
+### 可能的使用场景
+
+获取特定 Space 的详细信息用于分析或展示。
 
 ---
 
-## Twitter Get Space Buyers Block
+## Twitter 获取 Space 购买者模块
 
-### What it is
-A block that retrieves a list of users who purchased tickets to a Twitter Space.
+### 功能概述
 
-### What it does
-This block gets information about users who bought tickets to attend a specific Space.
+该模块用于检索购买了 Twitter Space 门票的用户列表。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch buyer information for a Space, handling authentication and returning user data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+此模块获取购买了特定 Space 门票的参会用户信息。
+
+### 工作原理
+
+该模块使用 Twitter API (Tweepy) 获取 Space 的购买者信息，处理身份验证并返回带有可选扩展功能的用户数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| space_id | ID of Space to get buyers for |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| space_id | 要获取购买者的 Space ID |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| buyer_ids | List of buyer user IDs |
-| usernames | List of buyer usernames |
-| data | Complete buyer user data |
-| includes | Additional requested data |
-| error | Error message if request failed |
+| buyer_ids | 购买者用户 ID 列表 |
+| usernames | 购买者用户名列表 |
+| data | 完整的购买者用户数据 |
+| includes | 额外请求的数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing ticket sales and attendee information for monetized Spaces.
+### 可能的使用场景
+
+分析付费 Spaces 的门票销售和参会者信息。
 
 ---
 
-## Twitter Get Space Tweets Block
+## Twitter 获取 Space 推文块
 
-### What it is
-A block that retrieves tweets shared in a specific Twitter Space.
+### 功能概述
 
-### What it does
-This block gets tweets that were shared during a Space session.
+一个用于检索特定 Twitter Space 中分享的推文的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch tweets from a Space, handling authentication and returning tweet data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该块获取在 Space 会话期间分享的推文。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 从 Space 获取推文，处理身份验证并返回带有可选扩展的推文数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| space_id | ID of Space to get tweets for |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| space_id | 要获取推文的 Space ID |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input) |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input) |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input) |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input) |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input) |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input) |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| tweet_ids | List of tweet IDs |
-| texts | List of tweet texts |
-| data | Complete tweet data |
-| includes | Additional requested data |
-| meta | Response metadata |
-| error | Error message if request failed |
+| tweet_ids | 推文 ID 列表 |
+| texts | 推文文本列表 |
+| data | 完整的推文数据 |
+| includes | 额外请求的数据 |
+| meta | 响应元数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Capturing and analyzing content shared during Space sessions.
+### 可能的使用场景
+
+捕获和分析 Space 会话期间分享的内容。
 
 ---
 
-## Twitter Get List Block
+## Twitter 获取列表块
 
-### What it is
-A block that retrieves detailed information about a specific Twitter List.
+### 功能说明
 
-### What it does
-This block fetches information about a Twitter List specified by its ID, including basic list data and optional expanded information.
+一个用于检索特定 Twitter 列表详细信息的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch list data for a single list ID, handling authentication and returning list data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块通过列表 ID 获取 Twitter 列表的信息，包括基本列表数据和可选的扩展信息。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取单个列表 ID 的列表数据，处理身份验证并返回带有可选扩展的列表数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the Twitter List to retrieve |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| list_fields | List-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需作用域的 Twitter API 凭据 |
+| list_id | 要检索的 Twitter 列表 ID |
+| expansions | 要包含的额外数据字段 [更多信息](twitter.md#common-input)。 |
+| list_fields | 要包含的列表特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| id | List ID |
-| name | List name |
-| owner_id | ID of List owner |
-| owner_username | Username of List owner |
-| data | Complete list data |
-| included | Additional requested data |
-| meta | Response metadata |
-| error | Error message if request failed |
+| id | 列表 ID |
+| name | 列表名称 |
+| owner_id | 列表所有者 ID |
+| owner_username | 列表所有者用户名 |
+| data | 完整的列表数据 |
+| included | 额外请求的数据 |
+| meta | 响应元数据 |
+| error | 请求失败时的错误消息 |
 
-### Possible use case
-Retrieving detailed information about specific Twitter Lists for analysis or display.
+### 可能的使用场景
+
+检索特定 Twitter 列表的详细信息用于分析或显示。
 
 ---
 
-## Twitter Get Owned Lists Block
+## Twitter 获取拥有的列表块
 
-### What it is
-A block that retrieves all Twitter Lists owned by a specified user.
+### 功能说明
 
-### What it does
-This block fetches a list of Twitter Lists owned by a user ID, with options for pagination and filtering.
+一个用于检索指定用户拥有的所有 Twitter 列表的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch owned lists for a given user ID, handling authentication and returning list data with optional expansions.
+### 功能作用
 
-### Inputs
-| Input | Description |
+此块获取由用户 ID 拥有的 Twitter 列表，支持分页和筛选选项。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 获取指定用户 ID 拥有的列表，处理身份验证并返回带有可选扩展的列表数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| user_id | ID of user whose Lists to retrieve |
-| max_results | Maximum results per page (1-100, default 10) |
-| pagination_token | Token for getting next page |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| list_fields | List-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需作用域的 Twitter API 凭据 |
+| user_id | 要检索列表的用户 ID |
+| max_results | 每页最大结果数 (1-100，默认 10) |
+| pagination_token | 获取下一页的令牌 |
+| expansions | 要包含的额外数据字段 [更多信息](twitter.md#common-input)。 |
+| list_fields | 要包含的列表特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| list_ids | List of owned List IDs |
-| list_names | List of owned List names |
-| next_token | Token for retrieving next page |
-| data | Complete List data array |
-| included | Additional requested data |
-| meta | Metadata including pagination info |
-| error | Error message if request failed |
+| list_ids | 拥有的列表 ID 列表 |
+| list_names | 拥有的列表名称列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的列表数据数组 |
+| included | 额外请求的数据 |
+| meta | 包含分页信息的元数据 |
+| error | 请求失败时的错误消息 |
 
-### Possible use case
-Analyzing owned Lists for content curation and audience management.
+### 可能的使用场景
+
+分析拥有的列表以进行内容策划和受众管理。
 
 ---
 
-## Twitter Remove List Member Block
+## Twitter 移除列表成员块
 
-### What it is
-A block that removes a member from a specified Twitter List owned by the authenticated user.
+### 功能说明
 
-### What it does
-This block removes a specified user from a Twitter List they are currently a member of.
+一个从认证用户拥有的指定 Twitter 列表中移除成员的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to remove a user from a specified List, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块用于从 Twitter 列表中移除指定用户（该用户当前为列表成员）。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 从指定列表中移除用户，并处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to remove member from |
-| user_id | ID of the user to remove from List |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要移除成员的列表 ID |
+| user_id | 要从列表中移除的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether removal was successful |
-| error | Error message if removal failed |
+| success | 移除是否成功 |
+| error | 移除失败时的错误信息 |
 
-### Possible use case
-Managing List membership by removing users who no longer meet List criteria.
+### 可能的使用场景
+
+通过移除不再符合列表标准的用户来管理列表成员资格。
 
 ---
 
-## Twitter Add List Member Block
+## Twitter 添加列表成员模块
 
-### What it is
-A block that adds a member to a specified Twitter List owned by the authenticated user.
+### 功能概述
 
-### What it does
-This block adds a specified user as a new member to a Twitter List.
+一个将成员添加到认证用户拥有的指定 Twitter 列表的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to add a user to a specified List, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块将指定用户作为新成员添加到 Twitter 列表。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 将用户添加到指定列表，并处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to add member to |
-| user_id | ID of the user to add to List |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要添加成员的列表 ID |
+| user_id | 要添加到列表的用户 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether addition was successful |
-| error | Error message if addition failed |
+| success | 添加是否成功 |
+| error | 添加失败时的错误信息 |
 
-### Possible use case
-Growing List membership by adding users who match List criteria.
+### 可能的使用场景
+
+通过添加符合列表条件的用户来增长列表成员数量。
 
 ---
 
-## Twitter Get List Members Block
+## Twitter 获取列表成员块
 
-### What it is
-A block that retrieves all members of a specified Twitter List.
+### 功能概述
 
-### What it does
-This block gets information about users who are members of a given List, with options for pagination and filtering.
+一个用于检索指定 Twitter 列表所有成员的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch member data for a specified List, handling authentication and returning user data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块获取给定列表成员的用户信息，支持分页和筛选选项。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 获取指定列表的成员数据，处理身份验证，并返回带有可选扩展字段的用户数据。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to get members from |
-| max_results | Maximum results per page (1-100, default 10) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include |
-| tweet_fields | Tweet-related fields to include |
-| user_fields | User-related fields to include |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要获取成员的列表 ID |
+| max_results | 每页最大结果数 (1-100，默认 10) |
+| pagination_token | 获取下一页结果的令牌 |
+| expansions | 要包含的额外数据字段 |
+| tweet_fields | 要包含的推文相关字段 |
+| user_fields | 要包含的用户相关字段 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| ids | List of member user IDs |
-| usernames | List of member usernames |
-| next_token | Token for retrieving next page |
-| data | Complete user data for members |
-| included | Additional requested data |
-| meta | Pagination and result metadata |
-| error | Error message if request failed |
+| ids | 成员用户ID列表 |
+| usernames | 成员用户名列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 成员的完整用户数据 |
+| included | 额外请求的数据 |
+| meta | 分页和结果元数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing List membership and member profiles.
+### 可能的使用场景
+
+分析列表成员资格和成员资料。
 
 ---
 
-## Twitter Get List Memberships Block
+## Twitter 获取列表成员资格块
 
-### What it is
-A block that retrieves all Lists that a specified user is a member of.
+### 功能概述
 
-### What it does
-This block gets information about Lists where the specified user is a member, with options for pagination and filtering.
+一个用于检索指定用户所属的所有列表的块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch List membership data for a given user ID, handling authentication and returning List data with optional expansions.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块获取指定用户作为成员的列表信息，支持分页和筛选选项。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 获取给定用户ID的列表成员资格数据，处理身份验证并返回带有可选扩展的列表数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| user_id | ID of user to get List memberships for |
-| max_results | Maximum results per page (1-100, default 10) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include |
-| list_fields | List-specific fields to include |
-| user_fields | User-related fields to include |
+| credentials | 具有所需范围的 Twitter API 凭据 |
+| user_id | 要获取列表成员资格的用户ID |
+| max_results | 每页最大结果数 (1-100，默认10) |
+| pagination_token | 用于获取下一页结果的令牌 |
+| expansions | 要包含的额外数据字段 |
+| list_fields | 要包含的列表特定字段 |
+| user_fields | 要包含的用户相关字段 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| list_ids | List of List IDs |
-| next_token | Token for retrieving next page |
-| data | Complete List membership data |
-| included | Additional requested data |
-| meta | Metadata about pagination |
-| error | Error message if request failed |
+| list_ids | 列表ID集合 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的列表成员数据 |
+| included | 额外请求的数据 |
+| meta | 分页元数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Analyzing a user's List memberships to understand their interests and connections.
+### 可能的使用场景
+
+分析用户的列表成员关系，以了解其兴趣和社交联系。
 
 ---
 
-## Twitter Get List Tweets Block
+## Twitter 获取列表推文块
 
-### What it is
-A block that retrieves tweets from a specified Twitter List.
+### 功能概述
 
-### What it does
-This block fetches tweets that have been posted within a given List, with options for pagination, filtering, and expanded data.
+一个用于从指定Twitter列表中检索推文的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch tweets from a specified List, handling authentication and returning tweet data with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块获取给定列表内发布的推文，支持分页、筛选和扩展数据选项。
+
+### 工作原理
+
+通过Twitter API（Tweepy）从指定列表获取推文，处理身份验证并返回带有可选扩展功能的推文数据。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to get tweets from |
-| max_results | Maximum number of results per page (1-100, default 10) |
-| pagination_token | Token for getting next page of results |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| media_fields | Media-related fields to include [more info](twitter.md#common-input). |
-| place_fields | Location-related fields to include [more info](twitter.md#common-input). |
-| poll_fields | Poll-related fields to include [more info](twitter.md#common-input). |
-| tweet_fields | Tweet-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要获取推文的列表 ID |
+| max_results | 每页最大结果数 (1-100，默认 10) |
+| pagination_token | 获取下一页结果的令牌 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| media_fields | 要包含的媒体相关字段 [更多信息](twitter.md#common-input)。 |
+| place_fields | 要包含的位置相关字段 [更多信息](twitter.md#common-input)。 |
+| poll_fields | 要包含的投票相关字段 [更多信息](twitter.md#common-input)。 |
+| tweet_fields | 要包含的推文特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| tweet_ids | List of tweet IDs from the List |
-| texts | List of tweet text contents |
-| next_token | Token for retrieving next page |
-| data | Complete tweet data array |
-| included | Additional requested data [more info](twitter.md#common-output). |
-| meta | Pagination and result metadata [more info](twitter.md#common-output). |
-| error | Error message if request failed |
+| tweet_ids | 来自列表的推文 ID 列表 |
+| texts | 推文文本内容列表 |
+| next_token | 用于检索下一页的令牌 |
+| data | 完整的推文数据数组 |
+| included | 请求的附加数据 [更多信息](twitter.md#common-output)。 |
+| meta | 分页和结果元数据 [更多信息](twitter.md#common-output)。 |
+| error | 请求失败时的错误消息 |
 
-### Possible use case
-Monitoring and analyzing tweets shared within curated Twitter Lists.
+### 可能的使用场景
+
+监控和分析在精选 Twitter 列表中分享的推文。
 
 ---
 
-## Twitter Delete List Block
+## Twitter 删除列表块
 
-### What it is
-A block that deletes a Twitter List owned by the authenticated user.
+### 功能说明
 
-### What it does
-This block deletes a specified Twitter List using the List ID.
+一个用于删除认证用户拥有的 Twitter 列表的区块。
 
-### How it works
-It uses the Twitter API (Tweepy) to delete a specified List, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该区块使用列表 ID 删除指定的 Twitter 列表。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 删除指定列表，处理认证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to delete |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要删除的列表 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| success | Whether deletion was successful |
-| error | Error message if deletion failed |
+| success | 删除是否成功 |
+| error | 删除失败时的错误信息 |
 
-### Possible use case
-Removing outdated or unnecessary Twitter Lists.
+### 使用场景
+
+移除过时或不必要的 Twitter 列表。
 
 ---
 
-## Twitter Update List Block
+## Twitter 更新列表区块
 
-### What it is
-A block that updates a Twitter List owned by the authenticated user.
+### 功能概述
 
-### What it does
-This block modifies an existing List's name and/or description.
+一个用于更新认证用户拥有的 Twitter 列表的区块。
 
-### How it works
-It uses the Twitter API (Tweepy) to update List metadata, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该区块修改现有列表的名称和/或描述。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 更新列表元数据，处理认证和错误情况。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of List to update |
-| name | New name for the List (optional) |
-| description | New description for the List (optional) |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要更新的列表 ID |
+| name | 列表的新名称（可选） |
+| description | 列表的新描述（可选） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether update was successful |
-| error | Error message if update failed |
+| success | 更新是否成功 |
+| error | 更新失败时的错误信息 |
 
-### Possible use case
-Maintaining List metadata to reflect current purpose or organization.
+### 可能的使用场景
+
+维护列表元数据以反映当前用途或组织方式。
 
 ---
 
-## Twitter Create List Block
+## Twitter 创建列表块
 
-### What it is
-A block that creates a new Twitter List for the authenticated user.
+### 功能说明
 
-### What it does
-This block creates a new Twitter List with specified name, description and privacy settings.
+为认证用户创建新 Twitter 列表的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to create a new List, handling authentication and returning List details.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块使用指定的名称、描述和隐私设置创建新的 Twitter 列表。
+
+### 工作原理
+
+通过 Twitter API (Tweepy) 创建新列表，处理身份验证并返回列表详细信息。
+
+### 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| name | Name for the new List |
-| description | Description of the List (optional) |
-| private | Whether List should be private |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| name | 新列表的名称 |
+| description | 列表描述（可选） |
+| private | 列表是否应为私有 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| url | URL of the created List |
-| list_id | ID of the created List |
-| error | Error message if creation failed |
+| url | 已创建列表的 URL |
+| list_id | 已创建列表的 ID |
+| error | 创建失败时的错误信息 |
 
-### Possible use case
-Creating Lists to organize Twitter users around specific topics or interests.
+### 可能的使用场景
+
+创建列表以围绕特定主题或兴趣组织 Twitter 用户。
 
 ---
 
-## Twitter Unpin List Block
+## Twitter 取消固定列表块
 
-### What it is
-A block that allows users to unpin a specified Twitter List.
+### 功能说明
 
-### What it does
-This block removes a Twitter List from the user's pinned Lists.
+允许用户取消固定指定 Twitter 列表的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to unpin a List using its List ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块从用户的固定列表中移除 Twitter 列表。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 通过列表 ID 取消固定列表，处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to unpin |
+| credentials | 具有所需作用域的 Twitter API 凭据 |
+| list_id | 要取消固定的列表 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether unpin was successful |
-| error | Error message if unpin failed |
+| success | 取消固定是否成功 |
+| error | 取消固定失败时的错误消息 |
 
-### Possible use case
-Managing pinned Lists by removing Lists that are no longer priority.
+### 可能的使用场景
+
+通过移除不再优先的列表来管理已固定的列表。
 
 ---
 
-## Twitter Pin List Block
+## Twitter 固定列表块
 
-### What it is
-A block that allows users to pin a specified Twitter List.
+### 功能概述
 
-### What it does
-This block pins a Twitter List to appear at the top of the user's Lists.
+允许用户固定指定 Twitter 列表的功能块。
 
-### How it works
-It uses the Twitter API (Tweepy) to pin a List using its List ID, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+此功能块将 Twitter 列表固定在用户列表的顶部显示。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 通过列表 ID 固定列表，处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to pin |
+| credentials | 具有所需作用域的 Twitter API 凭据 |
+| list_id | 要固定的列表 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether pin was successful |
-| error | Error message if pin failed |
+| success | 固定是否成功 |
+| error | 固定失败时的错误消息 |
 
-### Possible use case
-Prioritizing important Lists for quick access.
+### 可能的使用场景
+
+优先处理重要列表以便快速访问。
 
 ---
 
-## Twitter Get Pinned Lists Block
+## Twitter 获取已固定列表块
 
-### What it is
-A block that retrieves all Twitter Lists that are pinned by the authenticated user.
+### 功能概述
 
-### What it does
-This block fetches a collection of Lists that have been pinned by the user, with options for additional data and filtering.
+一个用于获取认证用户已固定的所有 Twitter 列表的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to fetch pinned Lists data, handling authentication and returning List information with optional expansions.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块获取用户已固定的列表集合，提供附加数据和筛选选项。
+
+### 工作原理
+
+使用 Twitter API (Tweepy) 获取已固定列表数据，处理认证并返回带有可选扩展项的列表信息。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| expansions | Additional data fields to include [more info](twitter.md#common-input). |
-| list_fields | List-specific fields to include [more info](twitter.md#common-input). |
-| user_fields | User-related fields to include [more info](twitter.md#common-input). |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| expansions | 要包含的附加数据字段 [更多信息](twitter.md#common-input)。 |
+| list_fields | 要包含的列表特定字段 [更多信息](twitter.md#common-input)。 |
+| user_fields | 要包含的用户相关字段 [更多信息](twitter.md#common-input)。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| list_ids | List of pinned List IDs |
-| list_names | List of pinned List names |
-| data | Complete List data |
-| included | Additional requested data |
-| meta | Response metadata |
-| error | Error message if request failed |
+| list_ids | 已固定列表 ID 列表 |
+| list_names | 已固定列表名称列表 |
+| data | 完整的列表数据 |
+| included | 请求的附加数据 |
+| meta | 响应元数据 |
+| error | 请求失败时的错误信息 |
 
-### Possible use case
-Monitoring and managing pinned Lists for organization and quick access.
+### 可能的使用场景
+
+监控和管理已固定列表以实现组织化和快速访问。
 
 ---
 
-## Twitter Unfollow List Block
+## Twitter 取消关注列表模块
 
-### What it is
-A block that unfollows a Twitter List that the authenticated user is currently following.
+### 功能概述
 
-### What it does
-This block unfollows a specified Twitter List using the List ID, removing it from the user's followed Lists.
+一个用于取消关注认证用户当前正在关注的 Twitter 列表的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to unfollow a List with the given List ID, handling authentication and error cases.
+### 功能说明
 
-### Inputs
-| Input | Description |
+此模块使用列表 ID 取消关注指定的 Twitter 列表，将其从用户关注的列表中移除。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 通过给定的列表 ID 取消关注列表，并处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to unfollow |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要取消关注的列表 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether unfollow was successful |
-| error | Error message if unfollow failed |
+| success | 取消关注是否成功 |
+| error | 取消关注失败时的错误消息 |
 
-### Possible use case
-Managing followed Lists by removing Lists that are no longer relevant.
+### 可能的使用场景
+
+通过移除不再相关的列表来管理已关注的列表。
 
 ---
 
-## Twitter Follow List Block
+## Twitter 关注列表模块
 
-### What it is
-A block that follows a Twitter List for the authenticated user.
+### 功能概述
 
-### What it does
-This block follows a specified Twitter List using the List ID, adding it to the user's followed Lists.
+一个为认证用户关注 Twitter 列表的模块。
 
-### How it works
-It uses the Twitter API (Tweepy) to follow a List with the given List ID, handling authentication and error cases.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块使用列表 ID 关注指定的 Twitter 列表，将其添加到用户关注的列表中。
+
+### 工作原理
+
+它使用 Twitter API (Tweepy) 通过给定的列表 ID 关注列表，并处理身份验证和错误情况。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| credentials | Twitter API credentials with required scopes |
-| list_id | ID of the List to follow |
+| credentials | 具有所需权限范围的 Twitter API 凭据 |
+| list_id | 要关注的列表 ID |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| success | Whether follow was successful |
-| error | Error message if follow failed |
+| success | 关注是否成功 |
+| error | 关注失败时的错误消息 |
 
-### Possible use case
-Following Lists that match user interests or contain relevant content.
+### 可能的用例
+
+匹配用户兴趣或包含相关内容的下述列表。
 
 ---
-## Common Input
 
-The Twitter API lets you choose what information you want to get back when you make a request. Here are the different types of information you can ask for:
+## 通用输入
+
+Twitter API 允许您在发起请求时选择想要获取的信息类型。以下是您可以请求的不同信息类别：
 
 ### expansions
-Extra information about tweets, pictures, and users that are mentioned or connected
 
-| Field | Description |
+关于被提及或关联的推文、图片和用户的额外信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Poll_IDs | Gets information about any polls in the tweet, like voting options and results |
-| Media_Keys | Gets details about pictures, videos, or GIFs attached to the tweet |
-| Author_User_ID | Gets information about who wrote the tweet, like their profile details |
-| Edit_History_Tweet_IDs | Shows if and when the tweet was edited and what changed |
-| Mentioned_Usernames | Gets profile information about any @mentioned users |
-| Place_ID | Gets details about locations tagged in the tweet |
-| Reply_To_User_ID | Gets information about the person this tweet is replying to |
-| Referenced_Tweet_ID | Gets details about any tweets this one is quoting or retweeting |
-| Referenced_Tweet_Author_ID | Gets profile information about who wrote the original tweets being referenced |
+| Poll_IDs | 获取推文中所有投票的相关信息，包括投票选项和结果 |
+| Media_Keys | 获取推文附带的图片、视频或GIF的详细信息 |
+| Author_User_ID | 获取推文作者的信息，例如个人资料详情 |
+| Edit_History_Tweet_IDs | 显示推文是否及何时被编辑过，以及具体变更内容 |
+| Mentioned_Usernames | 获取所有被@提及用户的个人资料信息 |
+| Place_ID | 获取推文中标记位置的详细信息 |
+| Reply_To_User_ID | 获取此推文回复对象的相关信息 |
+| Referenced_Tweet_ID | 获取此推文引用或转发的任何推文的详细信息 |
+| Referenced_Tweet_Author_ID | 获取被引用原始推文作者的个人资料信息 |
 
 ### media_fields
-Information about pictures, videos, and other media
 
-| Field | Description |
+关于图片、视频和其他媒体文件的信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Duration_in_Milliseconds | How long a video or audio clip plays for (in milliseconds) |
-| Height | How tall the picture or video is in pixels |
-| Media_Key | A unique code that identifies this specific piece of media |
-| Preview_Image_URL | Web link to a smaller preview version of the picture |
-| Media_Type | What kind of media it is (photo, video, GIF, etc.) |
-| Media_URL | Web link to view the full media |
-| Width | How wide the picture or video is in pixels |
-| Public_Metrics | Numbers anyone can see (views, plays, etc.) |
-| Non_Public_Metrics | Private numbers only the tweet author can see |
-| Organic_Metrics | Numbers about natural engagement (non-promoted) |
-| Promoted_Metrics | Numbers about paid promotion performance |
-| Alternative_Text | Description of the media for accessibility |
-| Media_Variants | Different sizes/qualities available (like HD vs SD video) |
+| Duration_in_Milliseconds | 视频或音频片段播放时长（毫秒） |
+| Height | 图片或视频的像素高度 |
+| Media_Key | 标识该特定媒体文件的唯一代码 |
+| Preview_Image_URL | 图片预览缩略图的网络链接 |
+| Media_Type | 媒体类型（照片、视频、GIF等） |
+| Media_URL | 查看完整媒体的网络链接 |
+| Width | 图片或视频的像素宽度 |
+| Public_Metrics | 公开可见的数据指标（观看次数、播放次数等） |
+| Non_Public_Metrics | 仅推文作者可见的私有数据指标 |
+| Organic_Metrics | 自然互动数据指标（非推广内容） |
+| Promoted_Metrics | 付费推广效果数据指标 |
+| Alternative_Text | 为无障碍访问提供的媒体描述 |
+| Media_Variants | 可用的不同尺寸/质量版本（如高清与标清视频） |
 
 ### place_fields
-Information about locations mentioned in tweets
 
-| Field | Description |
+推文中提及位置的相关信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Contained_Within_Places | Larger areas this place is part of (like a city within a state) |
-| Country | The full country name |
-| Country_Code | Short two-letter code for the country (like US for United States) |
-| Full_Location_Name | Complete name including city, state, country etc. |
-| Geographic_Coordinates | Exact location on a map (latitude and longitude) |
-| Place_ID | A unique code that identifies this specific location |
-| Place_Name | The main name of the place (like "Times Square") |
-| Place_Type | What kind of place it is (city, business, landmark etc.) |
+| Contained_Within_Places | 该地点所属的更大区域（如州内的城市） |
+| Country | 完整的国家名称 |
+| Country_Code | 国家的简短双字母代码（如 US 代表美国） |
+| Full_Location_Name | 包含城市、州、国家等的完整名称 |
+| Geographic_Coordinates | 地图上的精确位置（纬度和经度） |
+| Place_ID | 标识此特定地点的唯一代码 |
+| Place_Name | 地点的主要名称（如"时代广场"） |
+| Place_Type | 地点类型（城市、企业、地标等） |
 
 ### poll_fields
-Information about polls in tweets
 
-| Field | Description |
+推文中投票的相关信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Duration_Minutes | How long the poll stays open for voting |
-| End_DateTime | The exact date and time when voting closes |
-| Poll_ID | A unique code that identifies this specific poll |
-| Poll_Options | The different choices people can vote for |
-| Voting_Status | Whether voting is still open or closed |
+| Duration_Minutes | 投票保持开放的时长（分钟） |
+| End_DateTime | 投票结束的确切日期和时间 |
+| Poll_ID | 标识此特定投票的唯一代码 |
+| Poll_Options | 人们可以投票选择的不同选项 |
+| Voting_Status | 投票是否仍在开放或已关闭 |
 
 ### tweet_fields
-Information about the tweets themselves
 
-| Field | Description |
+推文本身的相关信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Tweet_Attachments | All media, links, or polls included in the tweet |
-| Author_ID | A unique code identifying who wrote the tweet |
-| Context_Annotations | Extra information about what the tweet is about |
-| Conversation_ID | Code linking all replies in a conversation |
-| Creation_Time | When the tweet was posted |
-| Edit_Controls | Whether the tweet can be edited and for how long |
-| Tweet_Entities | Special parts of the tweet like #hashtags, @mentions, and links |
-| Geographic_Location | Where the tweet was posted from |
-| Tweet_ID | A unique code for this specific tweet |
-| Reply_To_User_ID | Who this tweet is responding to |
-| Language | What language the tweet is written in |
-| Public_Metrics | Numbers like retweets, likes, and replies |
-| Sensitive_Content_Flag | Warning if tweet might contain sensitive content |
-| Referenced_Tweets | Other tweets this one is connected to |
-| Reply_Settings | Who is allowed to reply to the tweet |
-| Tweet_Source | What app or website was used to post |
-| Tweet_Text | The actual words in the tweet |
-| Withheld_Content | If the tweet is hidden in certain countries |
+| Tweet_Attachments | 推文中包含的所有媒体、链接或投票 |
+| Author_ID | 标识推文作者的唯一代码 |
+| Context_Annotations | 关于推文主题的额外信息 |
+| Conversation_ID | 连接对话中所有回复的代码 |
+| Creation_Time | 推文发布时间 |
+| Edit_Controls | 推文是否可编辑及编辑时长限制 |
+| Tweet_Entities | 推文中的特殊部分，如#话题标签、@提及和链接 |
+| Geographic_Location | 推文发布的地理位置 |
+| Tweet_ID | 该特定推文的唯一代码 |
+| Reply_To_User_ID | 此推文回复的对象 |
+| Language | 推文使用的语言 |
+| Public_Metrics | 转发数、点赞数和回复数等统计数据 |
+| Sensitive_Content_Flag | 推文可能包含敏感内容的警告标识 |
+| Referenced_Tweets | 与此推文相关联的其他推文 |
+| Reply_Settings | 允许回复此推文的用户范围 |
+| Tweet_Source | 发布推文所使用的应用或网站 |
+| Tweet_Text | 推文中的实际文字内容 |
+| Withheld_Content | 推文是否在某些国家/地区被隐藏 |
 
 ### user_fields
-Information about Twitter users
 
-| Field | Description |
+关于Twitter用户的信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Account_Creation_Date | When they joined Twitter |
-| User_Bio | The "About me" text on their profile |
-| User_Entities | Links and @mentions in their profile |
-| User_ID | Their unique Twitter user code |
-| User_Location | Where they say they are located |
-| Latest_Tweet_ID | Code for their most recent tweet |
-| Display_Name | Their full profile name (not @username) |
-| Pinned_Tweet_ID | Code for the tweet stuck to top of their profile |
-| Profile_Picture_URL | Link to their profile picture |
-| Is_Protected_Account | Whether their tweets are private |
-| Account_Statistics | Number of followers, following, and tweets |
-| Profile_URL | Link to their profile webpage |
-| Username | Their @handle they use on Twitter |
-| Is_Verified | Whether they have a verification checkmark |
-| Verification_Type | What kind of verification they have |
-| Content_Withholding_Info | If their content is hidden in certain places |
+| Account_Creation_Date | 用户加入 Twitter 的时间 |
+| User_Bio | 个人资料中的"关于我"文本 |
+| User_Entities | 个人资料中的链接和@提及 |
+| User_ID | 用户的唯一 Twitter 用户代码 |
+| User_Location | 用户声明的所在地 |
+| Latest_Tweet_ID | 用户最新推文的代码 |
+| Display_Name | 用户的完整个人资料名称（非@用户名） |
+| Pinned_Tweet_ID | 固定在个人资料顶部的推文代码 |
+| Profile_Picture_URL | 个人资料图片的链接 |
+| Is_Protected_Account | 用户的推文是否为私密状态 |
+| Account_Statistics | 关注者数、正在关注数和推文数 |
+| Profile_URL | 个人资料网页的链接 |
+| Username | 用户在 Twitter 上使用的@用户名 |
+| Is_Verified | 用户是否拥有验证标记 |
+| Verification_Type | 用户拥有的验证类型 |
+| Content_Withholding_Info | 用户内容是否在某些地区被隐藏 |
 
-## Extra notes
+## 额外说明
 
-- Use combinations of expansions and fields to build precise queries. For instance:
-  - To fetch a Tweet with media details, include `expansions=Media_Keys` and relevant `media_fields`.
-  - For user data in Tweets, add `expansions=Author_User_ID` and appropriate `user_fields`.
+- 使用扩展和字段的组合来构建精确查询。例如：
+  - 要获取包含媒体详情的推文，需包含 `expansions=Media_Keys` 和相关的 `media_fields`。
+  - 要在推文中获取用户数据，需添加 `expansions=Author_User_ID` 和适当的 `user_fields`。
 
-- Data returned under `includes` helps cross-reference expanded data objects with their parent entities using IDs.
+- 在 `includes` 下返回的数据有助于使用 ID 将扩展的数据对象与其父实体进行交叉引用。
 
-## Common Output
+## 常见输出
 
-The Twitter API returns standardized response elements across many endpoints. Here are the common output fields you'll encounter:
+Twitter API 在许多端点返回标准化的响应元素。以下是您将遇到的常见输出字段：
 
 ### data
-The primary data requested in the response
 
-| Field | Description |
+响应中请求的主要数据
+
+| 字段 | 描述 |
 |-------|-------------|
-| ID | Unique identifier for the object |
-| Type | Type of object (tweet, user, etc) |
-| Properties | Object-specific fields like text for tweets |
+| ID | 对象的唯一标识符 |
+| Type | 对象类型（推文、用户等） |
+| Properties | 对象特定字段，如推文的文本内容 |
 
 ### includes
-Additional expanded data objects referenced in the primary data
 
-| Field | Description |
+主要数据中引用的额外扩展数据对象
+
+| 字段 | 描述 |
 |-------|-------------|
-| Tweets | Full tweet objects that were referenced |
-| Users | User profile data for authors/mentions |
-| Places | Location data for geo-tagged content |
-| Media | Details about attached photos/videos |
-| Polls | Information about embedded polls |
+| Tweets | 被引用的完整推文对象 |
+| Users | 作者/提及用户的个人资料数据 |
+| Places | 地理位置标记内容的位置数据 |
+| Media | 附加照片/视频的详细信息 |
+| Polls | 嵌入式投票的相关信息 |
 
 ### meta
-Metadata about the response and pagination
 
-| Field | Description |
+关于响应和分页的元数据
+
+| 字段 | 描述 |
 |-------|-------------|
-| Result_Count | Number of items returned |
-| Next_Token | Token to get next page of results |
-| Previous_Token | Token to get previous page |
-| Newest_ID | Most recent ID in results |
-| Oldest_ID | Oldest ID in results |
-| Total_Tweet_Count | Total matching tweets (search) |
+| Result_Count | 返回的项目数量 |
+| Next_Token | 获取下一页结果的令牌 |
+| Previous_Token | 获取上一页的令牌 |
+| Newest_ID | 结果中最新的ID |
+| Oldest_ID | 结果中最旧的ID |
+| Total_Tweet_Count | 匹配推文总数（搜索时） |
 
 ### errors
-Details about any errors that occurred
 
-| Field | Description |
+发生的任何错误的详细信息
+
+| 字段 | 描述 |
 |-------|-------------|
-| Title | Brief error description |
-| Detail | Detailed error message |
-| Type | Error category/classification |
-| Status | HTTP status code |
+| Title | 简要错误描述 |
+| Detail | 详细错误消息 |
+| Type | 错误类别/分类 |
+| Status | HTTP状态码 |
 
-### Non-paginated responses
-For single-object lookups:
-- data: Contains requested object
-- includes: Referenced objects
-- errors: Any errors encountered
+### 非分页响应
 
-### Paginated responses
-For multi-object lookups:
-- data: Array of objects
-- includes: Referenced objects
-- meta: Pagination details
-- errors: Any errors encountered
+针对单对象查询：
+
+- data：包含请求的对象
+- includes：引用的对象
+- errors：遇到的任何错误
+
+### 分页响应
+
+针对多对象查询：
+
+- data：对象数组
+- includes：引用的对象
+- meta：分页详细信息
+- errors：遇到的任何错误

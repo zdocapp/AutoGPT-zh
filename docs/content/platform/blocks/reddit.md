@@ -1,56 +1,68 @@
-# Reddit Interaction Blocks
+# Reddit 交互模块
 
-## Get Reddit Posts
+## 获取 Reddit 帖子
 
-### What it is
-A block that retrieves posts from a specified subreddit on Reddit.
+### 功能说明
 
-### What it does
-This block fetches a set number of recent posts from a given subreddit, allowing users to collect content from Reddit for various purposes.
+用于从 Reddit 指定子版块获取帖子的功能模块。
 
-### How it works
-The block connects to Reddit using provided credentials, accesses the specified subreddit, and retrieves posts based on the given parameters. It can limit the number of posts, stop at a specific post, or fetch posts within a certain time frame.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块可从指定子版块获取一定数量的最新帖子，使用户能够为各种用途收集 Reddit 内容。
+
+### 工作原理
+
+模块通过提供的凭据连接 Reddit，访问指定子版块，并根据给定参数获取帖子。可限制帖子数量、在特定帖子处停止获取，或获取特定时间范围内的帖子。
+
+### 输入
+
+| 输入项 | 描述 |
 |-------|-------------|
-| Subreddit | The name of the subreddit to fetch posts from |
-| Reddit Credentials | Login information for accessing Reddit |
-| Last Minutes | An optional time limit to stop fetching posts (in minutes) |
-| Last Post | An optional post ID to stop fetching when reached |
-| Post Limit | The maximum number of posts to fetch (default is 10) |
+| 子版块 | 要获取帖子的子版块名称 |
+| Reddit 凭据 | 用于访问 Reddit 的登录信息 |
+| 最近分钟数 | 可选的时间限制（以分钟为单位），用于停止获取帖子 |
+| 最后帖子 | 可选的文章 ID，达到该 ID 时停止获取 |
+| 帖子限制 | 要获取的最大帖子数（默认为 10） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Post | A Reddit post containing the post ID, subreddit name, title, and body text |
+| 帖子 | 包含帖子 ID、子版块名称、标题和正文内容的 Reddit 帖子 |
 
-### Possible use case
-A content curator could use this block to gather recent posts from a specific subreddit for analysis, summarization, or inclusion in a newsletter.
+### 可能的使用场景
+
+内容策展人可使用此模块收集特定子版块的最新帖子，用于分析、摘要或纳入新闻简报。
 
 ---
 
-## Post Reddit Comment
+## 发布 Reddit 评论
 
-### What it is
-A block that posts a comment on a specified Reddit post.
+### 功能说明
 
-### What it does
-This block allows users to submit a comment to a particular Reddit post using provided credentials and comment data.
+用于在指定 Reddit 帖子上发布评论的功能模块。
 
-### How it works
-The block connects to Reddit using the provided credentials, locates the specified post, and then adds the given comment to that post.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块允许用户使用提供的凭据和评论数据向特定 Reddit 帖子提交评论。
+
+### 工作原理
+
+该模块使用提供的凭据连接到 Reddit，定位指定帖子，然后将给定评论添加到该帖子中。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Reddit Credentials | Login information for accessing Reddit |
-| Comment Data | Contains the post ID to comment on and the comment text |
+| Reddit 凭据 | 用于访问 Reddit 的登录信息 |
+| 评论数据 | 包含要评论的帖子 ID 和评论文本 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Comment ID | The unique identifier of the newly posted comment |
+| 评论 ID | 新发布评论的唯一标识符 |
 
-### Possible use case
-An automated moderation system could use this block to post pre-defined responses or warnings on Reddit posts that violate community guidelines.
+### 可能的使用场景
+
+自动化审核系统可以使用此模块在违反社区准则的 Reddit 帖子上发布预定义的回复或警告。

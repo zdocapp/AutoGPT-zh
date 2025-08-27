@@ -1,223 +1,271 @@
-# Basic Operations Blocks
+# 基础操作块
 
-## Store Value
+## 存储值
 
-### What it is
-A basic block that stores and forwards a value.
+### 功能说明
 
-### What it does
-This block takes an input value and stores it, allowing it to be reused without changes.
+一个用于存储并转发值的基础块。
 
-### How it works
-It accepts an input value and optionally a data value. If a data value is provided, it is used as the output. Otherwise, the input value is used as the output.
+### 工作原理
 
-### Inputs
-| Input | Description |
+该块接收输入值并进行存储，允许在不改变的情况下重复使用。
+
+### 工作原理
+
+它接受一个输入值和一个可选的数据值。如果提供了数据值，则将其用作输出；否则，使用输入值作为输出。
+
+### 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| Input | The value to be stored or forwarded |
-| Data | An optional constant value to be stored instead of the input |
+| Input | 需要存储或转发的值 |
+| Data | 可选常量值，用于替代输入值进行存储 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Output | The stored value (either the input or the data) |
+| Output | 存储的值（输入值或数据值） |
 
-### Possible use case
-Storing a user's name at the beginning of a workflow to use it in multiple subsequent blocks without asking for it again.
+### 应用场景
+
+在工作流开始时存储用户姓名，以便在后续多个块中重复使用，无需再次询问。
 
 ---
 
-## Print to Console
+## 控制台打印
 
-### What it is
-A basic block that prints text to the console for debugging purposes.
+### 功能说明
 
-### What it does
-This block takes a text input and prints it to the console, then outputs a status message.
+一个用于调试目的的基础块，可将文本打印到控制台。
 
-### How it works
-It receives a text input, prints it to the console with a "Print: " prefix, and then yields a "printed" status.
+### 工作原理
 
-### Inputs
-| Input | Description |
+该块接收文本输入并将其打印到控制台，然后输出状态信息。
+
+### 工作原理
+
+接收文本输入，在控制台以"Print: "为前缀打印该文本，然后生成"printed"状态。
+
+### 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| Text | The text to be printed to the console |
+| Text | 需要打印到控制台的文本 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Status | A message indicating that the text was printed ("printed") |
+| 状态 | 表示文本已打印的消息（"已打印"） |
 
-### Possible use case
-Debugging a workflow by printing intermediate results or messages at various stages.
+### 可能的使用场景
+
+通过在不同阶段打印中间结果或消息来调试工作流。
 
 ---
 
-## Find in Dictionary
+## 字典查找
 
-### What it is
-A basic block that looks up a value in a dictionary, object, or list using a given key.
+### 功能说明
 
-### What it does
-This block searches for a specified key in the input data structure and returns the corresponding value if found.
+一个基础功能块，使用给定键在字典、对象或列表中查找值。
 
-### How it works
-It accepts an input (dictionary, object, or list) and a key. It then attempts to find the key in the input and return the corresponding value. If the key is not found, it returns the entire input as "missing".
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块在输入数据结构中搜索指定键，若找到则返回对应值。
+
+### 工作原理
+
+它接受一个输入（字典、对象或列表）和一个键。然后尝试在输入中查找该键并返回对应值。如果未找到键，则将整个输入作为"缺失"返回。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Input | The dictionary, object, or list to search in |
-| Key | The key to look up in the input |
+| 输入 | 要搜索的字典、对象或列表 |
+| 键 | 在输入中查找的键 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Output | The value found for the given key |
-| Missing | The entire input if the key was not found |
+| 输出 | 找到的对应键值 |
+| 缺失 | 未找到键时的完整输入 |
 
-### Possible use case
-Extracting specific information from a complex data structure, such as finding a user's email address in a user profile dictionary.
+### 可能的使用场景
+
+从复杂数据结构中提取特定信息，例如在用户配置字典中查找用户的电子邮件地址。
 
 ---
 
-## Agent Input
+## 代理输入
 
-### What it is
-An input block that provides a way to accept user input in a workflow.
+### 功能说明
 
-### What it does
-This block allows users to input values into the workflow, with options for naming, describing, and setting placeholder values.
+一个输入功能块，提供在工作流中接受用户输入的方式。
 
-### How it works
-It accepts a value from the user, along with metadata such as name, description, and optional placeholder values. The block then outputs the provided value.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块允许用户向工作流中输入值，并提供命名、描述和设置占位符值的选项。
+
+### 工作原理
+
+它接收来自用户的值，以及元数据（如名称、描述和可选的占位符值）。该模块随后输出所提供的值。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Value | The actual input value provided by the user |
-| Name | A name for the input field |
-| Description | An optional description of the input |
-| Placeholder Values | Optional list of suggested values |
-| Limit to Placeholder Values | Option to restrict input to placeholder values only |
+| 值 | 用户提供的实际输入值 |
+| 名称 | 输入字段的名称 |
+| 描述 | 输入的描述（可选） |
+| 占位符值 | 建议值的可选列表 |
+| 限制为占位符值 | 将输入限制为仅使用占位符值的选项 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | The value provided as input |
+| 结果 | 作为输入提供的值 |
 
-### Possible use case
-Collecting user preferences at the start of a personalized recommendation workflow.
+### 可能的使用场景
+
+在个性化推荐工作流开始时收集用户偏好。
 
 ---
 
-## Agent Output
+## 代理输出
 
-### What it is
-An output block that records and formats the final results of a workflow.
+### 功能说明
 
-### What it does
-This block takes a value and associated metadata, optionally formats it, and presents it as the output of the workflow.
+一个输出模块，用于记录和格式化工作流的最终结果。
 
-### How it works
-It accepts an input value along with a name, description, and optional format string. If a format string is provided, it attempts to apply the formatting to the input value before outputting it.
+### 作用
 
-### Inputs
-| Input | Description |
+该模块接收一个值及相关元数据，可选地对其进行格式化，并将其作为工作流的输出呈现。
+
+### 工作原理
+
+它接收一个输入值以及名称、描述和可选的格式字符串。如果提供了格式字符串，它会在输出前尝试将格式应用于输入值。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Value | The value to be recorded as output |
-| Name | A name for the output |
-| Description | An optional description of the output |
-| Format | An optional format string to apply to the value |
+| 值 | 要记录为输出的值 |
+| 名称 | 输出的名称 |
+| 描述 | 输出的可选描述 |
+| 格式 | 应用于值的可选格式字符串 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Output | The formatted (if applicable) output value |
+| 输出 | 格式化后的输出值（如果适用） |
 
-### Possible use case
-Presenting the final results of a data analysis workflow in a specific format.
+### 可能的使用场景
+
+以特定格式呈现数据分析工作流的最终结果。
 
 ---
 
-## Add to Dictionary
+## 添加到字典
 
-### What it is
-A basic block that adds a new key-value pair to a dictionary.
+### 功能说明
 
-### What it does
-This block takes an existing dictionary (or creates a new one), a key, and a value, and adds the key-value pair to the dictionary.
+一个向字典添加新键值对的基础块。
 
-### How it works
-It accepts an optional input dictionary, a key, and a value. If no dictionary is provided, it creates a new one. It then adds the key-value pair to the dictionary and returns the updated dictionary.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该块接收一个现有字典（或创建新字典）、一个键和一个值，并将该键值对添加到字典中。
+
+### 工作原理
+
+它接受一个可选输入字典、一个键和一个值。如果未提供字典，则创建新字典。然后将键值对添加到字典中并返回更新后的字典。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Dictionary | An optional existing dictionary to add to |
-| Key | The key for the new entry |
-| Value | The value for the new entry |
+| 字典 | 要添加到的可选现有字典 |
+| 键 | 新条目的键 |
+| 值 | 新条目的值 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Updated Dictionary | The dictionary with the new entry added |
-| Error | An error message if the operation fails |
+| 更新后的字典 | 添加了新条目的字典 |
+| 错误 | 操作失败时的错误消息 |
 
-### Possible use case
-Building a user profile by gradually adding new information as it's collected throughout a workflow.
+### 可能的使用场景
+
+通过在工作流程中逐步收集新信息来构建用户档案。
 
 ---
 
-## Add to List
+## 添加到列表
 
-### What it is
-A basic block that adds a new entry to a list.
+### 功能说明
 
-### What it does
-This block takes an existing list (or creates a new one) and adds a new entry to it, optionally at a specified position.
+一个基础功能块，用于向列表添加新条目。
 
-### How it works
-It accepts an optional input list, an entry to add, and an optional position. If no list is provided, it creates a new one. It then adds the entry to the list at the specified position (or at the end if no position is given) and returns the updated list.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收一个现有列表（或创建新列表）并向其中添加新条目，可选择在指定位置添加。
+
+### 工作原理
+
+它接受一个可选的输入列表、要添加的条目以及可选的位置参数。如果未提供列表，则创建新列表。然后将条目添加到列表的指定位置（如果未指定位置则添加到末尾），并返回更新后的列表。
+
+### 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| List | An optional existing list to add to |
-| Entry | The new item to add to the list |
-| Position | An optional position to insert the new entry |
+| 列表 | 可选的要添加条目的现有列表 |
+| 条目 | 要添加到列表的新项目 |
+| 位置 | 可选的新条目插入位置 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Updated List | The list with the new entry added |
-| Error | An error message if the operation fails |
+| 更新后的列表 | 添加了新条目的列表 |
+| 错误信息 | 操作失败时的错误消息 |
 
-### Possible use case
-Maintaining a to-do list in a task management workflow, where new tasks can be added at specific priorities (positions).
+### 适用场景
+
+在任务管理工作流程中维护待办事项列表，可以在特定优先级（位置）添加新任务。
 
 ---
 
-## Note
+## 注意
 
-### What it is
-A basic block that displays a sticky note with custom text.
+### 功能说明
 
-### What it does
-This block takes a text input and displays it as a sticky note in the workflow interface.
+一个基础功能块，用于显示带有自定义文本的便签。
 
-### How it works
-It simply accepts a text input and passes it through as an output to be displayed as a note.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收文本输入并将其作为便签显示在工作流程界面中。
+
+### 工作原理
+
+它仅接收文本输入并将其作为输出传递，以显示为便签。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Text | The text to display in the sticky note |
+| 文本 | 要在便签中显示的文本 |
 
-### Outputs
-| Output | Description |
+### 输出
+
+| 输出 | 描述 |
 |--------|-------------|
-| Output | The text to display in the sticky note |
+| 输出 | 要在便签中显示的文本 |
 
-### Possible use case
-Adding explanatory notes or reminders within a complex workflow to help users understand different stages or provide additional context.
+### 可能的使用场景
+
+在复杂工作流中添加解释性说明或提醒，帮助用户理解不同阶段或提供额外上下文。

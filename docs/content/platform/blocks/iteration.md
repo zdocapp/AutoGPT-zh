@@ -1,24 +1,30 @@
-## Step Through Items
+## 逐项遍历
 
-### What it is
-A block that iterates through a list or dictionary, processing each item one by one.
+### 功能说明
 
-### What it does
-This block takes a list or dictionary as input and goes through each item, outputting the current item and its corresponding key or index.
+一个用于遍历列表或字典的代码块，逐个处理每个项目。
 
-### How it works
-When given a list or dictionary, the block processes each item individually. For lists, it keeps track of the item's position (index). For dictionaries, it focuses on the values, using the value as both the item and the key in the output.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该代码块接收列表或字典作为输入，并遍历每个项目，输出当前项目及其对应的键或索引。
+
+### 工作原理
+
+当给定列表或字典时，该代码块会单独处理每个项目。对于列表，它会记录项目的位置（索引）。对于字典，它专注于值，将值同时作为输出中的项目和键。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Items | A list or dictionary that you want to process item by item. For example, you could input a list of numbers [1, 2, 3, 4, 5] or a dictionary of key-value pairs {'key1': 'value1', 'key2': 'value2'} |
+| 项目 | 您想要逐个处理的列表或字典。例如，您可以输入数字列表 [1, 2, 3, 4, 5] 或键值对字典 {'key1': 'value1', 'key2': 'value2'} |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Item | The current item being processed from the input list or dictionary |
-| Key | For lists, this is the index (position) of the current item. For dictionaries, this is the same as the item (the dictionary's value) |
+| 项目 | 从输入列表或字典中正在处理的当前项目 |
+| 键 | 对于列表，这是当前项目的索引（位置）。对于字典，这与项目相同（字典的值） |
 
-### Possible use case
-Imagine you have a list of customer names and you want to perform a specific action for each customer, like sending a personalized email. This block could help you go through the list one by one, allowing you to process each customer individually.
+### 可能的使用场景
+
+假设您有一个客户名称列表，并且想要为每个客户执行特定操作，例如发送个性化电子邮件。此代码块可以帮助您逐个遍历列表，使您能够单独处理每个客户。

@@ -1,13 +1,11 @@
-# AutoGPT Agent User Guide
+# AutoGPT Agent 用户指南
 
 !!! note
-    This guide assumes you are in the `autogpt` folder, where the AutoGPT Agent
-    is located.
+    本指南假设您位于 `autogpt` 文件夹中，即 AutoGPT Agent 所在的位置。
 
-## Command Line Interface
+## 命令行界面
 
-Running `./autogpt.sh` (or any of its subcommands) with `--help` lists all the possible
-sub-commands and arguments you can use:
+运行 `./autogpt.sh`（或其任何子命令）并加上 `--help` 参数，将列出所有可用的子命令和参数：
 
 ```shell
 $ ./autogpt.sh --help
@@ -21,22 +19,22 @@ Commands:
   serve  Starts an Agent Protocol compliant AutoGPT server, which creates...
 ```
 
-!!! important "For Windows users"
-    On Windows, use `.\autogpt.bat` instead of `./autogpt.sh`.
-    Everything else (subcommands, arguments) should work the same.
+!!! important "Windows 用户请注意"
+    在 Windows 上，请使用 `.\autogpt.bat` 代替 `./autogpt.sh`。
+    其他所有内容（子命令、参数）的工作方式应该相同。
 
-!!! info "Usage with Docker"
-    For use with Docker, replace the script in the examples with
-    `docker compose run --rm auto-gpt`:
+!!! info "Docker 使用说明"
+    如需与 Docker 一起使用，请将示例中的脚本替换为
+    `docker compose run --rm auto-gpt`：
 
     ```shell
     docker compose run --rm auto-gpt --ai-settings <filename>
     docker compose run --rm auto-gpt serve
     ```
 
-### `run` &ndash; CLI mode
+### `run` &ndash; CLI 模式
 
-The `run` sub-command starts AutoGPT with the legacy CLI interface.
+`run` 子命令使用传统的 CLI 界面启动 AutoGPT。
 
 <details>
 <summary>
@@ -81,33 +79,33 @@ Options:
   --component-config-file TEXT    Path to the json configuration file.
   --help                          Show this message and exit.
 ```
+
 </details>
 
-This mode allows running a single agent, and saves the agent's state when terminated.
-This means you can *resume* agents at a later time. See also [agent state].
+此模式允许运行单个代理，并在终止时保存代理的状态。
+这意味着您可以在以后*恢复*代理。另请参阅 [agent state]。
 
 !!! note
-    For legacy reasons, the CLI will default to the `run` subcommand when none is
-    specified: running `./autogpt.sh run [OPTIONS]` does the same as `./autogpt.sh [OPTIONS]`,
-    but this may change in the future.
+    由于历史遗留原因，当未指定子命令时，CLI 将默认使用 `run` 子命令：
+    运行 `./autogpt.sh run [OPTIONS]` 与 `./autogpt.sh [OPTIONS]` 效果相同，
+    但这在未来可能会改变。
 
-#### 💀 Continuous Mode ⚠️
+#### 💀 连续模式 ⚠️
 
-Run the AI **without** user authorization, 100% automated.
-Continuous mode is NOT recommended.
-It is potentially dangerous and may cause your AI to run forever or carry out actions you would not usually authorize.
-Use at your own risk.
+在**无需**用户授权的情况下运行AI，完全自动化。
+不建议使用连续模式。
+这可能存在危险，可能导致您的AI无限期运行或执行您通常不会授权的操作。
+请自行承担风险。
 
 ```shell
 ./autogpt.sh --continuous
 ```
 
-To exit the program, press ++ctrl+c++
+要退出程序，请按 ++ctrl+c++
 
-### `serve` &ndash; Agent Protocol mode with UI
+### `serve` &ndash; 带UI的Agent Protocol模式
 
-With `serve`, the application exposes an Agent Protocol compliant API and serves a
-frontend, by default on `http://localhost:8000`. You can configure the port it is served on with the `AP_SERVER_PORT` environment variable.
+使用 `serve` 时，应用程序会暴露一个符合Agent Protocol的API并提供前端界面，默认在 `http://localhost:8000` 上运行。您可以通过 `AP_SERVER_PORT` 环境变量配置服务端口。
 
 <details>
 <summary>
@@ -129,89 +127,87 @@ Options:
                               plugins.
   --help                      Show this message and exit.
 ```
+
 </details>
 
-For more information about the API of the application, see [agentprotocol.ai](https://agentprotocol.ai).
+有关应用程序API的更多信息，请参见 [agentprotocol.ai](https://agentprotocol.ai)。
 
 <!-- TODO: add guide/manual for frontend -->
 
-### Arguments
+### 参数说明
 
 !!! attention
-    Most arguments are equivalent to configuration options. See [`.env.template`][.env.template]
-    for all available configuration options.
+    大多数参数等同于配置选项。有关所有可用配置选项，请参见 [`.env.template`][.env.template]。
 
 !!! note
-    Replace anything in angled brackets (<>) to a value you want to specify
+    将尖括号(<>)中的任何内容替换为您要指定的值
 
-Here are some common arguments you can use when running AutoGPT:
+以下是运行AutoGPT时可以使用的一些常见参数：
 
-* Run AutoGPT with a different AI Settings file
+* 使用不同的AI设置文件运行AutoGPT
 
     ```shell
     ./autogpt.sh --ai-settings <filename>
     ```
 
-* Run AutoGPT with a different Prompt Settings file
+* 使用不同的提示设置文件运行AutoGPT
 
     ```shell
     ./autogpt.sh --prompt-settings <filename>
     ```
 
 !!! note
-    There are shorthands for some of these flags, for example `-P` for `--prompt-settings`.  
-    Use `./autogpt.sh --help` for more information.
+    其中一些标志有简写形式，例如 `-P` 对应 `--prompt-settings`。  
+    使用 `./autogpt.sh --help` 获取更多信息。
 
 [.env.template]: https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/.env.template
 
-## Agent State
+## 代理状态
+
 [agent state]: #agent-state
 
-The state of individual agents is stored in the `data/agents` folder. You can use this
-in various ways:
+单个代理的状态存储在 `data/agents` 文件夹中。您可以通过多种方式使用此功能：
 
-* Resume your agent at a later time.
-* Create "checkpoints" for your agent so you can always go back to specific points in
-    its history.
-* Share your agent!
+* 稍后恢复您的代理。
+* 为您的代理创建"检查点"，以便随时回退到其历史记录中的特定时间点。
+* 分享您的代理！
 
-## Workspace
+## 工作区
+
 [workspace]: #workspace
 
-Agents can read and write files. This happens in the `workspace` folder, which
-is in `data/agents/<agent_id>/`. Files outside of this folder can not be accessed by the
-agent *unless* `RESTRICT_TO_WORKSPACE` is set to `False`.
+代理可以读写文件。此操作发生在 `workspace` 文件夹中，该文件夹位于 `data/agents/<agent_id>/`。除非将 `RESTRICT_TO_WORKSPACE` 设置为 `False`，否则代理无法访问此文件夹之外的文件。
 
 !!! warning
-    We do not recommend disabling `RESTRICT_TO_WORKSPACE`, unless AutoGPT is running in
-    a sandbox environment where it couldn't do any damage (e.g. Docker or a VM).
+    我们不建议禁用 `RESTRICT_TO_WORKSPACE`，除非 AutoGPT 运行在无法造成任何损害的沙盒环境中（例如 Docker 或虚拟机）。
 
-## Logs
+## 日志
 
-Activity, Error, and Debug logs are located in `logs`.
+活动日志、错误日志和调试日志位于 `logs` 目录中。
 
 !!! tip
-    Do you notice weird behavior with your agent? Do you have an interesting use case? Do you have a bug you want to report?
-    Follow the step below to enable your logs. You can include these logs when making an issue report or discussing an issue with us.
+    是否注意到您的代理有异常行为？是否有有趣的用例？是否有要报告的 bug？
+    按照以下步骤启用日志记录。在提交问题报告或与我们讨论问题时，可以包含这些日志。
 
-To print out debug logs:
+要打印调试日志：
 
 ```shell
 ./autogpt.sh --debug
 ```
 
-## Disabling Commands
+## 禁用命令
 
-The best way to disable commands is to disable or remove the [component][components] that provides them.
-However, if you want to selectively disable some commands, you can use the `DISABLED_COMMANDS` config in your `.env`.
-Put the names of the commands you want to disable, separated by commas.
-You can find the list of commands in built-in components [here][commands].
+禁用命令的最佳方式是禁用或移除提供这些命令的[组件][components]。  
+但如果您希望有选择性地禁用某些命令，可以在 `.env` 文件中使用 `DISABLED_COMMANDS` 配置项。  
+将要禁用的命令名称以逗号分隔填入即可。  
+内置组件中的命令列表可[在此查看][commands]。
 
-For example, to disable python coding features, set it to the value below:
+例如，若要禁用 Python 编码功能，请将其设置为以下值：
 
 ```ini
 DISABLED_COMMANDS=execute_python_code,execute_python_file
 ```
 
 [components]: ../forge/components/components.md
+
 [commands]: ../forge/components/built-in-components.md

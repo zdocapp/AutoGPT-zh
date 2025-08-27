@@ -1,29 +1,35 @@
-# Condition Block
+# 条件块
 
-## What it is
-The Condition Block is a logical component that evaluates comparisons between two values and produces outputs based on the result.
+## 功能概述
 
-## What it does
-This block compares two input values using a specified comparison operator and determines whether the condition is true or false. It then outputs the result of the comparison and provides corresponding output values for both true and false cases.
+条件块是一个逻辑组件，用于评估两个值之间的比较，并根据结果生成输出。
 
-## How it works
-The block takes two values and a comparison operator as inputs. It then performs the comparison using the specified operator. Based on the result of the comparison, it outputs a boolean value (true or false) and the corresponding output value for the true or false case.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该块使用指定的比较运算符比较两个输入值，并确定条件为真还是假。然后输出比较结果，并为真和假两种情况提供相应的输出值。
+
+## 工作原理
+
+该块接收两个值和一个比较运算符作为输入。然后使用指定的运算符执行比较。根据比较结果，输出一个布尔值（真或假）以及真或假情况对应的输出值。
+
+## 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| Value 1 | The first value to be compared. This can be any type of value (number, text, or boolean) |
-| Operator | The comparison operator to use (e.g., equal to, not equal to, greater than, less than) |
-| Value 2 | The second value to be compared. This can be any type of value (number, text, or boolean) |
-| Yes Value | (Optional) The value to output if the condition is true. If not provided, Value 1 will be used |
-| No Value | (Optional) The value to output if the condition is false. If not provided, Value 1 will be used |
+| 值 1 | 要比较的第一个值。可以是任何类型的值（数字、文本或布尔值） |
+| 运算符 | 使用的比较运算符（例如：等于、不等于、大于、小于） |
+| 值 2 | 要比较的第二个值。可以是任何类型的值（数字、文本或布尔值） |
+| 是值 | （可选）如果条件为真时要输出的值。如果未提供，将使用值 1 |
+| 否值 | （可选）如果条件为假时要输出的值。如果未提供，将使用值 1 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | A boolean value (true or false) indicating whether the condition was met |
-| Yes Output | The output value if the condition is true. This will be the Yes Value if provided, or Value 1 if not |
-| No Output | The output value if the condition is false. This will be the No Value if provided, or Value 1 if not |
+| 结果 | 布尔值（true 或 false），指示条件是否满足 |
+| 是输出 | 条件为真时的输出值。如果提供了"是值"则使用该值，否则使用值1 |
+| 否输出 | 条件为假时的输出值。如果提供了"否值"则使用该值，否则使用值1 |
 
-## Possible use case
-This block could be used in a customer loyalty program to determine if a customer qualifies for a discount. For example, you could compare the customer's total purchases (Value 1) with a threshold amount (Value 2) using the "greater than or equal to" operator. The Yes Value could be "Qualified for discount" and the No Value could be "Not qualified". The block would then output whether the customer qualifies and the appropriate message.
+## 可能的使用场景
+
+该模块可用于客户忠诚度计划中，判断客户是否符合折扣资格。例如，可以使用"大于或等于"运算符将客户的总购买金额（值1）与阈值金额（值2）进行比较。"是值"可设置为"符合折扣资格"，"否值"可设置为"不符合资格"。该模块随后将输出客户是否符合资格以及相应的消息。

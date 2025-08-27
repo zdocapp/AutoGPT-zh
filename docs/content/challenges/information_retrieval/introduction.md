@@ -1,3 +1,3 @@
-# Information Retrieval
+# 信息检索
 
-Information retrieval challenges are designed to evaluate the proficiency of an AI agent, such as AutoGPT, in searching, extracting, and presenting relevant information from a vast array of sources. These challenges often encompass tasks such as interpreting user queries, browsing the web, and filtering through unstructured data.
+信息检索挑战旨在评估AI代理（如AutoGPT）在从海量来源中搜索、提取和呈现相关信息方面的熟练程度。这些挑战通常包含解释用户查询、浏览网页以及筛选非结构化数据等任务。

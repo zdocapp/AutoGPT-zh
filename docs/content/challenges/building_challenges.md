@@ -1,35 +1,35 @@
-# Creating Challenges for AutoGPT
+# 为 AutoGPT 创建挑战
 
-🏹 We're on the hunt for talented Challenge Creators! 🎯
+🏹 我们正在寻找才华横溢的挑战创作者！🎯
 
-Join us in shaping the future of AutoGPT by designing challenges that test its limits. Your input will be invaluable in guiding our progress and ensuring that we're on the right track. We're seeking individuals with a diverse skill set, including:
+加入我们，通过设计测试 AutoGPT 极限的挑战来塑造其未来。您的意见对于指导我们的进展和确保我们走在正确的轨道上将非常宝贵。我们正在寻找具备多样化技能的人才，包括：
 
-🎨 UX Design: Your expertise will enhance the user experience for those attempting to conquer our challenges. With your help, we'll develop a dedicated section in our wiki, and potentially even launch a standalone website.
+🎨 UX 设计：您的专业知识将提升尝试攻克我们挑战的用户体验。在您的帮助下，我们将在维基中开发一个专门的部分，甚至可能推出一个独立的网站。
 
-💻 Coding Skills: Proficiency in Python, pytest, and VCR (a library that records OpenAI calls and stores them) will be essential for creating engaging and robust challenges.
+💻 编码技能：熟练掌握 Python、pytest 和 VCR（一个记录 OpenAI 调用并存储的库）对于创建引人入胜且稳健的挑战至关重要。
 
-⚙️ DevOps Skills: Experience with CI pipelines in GitHub and possibly Google Cloud Platform will be instrumental in streamlining our operations.
+⚙️ DevOps 技能：在 GitHub 以及可能的 Google Cloud Platform 中拥有 CI 流水线经验将有助于简化我们的操作。
 
-Are you ready to play a pivotal role in AutoGPT's journey? Apply now to become a Challenge Creator by opening a PR! 🚀
+准备好扮演 AutoGPT 旅程中的关键角色了吗？立即通过提交 PR 申请成为挑战创作者！🚀
 
+# 入门指南
 
-# Getting Started
-Clone the original AutoGPT repo and checkout to master branch
+克隆原始的 AutoGPT 仓库并切换到 master 分支
 
+挑战并非使用特定框架编写，力求保持高度通用性。
+挑战模拟了一个希望完成某事的用户：
+输入：
 
-The challenges are not written using a specific framework. They try to be very agnostic
-The challenges are acting like a user that wants something done: 
-INPUT:
-- User desire
-- Files, other inputs
+- 用户需求
+- 文件及其他输入
 
-Output => Artifact (files, image, code, etc, etc...)
+输出 => 产物（文件、图像、代码等）
 
-## Defining your Agent
+## 定义您的智能体
 
-Go to https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/original_autogpt/tests/integration/agent_factory.py
+前往 https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/original_autogpt/tests/integration/agent_factory.py
 
-Create your agent fixture.
+创建您的代理装置。
 
 ```python
 def kubernetes_agent(
@@ -63,10 +63,11 @@ def kubernetes_agent(
     return agent
 ```
 
-## Creating your challenge
-Go to `tests/challenges`and create a file that is called `test_your_test_description.py` and add it to the appropriate folder. If no category exists you can create a new one.
+## 创建您的挑战
 
-Your test could look something like this 
+转到 `tests/challenges` 并创建一个名为 `test_your_test_description.py` 的文件，并将其添加到相应的文件夹中。如果不存在类别，您可以创建一个新的。
+
+您的测试可能类似于这样
 
 ```python
 import contextlib

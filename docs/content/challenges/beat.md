@@ -1,11 +1,11 @@
-# Beat a Challenge
+# 挑战攻克指南
 
-If you have a solution or idea to tackle an existing challenge, you can contribute by working on it and submitting your solution. Here's how to get started:
+如果您有解决现有挑战的方案或想法，可以通过参与并提交您的解决方案来做出贡献。以下是入门指南：
 
-## Guidelines for Beating a Challenge
+## 挑战攻克准则
 
-1. **Choose a challenge**: Browse the [List of Challenges](list.md) and choose one that interests you or aligns with your expertise.
+1. **选择挑战**：浏览[挑战列表](list.md)，选择您感兴趣或与您专业领域相符的挑战。
 
-2. **Understand the problem**: Make sure you thoroughly understand the problem at hand, its scope, and the desired outcome.
+2. **理解问题**：确保您完全理解当前问题、其范围以及期望结果。
 
-3. **Develop a solution**: Work on creating a solution for the challenge. This may/
+3. **制定解决方案**：着手为挑战创建解决方案。这可能/

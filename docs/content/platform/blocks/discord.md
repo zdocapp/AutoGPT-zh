@@ -1,54 +1,66 @@
-## Read Discord Messages
+## 读取 Discord 消息
 
-### What it is
-A block that reads messages from a Discord channel using a bot token.
+### 功能说明
 
-### What it does
-This block connects to Discord using a bot token and retrieves messages from a specified channel. It can operate continuously or retrieve a single message.
+一个使用机器人令牌从 Discord 频道读取消息的功能块。
 
-### How it works
-The block uses a Discord bot to log into a server and listen for new messages. When a message is received, it extracts the content, channel name, and username of the sender. If the message contains a text file attachment, the block also retrieves and includes the file's content.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块通过机器人令牌连接到 Discord 并获取指定频道的消息。可以持续运行或仅获取单条消息。
+
+### 工作原理
+
+该功能块使用 Discord 机器人登录服务器并监听新消息。当收到消息时，它会提取消息内容、频道名称和发送者用户名。如果消息包含文本文件附件，该功能块还会获取并包含文件内容。
+
+### 输入参数
+
+| 输入参数 | 描述 |
 |-------|-------------|
-| Discord Bot Token | A secret token used to authenticate the bot with Discord |
-| Continuous Read | A boolean flag indicating whether to continuously read messages or stop after one message |
+| Discord 机器人令牌 | 用于在 Discord 上验证机器人身份的安全令牌 |
+| 持续读取 | 布尔标志，指示是持续读取消息还是在获取一条消息后停止 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出结果 | 描述 |
 |--------|-------------|
-| Message Content | The text content of the received message, including any attached file content |
-| Channel Name | The name of the Discord channel where the message was received |
-| Username | The name of the user who sent the message |
+| 消息内容 | 接收消息的文本内容，包括任何附件文件内容 |
+| 频道名称 | 接收消息的 Discord 频道名称 |
+| 用户名 | 发送消息的用户名称 |
 
-### Possible use case
-This block could be used to monitor a Discord channel for support requests. When a user posts a message, the block captures it, allowing another part of the system to process and respond to the request.
+### 应用场景
+
+该功能块可用于监控 Discord 频道中的支持请求。当用户发布消息时，功能块会捕获该消息，使系统的其他部分能够处理并响应请求。
 
 ---
 
-## Send Discord Message
+## 发送 Discord 消息
 
-### What it is
-A block that sends messages to a Discord channel using a bot token.
+### 功能说明
 
-### What it does
-This block connects to Discord using a bot token and sends a specified message to a designated channel.
+一个使用机器人令牌向 Discord 频道发送消息的模块。
 
-### How it works
-The block uses a Discord bot to log into a server, locate the specified channel, and send the provided message. If the message is longer than Discord's character limit, it automatically splits the message into smaller chunks and sends them sequentially.
+### 功能说明
 
-### Inputs
-| Input | Description |
+该模块通过机器人令牌连接到 Discord，并向指定频道发送特定消息。
+
+### 工作原理
+
+该模块使用 Discord 机器人登录服务器，定位指定频道并发送提供的消息。如果消息长度超过 Discord 的字符限制，它会自动将消息分割成较小的块并按顺序发送。
+
+### 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| Discord Bot Token | A secret token used to authenticate the bot with Discord |
-| Message Content | The text content of the message to be sent |
-| Channel Name | The name of the Discord channel where the message should be sent |
+| Discord Bot Token | 用于验证 Discord 机器人身份的秘密令牌 |
+| Message Content | 要发送的消息文本内容 |
+| Channel Name | 应发送消息的 Discord 频道名称 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Status | A string indicating the result of the operation (e.g., "Message sent" or "Channel not found") |
+| Status | 表示操作结果的字符串（例如："消息已发送" 或 "未找到频道"） |
 
-### Possible use case
-This block could be used as part of an automated notification system. For example, it could send alerts to a Discord channel when certain events occur in another system, such as when a new user signs up or when a critical error is detected.
+### 应用场景
+
+该模块可作为自动化通知系统的一部分使用。例如，当其他系统中发生特定事件时（如新用户注册或检测到关键错误），可向 Discord 频道发送警报。

@@ -1,14 +1,14 @@
-# Submit a Challenge
+# 提交挑战
 
-If you have identified a task or problem that AutoGPT struggles with, you can submit it as a challenge for the community to tackle. Here's how you can submit a new challenge:
+如果您发现 AutoGPT 难以处理的任务或问题，可以将其作为挑战提交给社区共同解决。以下是提交新挑战的方法：
 
-## How to Submit a Challenge
+## 如何提交挑战
 
-1. Create a new `.md` file in the `challenges` directory in the AutoGPT GitHub repository. Make sure to pick the right category. 
-2. Name the file with a descriptive title for the challenge, using hyphens instead of spaces (e.g., `improve-context-understanding.md`).
-3. In the file, follow the [challenge_template.md](challenge_template.md) to describe the problem, define the scope, and evaluate success.
-4. Commit the file and create a pull request.
+1. 在 AutoGPT GitHub 仓库的 `challenges` 目录中创建新的 `.md` 文件。请确保选择正确的类别。
+2. 使用描述性标题命名文件，用连字符代替空格（例如：`improve-context-understanding.md`）。
+3. 在文件中，按照 [challenge_template.md](challenge_template.md) 的格式描述问题、定义范围并评估成功标准。
+4. 提交文件并创建拉取请求。
 
-Once submitted, the community can review and discuss the challenge. If deemed appropriate, it will be added to the [List of Challenges](list.md).
+提交后，社区可以评审和讨论该挑战。如果被认为合适，它将被添加到[挑战列表](list.md)中。
 
-If you're looking to contribute by working on an existing challenge, check out [Beat a Challenge](beat.md) for guidelines on how to get started.
+如果您希望通过解决现有挑战来贡献代码，请查看[攻克挑战](beat.md)了解如何入门的指南。

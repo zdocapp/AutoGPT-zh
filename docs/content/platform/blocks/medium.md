@@ -1,35 +1,41 @@
-# Publish to Medium
+# 发布到 Medium
 
-## What it is
-The Publish to Medium block is a tool that enables direct publication of content to the Medium platform from within an automated workflow.
+## 功能概述
 
-## What it does
-This block takes a fully formatted blog post, along with associated metadata, and publishes it to Medium using the platform's API. It handles all aspects of the publication process, including setting the title, content, tags, and other post-specific details.
+发布到 Medium 模块是一个工具，能够在自动化工作流中直接将内容发布到 Medium 平台。
 
-## How it works
-The block uses the provided Medium API key and author ID to authenticate with the Medium platform. It then constructs an API request containing all the post details and sends it to Medium's servers. After the post is published, the block retrieves and returns relevant information about the newly created post, such as its unique ID and public URL.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该模块接收完全格式化的博客文章及相关元数据，并通过平台的 API 将其发布到 Medium。它处理发布过程的所有方面，包括设置标题、内容、标签和其他文章特定细节。
+
+## 工作原理
+
+该模块使用提供的 Medium API 密钥和作者 ID 与 Medium 平台进行身份验证。然后构建包含所有文章详情的 API 请求，并将其发送到 Medium 的服务器。文章发布后，该模块会检索并返回有关新创建文章的相关信息，例如其唯一 ID 和公共 URL。
+
+## 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| Author ID | The unique identifier for the Medium author account |
-| Title | The headline of the Medium post |
-| Content | The main body of the post (in HTML or Markdown format) |
-| Content Format | Specifies whether the content is in 'html' or 'markdown' format |
-| Tags | Up to 5 topic tags to categorize the post (comma-separated) |
-| Canonical URL | The original URL if the content was first published elsewhere |
-| Publish Status | Sets the post visibility: 'public', 'draft', or 'unlisted' |
-| License | The copyright license for the post (default: 'all-rights-reserved') |
-| Notify Followers | Boolean flag to notify the author's followers about the new post |
-| API Key | The Medium API key for authentication |
+| Author ID | Medium 作者账户的唯一标识符 |
+| Title | Medium 文章的标题 |
+| Content | 文章正文（HTML 或 Markdown 格式） |
+| Content Format | 指定内容格式为 'html' 或 'markdown' |
+| Tags | 用于分类文章的主题标签（最多5个，逗号分隔） |
+| Canonical URL | 若内容首发于其他平台，此处填写原始 URL |
+| Publish Status | 设置文章可见性：'public'（公开）、'draft'（草稿）或 'unlisted'（未列出） |
+| License | 文章版权许可（默认：'all-rights-reserved'） |
+| Notify Followers | 布尔标志，是否通知作者关注者有新文章发布 |
+| API Key | 用于身份验证的 Medium API 密钥 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Post ID | The unique identifier assigned to the published post by Medium |
-| Post URL | The public web address where the post can be viewed |
-| Published At | The timestamp indicating when the post was published |
-| Error | Any error message returned if the publication process fails |
+| Post ID | Medium 为已发布文章分配的唯一标识符 |
+| Post URL | 可查看文章的公开网址 |
+| Published At | 文章发布的时间戳 |
+| Error | 发布过程失败时返回的错误信息 |
 
-## Possible use case
-A digital marketing team could integrate this block into their content management system to streamline their cross-platform publishing strategy. After creating and approving a blog post in their main system, they could use this block to automatically publish the content to Medium, ensuring consistent and timely distribution across multiple platforms without manual intervention.
+## 可能的使用场景
+
+数字营销团队可将此模块集成至其内容管理系统，以简化跨平台发布策略。在主系统中创建并审核博客文章后，他们可利用此模块自动将内容发布至Medium平台，确保在多渠道实现内容同步且及时的自动化分发，无需人工干预。

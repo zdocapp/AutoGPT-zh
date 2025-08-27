@@ -1,33 +1,39 @@
-# Google Maps Search
+# Google Maps 搜索
 
-## What it is
-A block that searches for local businesses using the Google Maps API.
+## 功能概述
 
-## What it does
-This block allows users to search for places of interest, such as restaurants, shops, or attractions, within a specified area using Google Maps data.
+通过 Google Maps API 搜索本地商户的功能块。
 
-## How it works
-The block takes a search query, location details, and API credentials as input. It then communicates with the Google Maps API to fetch information about relevant places. The results are processed and returned as structured data containing details about each place found.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该功能块允许用户使用 Google Maps 数据，在指定区域内搜索兴趣点，例如餐厅、商店或景点。
+
+## 工作原理
+
+该功能块接收搜索查询、位置详情和 API 凭证作为输入。随后与 Google Maps API 通信以获取相关地点的信息。结果经过处理，以结构化数据形式返回，包含每个找到地点的详细信息。
+
+## 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| API Key | A secret key required to authenticate and use the Google Maps API |
-| Query | The search term for finding local businesses (e.g., "restaurants in New York") |
-| Radius | The search area radius in meters, with a maximum of 50,000 meters (about 31 miles) |
-| Max Results | The maximum number of places to return, up to 60 results |
+| API 密钥 | 用于验证和使用 Google Maps API 所需的密钥 |
+| 查询 | 用于查找本地商户的搜索词（例如："纽约的餐厅"） |
+| 半径 | 搜索区域半径（单位：米），最大值为 50,000 米（约 31 英里） |
+| 最大结果数 | 返回地点的最大数量，最多可返回 60 个结果 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Place | Information about a found place, including: |
-| - Name | The name of the business or location |
-| - Address | The full address of the place |
-| - Phone | The contact phone number |
-| - Rating | The average rating (out of 5) given by users |
-| - Reviews | The total number of user reviews |
-| - Website | The official website of the place, if available |
-| Error | A message describing any issues that occurred during the search process |
+| 地点 | 找到地点的信息，包括： |
+| - 名称 | 商户或位置的名称 |
+| - 地址 | 地点的完整地址 |
+| - 电话 | 联系电话号码 |
+| - 评分 | 用户给出的平均评分（满分 5 分） |
+| - 评论数 | 用户评论总数 |
+| - 网站 | 地点的官方网站（如果可用） |
+| 错误 | 描述搜索过程中出现的任何问题的消息 |
 
-## Possible use case
-A travel planning application could use this block to help users discover popular restaurants, attractions, or accommodations in their destination city. By inputting a search query like "family-friendly restaurants in Paris" and specifying a search radius around their hotel, travelers could quickly get a list of suitable dining options with ratings, contact information, and websites for making reservations.
+## 可能的使用场景
+
+旅行规划应用程序可以利用此功能块帮助用户发现目的地城市的热门餐厅、景点或住宿。通过输入类似"巴黎适合家庭的餐厅"的搜索查询，并指定酒店周边的搜索半径，旅行者能够快速获取包含评分、联系信息和预订网站的合适餐饮选项列表。

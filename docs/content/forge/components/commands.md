@@ -1,6 +1,6 @@
-# 🛠️ Commands
+# 🛠️ 命令
 
-Commands are a way for the agent to do anything; e.g. interact with the user or APIs and use tools. They are provided by components that implement the `CommandProvider` [⚙️ Protocol](./protocols.md). Commands are functions that can be called by the agent, they can have parameters and return values that will be seen by the agent.
+命令是智能体执行各种操作的方式；例如与用户或 API 交互以及使用工具。它们由实现 `CommandProvider` [⚙️ 协议](./protocols.md) 的组件提供。命令是可由智能体调用的函数，它们可以包含参数和返回值，这些都将被智能体看到。
 
 ```py
 class CommandProvider(Protocol):
@@ -8,11 +8,11 @@ class CommandProvider(Protocol):
         ...
 ```
 
-## `command` decorator
+## `command` 装饰器
 
-The easiest and recommended way to provide a command is to use `command` decorator on a component method and then just yield it in `get_commands` as part of your provider. Each command needs a name, description and a parameter schema - `JSONSchema`. By default method name is used as a command name, and first part of docstring for the description (before first double newline) and schema can be provided in the decorator.
+提供命令最简单且推荐的方式是在组件方法上使用 `command` 装饰器，然后在提供者的 `get_commands` 中将其作为一部分 yield 出来。每个命令都需要一个名称、描述和参数模式 - `JSONSchema`。默认情况下，方法名称用作命令名称，文档字符串的第一部分（在第一个双换行符之前）用作描述，模式可以在装饰器中提供。
 
-### Example usage of `command` decorator
+### `command` 装饰器使用示例
 
 ```py
 # Assuming this is inside some component class
@@ -42,9 +42,9 @@ def multiply(self, a: int, b: int) -> str:
     return str(a * b)
 ```
 
-The agent will be able to call this command, named `multiply` with two arguments and will receive the result. The command description will be: `Multiplies two numbers.`
+智能体将能够调用这个名为 `multiply` 的命令，它有两个参数，并将收到结果。命令描述将是：`将两个数字相乘。`
 
-We can provide `names` and `description` in the decorator, the above command is equivalent to:
+我们可以在装饰器中提供 `names` 和 `description`，上述命令等同于：
 
 ```py
 @command(
@@ -65,16 +65,16 @@ We can provide `names` and `description` in the decorator, the above command is 
         return str(a * b)
 ```
 
-To provide the `multiply` command to the agent, we need to yield it in `get_commands`:
+为了向智能体提供 `multiply` 命令，我们需要在 `get_commands` 中将其 yield 出来：
 
 ```py
 def get_commands(self) -> Iterator[Command]:
     yield self.multiply
 ```
 
-## Creating `Command` directly
+## 直接创建 `Command`
 
-If you don't want to use the decorator, you can create a `Command` object directly.
+如果您不想使用装饰器，可以直接创建 `Command` 对象。
 
 ```py
 

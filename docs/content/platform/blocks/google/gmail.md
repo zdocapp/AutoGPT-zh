@@ -1,203 +1,243 @@
 # Gmail
 
-## Gmail Read
+## Gmail 读取
 
-### What it is
-A block that retrieves and reads emails from a Gmail account.
+### 功能说明
 
-### What it does
-This block searches for and retrieves emails from a specified Gmail account based on given search criteria. It can fetch multiple emails and provide detailed information about each email, including subject, sender, recipient, date, body content, and attachments.
+从 Gmail 账户检索和读取邮件的功能块。
 
-### How it works
-The block connects to the user's Gmail account using their credentials, performs a search based on the provided query, and retrieves the specified number of email messages. It then processes each email to extract relevant information and returns the results.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块根据给定的搜索条件，从指定的 Gmail 账户中搜索并检索邮件。它可以获取多封邮件，并提供每封邮件的详细信息，包括主题、发件人、收件人、日期、正文内容和附件。
+
+### 工作原理
+
+该功能块使用用户的凭据连接到其 Gmail 账户，根据提供的查询执行搜索，并检索指定数量的邮件。然后处理每封邮件以提取相关信息并返回结果。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
-| Query | A search query to filter emails (e.g., "is:unread" for unread emails). Ignored if using only the `gmail.metadata` scope. |
-| Max Results | The maximum number of emails to retrieve |
+| 凭据 | 用于身份验证的用户 Gmail 账户凭据 |
+| 查询 | 用于筛选邮件的搜索查询（例如，"is:unread" 表示未读邮件）。如果仅使用 `gmail.metadata` 范围，则忽略此参数。 |
+| 最大结果数 | 要检索的邮件最大数量 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Email | Detailed information about a single email (now includes `threadId`) |
-| Emails | A list of email data for multiple emails |
-| Error | An error message if something goes wrong during the process |
+| 邮件 | 单封邮件的详细信息（现在包含 `threadId`） |
+| 邮件列表 | 多封邮件的邮件数据列表 |
+| 错误 | 处理过程中出现错误时的错误消息 |
 
-### Possible use case
-Automatically checking for new customer inquiries in a support email inbox and organizing them for quick response.
+### 可能的使用场景
+
+自动检查支持邮箱中的新客户咨询，并对其进行整理以便快速响应。
 
 ---
 
-## Gmail Send
+## Gmail 发送
 
-### What it is
-A block that sends emails using a Gmail account.
+### 功能说明
 
-### What it does
-This block allows users to compose and send emails through their Gmail account. It handles the creation of the email message and sends it to the specified recipient.
+使用 Gmail 账户发送邮件的功能块。
 
-### How it works
-The block authenticates with the user's Gmail account, creates an email message with the provided details (recipient, subject, and body), and then sends the email using Gmail's API.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块允许用户通过其 Gmail 账户撰写并发送电子邮件。它负责创建电子邮件消息并将其发送给指定的收件人。
+
+### 工作原理
+
+该模块通过用户的 Gmail 账户进行身份验证，使用提供的详细信息（收件人、主题和正文）创建电子邮件消息，然后使用 Gmail 的 API 发送邮件。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
-| To | The recipient's email address |
-| Subject | The subject line of the email |
-| Body | The main content of the email |
+| 凭据 | 用于身份验证的用户 Gmail 账户凭据 |
+| 收件人 | 收件人的电子邮件地址 |
+| 主题 | 邮件的主题行 |
+| 正文 | 邮件的主要内容 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | Confirmation of the sent email, including a message ID |
-| Error | An error message if something goes wrong during the process |
+| 结果 | 已发送邮件的确认信息，包括消息 ID |
+| 错误 | 处理过程中出现问题时返回的错误消息 |
 
-### Possible use case
-Automatically sending confirmation emails to customers after they make a purchase on an e-commerce website.
+### 可能的使用场景
+
+在客户于电子商务网站完成购买后，自动向其发送确认邮件。
 
 ---
 
-## Gmail List Labels
+## Gmail 列表标签
 
-### What it is
-A block that retrieves all labels (categories) from a Gmail account.
+### 功能说明
 
-### What it does
-This block fetches and lists all the labels or categories that are set up in the user's Gmail account. These labels are used to organize and categorize emails.
+一个用于从 Gmail 账户检索所有标签（类别）的模块。
 
-### How it works
-The block connects to the user's Gmail account and requests a list of all labels. It then processes this information and returns a simplified list of label names and their corresponding IDs.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此模块获取并列出用户 Gmail 账户中设置的所有标签或类别。这些标签用于组织和分类电子邮件。
+
+### 工作原理
+
+该模块连接到用户的 Gmail 账户并请求所有标签的列表。随后处理此信息并返回标签名称及其对应 ID 的简化列表。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
+| Credentials | 用于身份验证的用户 Gmail 账户凭据 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | A list of labels, including their names and IDs |
-| Error | An error message if something goes wrong during the process |
+| Result | 标签列表，包含名称和 ID |
+| Error | 处理过程中出现错误时的错误消息 |
 
-### Possible use case
-Creating a dashboard that shows an overview of how many emails are in each category or label in a business email account.
+### 可能的使用场景
+
+创建一个仪表板，显示企业邮箱账户中每个类别或标签下的邮件数量概览。
 
 ---
 
-## Gmail Add Label
+## Gmail 添加标签
 
-### What it is
-A block that adds a label to a specific email in a Gmail account.
+### 功能说明
 
-### What it does
-This block allows users to add a label (category) to a particular email message in their Gmail account. If the label doesn't exist, it creates a new one.
+一个用于向 Gmail 账户中特定邮件添加标签的功能块。
 
-### How it works
-The block first checks if the specified label exists in the user's Gmail account. If it doesn't, it creates the label. Then, it adds the label to the specified email message using the message ID.
+### 功能描述
 
-### Inputs
-| Input | Description |
+此功能块允许用户向其 Gmail 账户中的特定邮件添加标签（类别）。如果标签不存在，则会创建新标签。
+
+### 工作原理
+
+该功能块首先检查指定标签是否存在于用户的 Gmail 账户中。如果不存在，则创建该标签。然后，使用邮件 ID 将该标签添加到指定的邮件中。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
-| Message ID | The unique identifier of the email message to be labeled |
-| Label Name | The name of the label to add to the email |
+| Credentials | 用于身份验证的用户 Gmail 账户凭据 |
+| Message ID | 待添加标签邮件的唯一标识符 |
+| Label Name | 要添加到邮件的标签名称 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | Confirmation of the label addition, including the label ID |
-| Error | An error message if something goes wrong during the process |
+| Result | 标签添加确认，包含标签 ID |
+| Error | 处理过程中出现错误时的错误消息 |
 
-### Possible use case
-Automatically categorizing incoming customer emails based on their content, adding labels like "Urgent," "Feedback," or "Invoice" for easier processing.
+### 可能的使用场景
+
+基于邮件内容自动分类客户来信，添加"紧急"、"反馈"或"发票"等标签以便处理。
 
 ---
 
 ## Gmail Remove Label
 
-### What it is
-A block that removes a label from a specific email in a Gmail account.
+### 功能说明
 
-### What it does
-This block allows users to remove a label (category) from a particular email message in their Gmail account.
+从Gmail账户特定邮件中移除标签的功能块。
 
-### How it works
-The block first finds the ID of the specified label in the user's Gmail account. If the label exists, it removes it from the specified email message using the message ID.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块允许用户从其Gmail账户的特定邮件中移除标签（分类）。
+
+### 工作原理
+
+功能块首先在用户的Gmail账户中查找指定标签的ID。若标签存在，则通过邮件ID将该标签从指定邮件中移除。
+
+### 输入
+
+| 输入项 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
-| Message ID | The unique identifier of the email message to remove the label from |
-| Label Name | The name of the label to remove from the email |
+| 凭据 | 用于身份验证的用户Gmail账户凭据 |
+| 邮件ID | 要移除标签的邮件唯一标识符 |
+| 标签名称 | 要从邮件中移除的标签名称 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出项 | 描述 |
 |--------|-------------|
-| Result | Confirmation of the label removal, including the label ID |
-| Error | An error message if something goes wrong during the process |
+| 结果 | 标签移除确认信息，包含标签ID |
+| 错误 | 流程中出现错误时的错误信息 |
 
-### Possible use case
-Automatically removing the "Unread" label from emails after they have been processed by a customer service representative.
+### 可能的使用场景
+
+客服代表处理完成后自动从邮件中移除"未读"标签。
 
 ---
 
 ## Gmail Get Thread
 
-### What it is
-A block that retrieves an entire Gmail thread.
+### 功能说明
 
-### What it does
-Given a `threadId`, this block fetches all messages in that thread and decodes the text bodies.
+获取完整Gmail会话线程的功能块。
 
-### Inputs
-| Input | Description |
+### 功能描述
+
+根据给定的`threadId`，该功能块获取该会话中的所有邮件并解码文本正文。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
-| threadId | The ID of the thread to fetch |
+| Credentials | 用于身份验证的用户 Gmail 账户凭据 |
+| threadId | 要获取的会话线程 ID |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Thread | Gmail thread with decoded messages |
-| Error | An error message if something goes wrong |
+| Thread | 包含解码邮件的 Gmail 会话线程 |
+| Error | 出现错误时的错误消息 |
 
-### Possible use case
-Checking if a recipient replied in an existing conversation.
+### 可能的使用场景
+
+检查收件人是否在现有会话中回复。
 
 ---
 
-## Gmail Reply
+## Gmail 回复
 
-### What it is
-A block that sends a reply within an existing Gmail thread.
+### 功能说明
 
-### What it does
-This block builds a properly formatted reply email and sends it so Gmail keeps it in the same conversation.
+在现有 Gmail 会话线程中发送回复的功能块。
 
-### Inputs
-| Input | Description |
+### 功能描述
+
+此功能块构建格式正确的回复邮件并发送，使 Gmail 将其保留在同一会话中。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Credentials | The user's Gmail account credentials for authentication |
-| threadId | The thread to reply in |
-| parentMessageId | The ID of the message you are replying to |
-| To | List of recipients |
-| Cc | List of CC recipients |
-| Bcc | List of BCC recipients |
-| Subject | Optional subject (defaults to `Re:` prefix) |
-| Body | The email body |
-| Attachments | Optional files to include |
+| Credentials | 用于身份验证的用户 Gmail 账户凭据 |
+| threadId | 要回复的会话线程 |
+| parentMessageId | 您要回复的邮件 ID |
+| To | 收件人列表 |
+| Cc | 抄送收件人列表 |
+| Bcc | 密送收件人列表 |
+| Subject | 可选主题（默认为 `Re:` 前缀） |
+| Body | 邮件正文 |
+| Attachments | 可选包含的文件 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| MessageId | The ID of the sent message |
-| ThreadId | The thread the reply belongs to |
-| Message | Full Gmail message object |
-| Error | Error message if something goes wrong |
+| MessageId | 已发送邮件的 ID |
+| ThreadId | 回复所属的会话线程 |
+| Message | 完整的 Gmail 邮件对象 |
+| Error | 出现错误时的错误消息 |
 
-### Possible use case
-Automatically respond "Thanks, see you then" to a scheduling email while keeping the conversation tidy.
+### 可能的使用场景
+
+自动回复"谢谢，到时见"到日程安排邮件，同时保持会话整洁。

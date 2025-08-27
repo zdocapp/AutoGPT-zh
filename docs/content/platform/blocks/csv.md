@@ -1,31 +1,37 @@
-# Read CSV
+# 读取 CSV
 
-## What it is
-A block that reads and processes CSV (Comma-Separated Values) files.
+## 功能概述
 
-## What it does
-This block takes CSV content as input, processes it, and outputs the data as individual rows and a complete dataset.
+用于读取和处理 CSV（逗号分隔值）文件的模块。
 
-## How it works
-The Read CSV block takes the contents of a CSV file and splits it into rows and columns. It can handle different formatting options, such as custom delimiters and quote characters. The block processes the CSV data and outputs each row individually, as well as the complete dataset.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该模块接收 CSV 内容作为输入，处理后输出单行数据和完整数据集。
+
+## 工作原理
+
+读取 CSV 模块接收 CSV 文件内容并将其拆分为行和列。可处理不同的格式选项，如自定义分隔符和引号字符。该模块处理 CSV 数据并分别输出每一行以及完整数据集。
+
+## 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| Contents | The CSV data as a string |
-| Delimiter | The character used to separate values in the CSV (default is comma ",") |
-| Quotechar | The character used to enclose fields containing special characters (default is double quote '"') |
-| Escapechar | The character used to escape special characters (default is backslash "\") |
-| Has_header | Indicates whether the CSV has a header row (default is true) |
-| Skip_rows | The number of rows to skip at the beginning of the CSV (default is 0) |
-| Strip | Whether to remove leading and trailing whitespace from values (default is true) |
-| Skip_columns | A list of column names to exclude from the output (default is an empty list) |
+| 内容 | 字符串形式的 CSV 数据 |
+| 分隔符 | CSV 中用于分隔值的字符（默认为逗号 ","） |
+| 引号字符 | 用于包裹包含特殊字符字段的字符（默认为双引号 '"'） |
+| 转义字符 | 用于转义特殊字符的字符（默认为反斜杠 "\"） |
+| 包含表头 | 指示 CSV 是否包含表头行（默认为 true） |
+| 跳过行数 | CSV 开头要跳过的行数（默认为 0） |
+| 去除空格 | 是否移除值的前后空白字符（默认为 true） |
+| 跳过列 | 要从输出中排除的列名列表（默认为空列表） |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Row | A dictionary representing a single row of the CSV, with column names as keys and cell values as values |
-| All_data | A list of dictionaries containing all rows from the CSV |
+| 行数据 | 表示单行 CSV 的字典，以列名为键，单元格值为值 |
+| 全部数据 | 包含 CSV 中所有行的字典列表 |
 
-## Possible use case
-This block could be used in a data analysis pipeline to import and process customer information from a CSV file. The individual rows could be used for real-time processing, while the complete dataset could be used for batch analysis or reporting.
+## 可能的使用场景
+
+该代码块可用于数据分析流水线中，从CSV文件导入并处理客户信息。其中单行数据可用于实时处理，而完整数据集则适用于批量分析或报告生成。

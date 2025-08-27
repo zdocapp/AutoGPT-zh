@@ -1,35 +1,42 @@
-# Send Email
+# 发送邮件
 
-## What it is
-The Send Email block is a tool for sending emails using SMTP (Simple Mail Transfer Protocol) credentials.
+## 功能概述
 
-## What it does
-This block allows users to send an email to a specified recipient with a custom subject and body. It uses provided SMTP credentials to connect to an email server and send the message.
+发送邮件块是一个使用 SMTP（简单邮件传输协议）凭据发送邮件的工具。
 
-## How it works
-The block takes the recipient's email address, subject, and body of the email as inputs. It also requires SMTP credentials, including the server address, port, username, and password. The block then connects to the specified SMTP server, authenticates using the provided credentials, and sends the email. After attempting to send the email, it reports back whether the operation was successful or if an error occurred.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该块允许用户向指定收件人发送带有自定义主题和正文的电子邮件。它使用提供的 SMTP 凭据连接到邮件服务器并发送消息。
+
+## 工作原理
+
+该块接收收件人邮箱地址、邮件主题和正文作为输入。同时需要 SMTP 凭据，包括服务器地址、端口、用户名和密码。随后该块会连接到指定的 SMTP 服务器，使用提供的凭据进行身份验证并发送邮件。尝试发送邮件后，它会返回操作是否成功或是否发生错误。
+
+## 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| To Email | The email address of the recipient |
-| Subject | The subject line of the email |
-| Body | The main content of the email message |
-| SMTP Credentials | Server, port, username, and password for authentication |
+| 收件邮箱 | 收件人的邮箱地址 |
+| 主题 | 邮件的主题行 |
+| 正文 | 邮件的主要内容 |
+| SMTP 凭据 | 用于身份验证的服务器、端口、用户名和密码 |
 
-### SMTP Credentials Details
-| Credential | Description | Default |
+### SMTP 凭据详情
+
+| 凭据 | 描述 | 默认值 |
 |------------|-------------|---------|
-| SMTP Server | The address of the SMTP server | smtp.gmail.com |
-| SMTP Port | The port number for the SMTP server | 25 |
-| SMTP Username | The username for authenticating with the SMTP server | - |
-| SMTP Password | The password for authenticating with the SMTP server | - |
+| SMTP 服务器 | SMTP 服务器的地址 | smtp.gmail.com |
+| SMTP 端口 | SMTP 服务器的端口号 | 25 |
+| SMTP 用户名 | 用于 SMTP 服务器身份验证的用户名 | - |
+| SMTP 密码 | 用于 SMTP 服务器身份验证的密码 | - |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Status | A message indicating whether the email was sent successfully |
-| Error | If the email sending fails, this output provides details about the error that occurred |
+| Status | 指示邮件是否成功发送的状态信息 |
+| Error | 如果邮件发送失败，此输出提供所发生错误的详细信息 |
 
-## Possible use case
-This block could be used in an automated customer support system. When a customer submits a support ticket through a website, the Send Email block could automatically send a confirmation email to the customer, acknowledging receipt of their request and providing them with a ticket number for future reference.
+## 可能的使用场景
+
+该模块可用于自动化客户支持系统。当客户通过网站提交支持工单时，Send Email 模块可自动向客户发送确认邮件，确认已收到其请求并提供工单编号以供后续参考。

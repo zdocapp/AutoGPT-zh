@@ -1,139 +1,138 @@
+# 🧠 使用 AutoGPT 运行 AI/ML API
 
-# 🧠 Running AI/ML API with AutoGPT
-
-Follow these steps to connect **AI/ML API** with the **AutoGPT** platform for high-performance AI text generation.
-
----
-
-## ✅ Prerequisites
-
-1. Make sure you have gone through and completed the [AutoGPT Setup Guide](https://docs.agpt.co/platform/getting-started/), and AutoGPT is running locally at `http://localhost:3000`.
-2. You have an **API key** from [AI/ML API](https://aimlapi.com/app/keys?utm_source=autogpt&utm_medium=github&utm_campaign=integration).
+按照以下步骤将 **AI/ML API** 与 **AutoGPT** 平台连接，实现高性能 AI 文本生成。
 
 ---
 
-## ⚙️ Setup Steps
+## ✅ 前提条件
 
-### 1. Start AutoGPT Locally
+1. 确保您已阅读并完成 [AutoGPT 设置指南](https://docs.agpt.co/platform/getting-started/)，且 AutoGPT 已在本地运行于 `http://localhost:3000`。
+2. 您已从 [AI/ML API](https://aimlapi.com/app/keys?utm_source=autogpt&utm_medium=github&utm_campaign=integration) 获取 **API 密钥**。
 
-Follow the official guide:
-[📖 AutoGPT Getting Started Guide](https://docs.agpt.co/platform/getting-started/)
+---
 
-Make sure AutoGPT is running and accessible at:
+## ⚙️ 设置步骤
+
+### 1. 本地启动 AutoGPT
+
+遵循官方指南：
+[📖 AutoGPT 入门指南](https://docs.agpt.co/platform/getting-started/)
+
+确保 AutoGPT 正在运行并可通过以下地址访问：
 [http://localhost:3000](http://localhost:3000)
 
-> 💡 Keep AutoGPT running in a terminal or Docker throughout the session.
+> 💡 在整个会话期间，请保持 AutoGPT 在终端或 Docker 中运行。
 
-![Step 1 AutoGPT Running](../imgs/aimlapi/Step%201%20AutoGPT%20Running.png)
+![步骤 1 AutoGPT 运行中](../imgs/aimlapi/Step%201%20AutoGPT%20Running.png)
 
 ---
 
-### 2. Open the Visual Builder
+### 2. 打开可视化构建器
 
-Open your browser and go to:
+打开浏览器并访问：
 [http://localhost:3000/build](http://localhost:3000/build)
 
-Or click **“Build”** in the navigation bar.
+或在导航栏中点击 **"构建"**。
 
-![Step 2 Build Screen](../imgs/aimlapi/Step%202%20Build%20Screen.png)
-
----
-
-### 3. Add an AI Text Generator Block
-
-1. Click the **"Blocks"** button on the left sidebar.
-
-![Step 3 AI Block](../imgs/aimlapi/Step%203%20AI%20Block.png)
-
-2. In the search bar, type `AI Text Generator`.
-3. Drag the block into the canvas.
-
-![Step 4 AI Generator Block](../imgs/aimlapi/Step%204%20AI%20Generator%20Block.png)
+![步骤 2 构建界面](../imgs/aimlapi/Step%202%20Build%20Screen.png)
 
 ---
 
-### 4. Select an AI/ML API Model
+### 3. 添加 AI 文本生成器模块
 
-Click the AI Text Generator block to configure it.
+1. 点击左侧边栏的 **"模块"** 按钮。
 
-In the **LLM Model** dropdown, select one of the supported models from AI/ML API:
+![步骤 3 AI 模块](../imgs/aimlapi/Step%203%20AI%20Block.png)
 
-![Step 5 AIMLAPI Models](../imgs/aimlapi/Step%205%20AIMLAPI%20Models.png)
+2. 在搜索栏中输入 `AI Text Generator`。
+3. 将模块拖入画布。
 
-| Model ID                                       | Speed  | Reasoning Quality | Best For                 |
+![步骤 4 AI 生成器模块](../imgs/aimlapi/Step%204%20AI%20Generator%20Block.png)
+
+---
+
+### 4. 选择 AI/ML API 模型
+
+点击 AI Text Generator 模块进行配置。
+
+在 **LLM 模型** 下拉菜单中，从 AI/ML API 选择一个支持的模型：
+
+![步骤 5 AIMLAPI 模型](../imgs/aimlapi/Step%205%20AIMLAPI%20Models.png)
+
+| 模型 ID                                       | 速度   | 推理质量        | 最佳用途                 |
 | ---------------------------------------------- | ------ | ----------------- | ------------------------ |
-| `Qwen/Qwen2.5-72B-Instruct-Turbo`              | Medium | High              | Text-based tasks         |
-| `nvidia/llama-3.1-nemotron-70b-instruct`       | Medium | High              | Analytics and reasoning  |
-| `meta-llama/Llama-3.3-70B-Instruct-Turbo`      | Low    | Very High         | Complex multi-step tasks |
-| `meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo` | Low    | Very High         | Deep reasoning           |
-| `meta-llama/Llama-3.2-3B-Instruct-Turbo`       | High   | Medium            | Fast responses           |
+| `Qwen/Qwen2.5-72B-Instruct-Turbo`              | 中等   | 高                | 基于文本的任务         |
+| `nvidia/llama-3.1-nemotron-70b-instruct`       | 中等   | 高                | 分析与推理              |
+| `meta-llama/Llama-3.3-70B-Instruct-Turbo`      | 低     | 非常高            | 复杂多步骤任务          |
+| `meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo` | 低     | 非常高            | 深度推理                |
+| `meta-llama/Llama-3.2-3B-Instruct-Turbo`       | 高     | 中等              | 快速响应                |
 
-> ✅ These models are available via OpenAI-compatible API from [AI/ML API](https://aimlapi.com/app/?utm_source=autogpt&utm_medium=github&utm_campaign=integration)
+> ✅ 这些模型可通过 [AI/ML API](https://aimlapi.com/app/?utm_source=autogpt&utm_medium=github&utm_campaign=integration) 的 OpenAI 兼容 API 获得
 
 ---
 
-### 5. Configure the Prompt and API Key
+### 5. 配置提示词和 API 密钥
 
-Inside the **AI Text Generator** block:
+在 **AI Text Generator** 模块内：
 
-1. Enter your prompt text in the **Prompt** field.
-2. Enter your **AI/ML API Key** in the designated field.
+1. 在 **Prompt** 字段中输入您的提示文本。
+2. 在指定字段中输入您的 **AI/ML API Key**。
 
-🔐 You can get your key from:
+🔐 您可以从以下地址获取密钥：
 [https://aimlapi.com/app/keys/](https://aimlapi.com/app/keys?utm_source=autogpt&utm_medium=github&utm_campaign=integration)
 
-![Key Placeholder](../imgs/aimlapi/Step%206.1%20Key%20Placeholder.png)
+![密钥占位符](../imgs/aimlapi/Step%206.1%20Key%20Placeholder.png)
 
-![Key Empty](../imgs/aimlapi/Step%206.2%20No%20Fill%20Key%20Placeholder.png)
+![密钥为空](../imgs/aimlapi/Step%206.2%20No%20Fill%20Key%20Placeholder.png)
 
-![Key Filled](../imgs/aimlapi/Step%206.3%20Filled%20Key%20Placeholder.png)
+![密钥已填写](../imgs/aimlapi/Step%206.3%20Filled%20Key%20Placeholder.png)
 
-![Overview](../imgs/aimlapi/Step%206.4%20Overview.png)
-
----
-
-### 6. Save Your Agent
-
-Click the **“Save”** button at the top-right of the builder interface:
-
-1. Give your agent a name (e.g., `aimlapi_test_agent`).
-2. Click **“Save Agent”** to confirm.
-
-![Save Agent](../imgs/aimlapi/Step%207.1%20Save.png)
-
-> 💡 Saving allows reuse, scheduling, and chaining in larger workflows.
+![概览](../imgs/aimlapi/Step%206.4%20Overview.png)
 
 ---
 
-### 7. Run Your Agent
+### 6. 保存您的智能体
 
-From the workspace:
+点击构建器界面右上角的 **"Save"** 按钮：
 
-1. Press **“Run”** next to your saved agent.
-2. The request will be sent to the selected AI/ML API model.
+1. 为您的智能体命名（例如 `aimlapi_test_agent`）。
+2. 点击 **"Save Agent"** 确认保存。
 
-![Run Agent](../imgs/aimlapi/Step%208%20Run.png)
+![保存智能体](../imgs/aimlapi/Step%207.1%20Save.png)
 
----
-
-### 8. View the Output
-
-1. Scroll to the **AI Text Generator** block.
-2. Check the **Output** panel below it.
-3. You can copy, export, or pass the result to further blocks.
-
-![Agent Output](../imgs/aimlapi/Step%209%20Output.png)
+> 💡 保存后可在更大工作流中重复使用、调度和链接。
 
 ---
 
-## 🔄 Expand Your Agent
+### 7. 运行您的智能体
 
-Now that AI/ML API is connected, expand your workflow by chaining additional blocks:
+在工作区中：
 
-* 🔧 **Tools** – fetch URLs, call APIs, scrape data
-* 🧠 **Memory** – retain context across interactions
-* ⚙️ **Actions / Chains** – create full pipelines
+1. 点击已保存智能体旁边的 **"Run"**。
+2. 请求将发送至选定的 AI/ML API 模型。
+
+![运行智能体](../imgs/aimlapi/Step%208%20Run.png)
 
 ---
 
-🎉 You’re now generating AI responses using enterprise-grade models from **AI/ML API** in **AutoGPT**!
+### 8. 查看输出结果
+
+1. 滚动至 **AI Text Generator** 模块。
+2. 查看下方的 **Output** 面板。
+3. 可复制、导出结果或传递至后续模块。
+
+![智能体输出](../imgs/aimlapi/Step%209%20Output.png)
+
+---
+
+## 🔄 扩展您的智能体
+
+AI/ML API 连接成功后，通过链式调用其他功能块来扩展您的工作流：
+
+* 🔧 **工具** – 获取URL、调用API、抓取数据
+* 🧠 **记忆** – 在交互间保持上下文
+* ⚙️ **动作/链** – 创建完整流水线
+
+---
+
+🎉 您现在正使用 **AutoGPT** 中的企业级 **AI/ML API** 模型生成AI响应！

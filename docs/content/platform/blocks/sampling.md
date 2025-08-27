@@ -1,31 +1,37 @@
-# Data Sampling
+# 数据采样
 
-## What it is
-The Data Sampling block is a tool for selecting a subset of data from a larger dataset using various sampling methods.
+## 功能概述
 
-## What it does
-This block takes a dataset as input and returns a smaller sample of that data based on specified criteria. It supports multiple sampling methods, allowing users to choose the most appropriate technique for their needs.
+数据采样模块是一个工具，用于通过各种采样方法从大型数据集中选择数据子集。
 
-## How it works
-The block processes the input data and applies the chosen sampling method to select a subset of items. It can work with different data structures and supports data accumulation for scenarios where data is received in batches.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该模块接收数据集作为输入，并根据指定条件返回该数据的较小样本。它支持多种采样方法，允许用户根据需求选择最合适的技术。
+
+## 工作原理
+
+该模块处理输入数据并应用选定的采样方法来选择项目子集。它可以处理不同的数据结构，并支持在批量接收数据的场景中进行数据累积。
+
+## 输入参数
+
+| 输入 | 描述 |
 |-------|-------------|
-| Data | The dataset to sample from. This can be a single dictionary, a list of dictionaries, or a list of lists. |
-| Sample Size | The number of items to select from the dataset. |
-| Sampling Method | The technique used to select the sample. Options include random, systematic, top, bottom, stratified, weighted, reservoir, and cluster sampling. |
-| Accumulate | A flag indicating whether to accumulate data before sampling. This is useful for scenarios where data is received in batches. |
-| Random Seed | An optional value to ensure reproducible random sampling. |
-| Stratify Key | The key to use for stratified sampling (required when using the stratified sampling method). |
-| Weight Key | The key to use for weighted sampling (required when using the weighted sampling method). |
-| Cluster Key | The key to use for cluster sampling (required when using the cluster sampling method). |
+| Data | 用于采样的数据集。可以是单个字典、字典列表或列表的列表。 |
+| Sample Size | 从数据集中选择的项目数量。 |
+| Sampling Method | 用于选择样本的技术。选项包括随机、系统、顶部、底部、分层、加权、蓄水池和整群抽样。 |
+| Accumulate | 指示是否在采样前累积数据的标志。这对于批量接收数据的场景非常有用。 |
+| Random Seed | 用于确保可重现随机抽样的可选值。 |
+| Stratify Key | 用于分层抽样的键（使用分层抽样方法时需要）。 |
+| Weight Key | 用于加权抽样的键（使用加权抽样方法时需要）。 |
+| Cluster Key | 用于整群抽样的键（使用整群抽样方法时需要）。 |
 
-## Outputs
-| Output | Description |
+## 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Sampled Data | The selected subset of the input data. |
-| Sample Indices | The indices of the sampled items in the original dataset. |
+| Sampled Data | 输入数据的选定子集。 |
+| Sample Indices | 原始数据集中采样项目的索引。 |
 
-## Possible use case
-A data scientist working with a large customer dataset wants to create a representative sample for analysis. They could use this Data Sampling block to select a smaller subset of customers using stratified sampling, ensuring that the sample maintains the same proportions of different customer segments as the full dataset.
+## 可能的使用场景
+
+一位处理大型客户数据集的数据科学家希望创建一个代表性样本进行分析。他们可以使用此数据采样块，通过分层抽样选择较小的客户子集，确保样本保持与完整数据集相同的不同客户细分群体的比例。

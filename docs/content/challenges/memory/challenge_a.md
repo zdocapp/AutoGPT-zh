@@ -1,39 +1,33 @@
-# Memory Challenge A
+# 记忆挑战 A
 
-**Status**: Challenge Completed
+**状态**: 挑战已完成
 
+## 功能描述
 
-## Description
+智能体 Follow-Instructions-GPT 具有以下目标：
 
-The agent, Follow-Instructions-GPT, has the following goals:
+- 使用 `read_file` 命令读取 `instructions_1.txt` 文件
+- 遵循 `instructions_1.txt` 文件中的指令
 
-- Use the command `read_file` to read the `instructions_1.txt` file.
-- Follow the instructions in the `instructions_1.txt` file.
+本挑战涉及一系列包含指令的文本文件。智能体必须遵循指令并在处理文件过程中持续跟踪任务 ID。
 
-The challenge involves a series of text files containing instructions. The agent must follow the instructions and keep track of the task ID as it progresses through the files.
-
-## Files
+## 文件
 
 - `instructions_1.txt`
 
-The task_id is 1234
-Read the file instructions_1.txt
-
-
+任务 ID 为 1234
+读取文件 instructions_1.txt
 
 - `instructions_2.txt`
 
-Read the file instructions_2.txt using the read_file command.
+使用 read_file 命令读取 instructions_2.txt 文件
 
-
-...and so on.
+...依此类推
 
 - `instructions_n.txt`
 
-Write the task_id into the file output.txt.
+将 task_id 写入 output.txt 文件
 
+## 目标
 
-## Objective
-
-The objective of this challenge is to test the agent's ability to follow instructions and maintain memory of the task Id throughout the process. The agent successfully completed this challenge if it wrote the task id in a file.
-
+本挑战的目标是测试智能体遵循指令并在整个过程中保持对任务 ID 记忆的能力。如果智能体成功将任务 ID 写入文件，则视为完成本挑战。

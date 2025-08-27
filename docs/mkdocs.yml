@@ -1,64 +1,66 @@
-site_name: AutoGPT Documentation
-site_url: https://docs.agpt.co/
-repo_url: https://github.com/Significant-Gravitas/AutoGPT
-repo_name: AutoGPT
+site_name: AutoGPT 中文文档
+site_url: https://autogpt-zh.zdoc.app/
+repo_url: https://github.com/zdocapp/AutoGPT-zh
+repo_name: AutoGPT-zh
 edit_uri: edit/master/docs/content
 docs_dir: content
 nav:
-  - Home: index.md
+  - 首页: index.md
 
-  - The AutoGPT Platform 🆕: 
-    - Getting Started: 
-        - Setup AutoGPT (Local-Host): platform/getting-started.md
-        - Edit an Agent: platform/edit-agent.md
-        - Delete an Agent: platform/delete-agent.md
-        - Download & Import and Agent: platform/download-agent-from-marketplace-local.md 
-        - Create a Basic Agent: platform/create-basic-agent.md
-        - Submit an Agent to the Marketplace: platform/submit-agent-to-marketplace.md   
-    - Advanced Setup: platform/advanced_setup.md
-    - Agent Blocks: platform/agent-blocks.md
-    - Build your own Blocks: platform/new_blocks.md
-    - Using Ollama: platform/ollama.md
-    - Using AI/ML API: platform/aimlapi.md
-    - Using D-ID: platform/d_id.md
-    - Blocks: platform/blocks/blocks.md
-    - Contributing:
-        - Tests: platform/contributing/tests.md
-        - OAuth Flows: platform/contributing/oauth-integration-flow.md
-  - AutoGPT Classic:
-      - Introduction: classic/index.md
-      - Setup:
-          - Setting up AutoGPT: classic/setup/index.md
-          - Set up with Docker: classic/setup/docker.md
-          - For Developers: classic/setup/for-developers.md
-          - Configuration:
-              - Options: classic/configuration/options.md
-              - Search: classic/configuration/search.md
-              - Voice: classic/configuration/voice.md
-      - Usage: classic/usage.md
-      - Help us improve AutoGPT:
-          - Share your debug logs with us: classic/share-your-logs.md
-          - Contribution guide: contributing.md
-          - Running tests: classic/testing.md
-          - Code of Conduct: code-of-conduct.md
-      - Benchmark:
-          - Readme: https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/benchmark/README.md
-      - Forge:
-         - Introduction: forge/get-started.md
-         - Components:
-             - Introduction: forge/components/introduction.md
-             - Agents: forge/components/agents.md
-             - Components: forge/components/components.md
-             - Protocols: forge/components/protocols.md
-             - Commands: forge/components/commands.md
-             - Built in Components: forge/components/built-in-components.md
-             - Creating Components: forge/components/creating-components.md
-      - Frontend:
-         - Readme: https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/frontend/README.md
+  - AutoGPT 平台 🆕: 
+    - 入门指南: 
+        - 本地部署: platform/getting-started.md
+        - 编辑代理: platform/edit-agent.md
+        - 删除代理: platform/delete-agent.md
+        - 下载与导入代理: platform/download-agent-from-marketplace-local.md 
+        - 创建基础代理: platform/create-basic-agent.md
+        - 提交代理到市场: platform/submit-agent-to-marketplace.md   
+    - 高级配置: platform/advanced_setup.md
+    - 代理模块: platform/agent-blocks.md
+    - 自定义模块: platform/new_blocks.md
+    - 使用 Ollama: platform/ollama.md
+    - 使用 AI/ML API: platform/aimlapi.md
+    - 使用 D-ID: platform/d_id.md
+    - 模块库: platform/blocks/blocks.md
+    - 贡献指南:
+        - 测试: platform/contributing/tests.md
+        - OAuth 流程: platform/contributing/oauth-integration-flow.md
 
-  - Contribute: 
-        - Introduction: contribute/index.md
-        - Testing: ../../autogpt_platform/backend/TESTING.md
+  - AutoGPT 经典版:
+      - 概览: classic/index.md
+      - 安装与配置:
+          - 安装 AutoGPT: classic/setup/index.md
+          - 使用 Docker 部署: classic/setup/docker.md
+          - 开发者指南: classic/setup/for-developers.md
+          - 配置说明:
+              - 配置选项: classic/configuration/options.md
+              - 搜索功能: classic/configuration/search.md
+              - 语音功能: classic/configuration/voice.md
+      - 使用说明: classic/usage.md
+      - 帮助改进 AutoGPT:
+          - 分享调试日志: classic/share-your-logs.md
+          - 贡献指南: contributing.md
+          - 运行测试: classic/testing.md
+          - 行为准则: code-of-conduct.md
+      - 基准测试:
+          - 说明文档: https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/benchmark/README.md
+      - Forge 模块:
+         - 概览: forge/get-started.md
+         - 组件体系:
+             - 概览: forge/components/introduction.md
+             - 代理: forge/components/agents.md
+             - 组件: forge/components/components.md
+             - 协议: forge/components/protocols.md
+             - 命令: forge/components/commands.md
+             - 内置组件: forge/components/built-in-components.md
+             - 创建组件: forge/components/creating-components.md
+      - 前端:
+         - 说明文档: https://github.com/Significant-Gravitas/AutoGPT/blob/master/classic/frontend/README.md
+
+  - 参与贡献: 
+        - 概览: contribute/index.md
+        - 测试: ../../autogpt_platform/backend/TESTING.md
+
     
   # - Challenges:
   #     - Introduction: challenges/introduction.md
@@ -180,7 +182,7 @@ extra:
 extra:
   analytics:
     provider: google
-    property: G-XKPNKB9XG6
+    property: G-2W5WHHJTV5
 
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js

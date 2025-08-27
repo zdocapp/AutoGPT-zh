@@ -1,19 +1,19 @@
-# Creating Components
+# 创建组件
 
-## The minimal component
+## 最小组件
 
-Components can be used to implement various functionalities like providing messages to the prompt, executing code, or interacting with external services.
+组件可用于实现各种功能，例如向提示提供消息、执行代码或与外部服务交互。
 
-*Component* is a class that inherits from `AgentComponent` OR implements one or more *protocols*. Every *protocol* inherits `AgentComponent`, so your class automatically becomes a *component* once you inherit any *protocol*.
+*组件*是一个继承自 `AgentComponent` 的类，或者实现一个或多个*协议*。每个*协议*都继承 `AgentComponent`，因此一旦继承任何*协议*，您的类就会自动成为*组件*。
 
 ```py
 class MyComponent(AgentComponent):
     pass
 ```
 
-This is already a valid component, but it doesn't do anything yet. To add some functionality to it, you need to implement one or more *protocols*.
+这已经是一个有效的组件，但它还没有任何功能。要为其添加一些功能，您需要实现一个或多个*协议*。
 
-Let's create a simple component that adds "Hello World!" message to the agent's prompt. To do this we need to implement `MessageProvider` *protocol* in our component. `MessageProvider` is an interface with `get_messages` method:
+让我们创建一个简单的组件，将"Hello World!"消息添加到代理的提示中。为此，我们需要在我们的组件中实现 `MessageProvider` *协议*。`MessageProvider` 是一个带有 `get_messages` 方法的接口：
 
 ```py
 # No longer need to inherit AgentComponent, because MessageProvider already does it
@@ -22,19 +22,19 @@ class HelloComponent(MessageProvider):
         yield ChatMessage.user("Hello World!")
 ```
 
-Now we can add our component to an existing agent or create a new Agent class and add it there:
+现在我们可以将我们的组件添加到现有代理中，或者创建一个新的 Agent 类并将其添加到其中：
 
 ```py
 class MyAgent(Agent):
     self.hello_component = HelloComponent()
 ```
 
-`get_messages` will called by the agent each time it needs to build a new prompt and the yielded messages will be added accordingly.  
+`get_messages` 将在代理每次需要构建新提示时被调用，产生的消息将相应添加。
 
-## Passing data to and between components
+## 向组件传递数据及组件间传递数据
 
-Since components are regular classes you can pass data (including other components) to them via the `__init__` method.
-For example we can pass a config object and then retrieve an API key from it when needed:
+由于组件是常规类，您可以通过 `__init__` 方法向它们传递数据（包括其他组件）。
+例如，我们可以传递一个配置对象，然后在需要时从中检索 API 密钥：
 
 ```py
 class DataComponent(MessageProvider):
@@ -49,15 +49,15 @@ class DataComponent(MessageProvider):
 ```
 
 !!! note
-    Component-specific configuration handling isn't implemented yet.
+    组件特定的配置处理尚未实现。
 
-## Configuring components
+## 配置组件
 
-Components can be configured using a pydantic model.
-To make component configurable, it must inherit from `ConfigurableComponent[BM]` where `BM` is the configuration class inheriting from pydantic's `BaseModel`.
-You should pass the configuration instance to the `ConfigurableComponent`'s `__init__` or set its `config` property directly.
-Using configuration allows you to load confugration from a file, and also serialize and deserialize it easily for any agent.
-To learn more about configuration, including storing sensitive information and serialization see [Component Configuration](./components.md#component-configuration).
+组件可以通过 pydantic 模型进行配置。
+要使组件可配置，它必须继承自 `ConfigurableComponent[BM]`，其中 `BM` 是继承自 pydantic 的 `BaseModel` 的配置类。
+您应该将配置实例传递给 `ConfigurableComponent` 的 `__init__` 方法，或者直接设置其 `config` 属性。
+使用配置允许您从文件加载配置，并且可以轻松地为任何代理进行序列化和反序列化。
+要了解更多关于配置的信息，包括存储敏感信息和序列化，请参阅[组件配置](./components.md#component-configuration)。
 
 ```py
 # Example component configuration
@@ -80,9 +80,9 @@ class UserGreeterComponent(MessageProvider, ConfigurableComponent[UserGreeterCon
         yield ChatMessage.system(f"Hello, {self.config.user_name}!")
 ```
 
-## Providing commands
+## 提供命令
 
-To extend what an agent can do, you need to provide commands using `CommandProvider` protocol. For example to allow agent to multiply two numbers, you can create a component like this:
+要扩展代理的功能，您需要使用 `CommandProvider` 协议提供命令。例如，为了让代理能够将两个数字相乘，您可以创建如下组件：
 
 ```py
 class MultiplicatorComponent(CommandProvider):
@@ -116,68 +116,68 @@ class MultiplicatorComponent(CommandProvider):
         return str(a * b)
 ```
 
-To learn more about commands see [🛠️ Commands](./commands.md).
+要了解更多关于命令的信息，请参阅[🛠️ 命令](./commands.md)。
 
-## Prompt structure
+## 提示结构
 
-After components provided all necessary data, the agent needs to build the final prompt that will be send to a llm.
-Currently, `PromptStrategy` (*not* a protocol) is responsible for building the final prompt.
+在组件提供所有必要数据后，代理需要构建最终将发送给大语言模型的提示。
+目前，`PromptStrategy`（*不是*协议）负责构建最终提示。
 
-If you want to change the way the prompt is built, you need to create a new `PromptStrategy` class, and then call relevant methods in your agent class.
-You can have a look at the default strategy used by the AutoGPT Agent: [OneShotAgentPromptStrategy](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/agents/prompt_strategies/one_shot.py), and how it's used in the [Agent](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/agents/agent.py) (search for `self.prompt_strategy`).
+如果您想要更改提示构建的方式，需要创建一个新的 `PromptStrategy` 类，然后在您的智能体类中调用相关方法。
+您可以查看 AutoGPT 智能体使用的默认策略：[OneShotAgentPromptStrategy](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/agents/prompt_strategies/one_shot.py)，以及它在 [Agent](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/agents/agent.py) 中的使用方式（搜索 `self.prompt_strategy`）。
 
-## Example `UserInteractionComponent`
+## 示例 `UserInteractionComponent`
 
-Let's create a slightly simplified version of the component that is used by the built-in agent.
-It gives an ability for the agent to ask user for input in the terminal.
+让我们创建一个内置智能体使用的组件的简化版本。
+它使智能体能够在终端中向用户请求输入。
 
-1. Create a class for the component that inherits from `CommandProvider`.
+1. 创建一个继承自 `CommandProvider` 的组件类。
 
     ```py
     class MyUserInteractionComponent(CommandProvider):
-        """Provides commands to interact with the user."""
+        """提供与用户交互的命令。"""
         pass
     ```
 
-2. Implement command method that will ask user for input and return it.
+2. 实现一个命令方法，该方法将向用户询问输入并返回结果。
 
     ```py
     def ask_user(self, question: str) -> str:
-        """If you need more details or information regarding the given goals,
-        you can ask the user for input."""
+        """如果你需要关于给定目标的更多细节或信息，
+        可以向用户询问输入。"""
         print(f"\nQ: {question}")
         resp = input("A:")
-        return f"The user's answer: '{resp}'"
+        return f"用户的回答: '{resp}'"
     ```
 
-3. The command needs to be decorated with `@command`.
+3. 该命令需要使用 `@command` 装饰器进行装饰。
 
     ```py
     @command(
         parameters={
             "question": JSONSchema(
                 type=JSONSchema.Type.STRING,
-                description="The question or prompt to the user",
+                description="向用户提出的问题或提示",
                 required=True,
             )
         },
     )
     def ask_user(self, question: str) -> str:
-        """If you need more details or information regarding the given goals,
-        you can ask the user for input."""
+        """如果你需要关于给定目标的更多细节或信息，
+        可以向用户询问输入。"""
         print(f"\nQ: {question}")
         resp = input("A:")
-        return f"The user's answer: '{resp}'"
+        return f"用户的回答: '{resp}'"
     ```
 
-4. We need to implement `CommandProvider`'s `get_commands` method to yield the command.
+4. 需要实现 `CommandProvider` 的 `get_commands` 方法来生成命令。
 
     ```py
     def get_commands(self) -> Iterator[Command]:
         yield self.ask_user
     ```
 
-5. Since agent isn't always running in the terminal or interactive mode, we need to disable this component by setting `self._enabled=False` when it's not possible to ask for user input.
+5. 由于代理并不总是在终端或交互模式下运行，当无法请求用户输入时，需要通过设置 `self._enabled=False` 来禁用该组件。
 
     ```py
     def __init__(self, interactive_mode: bool):
@@ -185,7 +185,7 @@ It gives an ability for the agent to ask user for input in the terminal.
         self._enabled = interactive_mode
     ```
 
-The final component should look like this:
+最终组件应该看起来像这样：
 
 ```py
 # 1.
@@ -225,7 +225,7 @@ class MyUserInteractionComponent(CommandProvider):
         return f"The user's answer: '{resp}'"
 ```
 
-Now if we want to use our user interaction *instead of* the default one we need to somehow remove the default one (if our agent inherits from `Agent` the default one is inherited) and add our own. We can simply override the `user_interaction` in `__init__` method:
+现在如果我们想要使用自己的用户交互*而不是*默认的交互，我们需要以某种方式移除默认的交互（如果我们的代理继承自 `Agent`，默认的交互会被继承）并添加我们自己的。我们可以简单地在 `__init__` 方法中重写 `user_interaction`：
 
 ```py
 class MyAgent(Agent):
@@ -242,7 +242,7 @@ class MyAgent(Agent):
         self.user_interaction = MyUserInteractionComponent()
 ```
 
-Alternatively we can disable the default component by setting it to `None`:
+或者，我们可以通过将其设置为 `None` 来禁用默认组件：
 
 ```py
 class MyAgent(Agent):
@@ -261,10 +261,10 @@ class MyAgent(Agent):
         self.my_user_interaction = MyUserInteractionComponent(app_config)
 ```
 
-## Learn more
+## 了解更多
 
-The best place to see more examples is to look at the built-in components in the [classic/original_autogpt/components](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/components/) and [classic/original_autogpt/commands](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/commands/) directories.
+查看更多示例的最佳位置是查看 [classic/original_autogpt/components](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/components/) 和 [classic/original_autogpt/commands](https://github.com/Significant-Gravitas/AutoGPT/tree/master/classic/original_autogpt/commands/) 目录中的内置组件。
 
-Guide on how to extend the built-in agent and build your own: [🤖 Agents](./agents.md)  
-Order of some components matters, see [🧩 Components](./components.md) to learn more about components and how they can be customized.  
-To see built-in protocols with accompanying examples visit [⚙️ Protocols](./protocols.md).
+关于如何扩展内置代理并构建自己的指南：[🤖 代理](./agents.md)  
+某些组件的顺序很重要，请参阅 [🧩 组件](./components.md) 以了解更多关于组件及其自定义方式的信息。  
+要查看内置协议及相应示例，请访问 [⚙️ 协议](./protocols.md)。

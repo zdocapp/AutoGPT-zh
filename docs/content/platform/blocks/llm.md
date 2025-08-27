@@ -1,172 +1,205 @@
-# Large Language Model (LLM) Blocks
+# 大型语言模型 (LLM) 模块
 
-## AI Structured Response Generator
+## AI 结构化响应生成器
 
-### What it is
-A block that generates structured responses using a Large Language Model (LLM).
+### 功能说明
 
-### What it does
-It takes a prompt and other parameters, sends them to an LLM, and returns a structured response in a specified format.
+使用大型语言模型 (LLM) 生成结构化响应的模块。
 
-### How it works
-The block sends the input prompt to a chosen LLM, along with any system prompts and expected response format. It then processes the LLM's response, ensuring it matches the expected format, and returns the structured data.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块接收提示词和其他参数，将其发送至 LLM，并以指定格式返回结构化响应。
+
+### 工作原理
+
+模块将输入的提示词发送至选定的 LLM，同时包含任何系统提示词和预期响应格式。随后处理 LLM 的响应，确保其符合预期格式，并返回结构化数据。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Prompt | The main text prompt to send to the LLM |
-| Expected Format | A dictionary specifying the structure of the desired response |
-| Model | The specific LLM to use (e.g., GPT-4 Turbo, Claude 3) |
-| API Key | The secret key for accessing the LLM service |
-| System Prompt | An optional prompt to guide the LLM's behavior |
-| Retry | Number of attempts to generate a valid response |
-| Prompt Values | Dictionary of values to fill in the prompt template |
+| 提示词 | 发送给 LLM 的主要文本提示 |
+| 预期格式 | 指定所需响应结构的字典 |
+| 模型 | 使用的特定 LLM（例如 GPT-4 Turbo、Claude 3） |
+| API 密钥 | 访问 LLM 服务的密钥 |
+| 系统提示词 | 指导 LLM 行为的可选提示词 |
+| 重试次数 | 生成有效响应的尝试次数 |
+| 提示词值 | 用于填充提示词模板的值的字典 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Response | The structured response from the LLM |
-| Error | Any error message if the process fails |
+| 响应 | 来自 LLM 的结构化响应 |
+| 错误 | 处理失败时的错误信息 |
 
-### Possible use case
-Extracting specific information from unstructured text, such as generating a product description with predefined fields (name, features, price) from a lengthy product review.
+### 可能的使用场景
+
+从非结构化文本中提取特定信息，例如根据冗长的产品评论生成具有预定义字段（名称、特性、价格）的产品描述。
 
 ---
 
-## AI Text Generator
+## AI 文本生成器
 
-### What it is
-A block that generates text responses using a Large Language Model (LLM).
+### 功能说明
 
-### What it does
-It takes a prompt and other parameters, sends them to an LLM, and returns a text response.
+一个使用大型语言模型（LLM）生成文本响应的模块。
 
-### How it works
-The block sends the input prompt to a chosen LLM, processes the response, and returns the generated text.
+### 功能描述
 
-### Inputs
-| Input | Description |
+它接收提示词和其他参数，将其发送给LLM，并返回文本响应。
+
+### 工作原理
+
+该模块将输入的提示词发送到选定的LLM，处理响应，并返回生成的文本。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Prompt | The main text prompt to send to the LLM |
-| Model | The specific LLM to use (e.g., GPT-4 Turbo, Claude 3) |
-| API Key | The secret key for accessing the LLM service |
-| System Prompt | An optional prompt to guide the LLM's behavior |
-| Retry | Number of attempts to generate a valid response |
-| Prompt Values | Dictionary of values to fill in the prompt template |
+| 提示词 | 发送给LLM的主要文本提示 |
+| 模型 | 使用的特定LLM（例如GPT-4 Turbo、Claude 3） |
+| API密钥 | 访问LLM服务的密钥 |
+| 系统提示 | 指导LLM行为的可选提示 |
+| 重试次数 | 生成有效响应的尝试次数 |
+| 提示值 | 用于填充提示模板的值的字典 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Response | The text response from the LLM |
-| Error | Any error message if the process fails |
+| 响应 | 来自LLM的文本响应 |
+| 错误 | 如果处理失败，显示任何错误消息 |
 
-### Possible use case
-Generating creative writing, such as short stories or poetry, based on a given theme or starting sentence.
+### 可能的使用场景
+
+基于给定主题或起始句子生成创意写作，例如短篇故事或诗歌。
 
 ---
 
-## AI Text Summarizer
+## AI文本摘要器
 
-### What it is
-A block that summarizes long texts using a Large Language Model (LLM).
+### 功能说明
 
-### What it does
-It takes a long text, breaks it into manageable chunks, summarizes each chunk, and then combines these summaries into a final summary.
+一个使用大型语言模型（LLM）总结长文本的模块。
 
-### How it works
-The block splits the input text into smaller chunks, sends each chunk to an LLM for summarization, and then combines these summaries. If the combined summary is still too long, it repeats the process until a concise summary is achieved.
+### 功能描述
 
-### Inputs
-| Input | Description |
+它接收长文本，将其分解为可管理的块，总结每个块，然后将这些摘要合并为最终摘要。
+
+### 工作原理
+
+该模块将输入文本分割成较小的块，将每个块发送给LLM进行摘要，然后合并这些摘要。如果合并后的摘要仍然太长，它会重复这个过程，直到获得简洁的摘要。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Text | The long text to be summarized |
-| Model | The specific LLM to use for summarization |
-| Focus | The main topic or aspect to focus on in the summary |
-| Style | The desired style of the summary (e.g., concise, detailed, bullet points) |
-| API Key | The secret key for accessing the LLM service |
-| Max Tokens | The maximum number of tokens for each chunk |
-| Chunk Overlap | The number of overlapping tokens between chunks |
+| 文本 | 待摘要的长文本内容 |
+| 模型 | 用于摘要的特定大语言模型 |
+| 焦点 | 摘要中需要重点关注的主题或方面 |
+| 风格 | 摘要的期望风格（如简洁、详细、要点形式） |
+| API密钥 | 访问大语言模型服务的密钥 |
+| 最大令牌数 | 每个文本块的最大令牌数量 |
+| 块重叠数 | 文本块之间重叠的令牌数量 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Summary | The final summarized text |
-| Error | Any error message if the process fails |
+| 摘要 | 最终生成的摘要文本 |
+| 错误 | 处理失败时的错误信息 |
 
-### Possible use case
-Summarizing lengthy research papers or articles to quickly grasp the main points and key findings.
+### 可能的使用场景
+
+对冗长的研究论文或文章进行摘要，快速掌握主要观点和关键发现。
 
 ---
 
-## AI Conversation
+## AI 对话
 
-### What it is
-A block that facilitates multi-turn conversations using a Large Language Model (LLM).
+### 功能说明
 
-### What it does
-It takes a list of conversation messages, sends them to an LLM, and returns the model's response to continue the conversation.
+一个使用大语言模型（LLM）促进多轮对话的功能块。
 
-### How it works
-The block sends the entire conversation history to the chosen LLM, including system messages, user inputs, and previous responses. It then returns the LLM's response as the next part of the conversation.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收对话消息列表，将其发送给大语言模型，并返回模型的响应以继续对话。
+
+### 工作原理
+
+该功能块将完整的对话历史（包括系统消息、用户输入和之前的回复）发送给选定的大语言模型，然后返回大语言模型的响应作为对话的下一部分。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Messages | A list of previous messages in the conversation |
-| Model | The specific LLM to use for the conversation |
-| API Key | The secret key for accessing the LLM service |
-| Max Tokens | The maximum number of tokens to generate in the response |
+| 消息 | 对话中的历史消息列表 |
+| 模型 | 用于对话的特定大型语言模型 |
+| API 密钥 | 访问 LLM 服务的密钥 |
+| 最大令牌数 | 响应中生成的最大令牌数量 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Response | The LLM's response to continue the conversation |
-| Error | Any error message if the process fails |
+| 响应 | LLM 为延续对话生成的回复 |
+| 错误 | 处理失败时的错误信息 |
 
-### Possible use case
-Creating an interactive chatbot that can maintain context over multiple exchanges, such as a customer service assistant or a language learning companion.
+### 可能的使用场景
+
+创建能够维持多轮对话上下文的交互式聊天机器人，例如客户服务助手或语言学习伴侣。
 
 ---
 
-## AI List Generator
+## AI 列表生成器
 
-### What it is
-A block that generates lists based on given prompts or source data using a Large Language Model (LLM).
+### 功能说明
 
-### What it does
-It takes a focus or source data, sends it to an LLM, and returns a generated list based on the input.
+基于给定提示或源数据使用大型语言模型（LLM）生成列表的功能模块。
 
-### How it works
-The block formulates a prompt based on the given focus or source data, sends it to the chosen LLM, and then processes the response to ensure it's a valid Python list. It can retry multiple times if the initial attempts fail.
+### 功能描述
 
-### Inputs
-| Input | Description |
+接收焦点或源数据，将其发送至 LLM，并基于输入返回生成的列表。
+
+### 工作原理
+
+该模块根据给定的焦点或源数据构建提示，发送至选定的 LLM，随后处理响应以确保其构成有效的 Python 列表。若初始尝试失败，可进行多次重试。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Focus | The main topic or theme for the list to be generated |
-| Source Data | Optional data to use as a basis for list generation |
-| Model | The specific LLM to use for list generation |
-| API Key | The secret key for accessing the LLM service |
-| Max Retries | The maximum number of attempts to generate a valid list |
+| Focus | 待生成列表的主要主题或核心内容 |
+| Source Data | 可选的基础数据，用于列表生成 |
+| Model | 用于列表生成的特定大语言模型 |
+| API Key | 访问大语言模型服务的密钥 |
+| Max Retries | 生成有效列表的最大尝试次数 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Generated List | The full list generated by the LLM |
-| List Item | Each individual item in the generated list |
-| Error | Any error message if the process fails |
+| Generated List | 由大语言模型生成的完整列表 |
+| List Item | 生成列表中的每个独立项目 |
+| Error | 处理失败时的错误信息 |
 
-### Possible use case
-Automatically generating a list of key points or action items from a long meeting transcript or summarizing the main topics discussed in a series of documents.
+### 可能的使用场景
 
-# Providers
-There are severals providers that AutoGPT users can use for running inference with LLM models.
+自动从冗长的会议记录中生成关键点或行动项列表，或总结一系列文档中讨论的主要主题。
+
+# 服务提供商
+
+AutoGPT 用户可使用多个服务提供商来运行大语言模型的推理任务。
 
 ## Llama API
-Llama API is a Meta-hosted API service that helps you integrate Llama models quickly and efficiently. Using OpenAI comptability endpoints, you can easily access the power of Llama models without the need for complex setup or configuration!
 
-Join the [waitlist](https://llama.developer.meta.com?utm_source=partner-autogpt&utm_medium=readme) to get access!
+Llama API 是 Meta 托管的 API 服务，帮助您快速高效地集成 Llama 模型。通过 OpenAI 兼容的端点，您可以轻松访问 Llama 模型的强大功能，无需复杂的设置或配置！
 
-Try the Llama API provider by selecting any of the following LLM Model names from the AI blocks mentioned above:
+加入[等待列表](https://llama.developer.meta.com?utm_source=partner-autogpt&utm_medium=readme)以获取访问权限！
+
+通过从上述 AI 模块中选择以下任意 LLM 模型名称来试用 Llama API 提供商：
+
 - Llama-4-Scout-17B-16E-Instruct-FP8
 - Llama-4-Maverick-17B-128E-Instruct-FP8
 - Llama-3.3-8B-Instruct

@@ -1,32 +1,38 @@
-# AI Shortform Video Creator
+# AI 短视频生成器
 
-## What it is
-The AI Shortform Video Creator is a tool that generates short-form videos using artificial intelligence and various customization options.
+## 功能概述
 
-## What it does
-This block creates short videos by combining AI-generated visuals, narration, and background music based on user input. It can produce different styles of videos, including stock videos, moving AI images, or AI-generated videos.
+AI 短视频生成器是一款利用人工智能和多种自定义选项生成短视频的工具。
 
-## How it works
-The block takes user input for script, visual style, audio, and other parameters. It then sends this information to the revid.ai API, which processes the request and generates the video. The block monitors the video creation process and provides the final video URL once it's ready.
+## 功能说明
 
-## Inputs
-| Input | Description |
+该模块通过结合用户输入生成的 AI 视觉效果、旁白和背景音乐来创建短视频。它可以生成不同风格的视频，包括库存视频、动态 AI 图像或 AI 生成的视频。
+
+## 工作原理
+
+该模块接收用户输入的脚本、视觉风格、音频和其他参数，然后将这些信息发送到 revid.ai API 进行处理和视频生成。模块会监控视频创建过程，并在完成后提供最终视频 URL。
+
+## 输入参数
+
+| 输入项 | 描述 |
 |-------|-------------|
-| API Key | Your revid.ai API key for authentication |
-| Script | The text content for the video, including spoken narration and visual directions |
-| Ratio | The aspect ratio of the video (e.g., "9 / 16" for vertical videos) |
-| Resolution | The video resolution (e.g., "720p") |
-| Frame Rate | The number of frames per second in the video |
-| Generation Preset | The visual style for AI-generated content (e.g., "Default", "Anime", "Realist") |
-| Background Music | The choice of background music track |
-| Voice | The AI voice to use for narration |
-| Video Style | The type of visual media to use (stock videos, moving AI images, or AI video) |
+| API Key | 用于身份验证的 revid.ai API 密钥 |
+| Script | 视频的文本内容，包括旁白和视觉指示 |
+| Ratio | 视频宽高比（例如 "9 / 16" 表示竖屏视频） |
+| Resolution | 视频分辨率（例如 "720p"） |
+| Frame Rate | 视频每秒帧数 |
+| Generation Preset | AI 生成内容的视觉风格（如 "Default"、"Anime"、"Realist"） |
+| Background Music | 背景音乐曲目选择 |
+| Voice | 用于旁白的 AI 语音 |
+| Video Style | 使用的视觉媒体类型（库存视频、动态 AI 图像或 AI 视频） |
 
-## Outputs
+## 输出结果
+
 | Output | Description |
 |--------|-------------|
-| Video URL | The web address where the created video can be accessed |
-| Error | A message explaining any issues that occurred during video creation (if applicable) |
+| Video URL | 所创建视频可访问的网络地址 |
+| Error | 视频创建过程中出现问题的说明信息（如适用） |
 
-## Possible use case
-A social media marketer could use this block to quickly create engaging short-form videos for platforms like TikTok or Instagram Reels. They could input a script about a new product, choose a suitable visual style and background music, and get a professional-looking video without needing advanced video editing skills.
+## 可能的使用场景
+
+社交媒体营销人员可以使用此模块快速为 TikTok 或 Instagram Reels 等平台创建引人入胜的短视频。他们可以输入关于新产品的脚本，选择合适的视觉风格和背景音乐，无需高级视频编辑技能即可获得专业外观的视频。

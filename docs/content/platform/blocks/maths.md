@@ -1,54 +1,66 @@
-# Mathematical Operations Blocks
+# 数学运算模块
 
-## Calculator
+## 计算器
 
-### What it is
-A block that performs mathematical operations on two numbers.
+### 功能说明
 
-### What it does
-This block takes two numbers and performs a selected mathematical operation (addition, subtraction, multiplication, division, or exponentiation) on them. It can also optionally round the result to a whole number.
+对两个数字执行数学运算的模块。
 
-### How it works
-The Calculator block takes in two numbers and an operation choice. It then applies the chosen operation to the numbers and returns the result. If rounding is selected, it rounds the result to the nearest whole number.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块接收两个数字，并对它们执行选定的数学运算（加法、减法、乘法、除法或乘方）。它还可以选择将结果四舍五入为整数。
+
+### 工作原理
+
+计算器模块接收两个数字和一个运算选择。然后对数字应用所选运算并返回结果。如果选择四舍五入，则将结果四舍五入到最接近的整数。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Operation | Choose the math operation you want to perform (Add, Subtract, Multiply, Divide, or Power) |
-| A | Enter the first number for the calculation |
-| B | Enter the second number for the calculation |
-| Round result | Choose whether to round the result to a whole number (True or False) |
+| 运算 | 选择要执行的数学运算（加、减、乘、除或幂） |
+| A | 输入计算的第一个数字 |
+| B | 输入计算的第二个数字 |
+| 四舍五入结果 | 选择是否将结果四舍五入为整数（True 或 False） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Result | The result of your calculation |
+| 结果 | 计算的结果 |
 
-### Possible use case
-A user wants to quickly perform a calculation, such as adding two numbers or calculating a percentage. They can input the numbers and operation into this block and receive the result instantly.
+### 可能的使用场景
+
+用户希望快速执行计算，例如将两个数字相加或计算百分比。他们可以将数字和运算输入到此模块中，并立即获得结果。
 
 ---
 
-## Count Items
+## 计数项
 
-### What it is
-A block that counts the number of items in a collection.
+### 功能说明
 
-### What it does
-This block takes a collection (such as a list, dictionary, or string) and counts the number of items within it.
+计算集合中项目数量的模块。
 
-### How it works
-The Count Items block receives a collection as input. It then determines the type of collection and uses the appropriate method to count the items. For most collections, it uses the length function. For other iterable objects, it counts the items one by one.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该模块接收一个集合（如列表、字典或字符串）并计算其中的项目数量。
+
+### 工作原理
+
+Count Items 块接收一个集合作为输入。然后它会确定集合的类型并使用适当的方法来计数项目。对于大多数集合，它使用长度函数。对于其他可迭代对象，它会逐个计数项目。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Collection | Enter the collection you want to count (e.g., a list, dictionary, or string) |
+| 集合 | 输入您想要计数的集合（例如，列表、字典或字符串） |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| Count | The number of items in the collection |
+| 计数 | 集合中的项目数量 |
 
-### Possible use case
-A user has a list of customer names and wants to quickly determine how many customers are in the list. They can input the list into this block and receive the total count immediately.
+### 可能的使用场景
+
+用户有一个客户名称列表，想要快速确定列表中有多少客户。他们可以将列表输入到此块中，并立即获得总计数。

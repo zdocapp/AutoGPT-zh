@@ -1,28 +1,28 @@
-# AutoGPT Platform Installer
+# AutoGPT Platform 安装器
 
-The AutoGPT Platform provides easy-to-use installers to help you quickly set up the platform on your system. This page covers how to use the installer scripts for both Linux/macOS and Windows.
+AutoGPT Platform 提供易于使用的安装程序，帮助您在系统上快速设置平台。本文档介绍如何在 Linux/macOS 和 Windows 系统上使用安装脚本。
 
-## What the Installer Does
+## 安装器功能
 
-The installer scripts will:
+安装脚本将执行以下操作：
 
-1. Check for required prerequisites (Git, Docker, npm)
-2. Clone the AutoGPT repository
-3. Set up the backend services using Docker
-4. Set up the frontend application
-5. Start both the backend and frontend services
+1. 检查必备条件（Git、Docker、npm）
+2. 克隆 AutoGPT 代码库
+3. 使用 Docker 设置后端服务
+4. 设置前端应用程序
+5. 启动后端和前端服务
 
-## Prerequisites
+## 前置条件
 
-Before running the installer, make sure you have the following installed:
+运行安装程序前，请确保已安装以下组件：
 
-- **Git**: For cloning the repository
-- **Docker**: For running the backend services
-- **Node.js and npm**: For the frontend application
+- **Git**：用于克隆代码库
+- **Docker**：用于运行后端服务
+- **Node.js 和 npm**：用于前端应用程序
 
-## Quick One-Liner Installation
+## 快速单行命令安装
 
-For convenience, you can use the following one-liner commands to install AutoGPT Platform:
+为方便起见，您可以使用以下单行命令安装 AutoGPT Platform：
 
 ### Linux/macOS
 
@@ -30,41 +30,42 @@ For convenience, you can use the following one-liner commands to install AutoGPT
 curl -fsSL https://setup.agpt.co/install.sh -o install.sh && bash install.sh
 ```
 
-### Windows
+### Windows 平台
 
 ```powershell
 powershell -c "iwr https://setup.agpt.co/install.bat -o install.bat; ./install.bat"
 ```
 
-## Manual Installation
+## 手动安装
 
-If you prefer, you can manually download and run the installer scripts:
+如果您愿意，也可以手动下载并运行安装脚本：
 
 - **Linux/macOS:** `setup-autogpt.sh`
 - **Windows:** `setup-autogpt.bat`
 
-These scripts are located in the `autogpt_platform/installer/` directory.
+这些脚本位于 `autogpt_platform/installer/` 目录中。
 
-## After Installation
+## 安装完成后
 
-Once the installation is complete:
-- The backend services will be running in Docker containers
-- The frontend application will be available at http://localhost:3000
+安装完成后：
 
-## Stopping the Services
+- 后端服务将在 Docker 容器中运行
+- 前端应用程序可通过 http://localhost:3000 访问
 
-To stop the services, press Ctrl+C in the terminal where the frontend is running, then run:
+## 停止服务
+
+要停止服务，请在运行前端的终端中按 Ctrl+C，然后运行：
 
 ```bash
 cd AutoGPT/autogpt_platform
 docker compose down
 ```
 
-## Troubleshooting
+## 故障排除
 
-If you encounter any issues during installation:
+如果在安装过程中遇到任何问题：
 
-1. Make sure all prerequisites are correctly installed
-2. Check that Docker is running
-3. Ensure you have a stable internet connection
-4. Verify you have sufficient permissions to create directories and run Docker 
+1. 确保所有先决条件已正确安装
+2. 检查 Docker 是否正在运行
+3. 确保您有稳定的互联网连接
+4. 验证您是否有足够的权限来创建目录和运行 Docker

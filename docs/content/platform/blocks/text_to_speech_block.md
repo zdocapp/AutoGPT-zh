@@ -1,26 +1,32 @@
-## Unreal Text to Speech
+## Unreal 文本转语音
 
-### What it is
-A block that converts text into speech using the Unreal Speech API.
+### 功能说明
 
-### What it does
-This block takes a text input and generates an audio file of that text being spoken. It allows users to specify the voice they want to use for the speech conversion.
+一个使用 Unreal Speech API 将文本转换为语音的功能块。
 
-### How it works
-The block sends the provided text and voice selection to the Unreal Speech API. The API processes this information and returns a URL where the generated audio file can be accessed.
+### 功能描述
 
-### Inputs
-| Input | Description |
+该功能块接收文本输入并生成该文本的语音音频文件。它允许用户指定用于语音转换的声音。
+
+### 工作原理
+
+该功能块将提供的文本和声音选择发送到 Unreal Speech API。API 处理这些信息并返回一个可访问生成音频文件的 URL。
+
+### 输入
+
+| 输入 | 描述 |
 |-------|-------------|
-| Text | The text you want to convert into speech. This could be a sentence, paragraph, or any written content you'd like to hear spoken aloud. |
-| Voice ID | The identifier for the voice you want to use for the speech. By default, it uses a voice called "Scarlett," but you can change this to other available voices. |
-| API Key | Your personal key to access the Unreal Speech API. This is kept secret and secure. |
+| 文本 | 您想要转换为语音的文本。这可以是一个句子、段落或任何您想听到朗读的书面内容。 |
+| 声音 ID | 您想要用于语音的声音标识符。默认使用名为 "Scarlett" 的声音，但您可以更改为其他可用声音。 |
+| API 密钥 | 您访问 Unreal Speech API 的个人密钥。此密钥将被保密并确保安全。 |
 
-### Outputs
-| Output | Description |
+### 输出结果
+
+| 输出 | 描述 |
 |--------|-------------|
-| MP3 URL | The web address where you can access or download the generated audio file in MP3 format. |
-| Error | If something goes wrong during the process, this will contain a message explaining what happened. |
+| MP3 URL | 您可以访问或下载生成的 MP3 格式音频文件的网络地址。 |
+| 错误 | 如果处理过程中出现问题，这里将包含解释所发生情况的消息。 |
 
-### Possible use case
-This block could be used in an application that helps visually impaired users consume written content. For example, a news app could use this block to convert articles into audio format, allowing users to listen to the news instead of reading it.
+### 可能的使用场景
+
+该功能块可用于帮助视障用户消费书面内容的应用程序。例如，新闻应用程序可以使用此功能块将文章转换为音频格式，使用户能够收听新闻而不是阅读新闻。

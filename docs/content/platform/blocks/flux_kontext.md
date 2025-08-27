@@ -1,31 +1,37 @@
 # Flux Kontext
 
-## What it is
-An internal block that performs text-based image editing using BlackForest Labs' Flux Kontext models.
+## 功能概述
 
-## What it does
-Takes a prompt describing the desired transformation and optionally a reference image, then returns a new image URL.
+一个内部模块，使用 BlackForest Labs 的 Flux Kontext 模型执行基于文本的图像编辑。
 
-## How it works
-The block sends your prompt, image, and settings to the selected Flux Kontext model on Replicate. The service processes the request and returns a link to the edited image.
+## 功能说明
 
-## Inputs
-| Input        | Description                                                                 |
+接收描述所需变换的提示词，并可选择提供参考图像，然后返回新的图像 URL。
+
+## 工作原理
+
+该模块将您的提示词、图像和设置发送到 Replicate 上选定的 Flux Kontext 模型。服务处理请求并返回编辑后图像的链接。
+
+## 输入参数
+
+| 输入项       | 描述                                                                 |
 |--------------|-----------------------------------------------------------------------------|
-| Credentials  | Replicate API key with permissions for Flux Kontext models                  |
-| Prompt       | Text instruction describing the desired edit                                |
-| Input Image  | (Optional) Reference image URI (jpeg, png, gif, webp)                      |
-| Aspect Ratio | Aspect ratio of the generated image (e.g. match_input_image, 1:1, 16:9, etc.) |
-| Seed         | (Optional, advanced) Random seed for reproducible generation                |
-| Model        | Model variant to use: Flux Kontext Pro or Flux Kontext Max                  |
+| 凭据         | 具有 Flux Kontext 模型权限的 Replicate API 密钥                  |
+| 提示词       | 描述所需编辑的文本指令                                |
+| 输入图像     | (可选) 参考图像 URI (jpeg, png, gif, webp)                      |
+| 宽高比       | 生成图像的宽高比 (例如 match_input_image, 1:1, 16:9 等) |
+| 种子值       | (可选，高级) 用于可重复生成的随机种子                |
+| 模型         | 使用的模型变体：Flux Kontext Pro 或 Flux Kontext Max                  |
 
-## Outputs
-| Output     | Description                              |
+## 输出结果
+
+| 输出项     | 描述                              |
 |------------|------------------------------------------|
-| image_url  | URL of the transformed image             |
-| error      | Error message if generation failed       |
+| image_url  | 变换后图像的 URL             |
+| error      | 生成失败时的错误消息       |
 
-## Use Cases
-- Enhance a marketing image by requesting "add soft lighting and a subtle vignette" while providing the original asset as the reference image.
-- Generate social media assets with specific aspect ratios and style prompts.
-- Apply creative edits to product photos using text instructions.
+## 使用场景
+
+- 通过提供原始素材作为参考图像，请求“添加柔和光线和微妙晕影”来增强营销图片效果。
+- 根据特定宽高比和风格提示生成社交媒体素材。
+- 使用文本指令对产品照片进行创意编辑。
